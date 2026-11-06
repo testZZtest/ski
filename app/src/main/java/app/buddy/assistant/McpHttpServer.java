@@ -57,6 +57,11 @@ final class McpHttpServer {
         Log.d(TAG, "McpHttpServer listening on :" + PORT);
     }
 
+    /** Whether the server is currently listening. */
+    boolean isRunning() {
+        return running;
+    }
+
     /** Stop listening. Called from Settings when remote control is turned off, and from onDestroy. */
     void stop() {
         if (!running) return;

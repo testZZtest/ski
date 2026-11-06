@@ -536,6 +536,20 @@ final class Tools {
             case "memory_summary": return text(memorySummary());
             case "reply_notification":
                 return text(replyNotification(a.getString("text")));
+            case "reasoning_mode": {
+                String mode = a.optString("mode", "");
+                if (mode.isEmpty()) return text("Reasoning mode: " + Prefs.reasoningMode(svc) + " (off / on / always).");
+                if (!"off".equals(mode) && !"on".equals(mode) && !"always".equals(mode))
+                    return text("Give mode as off, on or always.");
+                Prefs.setReasoningMode(svc, mode);
+                return text("Reasoning mode set to " + mode + ".");
+            }
+            case "remote_status": {
+                boolean on = Prefs.remoteControl(svc);
+                boolean running = svc.mcpHttp != null && svc.mcpHttp.isRunning();
+                return text("Remote control: " + (on ? "enabled" : "disabled") + ", MCP HTTP server: "
+                        + (running ? "running on 127.0.0.1:8766" : "stopped") + ".");
+            }
             default:
                 throw new IllegalArgumentException("Unknown tool " + name);
         }
