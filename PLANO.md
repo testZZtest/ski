@@ -148,11 +148,14 @@ Adicionado a `PhoneTools.java` e exposto em `Tools.list`:
 2. **Skills como .md** (MobileClaw, zafiro): já tem Skills (SKILL.md); permitir importar skills de apps de chat — ver Fase D.
 3. **Lembrança / resumo de conversas** (zafiro): resumir chats antigos — pendente.
 
-### Fase D — Comunicação via apps de chat (médio-alto risco) — pendente
+### Fase D — Comunicação via apps de chat (médio-alto risco) — **IMPLEMENTADA**
 
 Enviar/receber mensagens por apps de chat externos (MobileClaw): Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ, Zulip.
-- Implementar como tools `chat_send(app, contact, text)` e `chat_read(app, contact, since)`.
-- Usar accessibility + open_url (deep links) quando não houver API pública.
+- Novo arquivo `ChatApps.java` com o perfil de cada app (pacotes, apelidos, palavras da busca) e as tools `chat_send(app, contact, text)` e `chat_read(app, contact, since)`.
+- Abre o chat por deep link quando o app tem um (`tg://resolve`, `whatsapp://send`), senão pela busca do próprio app (accessibility), e confere o nome no cabeçalho antes de agir.
+- `chat_send` digita, pede o OK do usuário com o texto exato (ou usa o `confirm` que o agente acabou de fazer), toca no botão de enviar (`Guard.sends` + rótulos dos apps) e confirma que a mensagem apareceu na conversa. Nunca envia duas vezes.
+- `chat_read` recolhe as mensagens como o app as mostra, rola para trás (`max_scrolls`) e aplica `since` ("30m", "2h", "09:30", "2026-11-06 09:00") pelos horários/data que o app exibe; avisa quando o app não mostra horários.
+- Limitação: nomes de remetente e horários só aparecem quando o app os coloca na árvore de acessibilidade; apps que desenham a conversa em canvas exigem `screenshot`.
 
 ### Fase E — Controle remoto e relay (alto impacto) — **IMPLEMENTADA (parcial)**
 
@@ -211,8 +214,8 @@ Enviar/receber mensagens por apps de chat externos (MobileClaw): Telegram, Whats
 ## 5. Como continuar (para a próxima IA)
 
 1. Leia este PLANO.md e o `README.md` atual.
-2. Escolha a próxima fase (sugestão: **Fase B** — automação de UI avançada, ou **Fase D** — apps de chat).
-3. Leia o arquivo relevante em `app/src/main/java/app/buddy/assistant/` (`Tools.java`, `PhoneTools.java`, `BuddyService.java`, `McpServer.java`, `Providers.java`, `Models.java`).
+2. Escolha a próxima fase (sugestão: **Fase B** — hidden/virtual display, **Fase F** — IA on-device real, **Fase G** — coletor Arize/Langfuse em Settings, ou **Fase H** — os 14 idiomas).
+3. Leia o arquivo relevante em `app/src/main/java/app/buddy/assistant/` (`Tools.java`, `PhoneTools.java`, `BuddyService.java`, `McpServer.java`, `Providers.java`, `Models.java`); as fases D, F, G e H também têm `ChatApps.java`, `OnDeviceModel.java`, `Tracing.java` e `res/raw/workflow_templates.json`.
 4. O novo `Memory.java` e `Shizuku.java` já estão integrados: as tools `memory_*` e `shizuku_*` estão expostas via MCP automaticamente.
 5. Adicione novas tools em `Tools.list()` e implemente em `Tools.call0()` / `PhoneTools.call()`.
 6. Exponha novas tools via `McpServer` (já expõe tudo de `Tools.list` automaticamente).
@@ -231,4 +234,4 @@ Todos listados no histórico da conversa; URLs no GitHub:
 
 ---
 
-**Última atualização do plano:** Fase A (web_search, web_fetch, translate, device_status detalhado), Fase C (memória persistente via Memory.java), Fase J (Shizuku) e Fase K (personalização do botão flutuante: tamanho + mostrar/esconder texto) implementadas. Versão 2.3.0. Próximo: Fase B ou D.
+**Última atualização do plano:** Fases A, C, D, J e K implementadas; E, F, G e H parciais. A Fase D (apps de chat) está em `ChatApps.java`, com `chat_send` e `chat_read`. Versão 2.4.1. Próximo: Fase B (hidden display) ou completar F, G e H.
