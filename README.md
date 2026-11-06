@@ -1,134 +1,127 @@
-<p align="center">
-  <img src="docs/banner.png" alt="Buddy: Claude Code, Codex, OpenCode, Antigravity and Grok in a bubble on your Android phone" width="100%">
-</p>
+# Ski
 
-<p align="center">
-  <a href="https://github.com/ghorbelhamdi/buddy-android/releases/latest"><img src="https://img.shields.io/github/v/release/ghorbelhamdi/buddy-android?style=for-the-badge&label=release" alt="Latest release"></a>
-  <a href="https://github.com/ghorbelhamdi/buddy-android/releases"><img src="https://img.shields.io/github/downloads/ghorbelhamdi/buddy-android/total?style=for-the-badge" alt="Downloads"></a>
-  <img src="https://img.shields.io/badge/Android-11%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android 11+">
-  <a href="https://www.producthunt.com/products/buddy-20"><img src="https://img.shields.io/badge/Product_Hunt-Buddy-DA552F?style=for-the-badge&logo=producthunt&logoColor=white" alt="Buddy on Product Hunt"></a>
-  <a href="https://glama.ai/mcp/servers/ghorbelhamdi/buddy-android"><img src="https://glama.ai/mcp/servers/ghorbelhamdi/buddy-android/badges/score.svg" alt="Buddy MCP server on Glama" height="28"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache_2.0-blue?style=for-the-badge" alt="License: Apache-2.0"></a>
-</p>
+**An AI agent that lives in a bubble on your Android phone.**
 
-# Buddy
+Type or say what you want — *"reply to Sam that I'm running late"*, *"add a Switch 2 to my Amazon cart"*, *"turn on the bedroom lights"* — and Ski reads the screen, taps, types and scrolls to get it done. It asks you before anything is sent, posted, bought or deleted.
 
-**A floating chat bubble that lets Claude Code, Codex, OpenCode, Antigravity or Grok use your Android phone.**
+Ski is a fork of [Buddy](https://github.com/ghorbelhamdi/buddy-android) (Apache-2.0) with its own package identity (`ski.agent`), so it installs side by side with the original app and updates only from this repository.
 
-Type or say what you want, like "reply to Sam that I'm running late" or "add a Switch 2 to my Amazon cart". Buddy reads the screen, taps and types to get it done, and asks you before anything is sent, posted, bought or deleted.
-
-It runs inside the app, on your own plan: [Claude Code](https://docs.claude.com/en/docs/claude-code) with your Claude plan, Codex with your ChatGPT plan, Google's [Antigravity CLI](https://antigravity.google) with your Google account, xAI's [Grok Build](https://x.ai/build) with your Google or X account, or [OpenCode](https://opencode.ai) with its free models and no account at all. No PC, no adb, no root, and no API key needed (you can add keys for other services, such as DeepSeek or OpenRouter, and use them with Claude Code, Codex or OpenCode).
-
-<p align="center"><a href="https://github.com/ghorbelhamdi/buddy-android/releases/latest/download/buddy.apk"><b>Download the APK</b></a> · <a href="https://ghorbelhamdi.github.io/buddy-android/">Website</a> · Android 11+, 64-bit</p>
-
-<div align="center">
-
-https://github.com/user-attachments/assets/d07936fc-4788-4ab5-a105-31b3e9aeba4f
-
-<sub>Codex turns on the lights while OpenCode's free model adds a Switch 2 to the Amazon cart (real recordings, waiting sped up)</sub>
-</div>
-
-<table>
-  <tr>
-    <td width="33%" align="center"><img src="docs/screens/chats.jpg" alt="Chats with different agents"><br><sub>Chats with any agent</sub></td>
-    <td width="33%" align="center"><img src="docs/screens/chat.jpg" alt="A chat with grouped tool calls"><br><sub>Tool calls fold into one line</sub></td>
-    <td width="33%" align="center"><img src="docs/screens/settings.jpg" alt="Settings"><br><sub>Setup guide and themes</sub></td>
-  </tr>
-</table>
+- **Android 11+, 64-bit**
+- **No root, no adb, no PC**
+- **Runs on your own plan**: Claude Code, Codex, OpenCode, Antigravity or Grok, installed inside the app
 
 ## What it can do
 
 | | |
 |---|---|
-| **Uses your apps** | Messages, shopping, smart home, settings: anything on screen. Add instructions while it works. |
+| **Uses your apps** | Messages, shopping, smart home, settings: anything on screen. You can add instructions while it works. |
 | **Asks first** | Approve, Deny or Change before anything is sent, posted, bought or deleted. |
-| **Shows you how** | "Show me how to turn on dark mode": it points at each step and waits for your tap. |
-| **Acts on notifications** | "When a customer asks on WhatsApp, reply with our opening hours", with your OK or a countdown you can stop. |
+| **Shows you how** | *"Show me how to turn on dark mode"*: it points at each step and waits for your tap. |
+| **Acts on notifications** | *"When a customer asks on WhatsApp, reply with our opening hours"*, with your OK or a countdown you can stop. |
 | **Voice** | Talk to it and have replies read aloud. |
-| **Background browser** | Web pages in a browser inside Buddy, without taking over your screen, even while the phone is locked. Watch and use it live in the chat; it marks what you need to do (sign in, a captcha) and never types your passwords. |
-| **Builds apps** | Turn on Linux tools in a chat and "make me a calculator app" builds a real APK on the phone; the GitHub version also installs it for you. |
-| **Phone tools anywhere** | The same tools as a local MCP server for your own Claude Code, Codex, OpenCode, Antigravity or Grok sessions, or over stdio with [mcp-bridge](mcp-bridge) for clients that start servers as commands. |
-| **Web & memory** | Search the web (`web_search`), read any page (`web_fetch`), translate text (`translate`), and remember facts & preferences across chats (`memory_save`, `memory_list`, `memory_search`). |
-| **Chat apps** (Fase D) | `chat_send` and `chat_read` for Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ and Zulip, through their deep links and accessibility: opens the contact's chat, types, taps Send (with your OK first) and reads the conversation back. |
-| **Detailed status** | Battery, network, storage, memory, local time, ringer: everything an agent needs to know about the phone. |
-| **Shizuku** (elevated shell, no root) | `shizuku_run`, `shizuku_status`, `shizuku_check_permission`: run shell commands with elevated privileges after you grant Buddy permission in the Shizuku app or via ADB. |
-| **Bubble personalization** | Make the floating button smaller or larger (`small`/`medium`/`large`), and show or hide the status text next to it — in Settings. |
-| **Numbered-legend UI** (Fase B) | `read_screen_with_numbers` overlays 1, 2, 3… on every element; `tap_by_number N` taps by that number, and refuses a number from an older screen. Pairs with `ocr_screen` for apps that hide their UI (games, canvas). |
-| **Find by meaning** | `find_and_tap` finds an element by its text, content description or view id, scrolls a list until it appears, and taps it in one call (`tap=false` only locates it). Password values are masked in every screen read. |
-| **Remote control** (Fase E) | `McpHttpServer` on `127.0.0.1:8766`: expose Buddy's phone tools over HTTP so a desktop or another app can call them. Off by default, on in Settings. |
-| **Reasoning mode** (Fase G) | Before each phone action, the agent describes what it sees, plans and why — off by default, on in Settings. |
-| **14 languages** (Fase H) | Strings ready for translation in `res/values-<language>/strings.xml`; community skills and plugin APKs via Skills. |
-
-> **Status: 2.3, early.** It works well day to day but has rough edges. Tested most on a OnePlus 12 (Android 16). Buddy is an independent project, not made by or affiliated with Anthropic, OpenAI, Google or xAI.
+| **Background browser** | Pages load in a browser inside Ski without taking over your screen, even while the phone is locked. It marks what you must do (sign in, a captcha) and never types your passwords. |
+| **Builds apps** | With Linux tools on, *"make me a calculator app"* builds a real APK on the phone; the GitHub build installs it for you. |
+| **Find by meaning** | `find_and_tap` finds an element by text, content description or view id, scrolls a list until it appears and taps it in one call (`tap=false` only locates it). Password values are masked in every screen read. |
+| **Numbered legend** | `read_screen_with_numbers` overlays 1, 2, 3… on every element and `tap_by_number N` taps it, refusing a number from an older screen. `ocr_screen` covers apps that hide their UI. |
+| **Chat apps** | `chat_send` and `chat_read` for Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ and Zulip: open the contact, type, tap Send (with your OK) and read the conversation back. |
+| **Phone tools anywhere** | The same tools as a local MCP server for your own agent sessions, or over stdio with [mcp-bridge](mcp-bridge). |
+| **Remote control** | `McpHttpServer` exposes the phone tools over HTTP on `127.0.0.1:8766`, off by default. |
+| **Web & memory** | `web_search`, `web_fetch`, `translate`, and facts and preferences remembered across chats. |
+| **Status** | Battery, network, storage, memory, local time, ringer: what an agent needs to know about the phone. |
+| **Shizuku** | `shizuku_run` and friends for an elevated shell without root, after you grant Ski permission. |
+| **14 languages** | Strings in `res/values-<language>/strings.xml`; community skills and plugin APKs via Skills. |
 
 ## How it works
 
 ```
-Buddy app / bubble ──► Buddy's Linux (Alpine via proot): claude, codex, opencode, agy or grok
+Ski app / bubble ──► Ski's Linux (Alpine via proot): claude, codex, opencode, agy or grok
         ▲                                                     │
         └──────────── streamed replies ◄──────────────────────┤
                                                               ▼
-Buddy accessibility service ◄──── MCP on 127.0.0.1 (phone tools)
+Ski accessibility service ◄──── MCP on 127.0.0.1 (phone tools)
 ```
 
-Buddy is a normal Android app with an accessibility service, the kind of permission screen readers use. The agent runs in a small Linux inside the app and uses Buddy's phone tools (read the screen, tap, type, scroll, open apps) over a local MCP server. No adb or Wireless debugging, and it works without Wi-Fi.
+Ski is a normal Android app with an accessibility service, the kind screen readers use. The agent runs in a small Linux inside the app and calls Ski's phone tools (read the screen, tap, type, scroll, open apps) over a local MCP server. No adb, no wireless debugging, and it works without Wi-Fi.
 
-## Setup
+## Install
 
-You need a 64-bit Android 11+ phone, plus a Claude, ChatGPT or Google account for those agents (Grok: a Google or X account). OpenCode's free models need no account.
+You need a 64-bit Android 11+ phone, plus an account for the agent you pick (Claude, ChatGPT, Google or X). OpenCode's free models need no account.
 
-1. **Install Buddy:** [download buddy.apk](https://github.com/ghorbelhamdi/buddy-android/releases/latest/download/buddy.apk) and open it. It updates itself, and installs the apps it builds for you. (Google Play turned Buddy down for production: its policy doesn't allow apps that use accessibility to carry out tasks.)
-2. **Follow the setup guide** that opens on first launch: pick your agent, turn on the accessibility service, install and sign in, and try a first task.
+1. Download the latest `ski.apk` from [Releases](https://github.com/testZZtest/ski/releases/latest) and open it.
+2. Follow the setup guide that opens on first launch: pick your agent, turn on the accessibility service, install and sign in, then try a first task.
 
-**Install blocked or "Restricted setting"?** See [Setup in detail](docs/GUIDE.md#setup-in-detail).
+Ski is not on Google Play (the store does not allow apps that use accessibility to carry out tasks), so the APK is installed by hand. If Play Protect blocks it, see [Setup in detail](docs/GUIDE.md#setup-in-detail).
+
+Because the package is `ski.agent`, this build can coexist with the original Buddy app. It does not see Buddy's chats or settings, and Buddy does not see Ski's.
 
 ## Updating
 
-Install the new APK over the old one: chats, settings and sign-ins stay (don't uninstall first). You can also ask Buddy to *"update yourself"*, or let [Obtainium](https://obtainium.imranr.dev) do it ([how](docs/GUIDE.md#updating)).
+Install the new APK over the old one: chats, settings and sign-ins stay (don't uninstall first). You can also ask Ski to *"update yourself"*, or let [Obtainium](https://obtainium.imranr.dev) watch this repository ([how](docs/GUIDE.md#updating)).
+
+Updates must be signed with the same key as the installed build. Keep your signing key backed up; if it is lost, the only way to update is to uninstall and install again.
 
 ## Security
 
 An accessibility service is powerful, so please read this.
 
 - **Local only.** The phone tools listen on `127.0.0.1` with a random per-install token.
-- **Buddy enforces the approvals, not the agent.** Messaging, shopping and money apps start on a hard limit: Buddy itself stops on buttons like Send, Pay and Delete until you OK them.
+- **Ski enforces the approvals, not the agent.** Messaging, shopping and money apps start on a hard limit: Ski itself stops on buttons like Send, Pay and Delete until you OK them.
 - **Prompt injection is the main risk.** A message or web page could try to give the agent orders. On-screen text is treated as content, and the approval card is the backstop, so read it.
-- **No passwords.** Buddy never types passwords, codes or payment details; it hands those to you.
-- **What leaves the phone:** only what the agent sends to its provider (Anthropic, OpenAI, Google, xAI, OpenCode's service or the provider you connected) to answer you.
+- **No passwords.** Ski never types passwords, codes or payment details; it hands those to you.
+- **What leaves the phone:** only what the agent sends to its provider to answer you.
 
-More in [Security in detail](docs/GUIDE.md#security-in-detail). Found a problem? Please open a private security advisory instead of a public issue.
+More in [Security in detail](docs/GUIDE.md#security-in-detail). Found a problem? Please use [private vulnerability reporting](https://github.com/testZZtest/ski/security/advisories/new) instead of a public issue.
 
-## FAQ
+## Building
 
-**What does it cost?** Buddy is free. The agent uses your plan's limits, or nothing at all with OpenCode's free models (no account) or Antigravity's free plan (Google account).
+### On the phone, in Termux (no Gradle)
 
-**iPhone?** No. iOS doesn't let apps operate other apps.
-
-**Which phones?** 64-bit Android 11 or newer. On some brands, set Buddy's battery use to *Unrestricted*.
-
-**Does it need a computer, adb or root?** No.
-
-## Learn more
-
-- [User guide](docs/GUIDE.md): chats, models, voice, notification rules, the bubble, Remote Control, SSH and Linux tools
-- [Benchmark](benchmark/README.md): which model uses a phone best
-- [Privacy policy](docs/PRIVACY.md)
-
-**In the press:** [ProPakistani](https://propakistani.pk/2026/10/12/this-free-android-app-lets-claude-code-use-your-phone/), [The Neutral](https://theneutral.pk/this-free-android-app-lets-ai-control-your-phone-without-a-pc/), [Trendshift](https://trendshift.io/repositories/289557) (October 2026)
-
-## Contributing
-
-Bug reports, ideas and translation fixes are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). If Buddy is useful to you, a ⭐ helps other people find it.
-
-## For developers
-
-```
-./gradlew assembleRelease     # Android Studio / Gradle
-./build.sh                    # on the phone in Termux, no Gradle → build/buddy-release.apk
+```bash
+pkg install openjdk-17 aapt2 d8 apksigner python
+# put android.jar from platform-36 at ~/android-sdk/android-36/android.jar
+./build.sh                     # → build/ski-release.apk
 ```
 
-`build.sh` needs `pkg install openjdk-17 aapt2 d8 apksigner python` and android.jar from platform-36 at `~/android-sdk/android-36/android.jar`. It creates a signing key at `~/.buddy-keys/release.jks` on first run: back it up, since updates must be signed with the same key. Gradle release signing reads `BUDDY_KEYSTORE` and `BUDDY_KEYSTORE_PASSWORD` (optionally `BUDDY_KEY_ALIAS`, `BUDDY_KEY_PASSWORD`). The version lives in `BuildInfo.java`, and the project layout is in [CONTRIBUTING.md](CONTRIBUTING.md#project-layout).
+`build.sh` compiles resources with `aapt2`, Java with `javac`, dexes with `d8`, packs the native libraries, aligns and signs with `apksigner`. On first run it creates a release key at `~/.ski-keys/release.jks` and its password next to it: back both up, since updates must use the same key.
 
-## License
+### On a computer (Android Studio or Gradle)
+
+Open the project in Android Studio, or from a terminal with JDK 21 and the Android SDK 36:
+
+```bash
+./gradlew assembleGithubRelease      # app/build/outputs/apk/github/release/
+./gradlew bundlePlayRelease          # Google Play bundle, no self-update
+```
+
+Release signing is read from the environment: `SKI_KEYSTORE`, `SKI_KEYSTORE_PASSWORD`, and optionally `SKI_KEY_ALIAS` (default `ski`) and `SKI_KEY_PASSWORD`. Without them the APK is unsigned and Android will not install it.
+
+### On GitHub Actions
+
+Every push and pull request builds the app and runs the helper tests. Pushing a tag such as `v2.5.0` builds the release APK and attaches it to a GitHub release, both as `ski-v2.5.0.apk` and as the fixed `ski.apk` link that the in-app updater and Obtainium use.
+
+The workflow signs the APK when these repository secrets exist:
+
+| Secret | Value |
+|---|---|
+| `SKI_KEYSTORE_BASE64` | `base64 -w0 ~/.ski-keys/release.jks` |
+| `SKI_KEYSTORE_PASSWORD` | the contents of `~/.ski-keys/password` |
+
+Without them the APK is unsigned, so the release step is skipped and the build is only kept as a workflow artifact.
+
+## Project layout
+
+```
+app/src/main/java/ski/agent/   the app: UI, accessibility service, tools, MCP servers
+app/src/main/res/              layouts, drawables and every string (14 languages)
+app/src/main/assets/linux/     the helper scripts installed into Ski's Linux
+linux/                         sources of those scripts + tests
+native/                        proot, talloc and the pty helper, built from source
+mcp-bridge/                    stdio bridge for MCP clients that start servers as commands
+docs/                          user guide and privacy policy
+```
+
+## Credits and license
+
+Ski is a fork of [Buddy](https://github.com/ghorbelhamdi/buddy-android) by Hamdi Ghorbel. The original design, the Linux integration and most of the code are his; this fork changes the app identity and adds the improvements listed above.
 
 [Apache-2.0](LICENSE). Geist fonts: SIL Open Font License. Icons: Material Symbols (Apache-2.0). Bundled proot (GPL-2.0), talloc (LGPL-3.0) and libandroid-shmem (BSD-3-Clause): see [third_party](third_party/README.md) for licences and source.

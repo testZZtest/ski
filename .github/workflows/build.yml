@@ -39,46 +39,59 @@ jobs:
         env:
           NDK_VERSION: 27.2.12479018
 
-      # Release signing is optional: add the BUDDY_KEYSTORE_BASE64 and BUDDY_KEYSTORE_PASSWORD
+      # Release signing is optional: add the SKI_KEYSTORE_BASE64 and SKI_KEYSTORE_PASSWORD
       # repository secrets to get a signed APK; otherwise the APK is unsigned.
       - name: Decode signing key
         env:
-          KEYSTORE_BASE64: ${{ secrets.BUDDY_KEYSTORE_BASE64 }}
+          KEYSTORE_BASE64: ${{ secrets.SKI_KEYSTORE_BASE64 }}
         if: env.KEYSTORE_BASE64 != ''
         run: |
           echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
-          echo "BUDDY_KEYSTORE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          echo "SKI_KEYSTORE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
 
       - name: Build release APK (GitHub) and bundle (Google Play)
         env:
-          BUDDY_KEYSTORE_PASSWORD: ${{ secrets.BUDDY_KEYSTORE_PASSWORD }}
+          SKI_KEYSTORE_PASSWORD: ${{ secrets.SKI_KEYSTORE_PASSWORD }}
         run: ./gradlew --no-daemon assembleGithubRelease bundlePlayRelease
 
       - name: Collect APK
         run: |
           mkdir -p dist
           apk=$(find app/build/outputs/apk/github/release -name '*.apk' | head -1)
-          cp "$apk" "dist/buddy-${GITHUB_REF_NAME//\//-}.apk"
-          # fixed name too, so releases/latest/download/buddy.apk always gets the newest version
-          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/buddy.apk; fi
+          cp "$apk" "dist/ski-${GITHUB_REF_NAME//\//-}.apk"
+          # fixed name too, so releases/latest/download/ski.apk always gets the newest version
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/ski.apk; fi
           ls -l dist
 
       - uses: actions/upload-artifact@v7
         with:
-          name: buddy-apk
+          name: ski-apk
           path: dist/*.apk
 
       # The Play bundle is never attached to the GitHub release (see below).
       - uses: actions/upload-artifact@v7
         with:
-          name: buddy-play-aab
+          name: ski-play-aab
           path: app/build/outputs/bundle/playRelease/*.aab
 
-      # No automatic upload to Google Play: Play turned Buddy down (its accessibility policy), so releases are on
+      # An unsigned APK cannot be installed, so a tag only publishes a release when the key is configured.
+      - name: Check signing
+        id: signing
+        env:
+          KEYSTORE_BASE64: ${{ secrets.SKI_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "signed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No SKI_KEYSTORE_BASE64 secret: the APK is unsigned, so no release is published. Add SKI_KEYSTORE_BASE64 and SKI_KEYSTORE_PASSWORD (see README) and re-run this tag's workflow."
+          fi
+
+      # No automatic upload to Google Play: Play turned Ski down (its accessibility policy), so releases are on
       # GitHub only. The bundle above is still built and kept as an artifact, for a manual upload if that changes.
 
       - name: Publish GitHub release
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/v') && steps.signing.outputs.signed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         # a release made by hand first (with its own notes) just gets the CI-built APKs attached
@@ -86,5 +99,5 @@ jobs:
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" dist/*.apk --clobber
           else
-            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Buddy $GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Ski $GITHUB_REF_NAME" --generate-notes
           fi

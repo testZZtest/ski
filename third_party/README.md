@@ -1,6 +1,6 @@
 # Third-party components
 
-Buddy's built-in Linux runs through **proot**, which ships inside the APK as native libraries
+Ski's built-in Linux runs through **proot**, which ships inside the APK as native libraries
 (named `lib*.so` so Android extracts them). They are built from source by [`native/build.sh`](../native/build.sh):
 it downloads the exact source releases below, checks their SHA-256, and compiles them with the Android NDK
 in CI (or Termux's clang on a phone), the way Termux builds them.

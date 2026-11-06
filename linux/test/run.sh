@@ -2,7 +2,7 @@
 # The helper's translation of each agent's output, tested on real recorded runs: every fixtures/<agent>/<case>_<cli
 # version>.jsonl goes through buddy-run's stream_<agent>, and its events must match <case>_<cli version>.expected.jsonl
 # (compared as sorted JSON). When an agent update changes its output, add the new version's recording next to the old
-# one rather than replacing it, as long as Buddy supports both.
+# one rather than replacing it, as long as Ski supports both.
 #   run.sh            run every fixture
 #   run.sh --update   rewrite the expected files from the current helper (check the diff before committing)
 set -u

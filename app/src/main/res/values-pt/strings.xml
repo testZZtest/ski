@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Buddy</string>
-    <string name="service_label">Assistente Buddy</string>
+    <string name="app_name" translatable="false">Ski</string>
+    <string name="service_label">Assistente Ski</string>
     <string name="main_new_chat">Novo chat</string>
     <string name="main_empty_title">Sem chats ainda</string>
     <string name="main_empty_text">Toque em Novo chat para iniciar um com Claude Code, Codex, OpenCode, Antigravity ou Grok.</string>
-    <string name="onboarding_welcome_title">Conheça o Buddy</string>
+    <string name="onboarding_welcome_title">Conheça o Ski</string>
     <string name="onboarding_welcome_text">Uma bolha de chat que pode usar seu telefone por você.</string>
     <string name="onboarding_get_started">Começar</string>
     <string name="onboarding_continue">Continuar</string>
     <string name="onboarding_skip_setup">Pular configuração</string>
-    <string name="onboarding_access_title">Permitir que o Buddy veja e toque</string>
+    <string name="onboarding_access_title">Permitir que o Ski veja e toque</string>
     <string name="onboarding_access_open">Abrir configurações de acessibilidade</string>
     <string name="chat_back">Voltar</string>
     <string name="chat_send">Enviar</string>
@@ -29,7 +29,7 @@
     <string name="prefs_theme_system">Sistema</string>
     <string name="prefs_theme_light">Claro</string>
     <string name="prefs_theme_dark">Escuro</string>
-    <string name="control_title">Buddy está usando seu telefone</string>
+    <string name="control_title">Ski está usando seu telefone</string>
     <string name="control_stop">Parar</string>
     <string name="schedule_title">Agendar</string>
     <string name="schedule_save">Salvar</string>

@@ -1,11 +1,11 @@
-// Buddy's background browser: run in the page by Browser.java (Runtime.evaluate, in an isolated world the page's own
+// Ski's background browser: run in the page by Browser.java (Runtime.evaluate, in an isolated world the page's own
 // scripts can't reach) for the agents' browser tools.
 // It reads the whole page as text with numbered items ([12]), and finds an item again by its number. The numbers
 // are kept on the elements (data-buddy-ref), so they stay valid until the page changes.
 (function () {
   if (window.__buddy) return;
   var B = window.__buddy = {seq: 0};
-  // a new world on a page Buddy already numbered: go on from its numbers, so none is given twice
+  // a new world on a page Ski already numbered: go on from its numbers, so none is given twice
   document.querySelectorAll('[data-buddy-ref]').forEach(function (el) {
     B.seq = Math.max(B.seq, +el.getAttribute('data-buddy-ref') || 0);
   });
@@ -144,7 +144,7 @@
     });
   };
 
-  // Fields Buddy never types into: passwords, one-time codes, payment details (the user does those)
+  // Fields Ski never types into: passwords, one-time codes, payment details (the user does those)
   var SENSITIVE = /passw|passcode|kennwort|contrase|senha|пароль|mot de passe|one.?time|\botp\b|2fa|two.?factor|verification code|security code|confirmation code|sms code|login code|cvv|cvc|csc|card.?number|cardnum|cc.?num|credit.?card|expir|iban|routing number|sort code|kartennummer|numéro de carte|número de tarjeta|\bpin\b/i;
   B.sensitive = function (el) {
     if (el.tagName === 'INPUT' && (el.type || '').toLowerCase() === 'password') return 'password';
@@ -216,7 +216,7 @@
         try { host = src ? new URL(src, location.href).host : ''; } catch (e) {}
         if (host && host !== location.host) {
           flush();
-          lines.push('(embedded frame from ' + host + ': Buddy can\'t read or use it; the user can, in the live view)');
+          lines.push('(embedded frame from ' + host + ': Ski can\'t read or use it; the user can, in the live view)');
         }
         return;
       }

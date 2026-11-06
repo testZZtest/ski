@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run by the Buddy app inside its built-in Linux (Alpine, through proot).
+# Run by the Ski app inside its built-in Linux (Alpine, through proot).
 #   buddy-run <token> ask <session> <claude|codex|opencode|agy|grok> <dev:0|1|rule|play> <message> [model] [attachment-ids]
 #     (rule: a notification rule's run, working for someone else's message: no shell, files or web tools;
 #      play: the Play version, which has no Linux tools at all)
@@ -11,7 +11,7 @@
 #   buddy-run <token> kill <pid>           stop a running Claude Code / Codex process and its children
 #   buddy-run <token> recent               list recent Claude Code / Codex sessions from their history (buddy_recent)
 #   buddy-run <token> transcript <claude|codex> <file>   last messages of a session (buddy_transcript)
-#   buddy-run <token> adopt <session> <claude|codex> <agent-session-id>  continue that session as a Buddy chat
+#   buddy-run <token> adopt <session> <claude|codex> <agent-session-id>  continue that session as a Ski chat
 # Every event sent to the bubble carries "buddy_session" so the app can route it.
 HELPER_VERSION=23
 set -u
@@ -68,7 +68,7 @@ case "$CMD" in
       have grok && echo grok; } | paste -sd, -)
     # signed in = the agent's saved login exists (OpenCode works without one: its free models)
     # (or Claude Code's API key in its settings' env; Codex keeps an API key in auth.json too)
-    # (or an API key service saved in Buddy that the agent can use: $D/providers, without the keys)
+    # (or an API key service saved in Ski that the agent can use: $D/providers, without the keys)
     signed=$({ { [ -s "$HOME/.claude/.credentials.json" ] || grep -qs '"anthropic":true' "$D"/providers/*.json; } && echo claude
       { [ -s "$HOME/.codex/auth.json" ] || grep -qs '"openai":"responses"' "$D"/providers/*.json; } && echo codex
       have opencode && echo opencode; [ -s "$HOME/.gemini/antigravity-cli/antigravity-oauth-token" ] && echo agy
@@ -96,7 +96,7 @@ case "$CMD" in
       '{type:"buddy_pong",text:$s,signed:$g,helper:$v,codex_models:$cm,opencode_models:$om,agy_models:$am,grok_models:$gm}' | post
     exit 0 ;;
   procs)
-    # map every process started by a Buddy chat to that chat
+    # map every process started by a Ski chat to that chat
     declare -A owner=()
     for f in "$D"/sessions/*/pid; do
       [ -f "$f" ] || continue
@@ -156,7 +156,7 @@ case "$CMD" in
           | ([.[] | select(.type=="response_item" and .payload.type=="message" and .payload.role=="user")
                 | .payload.content[]? | .text // empty
                 | select(startswith("<")|not)
-                | (if contains("User message from the Buddy bubble:\n") then split("User message from the Buddy bubble:\n")|last else . end)]
+                | (if contains("User message from the Ski bubble:\n") then split("User message from the Ski bubble:\n")|last else . end)]
              | last // "") as $t
           | {agent:"codex", file:$f, id:($meta.id//""), cwd:($meta.cwd//""), title:($t|.[0:120]),
              mtime:($m|tonumber)}' 2>/dev/null
@@ -218,8 +218,8 @@ esac
 
 valid_sid "$SID" || exit 2
 [ -z "$MSG" ] && exit 0
-# A model of an API key service saved in Buddy (Settings, API keys) comes as @service/model. The agent is pointed at
-# the relay on Buddy, which adds the key (it never enters Linux); $D/providers/<service>.json says which kinds of
+# A model of an API key service saved in Ski (Settings, API keys) comes as @service/model. The agent is pointed at
+# the relay on Ski, which adds the key (it never enters Linux); $D/providers/<service>.json says which kinds of
 # address the service has and its models context sizes.
 SVC="" SVCM=""
 if [[ "${MODEL:-}" == @*/* ]]; then
@@ -240,7 +240,7 @@ if [ -f "$S/pid" ] && kill -0 "$(cat "$S/pid")" 2>/dev/null; then
 fi
 
 if [ -n "$SVC" ] && [ ! -s "$D/providers/$SVC.json" ]; then
-  event buddy_error "This chat's model is from an API key that is no longer in Buddy. Pick another model."
+  event buddy_error "This chat's model is from an API key that is no longer in Ski. Pick another model."
   exit 0
 fi
 
@@ -256,7 +256,7 @@ if [ -n "${FILES:-}" ]; then
       ATT+=("$S/files/$id")
       case "${id,,}" in *.jpg|*.jpeg|*.png|*.webp|*.gif) IMGS+=("$S/files/$id") ;; esac
     else
-      event buddy_error "Couldn't get the attachment ${id#*_} from Buddy."
+      event buddy_error "Couldn't get the attachment ${id#*_} from Ski."
     fi
   done
   if [ ${#ATT[@]} -gt 0 ]; then
@@ -294,7 +294,7 @@ Linux tools are off in this chat: no shell commands or file edits. If the user a
 (building an app, running commands), tell them to turn on Linux tools with the chip under this chat's title, then ask again."
 fi
 
-# Buddy's shared skills (Settings, Skills) live in ~/.agents/skills, where Codex and OpenCode look: Claude Code gets a
+# Ski's shared skills (Settings, Skills) live in ~/.agents/skills, where Codex and OpenCode look: Claude Code gets a
 # link to each in its own folder (a skill of the same name already there wins), and links to removed ones go.
 link_skills() {
   local d n l
@@ -354,7 +354,7 @@ stream_claude() {
 
 # ---------------------------------------------------------------------- Codex
 # The phone server is passed with -c (no config file needed). Only the phone tools are
-# pre-approved. Normal mode keeps Codex's shell read-only; developer mode opens all of Buddy's Linux to it.
+# pre-approved. Normal mode keeps Codex's shell read-only; developer mode opens all of Ski's Linux to it.
 run_codex() {
   local prompt=$MSG
   local cfg=(-c 'mcp_servers.phone.url="'"$URL"'/mcp?chat='"$SID"'"'
@@ -363,7 +363,7 @@ run_codex() {
     -c 'mcp_servers.phone.tool_timeout_sec=600')
   # Linux tools off (and a rule's run): no shell at all, as for Claude Code, not even read-only commands
   local sandbox=(--sandbox read-only --disable shell_tool --disable unified_exec)
-  # developer mode: the whole of Buddy's Linux, like Claude Code's Bash and OpenCode (so apk add works too)
+  # developer mode: the whole of Ski's Linux, like Claude Code's Bash and OpenCode (so apk add works too)
   [ "$DEV" = 1 ] && sandbox=(--sandbox danger-full-access)
   # a run with a file attached (not a picture, which goes in with --image) keeps read-only commands to open it
   [ "$DEV" != 1 ] && [ ${#ATT[@]} -gt ${#IMGS[@]} ] && sandbox=(--sandbox read-only)
@@ -385,8 +385,8 @@ run_codex() {
     BUDDY_TOKEN=$TOKEN codex exec "${cfg[@]}" "${sandbox[@]}" --json --skip-git-repo-check \
       resume "${img[@]}" -- "$(cat "$S/codex-thread")" "$prompt" </dev/null 2>"$S/last-error.log"
   else
-    # codex exec has no system-prompt flag, so Buddy's instructions lead the first message.
-    prompt="$SYSTEM"$'\n\n---\n\nUser message from the Buddy bubble:\n'"$MSG"
+    # codex exec has no system-prompt flag, so Ski's instructions lead the first message.
+    prompt="$SYSTEM"$'\n\n---\n\nUser message from the Ski bubble:\n'"$MSG"
     BUDDY_TOKEN=$TOKEN codex exec "${cfg[@]}" "${sandbox[@]}" "${img[@]}" --json --skip-git-repo-check \
       -- "$prompt" </dev/null 2>"$S/last-error.log"
   fi
@@ -440,7 +440,7 @@ stream_codex() {
 }
 
 # ------------------------------------------------------------------- OpenCode
-# Config goes in through OPENCODE_CONFIG_CONTENT: the phone server, Buddy's instructions (a file), no
+# Config goes in through OPENCODE_CONFIG_CONTENT: the phone server, Ski's instructions (a file), no
 # auto-update or sharing. Normal mode sets shell and edits to "ask", which a non-interactive run
 # auto-rejects ("deny" would drop those tools, and OpenCode's free models refuse a changed tool set).
 run_opencode() {
@@ -454,7 +454,7 @@ these exact names; they are available in every message of this chat." > "$S/syst
   local cfg v2=0
   oc2 && v2=1
   # OpenCode 2 ignores instructions given through OPENCODE_CONFIG_CONTENT (the model never saw this prompt),
-  # but reads its global AGENTS.md, next to the work folder's own. Buddy owns that file (marked on line 1)
+  # but reads its global AGENTS.md, next to the work folder's own. Ski owns that file (marked on line 1)
   # and leaves one the user wrote alone.
   if [ "$v2" = 1 ]; then
     local g=$HOME/.config/opencode/AGENTS.md
@@ -491,7 +491,7 @@ these exact names; they are available in every message of this chat." > "$S/syst
 
 # Translate OpenCode's JSON events into the Claude Code stream format the bubble understands.
 # Only the text of the step that ends the turn (its answer) is shown: text written before tool calls is
-# the model thinking out loud (free models even leak their reasoning, ending in </think>), and Buddy
+# the model thinking out loud (free models even leak their reasoning, ending in </think>), and Ski
 # doesn't show Claude Code's or Codex's thinking either. Tool calls still show as steps.
 stream_opencode() {
   local pending="" failed="" line sid typ t
@@ -568,7 +568,7 @@ run_agy() {
   ( umask 077
     jq -n --arg url "$URL/mcp?chat=$SID" --arg auth "Bearer $TOKEN" \
       '{mcpServers:{phone:{url:$url, headers:{Authorization:$auth}, timeoutSeconds:600}}}' > "$h/.gemini/config/mcp_config.json" )
-  # the phone's tools as the server lists them (a newer Buddy may have more); the known list if that fails
+  # the phone's tools as the server lists them (a newer Ski may have more); the known list if that fails
   list=$(curl -s -m 10 -X POST -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
     -H 'Accept: application/json, text/event-stream' --data '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' \
     "$URL/mcp?chat=$SID")
@@ -582,7 +582,7 @@ run_agy() {
     '{permissions:{allow:([$t[] | "mcp(phone/\(.))"] + ["read_file(\($files))", "read_file(\($brain))"])}}' \
     > "$h/.gemini/antigravity-cli/settings.json"
   local prompt=$MSG args names note
-  # agy has no system-prompt flag, so Buddy's instructions lead a new conversation's first message (as for Codex).
+  # agy has no system-prompt flag, so Ski's instructions lead a new conversation's first message (as for Codex).
   # It also lists MCP tools only by file: say how to call the phone's, or it goes looking (e.g. with ls, which a
   # normal chat refuses, and then it stops).
   [ -n "$sigs" ] || sigs=$(jq -r 'join(", ")' <<<"$AGY_PHONE_TOOLS" 2>/dev/null)
@@ -591,7 +591,7 @@ run_agy() {
 to read their descriptions first; only if an argument is unclear, read_file \
 $h/.gemini/antigravity-cli/mcp/phone/<tool>.json."
   [ "$DEV" = 1 ] || note="$note Shell commands are not available in this chat; don't try them."
-  [ -s "$S/agy-conversation" ] || prompt="$SYSTEM"$'\n\n'"$note"$'\n\n---\n\nUser message from the Buddy bubble:\n'"$MSG"
+  [ -s "$S/agy-conversation" ] || prompt="$SYSTEM"$'\n\n'"$note"$'\n\n---\n\nUser message from the Ski bubble:\n'"$MSG"
   args=(-p "$prompt" --output-format stream-json)
   [ -s "$S/agy-conversation" ] && args+=(--conversation "$(cat "$S/agy-conversation")")
   [ -n "${MODEL:-}" ] && args+=(--model "$MODEL")
@@ -752,7 +752,7 @@ run_grok() {
 (tool_name \"phone__<tool>\", e.g. phone__read_screen, and tool_input with its arguments${sigs:+ as listed here; ? marks an \
 optional one: $sigs}). You don't need search_tool for them."
   [ "$DEV" = 1 ] || note="$note Shell commands are not available in this chat; don't try them."
-  # --rules adds Buddy's instructions to grok's own, on every run (as --append-system-prompt does for Claude Code)
+  # --rules adds Ski's instructions to grok's own, on every run (as --append-system-prompt does for Claude Code)
   local args=(-p "$MSG" --output-format streaming-messages-json --rules "$SYSTEM"$'\n\n'"$note" --allow 'MCPTool(phone__*)')
   case "$DEV" in
     1) args+=(--always-approve) ;;
@@ -834,7 +834,7 @@ fi
 # ------------------------------------------------------------------------ run
 (
   if [ "$BACKEND" = opencode ]; then
-    if ! have opencode; then event buddy_error "OpenCode isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have opencode; then event buddy_error "OpenCode isn't installed yet. Install it in Ski's Settings."; exit 0; fi
     run_opencode | stream_opencode
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/opencode-session" ] && grep -q -i -E 'not found|no such|session' "$S/last-error.log" 2>/dev/null; then
@@ -844,7 +844,7 @@ fi
     fi
     name=OpenCode
   elif [ "$BACKEND" = agy ]; then
-    if ! have agy; then event buddy_error "Antigravity isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have agy; then event buddy_error "Antigravity isn't installed yet. Install it in Ski's Settings."; exit 0; fi
     # a rule's run must get no shell, files or web; agy's allow list can't promise that yet (see Account.runsRules)
     if [ "$DEV" = rule ]; then event buddy_error "Antigravity can't run notification rules yet. Pick another agent for this rule."; exit 0; fi
     # the last run's raw events stay in the session folder, for checking how agy reports its steps
@@ -852,7 +852,7 @@ fi
     status=${PIPESTATUS[0]}
     # a refusal ended its turn without a word: nudge it on once, in the same conversation
     if [ -s "$S/agy-denied" ] && [ -s "$S/agy-conversation" ]; then
-      MSG="(From Buddy, not the user) This chat doesn't allow that: $(cat "$S/agy-denied"). Carry on with the phone \
+      MSG="(From Ski, not the user) This chat doesn't allow that: $(cat "$S/agy-denied"). Carry on with the phone \
 tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
       run_agy | tee -a "$S/agy-last.jsonl" | stream_agy last
       status=${PIPESTATUS[0]}
@@ -867,7 +867,7 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     [ -s "$S/agy-error" ] && status=0
     name=Antigravity
   elif [ "$BACKEND" = grok ]; then
-    if ! have grok; then event buddy_error "Grok isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have grok; then event buddy_error "Grok isn't installed yet. Install it in Ski's Settings."; exit 0; fi
     run_grok | stream_grok
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/grok-session" ] && grep -q -i -E 'session.*not found|failed to restore session' "$S/last-error.log" 2>/dev/null; then
@@ -880,7 +880,7 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     [ -s "$S/grok-error" ] && status=0
     name=Grok
   elif [ "$BACKEND" = codex ]; then
-    if ! have codex; then event buddy_error "Codex isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have codex; then event buddy_error "Codex isn't installed yet. Install it in Ski's Settings."; exit 0; fi
     run_codex | stream_codex
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/codex-thread" ] && grep -q -i -E 'not found|no such|unknown (thread|session)' "$S/last-error.log" 2>/dev/null; then
@@ -890,7 +890,7 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     fi
     name=Codex
   else
-    if ! have claude; then event buddy_error "Claude Code isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have claude; then event buddy_error "Claude Code isn't installed yet. Install it in Ski's Settings."; exit 0; fi
     run_claude | stream_claude
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && grep -q -i 'no conversation found' "$S/last-error.log" 2>/dev/null; then

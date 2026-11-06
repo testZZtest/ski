@@ -3,7 +3,7 @@ plugins {
 }
 
 // Version lives in BuildInfo.java so the Gradle and on-device (build.sh) builds always agree.
-val buildInfo = file("src/main/java/app/buddy/assistant/BuildInfo.java").readText()
+val buildInfo = file("src/main/java/ski/agent/BuildInfo.java").readText()
 val appVersionName = Regex("""VERSION = "([^"]+)"""").find(buildInfo)!!.groupValues[1]
 val appVersionCode = Regex("""VERSION_CODE = (\d+)""").find(buildInfo)!!.groupValues[1].toInt()
 
@@ -14,11 +14,11 @@ android {
             useLegacyPackaging = true
         }
     }
-    namespace = "app.buddy.assistant"
+    namespace = "ski.agent"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "app.buddy.assistant"
+        applicationId = "ski.agent"
         minSdk = 30
         targetSdk = 36
         versionCode = appVersionCode
@@ -27,14 +27,14 @@ android {
 
     // Release signing comes from environment variables (set as GitHub Actions secrets).
     // Without them, assembleRelease produces an unsigned APK.
-    val keystorePath = System.getenv("BUDDY_KEYSTORE")
+    val keystorePath = System.getenv("SKI_KEYSTORE")
     signingConfigs {
         if (keystorePath != null) {
             create("release") {
                 storeFile = file(keystorePath)
-                storePassword = System.getenv("BUDDY_KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("BUDDY_KEY_ALIAS") ?: "buddy"
-                keyPassword = System.getenv("BUDDY_KEY_PASSWORD") ?: System.getenv("BUDDY_KEYSTORE_PASSWORD")
+                storePassword = System.getenv("SKI_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("SKI_KEY_ALIAS") ?: "ski"
+                keyPassword = System.getenv("SKI_KEY_PASSWORD") ?: System.getenv("SKI_KEYSTORE_PASSWORD")
             }
         }
     }

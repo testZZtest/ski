@@ -1,7 +1,7 @@
 {
   "name": "buddy-phone-bridge",
   "version": "1.2.0",
-  "description": "Buddy's Android phone tools as a stdio MCP server (a bridge to the free Buddy app on your phone)",
+  "description": "Ski's Android phone tools as a stdio MCP server (a bridge to the free Ski app on your phone)",
   "mcpName": "io.github.ghorbelhamdi/buddy-phone-bridge",
   "type": "module",
   "bin": {
@@ -15,10 +15,10 @@
     "node": ">=18"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/ghorbelhamdi/buddy-android",
+  "homepage": "https://github.com/testZZtest/ski",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ghorbelhamdi/buddy-android",
+    "url": "https://github.com/testZZtest/ski",
     "directory": "mcp-bridge"
   },
   "keywords": [

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Builds Buddy's native libraries for arm64 Android, all from source, into app/src/main/jniLibs/arm64-v8a:
+# Builds Ski's native libraries for arm64 Android, all from source, into app/src/main/jniLibs/arm64-v8a:
 #   libproot.so + libproot-loader.so  PRoot (Termux's fork), runs the built-in Linux
 #   libtalloc.so                      talloc, PRoot's memory allocator
 #   libandroid-shmem.so               System V shared memory for PRoot's guests
-#   libbuddypty.so                    the terminal's pty helper (pty.c)
+#   libskipty.so                    the terminal's pty helper (pty.c)
 # With ANDROID_NDK_HOME set it uses that NDK (CI); otherwise Termux's clang on the phone
 # (pkg install clang make unzip readelf). Sources are downloaded once and checked by SHA-256.
 set -euo pipefail
@@ -72,7 +72,7 @@ $CC -shared -Wl,-soname,libandroid-shmem.so -Wl,--version-script="$S/exports.txt
   -o lib/libandroid-shmem.so -llog -landroid
 cp "$S/shm.h" include/sys/shm.h
 
-# PRoot, as Termux builds it, with the loader as its own file (Buddy passes its path in PROOT_LOADER).
+# PRoot, as Termux builds it, with the loader as its own file (Ski passes its path in PROOT_LOADER).
 # One source file gets string.h only through Termux's headers, so it's added for the NDK.
 sed -i '1i #include <string.h>' "proot-$PROOT_VERSION/src/extension/ashmem_memfd/ashmem_memfd.c"
 # CPPFLAGS/LDFLAGS go in the environment so the Makefile's own additions still apply. The loader links with its own
@@ -94,4 +94,4 @@ if command -v javac >/dev/null; then
   JNI=(-I"$J" -I"$J/linux")
 fi
 $CC -shared -fPIC -O2 -Wall $LDPAGE "${JNI[@]}" -o pty.so "$HERE/pty.c"
-finish pty.so libbuddypty.so
+finish pty.so libskipty.so

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Buddy</string>
-    <string name="service_label">Assistant Buddy</string>
+    <string name="app_name" translatable="false">Ski</string>
+    <string name="service_label">Assistant Ski</string>
     <string name="main_new_chat">Nouvelle discussion</string>
     <string name="main_empty_title">Aucune discussion</string>
-    <string name="onboarding_welcome_title">Découvrez Buddy</string>
+    <string name="onboarding_welcome_title">Découvrez Ski</string>
     <string name="onboarding_welcome_text">Une bulle de chat qui peut utiliser votre téléphone pour vous.</string>
     <string name="onboarding_get_started">Commencer</string>
     <string name="chat_send">Envoyer</string>

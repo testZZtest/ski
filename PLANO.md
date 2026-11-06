@@ -1,6 +1,6 @@
-# PLANO E RESUMO DA IMPLEMENTAÇÃO — Buddy (Android AI Agent)
+# PLANO E RESUMO DA IMPLEMENTAÇÃO — Ski (Android AI Agent)
 
-Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, servindo como ponto de partida completo e detalhado para qualquer outra IA ou desenvolvedor dar continuidade ao projeto Buddy.
+Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, servindo como ponto de partida completo e detalhado para qualquer outra IA ou desenvolvedor dar continuidade ao projeto Ski.
 
 ---
 
@@ -11,11 +11,11 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 - **Versão Atual:** `BuildInfo.java` → `VERSION = "2.5.0"`, `VERSION_CODE = 203`
 - **Requisitos de Sistema:** Android 11+ (API 30+), 64-bit ARM/x86. Compilável via `./gradlew assembleDebug` ou `./build.sh` no Termux.
 
-### Estrutura e Componentes Principais (`app/src/main/java/app/buddy/assistant/`)
+### Estrutura e Componentes Principais (`app/src/main/java/ski/agent/`)
 
 - `MainActivity` — Lista de chats, nova conversa, controle da bolha flutuante e exibição de status do app.
 - `ChatActivity` — Interface de conversa com os agentes de IA, agrupando requisições e respostas de ferramentas (tool calls).
-- `BuddyService` — Serviço de acessibilidade principal. Mantém a bolha flutuante (`Bubble.java`), o servidor MCP local (`127.0.0.1:8765`), opções de pause/resume e diálogos de confirmação (`askConfirm`, `askQuestion`).
+- `SkiService` — Serviço de acessibilidade principal. Mantém a bolha flutuante (`Bubble.java`), o servidor MCP local (`127.0.0.1:8765`), opções de pause/resume e diálogos de confirmação (`askConfirm`, `askQuestion`).
 - `Tools.java` (~2350 linhas) — Registro de schemas (`list()`) e despacho de execução (`call0()`) de todas as ferramentas de automação Android, sistema, memória, navegador e chat.
 - `PhoneTools.java` — Implementação das ferramentas do sistema: clipboard, alarme, timer, compartilhamento, downloads, status do dispositivo, câmera, notificações, mídia e calendário.
 - `ChatApps.java` (Fase D) — Suporte a 8 aplicativos de mensagem (Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ, Zulip) com automação via acessibilidade (`chat_send`, `chat_read`).
@@ -76,7 +76,7 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 ## 4. Todos os 32 Repositórios de Referência
 
 ### Repositórios Originais do Plano
-1. **ghorbelhamdi/buddy-android** — https://github.com/ghorbelhamdi/buddy-android (Base do Buddy: floating bubble, aprovação de ações, Linux tools, build APK).
+1. **testZZtest/ski** — https://github.com/testZZtest/ski (Base do Ski: floating bubble, aprovação de ações, Linux tools, build APK).
 2. **zafiro** — https://github.com/zafiro (Kotlin, Jetpack Compose, Shizuku, Python via Chaquopy, Xposed/LSPosed, skills/MCP, memória, workspace).
 3. **Verdroid** — https://github.com/Verdroid (Web search/fetch, Termux bash, Selenium, tradução de e-books, GGUF/LiteRT local, fallback OpenRouter).
 4. **KYRIE66nb/mobile-agent** — https://github.com/KYRIE66nb/mobile-agent (Dupla percepção acessibilidade+visual, DecisionGate, virtual display, bridge MCP, recipes).

@@ -6,7 +6,7 @@ body:
     id: what
     attributes:
       label: What happened?
-      description: What you asked Buddy to do, what you expected, and what happened instead.
+      description: What you asked Ski to do, what you expected, and what happened instead.
     validations:
       required: true
   - type: input
@@ -19,8 +19,8 @@ body:
   - type: input
     id: buddy
     attributes:
-      label: Buddy version
-      description: Settings → Check for updates shows it, or Android's App info for Buddy.
+      label: Ski version
+      description: Settings → Check for updates shows it, or Android's App info for Ski.
       placeholder: 2.1.5 (GitHub)
     validations:
       required: true
