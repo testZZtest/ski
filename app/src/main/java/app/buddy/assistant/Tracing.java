@@ -112,7 +112,7 @@ final class Tracing {
                                         new JSONObject().put("key", "service.name").put("value",
                                                 new JSONObject().put("stringValue", "buddy-phone")))))
                                 .put("scopeSpans", new JSONArray().put(new JSONObject()
-                                        .put("spans", new JSONArray().put(s.toJson())))));
+                                        .put("spans", new JSONArray().put(s.toJson()))))));
                 URL url = new URL(endpoint);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");

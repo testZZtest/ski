@@ -141,6 +141,7 @@ Adicionado a `PhoneTools.java` e exposto em `Tools.list`:
 1. **Numbered legend UI automation** (openclaw): `read_screen_with_numbers` sobrepõe números nos elementos da tela; `tap_by_number N` toca pelo número. Implementado em `Tools.java`.
 2. **Visual perception + OCR** (KYRIE66nb, TecnicoBot): `ocr_screen` lê todo o texto visível na tela como linhas simples com posições, para apps que escondem a UI do accessibility (jogos, canvas). Implementado em `Tools.java`.
 3. **Hidden / virtual display** (KYRIE66nb, pony): pendente — requer display virtual separado, maior complexidade.
+4. **Seletores semânticos e privacidade** (zafiro, Verdroid, droid-mcp): `find_and_tap` acha por texto, content description ou view id, rola a lista até aparecer e toca na mesma chamada (`tap=false` só localiza, `long_press`, `index`); `tap_by_number` recusa números de uma leitura antiga; senhas não são lidas nem usadas para casar texto em `read_screen`, `ocr_screen` e `find`.
 
 ### Fase C — Memória, skills e lembrança (médio risco) — **IMPLEMENTADA (memória base)**
 
@@ -234,4 +235,4 @@ Todos listados no histórico da conversa; URLs no GitHub:
 
 ---
 
-**Última atualização do plano:** Fases A, C, D, J e K implementadas; E, F, G e H parciais. A Fase D (apps de chat) está em `ChatApps.java`, com `chat_send` e `chat_read`. Versão 2.4.1. Próximo: Fase B (hidden display) ou completar F, G e H.
+**Última atualização do plano:** Fases A, C, D, J e K implementadas; E, F, G e H parciais. A Fase D (apps de chat) está em `ChatApps.java`, com `chat_send` e `chat_read`; a Fase B ganhou `find_and_tap` e o mascaramento de senhas. Versão 2.4.2. Próximo: Fase B (hidden display) ou completar F, G e H.

@@ -53,7 +53,8 @@ https://github.com/user-attachments/assets/d07936fc-4788-4ab5-a105-31b3e9aeba4f
 | **Detailed status** | Battery, network, storage, memory, local time, ringer: everything an agent needs to know about the phone. |
 | **Shizuku** (elevated shell, no root) | `shizuku_run`, `shizuku_status`, `shizuku_check_permission`: run shell commands with elevated privileges after you grant Buddy permission in the Shizuku app or via ADB. |
 | **Bubble personalization** | Make the floating button smaller or larger (`small`/`medium`/`large`), and show or hide the status text next to it — in Settings. |
-| **Numbered-legend UI** (Fase B) | `read_screen_with_numbers` overlays 1, 2, 3… on every element; `tap_by_number N` taps by that number. Pairs with `ocr_screen` for apps that hide their UI (games, canvas). |
+| **Numbered-legend UI** (Fase B) | `read_screen_with_numbers` overlays 1, 2, 3… on every element; `tap_by_number N` taps by that number, and refuses a number from an older screen. Pairs with `ocr_screen` for apps that hide their UI (games, canvas). |
+| **Find by meaning** | `find_and_tap` finds an element by its text, content description or view id, scrolls a list until it appears, and taps it in one call (`tap=false` only locates it). Password values are masked in every screen read. |
 | **Remote control** (Fase E) | `McpHttpServer` on `127.0.0.1:8766`: expose Buddy's phone tools over HTTP so a desktop or another app can call them. Off by default, on in Settings. |
 | **Reasoning mode** (Fase G) | Before each phone action, the agent describes what it sees, plans and why — off by default, on in Settings. |
 | **14 languages** (Fase H) | Strings ready for translation in `res/values-<language>/strings.xml`; community skills and plugin APKs via Skills. |

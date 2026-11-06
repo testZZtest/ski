@@ -131,7 +131,7 @@ final class PhoneTools {
         t.put(Tools.tool("translate", "Translate text into another language (a free online service when the phone is online). "
                 + "Source language is detected automatically.",
                 Tools.props().put("text", Tools.strProp("The text to translate"))
-                        .put("to", Tools.strProp("Target language code, e.g. "en" for English, "pt" for Portuguese, "es" for Spanish")),
+                        .put("to", Tools.strProp("Target language code, e.g. \"en\" for English, \"pt\" for Portuguese, \"es\" for Spanish")),
                 "text", "to"));
         if (!Flavor.PLAY && Shizuku.isInstalled(svc)) {
             t.put(Tools.tool("shizuku_bind", "Bind to Shizuku so the agent can run shell commands with elevated "
@@ -641,7 +641,7 @@ final class PhoneTools {
         String html = getUrl(url, 15);
         if (html == null) return "Web search failed: could not reach the search service.";
         java.util.regex.Matcher m = java.util.regex.Pattern
-                .compile("class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>",
+                .compile("class=\"result__a\"[^>]*href=\"([^\"]+)\"[^>]*>(.*?)</a>",
                         java.util.regex.Pattern.DOTALL).matcher(html);
         StringBuilder b = new StringBuilder("<web_search>\nQuery: ").append(query).append("\n\n");
         int n = 0;
@@ -731,7 +731,7 @@ final class PhoneTools {
         s = s.replaceAll("<[^>]+>", " ");
         s = s.replaceAll("&nbsp;", " ");
         s = s.replaceAll("&amp;", "&").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", "\"");
-        s = s.replaceAll("\s+", " ").trim();
+        s = s.replaceAll("\\s+", " ").trim();
         return s;
     }
 
@@ -768,5 +768,4 @@ final class PhoneTools {
         boolean ok = svc.shizuku.checkPermission(permission);
         return "Permission " + permission + ": " + (ok ? "granted" : "not granted") + ".";
     }
-}
 }
