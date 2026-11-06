@@ -9,7 +9,7 @@ Este documento resume tudo o que foi implementado, o que ainda falta, os reposit
 - **Repositório:** https://github.com/testZZtest/ski.git
 - **Branch de trabalho:** `freebuff/4341bbc4fa6ef2eea7d991ee`
 - **Branch main (remoto):** `main` — já tem a Fase D (ChatApps.java) no commit `552721b`
-- **Commit atual da branch de trabalho:** `4a5aed9` ("Personalização v2: skills, provedores, app_status, velocidade máxima")
+- **Commit atual da branch de trabalho:** `903d846` ("Resumo da implementação: o que foi feito, o que falta e repositórios de referência")
 - **Worktree:** limpo, sem alterações não comitadas
 - **SDK/Java:** não há JDK no ambiente Cloud — compilação não testada, apenas revisão manual de código
 - **Não foi enviado para o GitHub ainda** (o resumo e novos arquivos ainda não existem localmente)
@@ -117,39 +117,40 @@ Este documento resume tudo o que foi implementado, o que ainda falta, os reposit
 ## 4. Repositórios de referência (todos os fornecidos)
 
 ### Repositórios já no PLANO.md original
-1. **ghorbelhamdi/buddy-android** — base do Buddy (floating bubble, aprovação antes de ações, Linux tools, build APK)
-2. **zafiro** — Kotlin + Jetpack Compose, Shizuku, Python via Chaquopy, Xposed/LSPosed, skills/MCP, lembrança, workspace
-3. **Verdroid** — web search/fetch, Termux bash + Python + Selenium, tradução de e-books, crypto backtesting, modelos GGUF/LiteRT on-device, OpenRouter/Kilo fallback
-4. **KYRIE66nb/mobile-agent** — dupla percepção (acessibilidade + visual), DecisionGate, display oculto virtual, bridge loopback MCP, recipes, triggers, ad guard, substituição de voz
-5. **droid-mcp** — 160+ ferramentas MCP, 53 módulos, servidor HTTP no telefone, confirmação de chamadas arriscadas
-6. **TecnicoBot/mobile-agent** — on-device, MCP, skills, memória persistente, multimodal, voz
-7. **AutoCua** — computer use desktop + mobile via USB/Wi-Fi, compressão de contexto, memória vault, controle remoto via Telegram
-8. **droidrun/mobilerun** — CLI + Python API, Android + iOS, portal app, visão, reasoning mode, tracing (Arize/Langfuse)
-9. **aohp-os/MobileClaw** — agente GUI humano-like via visão, memory e skills como .md, comunicação via apps de chat (Telegram, Weixin, Lark, QQ, Zulip, Discord, WhatsApp, Slack), config.yaml, dois modelos (control + computer use)
-10. **bandada-labs/agent-ddp** — protocolo estilo DevTools para debug builds iOS/Android, element tree, animações, checks, MCP server, ddp CLI
-11. **FoneClaw-AI/foneclaw-android** — 120+ ações de voz em 16 categorias, aprovação com classificação de risco, community skills, workflow templates, plugin APKs, 14 idiomas
-12. **oroplex/pony** — WebSocket relay emparelhado, screenshots + UI tree, tap/swipe/type, hidden display, chave no Android Keystore, 3 modos de conexão
-13. **8crsk/openclaw-android** — on-device, OpenClaw gateway Node.js dentro do app, AccessibilityService, numbered legend UI automation, BYOK, heartbeat, 300+ app integrations via Composio, Shizuku opcional
+1. **ghorbelhamdi/buddy-android** — https://github.com/ghorbelhamdi/buddy-android — base do Buddy (floating bubble, aprovação antes de ações, Linux tools, build APK)
+2. **zafiro** — https://github.com/zafiro — Kotlin + Jetpack Compose, Shizuku, Python via Chaquopy, Xposed/LSPosed, skills/MCP, lembrança, workspace
+3. **Verdroid** — https://github.com/Verdroid — web search/fetch, Termux bash + Python + Selenium, tradução de e-books, crypto backtesting, modelos GGUF/LiteRT on-device, OpenRouter/Kilo fallback
+4. **KYRIE66nb/mobile-agent** — https://github.com/KYRIE66nb/mobile-agent — dupla percepção (acessibilidade + visual), DecisionGate, display oculto virtual, bridge loopback MCP, recipes, triggers, ad guard, substituição de voz
+5. **droid-mcp** — https://github.com/droid-mcp — 160+ ferramentas MCP, 53 módulos, servidor HTTP no telefone, confirmação de chamadas arriscadas
+6. **TecnicoBot/mobile-agent** — https://github.com/TecnicoBot/mobile-agent — on-device, MCP, skills, memória persistente, multimodal, voz
+7. **AutoCua** — https://github.com/AutoCua — computer use desktop + mobile via USB/Wi-Fi, compressão de contexto, memória vault, controle remoto via Telegram
+8. **droidrun/mobilerun** — https://github.com/droidrun/mobilerun — CLI + Python API, Android + iOS, portal app, visão, reasoning mode, tracing (Arize/Langfuse)
+9. **aohp-os/MobileClaw** — https://github.com/aohp-os/MobileClaw — agente GUI humano-like via visão, memory e skills como .md, comunicação via apps de chat (Telegram, Weixin, Lark, QQ, Zulip, Discord, WhatsApp, Slack), config.yaml, dois modelos (control + computer use)
+10. **bandada-labs/agent-ddp** — https://github.com/bandada-labs/agent-ddp — protocolo estilo DevTools para debug builds iOS/Android, element tree, animações, checks, MCP server, ddp CLI
+11. **FoneClaw-AI/foneclaw-android** — https://github.com/FoneClaw-AI/foneclaw-android — 120+ ações de voz em 16 categorias, aprovação com classificação de risco, community skills, workflow templates, plugin APKs, 14 idiomas
+12. **oroplex/pony** — https://github.com/oroplex/pony — WebSocket relay emparelhado, screenshots + UI tree, tap/swipe/type, hidden display, chave no Android Keystore, 3 modos de conexão
+13. **8crsk/openclaw-android** — https://github.com/8crsk/openclaw-android — on-device, OpenClaw gateway Node.js dentro do app, AccessibilityService, numbered legend UI automation, BYOK, heartbeat, 300+ app integrations via Composio, Shizuku opcional
 
 ### Novos repositórios fornecidos pelo usuário (esta sessão)
-14. **https://github.com/Nido007-cmyk/Nido/**
-15. **https://github.com/AIOSAI/AIPass**
-16. **https://github.com/Hy4ri/hermes-mobile**
-17. **https://github.com/Drevero/Dots-hermes**
-18. **https://github.com/getpaseo/paseo**
-19. **https://github.com/agentsdroid/agentsdroid**
-20. **https://github.com/droidrun/mobilerun** (já listado acima)
-21. **https://github.com/stablyai/orca**
-22. **https://github.com/callstack/agent-device**
-23. **https://github.com/wangzan101/Mika**
-24. **https://github.com/morluto/rea**
-25. **https://github.com/Core-Mate/OpenGUI**
-26. **https://github.com/Mangi-11/Eta**
-27. **https://github.com/JMAN730/opendroid**
-28. **https://github.com/techjarves/Mobile-Harness**
-29. **https://github.com/memex-lab/memex**
-30. **https://github.com/wangzhishou/OneBox**
-31. **https://github.com/SimoneAvogadro/android-reverse-engineering-skill**
+14. **Nido007-cmyk/Nido** — https://github.com/Nido007-cmyk/Nido/
+15. **AIOSAI/AIPass** — https://github.com/AIOSAI/AIPass
+16. **Hy4ri/hermes-mobile** — https://github.com/Hy4ri/hermes-mobile
+17. **Drevero/Dots-hermes** — https://github.com/Drevero/Dots-hermes
+18. **getpaseo/paseo** — https://github.com/getpaseo/paseo
+19. **agentsdroid/agentsdroid** — https://github.com/agentsdroid/agentsdroid
+20. **droidrun/mobilerun** — https://github.com/droidrun/mobilerun (já listado acima)
+21. **stablyai/orca** — https://github.com/stablyai/orca
+22. **callstack/agent-device** — https://github.com/callstack/agent-device
+23. **wangzan101/Mika** — https://github.com/wangzan101/Mika
+24. **morluto/rea** — https://github.com/morluto/rea
+25. **Core-Mate/OpenGUI** — https://github.com/Core-Mate/OpenGUI
+26. **Mangi-11/Eta** — https://github.com/Mangi-11/Eta
+27. **JMAN730/opendroid** — https://github.com/JMAN730/opendroid
+28. **techjarves/Mobile-Harness** — https://github.com/techjarves/Mobile-Harness
+29. **memex-lab/memex** — https://github.com/memex-lab/memex
+30. **wangzhishou/OneBox** — https://github.com/wangzhishou/OneBox
+31. **SimoneAvogadro/android-reverse-engineering-skill** — https://github.com/SimoneAvogadro/android-reverse-engineering-skill
+32. **duOCELOT/pestinha-duOCELOT** — https://github.com/duOCELOT/pestinha-duOCELOT
 
 ---
 
