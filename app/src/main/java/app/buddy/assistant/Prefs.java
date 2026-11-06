@@ -659,6 +659,45 @@ final class Prefs {
         sp(c).edit().putInt("local_model_ctx", Math.max(128, n)).apply();
     }
 
+    /**
+     * Delay entre ações do agent (ms). Deixa o app menos apressado para apps lentos.
+     * 0 = sem delay (máxima velocidade). Padrão: 300 ms.
+     */
+    static int actionDelay(Context c) {
+        return sp(c).getInt("action_delay", 0);
+    }
+
+    static void setActionDelay(Context c, int ms) {
+        sp(c).edit().putInt("action_delay", Math.max(0, Math.min(5000, ms))).apply();
+    }
+
+    /** Opacidade da bolha flutuante: 10..100 (100 = opaca). Padrão: 100. */
+    static int bubbleOpacity(Context c) {
+        return sp(c).getInt("bubble_opacity", 100);
+    }
+
+    static void setBubbleOpacity(Context c, int pct) {
+        sp(c).edit().putInt("bubble_opacity", Math.max(10, Math.min(100, pct))).apply();
+    }
+
+    /** Auto-esconder a bolha após X segundos sem atividade (0 = nunca). Padrão: 0. */
+    static int bubbleAutoHide(Context c) {
+        return sp(c).getInt("bubble_autohide", 0);
+    }
+
+    static void setBubbleAutoHide(Context c, int seconds) {
+        sp(c).edit().putInt("bubble_autohide", Math.max(0, seconds)).apply();
+    }
+
+    /** Mostrar o pill de status ao lado da bolha. Padrão: true. */
+    static boolean bubbleShowStatusPill(Context c) {
+        return sp(c).getBoolean("bubble_show_status_pill", true);
+    }
+
+    static void setBubbleShowStatusPill(Context c, boolean show) {
+        sp(c).edit().putBoolean("bubble_show_status_pill", show).apply();
+    }
+
     /** The language to listen for next (one of voiceLangs). */
     static String voiceLang(Context c) {
         String all = voiceLangs(c);

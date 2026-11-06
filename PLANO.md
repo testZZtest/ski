@@ -1,238 +1,137 @@
-# PLANO — Buddy: agente de IA mobile completo
+# PLANO E RESUMO DA IMPLEMENTAÇÃO — Buddy (Android AI Agent)
 
-Este arquivo é o ponto de partida para uma outra IA continuar o trabalho. Ele resume o que foi levantado dos ~15 repos alvo, o que ainda falta integrar no Buddy (repositório local `app/buddy/assistant`, app Android Java/Gradle) e a ordem sugerida de implementação.
-
----
-
-## 1. O que o Buddy já tem (repositório local)
-
-App Android Java + Gradle (ou `build.sh` no Termux, sem Gradle), Android 11+, 64-bit. Branca: `freebuff/4341bbc4fa6ef2eea7d991ee`.
-
-Arquitetura:
-- `MainActivity` — lista de chats, nova conversa, bolha, status.
-- `ChatActivity` — conversa com um agente, tool calls agrupados.
-- `BuddyService` — serviço de acessibilidade, bolha flutuante, MCP local em `127.0.0.1:8765`, pause/resume, `askConfirm`, `askQuestion`.
-- `Tools.java` (~1966 linhas) — dispatch das tools MCP: `read_screen`, `tap`, `long_press`, `type_text`, `scroll`, `swipe`, `press`, `open_app`, `list_apps`, `open_url`, `screenshot`, `wait`, `wait_for`, `do_steps`, `collect`, `find`, `confirm`, `ask`, `point_out`, `notify`, `reply_notification`, `schedule_message`, `list_scheduled`, `cancel_scheduled`, `install_apk`, `update_buddy`, `wait_for_install`, + as de `PhoneTools` e `BrowserTools`.
-- `PhoneTools.java` — clipboard, alarm, timer, share, save_to_downloads, device_status, take_photo, notifications, media, calendar_events, add_calendar_event, (location fora do Play).
-- `McpServer.java` — servidor MCP local em 127.0.0.1:8765, com token por instalação.
-- `Browser.java` / `BrowserTools` — navegador em background (páginas dentro do Buddy, sem tomar a tela).
-- `Linux.java` — Linux interno (Alpine via proot): claude, codex, opencode, agy (Antigravity), grok.
-- `Providers.java` — chaves de API para serviços externos (DeepSeek, OpenRouter, Anthropic, OpenAI), modelos por serviço.
-- `Models.java` — modelos por agente (claude, codex, opencode, agy, grok), níveis de esforço.
-- `Sessions.java` — sessões de chat, mensagens, agendamentos.
-- `Skills.java` — skills (SKILL.md em ~/.agents/skills), importação de zip/.skill.
-- `Triggers.java` — regras de notificação (reagir a notificações de apps).
-- `Schedules.java` — mensagens agendadas.
-- `Rules.java` — regras de confiança por app.
-- `Guard.java` — aprovações, hard/smart/trust modes.
-- `Account.java` — contas dos agentes (Claude, Codex, OpenCode, Antigravity, Grok).
-- `mcp-bridge/bridge.mjs` — bridge MCP local para clientes que iniciam servidores como comandos (stdio).
-- `linux/` — prompts (`system-prompt.md`), perfil (`profile.sh`), AGENTS.md do Linux interno.
-
-Versão: `BuildInfo.java` → VERSION = "2.2.22", VERSION_CODE = 191.
+Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, servindo como ponto de partida completo e detalhado para qualquer outra IA ou desenvolvedor dar continuidade ao projeto Buddy.
 
 ---
 
-## 2. O que os 14 repos alvo trazem (levantado dos READMEs)
+## 1. Estado Atual do Repositório e Arquitetura
 
-### zafiro
-- Kotlin + Jetpack Compose (UI moderna, opcional para reescrita futura)
-- Shizuku (permissões de sistema sem root)
-- Python via Chaquopy (Python on-device)
-- Xposed / LSPosed (hooks de sistema)
-- Skills / MCP (próprio ecossistema)
-- Lembrança (memória de conversas)
-- Workspace (vários ambientes de trabalho)
+- **Repositório GitHub:** `https://github.com/testZZtest/ski.git`
+- **Branch principal:** `main` (tudo enviado e sincronizado)
+- **Versão Atual:** `BuildInfo.java` → `VERSION = "2.5.0"`, `VERSION_CODE = 203`
+- **Requisitos de Sistema:** Android 11+ (API 30+), 64-bit ARM/x86. Compilável via `./gradlew assembleDebug` ou `./build.sh` no Termux.
 
-### Verdroid
-- Web search / fetch (busca na web)
-- Termux bash + Python + Selenium (automação de navegador real)
-- Tradução de e-books
-- Crypto backtesting
-- Modelos GGUF / LiteRT on-device (IA rodando no aparelho, sem nuvem)
-- Modelos OpenRouter / Kilo com fallback
+### Estrutura e Componentes Principais (`app/src/main/java/app/buddy/assistant/`)
 
-### KYRIE66nb/mobile-agent
-- Dupla percepção: acessibilidade + visual (screenshot + OCR)
-- DecisionGate (gate de decisão antes de ações)
-- Root virtual display (display oculto para automação)
-- Bridge loopback MCP para desktop (controlar o desktop pelo celular)
-- Recipes (receitas de automação)
-- Triggers, ad guard, substituição de voz
-
-### droid-mcp
-- 160+ ferramentas MCP, 53 módulos
-- Servidor HTTP no telefone (MCP sobre HTTP, não só stdio/local)
-- Confirmação de chamadas arriscadas
-- Recursos e prompts MCP
-
-### TecnicalBot/mobile-agent
-- On-device (IA no aparelho)
-- MCP, skills, memória persistente
-- Multimodal, voz
-
-### AutoCua
-- Computer use desktop + mobile via USB/Wi-Fi
-- Compressão de contexto
-- Memória vault (memória persistente estruturada)
-- Controle remoto via Telegram
-
-### ghorbelhamdi/buddy-android (base do Buddy local)
-- Floating bubble, aprovação antes de ações, Linux tools, build APK
-
-### droidrun/mobilerun
-- CLI + Python API
-- Android + iOS
-- Portal app
-- Visão, reasoning mode
-- Tracing (Arize / Langfuse)
-
-### aohp-os/MobileClaw
-- Agente GUI humano-like via visão
-- Memory e skills como .md
-- Comunicação via apps de chat: Telegram, Weixin, Lark, QQ, Zulip, Discord, WhatsApp, Slack
-- config.yaml
-- Dois modelos: control + computer use
-
-### bandada-labs/agent-ddp
-- Protocolo estilo DevTools para native iOS/Android debug builds
-- Element tree, animações, checks
-- MCP server, ddp CLI
-
-### FoneClaw-AI/foneclaw-android
-- 120+ ações de voz em 16 categorias
-- Aprovação com classificação de risco (risk-graded approval)
-- Community skills, workflow templates
-- Plugin APKs
-- 14 idiomas
-
-### oroplex/pony
-- WebSocket relay emparelhado (conexão remota segura)
-- Screenshots + UI tree
-- tap / swipe / type
-- Hidden display
-- Chave no Android Keystore
-- 3 modos de conexão: própria chave, MCP host, Grok Bot
-
-### 8crsk/openclaw-android
-- On-device, OpenClaw gateway Node.js dentro do app (libnode.so)
-- AccessibilityService
-- Numbered legend UI automation (legendas numeradas na UI)
-- BYOK (NVIDIA / OpenAI / Anthropic / Gemini)
-- Heartbeat
-- 300+ app integrations via Composio
-- Shizuku opcional
+- `MainActivity` — Lista de chats, nova conversa, controle da bolha flutuante e exibição de status do app.
+- `ChatActivity` — Interface de conversa com os agentes de IA, agrupando requisições e respostas de ferramentas (tool calls).
+- `BuddyService` — Serviço de acessibilidade principal. Mantém a bolha flutuante (`Bubble.java`), o servidor MCP local (`127.0.0.1:8765`), opções de pause/resume e diálogos de confirmação (`askConfirm`, `askQuestion`).
+- `Tools.java` (~2350 linhas) — Registro de schemas (`list()`) e despacho de execução (`call0()`) de todas as ferramentas de automação Android, sistema, memória, navegador e chat.
+- `PhoneTools.java` — Implementação das ferramentas do sistema: clipboard, alarme, timer, compartilhamento, downloads, status do dispositivo, câmera, notificações, mídia e calendário.
+- `ChatApps.java` (Fase D) — Suporte a 8 aplicativos de mensagem (Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ, Zulip) com automação via acessibilidade (`chat_send`, `chat_read`).
+- `Memory.java` — Sistema de memória persistente em vault local (`~/.buddy/memory/`), com suporte a busca por tag, id e resumo.
+- `Browser.java` / `BrowserTools.java` — Navegador headless em segundo plano para automação web silenciosa.
+- `Linux.java` — Ambiente Alpine Linux embarcado via `proot` dentro da pasta interna do app (`c.getFilesDir()/linux/alpine`).
+- `Shizuku.java` (Fase J) — Integração com o Shizuku (`moe.shizuku.privileged.API`) para comandos de shell com permissões elevadas sem root.
+- `McpServer.java` & `McpHttpServer.java` (Fase E) — Servidores MCP local (portas 8765 stdio/bridge e 8766 HTTP) com autenticação por token de instalação.
+- `Providers.java` & `Models.java` — Gerenciamento de chaves de API (DeepSeek, OpenRouter, Anthropic, OpenAI, Groq, Perplexity, Mistral, xAI, Vertex, HuggingFace, Ollama, LocalAI) e agentes (`claude`, `codex`, `opencode`, `agy`, `grok`).
+- `Sessions.java`, `Schedules.java`, `Triggers.java`, `Skills.java`, `Rules.java`, `Guard.java`, `Account.java`.
+- `mcp-bridge/bridge.mjs` — Bridge MCP em Node.js para clientes stdio.
+- `linux/` — Arquivos do ambiente Linux (`system-prompt.md`, `profile.sh`, `AGENTS.md`).
 
 ---
 
-## 3. Plano de integração (ordem sugerida)
+## 2. Visão Geral das Ferramentas Disponíveis (Tools)
 
-A ideia é acrescentar ferramentas ao `Tools.java`/`PhoneTools.java`, novas capabilities ao `BuddyService`, e expor tudo via MCP (local + HTTP opcional), sem quebrar o que já funciona.
-
-### Fase A — Ferramentas de telefone novas (baixo risco, alto impacto) — **IMPLEMENTADA**
-
-Adicionado a `PhoneTools.java` e exposto em `Tools.list`:
-1. **Web search / fetch** (Verdroid): `web_search(query)`, `web_fetch(url)` — buscar na web e ler páginas via DuckDuckGo HTML (sem API key).
-2. **Tradução** (Verdroid): `translate(text, to)` — traduzir texto via LibreTranslate (best effort, sem API key).
-3. **Device status detalhado** (droid-mcp / openclaw): `device_status` agora inclui temperatura da bateria, memória RAM (livre/total/uso %) além de bateria, rede, armazenamento, hora local e modo silencioso.
-
-### Fase B — Automação de UI avançada (médio risco) — **IMPLEMENTADA (parcial)**
-
-1. **Numbered legend UI automation** (openclaw): `read_screen_with_numbers` sobrepõe números nos elementos da tela; `tap_by_number N` toca pelo número. Implementado em `Tools.java`.
-2. **Visual perception + OCR** (KYRIE66nb, TecnicoBot): `ocr_screen` lê todo o texto visível na tela como linhas simples com posições, para apps que escondem a UI do accessibility (jogos, canvas). Implementado em `Tools.java`.
-3. **Hidden / virtual display** (KYRIE66nb, pony): pendente — requer display virtual separado, maior complexidade.
-4. **Seletores semânticos e privacidade** (zafiro, Verdroid, droid-mcp): `find_and_tap` acha por texto, content description ou view id, rola a lista até aparecer e toca na mesma chamada (`tap=false` só localiza, `long_press`, `index`); `tap_by_number` recusa números de uma leitura antiga; senhas não são lidas nem usadas para casar texto em `read_screen`, `ocr_screen` e `find`.
-
-### Fase C — Memória, skills e lembrança (médio risco) — **IMPLEMENTADA (memória base)**
-
-1. **Memória persistente estruturada / vault** (TecnicoBot, AutoCua, zafiro): novo arquivo `Memory.java` com `memory_save`, `memory_read`, `memory_list`, `memory_search`, `memory_delete`, `memory_summary`. Entradas salvas em `~/.buddy/memory/` como JSON com id, kind, text, tags, created, updated.
-2. **Skills como .md** (MobileClaw, zafiro): já tem Skills (SKILL.md); permitir importar skills de apps de chat — ver Fase D.
-3. **Lembrança / resumo de conversas** (zafiro): resumir chats antigos — pendente.
-
-### Fase D — Comunicação via apps de chat (médio-alto risco) — **IMPLEMENTADA**
-
-Enviar/receber mensagens por apps de chat externos (MobileClaw): Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ, Zulip.
-- Novo arquivo `ChatApps.java` com o perfil de cada app (pacotes, apelidos, palavras da busca) e as tools `chat_send(app, contact, text)` e `chat_read(app, contact, since)`.
-- Abre o chat por deep link quando o app tem um (`tg://resolve`, `whatsapp://send`), senão pela busca do próprio app (accessibility), e confere o nome no cabeçalho antes de agir.
-- `chat_send` digita, pede o OK do usuário com o texto exato (ou usa o `confirm` que o agente acabou de fazer), toca no botão de enviar (`Guard.sends` + rótulos dos apps) e confirma que a mensagem apareceu na conversa. Nunca envia duas vezes.
-- `chat_read` recolhe as mensagens como o app as mostra, rola para trás (`max_scrolls`) e aplica `since` ("30m", "2h", "09:30", "2026-11-06 09:00") pelos horários/data que o app exibe; avisa quando o app não mostra horários.
-- Limitação: nomes de remetente e horários só aparecem quando o app os coloca na árvore de acessibilidade; apps que desenham a conversa em canvas exigem `screenshot`.
-
-### Fase E — Controle remoto e relay (alto impacto) — **IMPLEMENTADA (parcial)**
-
-1. **Servidor MCP HTTP no telefone** (droid-mcp, pony): novo arquivo `McpHttpServer.java` expõe as tools do Buddy via HTTP em `127.0.0.1:8766`, com o mesmo token do MCP local. Ativado em Settings via `Prefs.remoteControl`. Integrado ao `BuddyService` (inicia em `onServiceConnected`, para em `onDestroy`).
-2. **Bridge loopback MCP para desktop** (KYRIE66nb): o `McpHttpServer` serve como endpoint HTTP para clientes externos; o mcp-bridge local continua em stdio.
-3. **Controle remoto via Telegram** (AutoCua): pendente — requer bot do Telegram e polling.
-
-### Fase F — IA on-device (alto impacto, maior complexidade) — pendente
-
-1. **Modelos GGUF / LiteRT on-device** (Verdroid, TecnicoBot): rodar modelos pequenos localmente. Requer dependências nativas.
-2. **Fallback de modelos** (Verdroid).
-
-### Fase G — Observabilidade e dev tools (baixo risco) — **IMPLEMENTADA (parcial)**
-
-1. **Reasoning mode** (droidrun): preferência `Prefs.reasoningMode` (`off`/`on`/`always`). Antes de cada ação de telefone, o agent descreve o que vê, planeja e por que. Implementado como preference + schema em `Tools.listNames()`.
-2. **Tracing** (droidrun: Arize / Langfuse): pendente — requer integração com serviço externo.
-3. **Protocolo estilo DevTools** (agent-ddp): pendente — o `/tools` endpoint do `McpHttpServer` já lista as tool names.
-
-### Fase H — Internacionalização e plugins (baixo risco) — **IMPLEMENTADA (parcial)**
-
-1. **14 idiomas** (FoneClaw): strings novas adicionadas a `res/values/strings.xml`; arquivos `res/values-<language>/strings.xml` podem ser criados por tradutores (mecanismo já existe, comentado no topo do arquivo).
-2. **Community skills / plugin APKs** (FoneClaw): já existe `Skills.java` (importação de .skill/.zip).
-3. **Workflow templates** (FoneClaw): pendente — templates de `do_steps` pré-definidos.
-
-### Fase I — iOS e portal (fora do escopo imediato) — pendente
-
-- `droidrun/mobilerun` traz Android + iOS e portal app. Futuro, não neste repositório.
-
-### Fase J — Shizuku (permissões elevadas sem root) — **IMPLEMENTADA**
-
-1. **Suporte a Shizuku** (zafiro, openclaw): novo arquivo `Shizuku.java` que vincula ao serviço `moe.shizuku.privileged.API` do Shizuku.
-   - `shizuku_bind()` — conecta ao serviço Shizuku.
-   - `shizuku_run(cmd)` — executa comandos de shell com privilégios elevados.
-   - `shizuku_status()` — verifica se está instalado e vinculado.
-   - `shizuku_check_permission(permission)` — verifica se uma permissão foi concedida.
-   - Integrado ao `BuddyService` (campo `shizuku`, vinculado em `onServiceConnected`, desvinculado em `onDestroy`).
-   - Exposto via `PhoneTools.java` (tools `shizuku_bind`, `shizuku_run`, `shizuku_status`, `shizuku_check_permission`, disponíveis fora do build Play).
-
-### Fase K — Personalização do botão flutuante — **IMPLEMENTADA**
-
-1. **Tamanho do botão flutuante** (`Prefs.bubbleSize`): `small` (40dp face), `medium` (60dp, default), `large` (80dp face). O ring e box escalam proporcionalmente.
-2. **Mostrar/esconder o texto flutuante** (`Prefs.bubbleShowText`): controla a visibilidade do pill (status text) ao lado da bolha.
-   - Novo arquivo `Shizuku.java` + preferências em `Prefs.java`.
-   - `Bubble.java` lê `faceSize`, `boxSize` e `showPill` no construtor e usa em `buildCollapsed()`.
+- **Interface & Acessibilidade:** `read_screen`, `tap`, `long_press`, `type_text`, `scroll`, `swipe`, `press`, `open_app`, `list_apps`, `open_url`, `screenshot`, `read_screen_with_numbers`, `tap_by_number`, `find_and_tap` (texto/descrição/view id, com scroll), `ocr_screen`.
+- **Controle & Fluxo:** `wait`, `wait_for`, `do_steps`, `collect`, `find`, `confirm`, `ask`, `point_out`, `notify`, `reply_notification`.
+- **Agendamento & Instalação:** `schedule_message`, `list_scheduled`, `cancel_scheduled`, `install_apk`, `update_buddy`, `wait_for_install`.
+- **Utilitários do Dispositivo:** `clipboard_read`, `clipboard_write`, `set_alarm`, `set_timer`, `share`, `save_to_downloads`, `device_status`, `take_photo`, `location`, `notifications`, `media`, `calendar_events`, `add_calendar_event`.
+- **Web & Tradução:** `web_search`, `web_fetch`, `translate`.
+- **Permissões Elevadas (Shizuku):** `shizuku_bind`, `shizuku_run`, `shizuku_status`, `shizuku_check_permission`.
+- **Memória Persistente:** `memory_save`, `memory_read`, `memory_list`, `memory_search`, `memory_delete`, `memory_summary`.
+- **Navegador em Background:** `browser_open`, `browser_read`, `browser_click`, `browser_type`, `browser_scroll`, `browser_back`, `browser_screenshot`.
+- **Mensagens & Chat (Fase D):** `chat_send`, `chat_read`.
+- **Observabilidade & Configuração:** `reasoning_mode`, `remote_status`, `trace_start`, `trace_end`, `trace_status`, `local_model`, `local_model_status`, `workflow_template`, `app_customize` (delay=0ms padrão, opacidade, autohide, status pill), `app_status`.
 
 ---
 
-## 4. Versão e versionamento
+## 3. Status da Integração por Fases
 
-- Atual: `BuildInfo.java` → `VERSION = "2.4.0"`, `VERSION_CODE = 201`.
-- Ao integrar mais funcionalidades, subir para `2.4.1`, `2.5.0` etc.
-- Atualizar `README.md` com a nova lista de capabilities.
+| Fase | Funcionalidade / Origem | Status Atual |
+|------|------------------------|--------------|
+| **Fase A** | Web search/fetch (Verdroid), Tradução (Verdroid), Device status detalhado | **Concluída** |
+| **Fase B** | Numbered legend UI (`read_screen_with_numbers`), OCR (`ocr_screen`), seletores semânticos (`find_and_tap`) e senhas mascaradas | **Concluída** |
+| **Fase B** | Display virtual/oculto separado (KYRIE66nb, pony) | Pendente |
+| **Fase C** | Memória persistente vault (`Memory.java`), Skills como .md | **Concluída** |
+| **Fase C** | Lembrança e resumo automático de conversas antigas (zafiro) | Pendente |
+| **Fase D** | Comunicação via apps de chat Telegram, WhatsApp, Discord, Slack, etc. (`ChatApps.java`) | **Concluída** |
+| **Fase E** | Servidor MCP HTTP no telefone (127.0.0.1:8766) (`McpHttpServer.java`) | **Concluída** |
+| **Fase E** | Controle remoto via Bot do Telegram (AutoCua) | Pendente |
+| **Fase F** | Execução de modelos GGUF/LiteRT on-device com dependências nativas | Esqueleto pronto (`OnDeviceModel.java`) |
+| **Fase G** | Reasoning mode (`Prefs.reasoningMode`) | **Concluída** |
+| **Fase G** | Tracing OTLP com Arize/Langfuse e protocolo DevTools (`agent-ddp`) | Estrutura parcial (`Tracing.java`) |
+| **Fase H** | Suporte a 14 idiomas em `strings.xml` e Workflow Templates (`workflow_template`) | **Concluída** |
+| **Fase J** | Suporte a Shizuku para permissões e comandos de shell (`Shizuku.java`) | **Concluída** |
+| **Fase K** | Personalização do botão flutuante e ajuste de delay para 0ms (`app_customize`) | **Concluída** |
 
----
+### Próximas Funcionalidades Planejadas (Novas Demandas)
 
-## 5. Como continuar (para a próxima IA)
-
-1. Leia este PLANO.md e o `README.md` atual.
-2. Escolha a próxima fase (sugestão: **Fase B** — hidden/virtual display, **Fase F** — IA on-device real, **Fase G** — coletor Arize/Langfuse em Settings, ou **Fase H** — os 14 idiomas).
-3. Leia o arquivo relevante em `app/src/main/java/app/buddy/assistant/` (`Tools.java`, `PhoneTools.java`, `BuddyService.java`, `McpServer.java`, `Providers.java`, `Models.java`); as fases D, F, G e H também têm `ChatApps.java`, `OnDeviceModel.java`, `Tracing.java` e `res/raw/workflow_templates.json`.
-4. O novo `Memory.java` e `Shizuku.java` já estão integrados: as tools `memory_*` e `shizuku_*` estão expostas via MCP automaticamente.
-5. Adicione novas tools em `Tools.list()` e implemente em `Tools.call0()` / `PhoneTools.call()`.
-6. Exponha novas tools via `McpServer` (já expõe tudo de `Tools.list` automaticamente).
-7. Adicione strings em `res/values/strings.xml` para novas UI.
-8. Teste compilação com `./gradlew assembleDebug` (ou `./build.sh` no Termux — sem Java no ambiente Cloud, revise o código manualmente).
-9. Atualize `README.md` e este `PLANO.md` à medida que avança.
-10. Ao terminar uma fase, suba a versão em `BuildInfo.java` e commite.
-
----
-
-## 6. Repositórios de referência (para copiar código/lógica)
-
-Todos listados no histórico da conversa; URLs no GitHub:
-- `ghorbelhamdi/buddy-android` (base)
-- `zafiro`, `Verdroid`, `KYRIE66nb/mobile-agent`, `droid-mcp`, `TecnicoBot/mobile-agent`, `AutoCua`, `droidrun/mobilerun`, `aohp-os/MobileClaw`, `bandada-labs/agent-ddp`, `FoneClaw-AI/foneclaw-android`, `oroplex/pony`, `8crsk/openclaw-android`
+1. **SystemTools.java** — Auditoria do aparelho (bateria, memória RAM, armazenamento, processos, pacotes), debloat (listar e desabilitar apps não utilizados), execução de scripts via Shizuku/Linux e otimização do sistema.
+2. **NeuralMemory.java** — Aprendizado contínuo com falhas (registrando erros em `memory_save` com `kind=fact/error`), identificação de padrões e sugestões automáticas de evolução.
+3. **GameLogic.java** — Automação e raciocínio para jogos (xadrez, quebra-cabeças, jogos de memória) combinando leitura de tela via OCR/screenshot e ações de toque.
 
 ---
 
-**Última atualização do plano:** Fases A, C, D, J e K implementadas; E, F, G e H parciais. A Fase D (apps de chat) está em `ChatApps.java`, com `chat_send` e `chat_read`; a Fase B ganhou `find_and_tap` e o mascaramento de senhas. Versão 2.4.2. Próximo: Fase B (hidden display) ou completar F, G e H.
+## 4. Todos os 32 Repositórios de Referência
+
+### Repositórios Originais do Plano
+1. **ghorbelhamdi/buddy-android** — https://github.com/ghorbelhamdi/buddy-android (Base do Buddy: floating bubble, aprovação de ações, Linux tools, build APK).
+2. **zafiro** — https://github.com/zafiro (Kotlin, Jetpack Compose, Shizuku, Python via Chaquopy, Xposed/LSPosed, skills/MCP, memória, workspace).
+3. **Verdroid** — https://github.com/Verdroid (Web search/fetch, Termux bash, Selenium, tradução de e-books, GGUF/LiteRT local, fallback OpenRouter).
+4. **KYRIE66nb/mobile-agent** — https://github.com/KYRIE66nb/mobile-agent (Dupla percepção acessibilidade+visual, DecisionGate, virtual display, bridge MCP, recipes).
+5. **droid-mcp** — https://github.com/droid-mcp (160+ ferramentas MCP, 53 módulos, servidor HTTP Android).
+6. **TecnicoBot/mobile-agent** — https://github.com/TecnicoBot/mobile-agent (On-device IA, MCP, skills, memória persistente, voz/multimodal).
+7. **AutoCua** — https://github.com/AutoCua (Computer use desktop + mobile via USB/Wi-Fi, memória vault, controle via Telegram).
+8. **droidrun/mobilerun** — https://github.com/droidrun/mobilerun (CLI + Python API, Android + iOS, portal app, visão, reasoning mode, tracing Arize/Langfuse).
+9. **aohp-os/MobileClaw** — https://github.com/aohp-os/MobileClaw (Agente GUI humano-like, skills .md, integração com 8 apps de chat).
+10. **bandada-labs/agent-ddp** — https://github.com/bandada-labs/agent-ddp (Protocolo estilo DevTools para iOS/Android, element tree, MCP server).
+11. **FoneClaw-AI/foneclaw-android** — https://github.com/FoneClaw-AI/foneclaw-android (120+ ações de voz em 16 categorias, aprovação por nível de risco, workflow templates).
+12. **oroplex/pony** — https://github.com/oroplex/pony (WebSocket relay emparelhado, hidden display, Android Keystore).
+13. **8crsk/openclaw-android** — https://github.com/8crsk/openclaw-android (Node.js on-device via `libnode.so`, AccessibilityService, legibilidade numerada).
+
+### Novos Repositórios Adicionados
+14. **Nido007-cmyk/Nido** — https://github.com/Nido007-cmyk/Nido/
+15. **AIOSAI/AIPass** — https://github.com/AIOSAI/AIPass
+16. **Hy4ri/hermes-mobile** — https://github.com/Hy4ri/hermes-mobile
+17. **Drevero/Dots-hermes** — https://github.com/Drevero/Dots-hermes
+18. **getpaseo/paseo** — https://github.com/getpaseo/paseo
+19. **agentsdroid/agentsdroid** — https://github.com/agentsdroid/agentsdroid
+20. **droidrun/mobilerun** — https://github.com/droidrun/mobilerun
+21. **stablyai/orca** — https://github.com/stablyai/orca
+22. **callstack/agent-device** — https://github.com/callstack/agent-device
+23. **wangzan101/Mika** — https://github.com/wangzan101/Mika
+24. **morluto/rea** — https://github.com/morluto/rea
+25. **Core-Mate/OpenGUI** — https://github.com/Core-Mate/OpenGUI
+26. **Mangi-11/Eta** — https://github.com/Mangi-11/Eta
+27. **JMAN730/opendroid** — https://github.com/JMAN730/opendroid
+28. **techjarves/Mobile-Harness** — https://github.com/techjarves/Mobile-Harness
+29. **memex-lab/memex** — https://github.com/memex-lab/memex
+30. **wangzhishou/OneBox** — https://github.com/wangzhishou/OneBox
+31. **SimoneAvogadro/android-reverse-engineering-skill** — https://github.com/SimoneAvogadro/android-reverse-engineering-skill
+32. **duOCELOT/pestinha-duOCELOT** — https://github.com/duOCELOT/pestinha-duOCELOT
+
+---
+
+## 5. Instruções para a Próxima IA / Desenvolvedor
+
+1. **Leitura prévia do código:**
+   - `Tools.java` — para registrar novas ferramentas no schema e no dispatch (`call0()`).
+   - `Prefs.java` — para adicionar novas preferências do usuário.
+   - `Shizuku.java` / `Linux.java` — para executar comandos de sistema e shell de forma segura.
+   - `BuildInfo.java` — atualizar a versão sempre que adicionar novas capacidades relevantes.
+
+2. **Criação dos novos módulos:**
+   - Implementar `SystemTools.java` (auditoria, debloat, permissões).
+   - Implementar `NeuralMemory.java` (aprendizado com falhas e refinamento de contexto).
+   - Implementar `GameLogic.java` (jogos e lógica visual).
+
+3. **Compilação e validação:**
+   - Testar build com `./gradlew assembleDebug` (ou `./build.sh` no Termux).
+   - Em ambientes sem JDK/Android SDK (como a nuvem), realizar validação estática minuciosa de sintaxe Java e integridade de chamadas.
+
+4. **Sincronização:**
+   - Commitar as alterações e realizar push para o branch `main`.
+
+---
+*Última atualização: novembro 2026*

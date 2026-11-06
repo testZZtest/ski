@@ -352,6 +352,12 @@ final class Tools {
         t.put(tool("workflow_template", "Get a pre-defined do_steps template by name, ready to fill in and run. Templates cover common multi-step phone tasks.",
                 props().put("name", strProp("Template name, e.g. \"morning check\" or \"order groceries\"")),
                 "name"));
+        // Personalização do app
+        t.put(tool("app_customize", "Personaliza o Buddy: delay entre ações, opacidade da bolha, auto-esconder, mostrar/esconder pill de status.",
+                props().put("action_delay_ms", intProp("Delay entre ações em ms (0 = sem delay, padrão 300)"))
+                        .put("bubble_opacity", intProp("Opacidade da bolha de 10 a 100 (padrão 100)"))
+                        .put("bubble_autohide_seconds", intProp("Esconder a bolha após X segundos sem atividade (0 = nunca)"))
+                        .put("bubble_show_status_pill", boolProp("Mostrar ou esconder o pill de status ao lado da bolha"))));
         // Fase D — the phone's chat apps (MobileClaw)
         t.put(tool("chat_send",
                 "Send a message in one of the phone's chat apps (Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ, "
@@ -376,6 +382,8 @@ final class Tools {
                         .put("limit", intProp("Optional: how many of the newest lines, default 30, max 200"))
                         .put("max_scrolls", intProp("Optional: how far back to scroll, default 2 (4 with since), max 10")),
                 "app", "contact"));
+        // Status do app para o usuário ver tudo de uma vez
+        t.put(tool("app_status", "Mostra o estado atual do Buddy: versão, servidor MCP, controle remoto, tracing, IA on-device, delay entre ações e skills instaladas.", props()));
         return t;
     }
 
@@ -399,6 +407,8 @@ final class Tools {
                 "trace_start", "trace_end", "trace_status",
                 "local_model", "local_model_status",
                 "workflow_template",
+                "app_customize",
+                "app_status",
                 "browser_open", "browser_read", "browser_click", "browser_type", "browser_scroll", "browser_back",
                 "browser_screenshot"
         };
@@ -510,13 +520,13 @@ final class Tools {
         if (PhoneTools.NAMES.contains(name)) return phone.call(name, a, ruleRun());
         switch (name) {
             case "read_screen": return text(readScreen());
-            case "tap": return text(tap(a, false));
-            case "long_press": return text(tap(a, true));
-            case "type_text": return text(typeText(a));
-            case "scroll": return text(scroll(a));
-            case "swipe": return text(swipe(a));
-            case "press": return text(press(a.getString("button")));
-            case "open_app": return text(openApp(a.getString("app")));
+            case "tap": maybeActionDelay(); return text(tap(a, false));
+            case "long_press": maybeActionDelay(); return text(tap(a, true));
+            case "type_text": maybeActionDelay(); return text(typeText(a));
+            case "scroll": maybeActionDelay(); return text(scroll(a));
+            case "swipe": maybeActionDelay(); return text(swipe(a));
+            case "press": maybeActionDelay(); return text(press(a.getString("button")));
+            case "open_app": maybeActionDelay(); return text(openApp(a.getString("app")));
             case "list_apps": return text(listApps());
             case "open_url": {
                 // a rule's run works for someone else's message: a link could carry the user's data away
@@ -524,7 +534,7 @@ final class Tools {
                     String answer = svc.askConfirm(svc.getString(R.string.tools_card_open_url, a.getString("url")), false);
                     if (!answer.startsWith("APPROVED")) return text("Not opened. " + answer);
                 }
-                return text(openUrl(a.getString("url")));
+                maybeActionDelay(); return text(openUrl(a.getString("url")));
             }
             case "screenshot": return screenshot();
             case "read_screen_with_numbers": return text(readScreenWithNumbers());
@@ -674,8 +684,33 @@ final class Tools {
                 if (json == null) return text("No template named " + name + ".");
                 return text(json);
             }
+            case "app_customize": {
+                int delay = a.optInt("action_delay_ms", -1);
+                if (delay >= 0) Prefs.setActionDelay(svc, delay);
+                int opacity = a.optInt("bubble_opacity", -1);
+                if (opacity >= 0) Prefs.setBubbleOpacity(svc, opacity);
+                int autohide = a.optInt("bubble_autohide_seconds", -1);
+                if (autohide >= 0) Prefs.setBubbleAutoHide(svc, autohide);
+                if (a.has("bubble_show_status_pill")) Prefs.setBubbleShowStatusPill(svc, a.getBoolean("bubble_show_status_pill"));
+                return text("App customize: action_delay=" + Prefs.actionDelay(svc) + "ms, bubble_opacity=" + Prefs.bubbleOpacity(svc) + "%, bubble_autohide=" + Prefs.bubbleAutoHide(svc) + "s, status_pill=" + Prefs.bubbleShowStatusPill(svc) + ".");
+            }
             case "chat_send": return text(chats.send(a));
             case "chat_read": return text(chats.read(a));
+            case "app_status": {
+                StringBuilder s = new StringBuilder();
+                s.append("Buddy ").append(BuildInfo.VERSION).append(" (").append(BuildInfo.VERSION_CODE).append(")").append("\n");
+                s.append("MCP local: 127.0.0.1:8765").append("\n");
+                s.append("MCP HTTP: ").append(Prefs.remoteControl(svc) ? "enabled" : "disabled").append(", ").append(svc.mcpHttp != null && svc.mcpHttp.isRunning() ? "running on 127.0.0.1:8766" : "stopped").append("\n");
+                s.append("Tracing: ").append(Prefs.tracingEnabled(svc) ? "on" : "off").append(", endpoint: ").append(Prefs.tracingEndpoint(svc).isEmpty() ? "(none)" : Prefs.tracingEndpoint(svc)).append("\n");
+                s.append("Local model: ").append(Prefs.localModelEnabled(svc) ? "on" : "off").append(", path: ").append(Prefs.localModelPath(svc).isEmpty() ? "(none)" : Prefs.localModelPath(svc)).append("\n");
+                s.append("Action delay: ").append(Prefs.actionDelay(svc)).append(" ms").append("\n");
+                s.append("Bubble: opacity ").append(Prefs.bubbleOpacity(svc)).append("%, autohide ").append(Prefs.bubbleAutoHide(svc)).append("s, pill ").append(Prefs.bubbleShowStatusPill(svc)).append("\n");
+                java.util.List<Skills.Skill> sk = Skills.all(svc);
+                StringBuilder sn = new StringBuilder();
+                for (int i = 0; i < sk.size(); i++) { if (i > 0) sn.append(", "); sn.append(sk.get(i).name); }
+                s.append("Skills: ").append(sk.size()).append(" installed (").append(sn).append(")");
+                return text(s.toString());
+            }
             default:
                 throw new IllegalArgumentException("Unknown tool " + name);
         }
@@ -897,6 +932,12 @@ final class Tools {
 
     private static JSONObject text(String s) throws JSONException {
         return new JSONObject().put("content", new JSONArray().put(new JSONObject().put("type", "text").put("text", s)));
+    }
+
+    /** Aguarda o delay configurado entre ações, para não apressar apps lentos. */
+    private void maybeActionDelay() throws InterruptedException {
+        int d = Prefs.actionDelay(svc);
+        if (d > 0) Thread.sleep(d);
     }
 
     /** Answers the notification a rule's run started from, through its reply field (see Triggers). */
@@ -1462,6 +1503,11 @@ final class Tools {
             out.append('\n');
             if (stop) break;
             done++;
+            // delay entre actions para não apressar apps lentos
+            int stepDelay = Prefs.actionDelay(svc);
+            if (stepDelay > 0 && i + 1 < steps.length() && !stop) {
+                Thread.sleep(stepDelay);
+            }
             String after = svc.foregroundPkg();
             if (!"open_app".equals(action) && !"press".equals(action) && after != null && before != null && !after.equals(before)
                     && i + 1 < steps.length()) {
