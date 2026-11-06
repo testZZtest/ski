@@ -196,6 +196,35 @@ final class Skills {
     }
 
     /**
+     * Creates a few useful default skills the first time Buddy runs, so the agent has something
+     * to work with right away: web research, email writing, meeting prep, code review, travel.
+     * Silent when they already exist.
+     */
+    static void ensureDefaultSkills(Context c) {
+        File root = dir(c);
+        root.mkdirs();
+        String[][] skills = {
+                {"web-research", "Research a topic on the web and summarize it",
+                        "# Web Research Skill\n\nYou are a research assistant. When asked to research a topic:\n1. Use web_search to find relevant pages\n2. Use web_fetch to read the most promising ones\n3. Summarize the key findings in bullet points\n4. Cite your sources with links\n5. Note any conflicting information\n\nBe concise but thorough. Always distinguish facts from opinions."},
+                {"email-assistant", "Write and polish emails",
+                        "# Email Assistant Skill\n\nYou help write clear, professional emails. When drafting:\n1. Ask who the recipient is and what the goal is\n2. Keep it short and scannable (short paragraphs, bullet points)\n3. Use a clear subject line\n4. Include a specific call to action\n5. Proofread for tone and clarity\n\nOffer 2-3 subject line options and let the user pick."},
+                {"meeting-prep", "Prepare for meetings and calls",
+                        "# Meeting Prep Skill\n\nBefore a meeting, help the user prepare:\n1. Research the people or company they're meeting\n2. Suggest an agenda with time allocations\n3. Prepare 5-7 good questions to ask\n4. Anticipate objections or concerns\n5. Suggest follow-up actions\n\nKeep it practical and action-oriented."},
+                {"code-review", "Review code for bugs and improvements",
+                        "# Code Review Skill\n\nWhen reviewing code:\n1. Identify bugs and edge cases first\n2. Suggest readability and maintainability improvements\n3. Check for security issues\n4. Note performance concerns\n5. Recommend tests where missing\n\nBe respectful and specific. Quote line numbers when possible."},
+                {"travel-planner", "Plan trips and itineraries",
+                        "# Travel Planner Skill\n\nHelp plan trips:\n1. Ask about dates, budget, and preferences\n2. Suggest destinations, flights, and accommodation\n3. Create a day-by-day itinerary\n4. Include local food and activities\n5. Note visa requirements and travel tips\n\nPresent options with pros and cons, not just one recommendation."},
+        };
+        for (String[] s : skills) {
+            try {
+                if (find(c, s[0]) != null) continue;
+                create(c, s[0], s[1], s[2]);
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    /**
      * A message starting with /name for a skill: what the agent gets. Claude Code has /name itself (null: as typed);
      * the others get the skill's instructions with the message, as they can't always open the file (Codex has no
      * shell with Linux tools off).

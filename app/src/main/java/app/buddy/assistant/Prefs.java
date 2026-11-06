@@ -664,7 +664,7 @@ final class Prefs {
      * 0 = sem delay (máxima velocidade). Padrão: 300 ms.
      */
     static int actionDelay(Context c) {
-        return sp(c).getInt("action_delay", 300);
+        return sp(c).getInt("action_delay", 0);
     }
 
     static void setActionDelay(Context c, int ms) {

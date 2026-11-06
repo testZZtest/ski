@@ -112,6 +112,9 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
         // On-device model (Fase F): local GGUF/LiteRT inference, off by default
         onDeviceModel = new OnDeviceModel(this);
 
+        // Default skills: web-research, email-assistant, meeting-prep, code-review, travel-planner
+        new Thread(() -> Skills.ensureDefaultSkills(this), "default-skills").start();
+
         // Hide the bubble on the lock screen.
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_SCREEN_OFF);

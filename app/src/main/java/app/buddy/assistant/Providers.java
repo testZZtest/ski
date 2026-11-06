@@ -73,6 +73,14 @@ final class Providers {
             {"OpenRouter", "https://openrouter.ai/api", "https://openrouter.ai/api/v1", "chat"},
             {"Anthropic", "https://api.anthropic.com", "", ""},
             {"OpenAI", "", "https://api.openai.com/v1", ""},
+            {"Groq", "", "https://api.groq.com/openai/v1", "chat"},
+            {"Perplexity", "", "https://api.perplexity.ai", "chat"},
+            {"Mistral", "", "https://api.mistral.ai/v1", "chat"},
+            {"xAI", "", "https://api.x.ai/v1", "chat"},
+            {"Google (Vertex)", "", "https://us-central1-aiplatform.googleapis.com/v1", "chat"},
+            {"HuggingFace", "", "https://api-inference.huggingface.co/v1", "chat"},
+            {"Ollama", "", "http://127.0.0.1:11434/v1", "chat"},
+            {"LocalAI", "", "http://127.0.0.1:8080/v1", "chat"},
     };
 
     private static List<P> cache;

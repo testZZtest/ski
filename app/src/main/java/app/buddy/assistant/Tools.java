@@ -343,6 +343,8 @@ final class Tools {
                         .put("bubble_show_status_pill", boolProp("Mostrar ou esconder o pill de status ao lado da bolha"))));
         return t;
     }
+        // Status do app para o usuário ver tudo de uma vez
+        t.put(tool("app_status", "Mostra o estado atual do Buddy: versão, servidor MCP, controle remoto, tracing, IA on-device, delay entre ações e skills instaladas.", props()));
 
     /** Just the tool names, for the HTTP server's /tools endpoint. */
     static JSONArray listNames() throws JSONException {
@@ -364,6 +366,7 @@ final class Tools {
                 "local_model", "local_model_status",
                 "workflow_template",
                 "app_customize",
+                "app_status",
                 "browser_open", "browser_read", "browser_click", "browser_type", "browser_scroll", "browser_back",
                 "browser_screenshot"
         };
@@ -650,6 +653,21 @@ final class Tools {
             }
             default:
                 throw new IllegalArgumentException("Unknown tool " + name);
+            case "app_status": {
+                StringBuilder s = new StringBuilder();
+                s.append("Buddy ").append(BuildInfo.VERSION).append(" (").append(BuildInfo.VERSION_CODE).append(")").append("\n");
+                s.append("MCP local: 127.0.0.1:8765").append("\n");
+                s.append("MCP HTTP: ").append(Prefs.remoteControl(svc) ? "enabled" : "disabled").append(", ").append(svc.mcpHttp != null && svc.mcpHttp.isRunning() ? "running on 127.0.0.1:8766" : "stopped").append("\n");
+                s.append("Tracing: ").append(Prefs.tracingEnabled(svc) ? "on" : "off").append(", endpoint: ").append(Prefs.tracingEndpoint(svc).isEmpty() ? "(none)" : Prefs.tracingEndpoint(svc)).append("\n");
+                s.append("Local model: ").append(Prefs.localModelEnabled(svc) ? "on" : "off").append(", path: ").append(Prefs.localModelPath(svc).isEmpty() ? "(none)" : Prefs.localModelPath(svc)).append("\n");
+                s.append("Action delay: ").append(Prefs.actionDelay(svc)).append(" ms").append("\n");
+                s.append("Bubble: opacity ").append(Prefs.bubbleOpacity(svc)).append("%, autohide ").append(Prefs.bubbleAutoHide(svc)).append("s, pill ").append(Prefs.bubbleShowStatusPill(svc)).append("\n");
+                java.util.List<Skills.Skill> sk = Skills.all(svc);
+                StringBuilder sn = new StringBuilder();
+                for (int i = 0; i < sk.size(); i++) { if (i > 0) sn.append(", "); sn.append(sk.get(i).name); }
+                s.append("Skills: ").append(sk.size()).append(" installed (").append(sn).append(")");
+                return text(s.toString());
+            }
         }
     }
 
