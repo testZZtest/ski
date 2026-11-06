@@ -49,6 +49,7 @@ https://github.com/user-attachments/assets/d07936fc-4788-4ab5-a105-31b3e9aeba4f
 | **Builds apps** | Turn on Linux tools in a chat and "make me a calculator app" builds a real APK on the phone; the GitHub version also installs it for you. |
 | **Phone tools anywhere** | The same tools as a local MCP server for your own Claude Code, Codex, OpenCode, Antigravity or Grok sessions, or over stdio with [mcp-bridge](mcp-bridge) for clients that start servers as commands. |
 | **Web & memory** | Search the web (`web_search`), read any page (`web_fetch`), translate text (`translate`), and remember facts & preferences across chats (`memory_save`, `memory_list`, `memory_search`). |
+| **Chat apps** (Fase D) | `chat_send` and `chat_read` for Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ and Zulip, through their deep links and accessibility: opens the contact's chat, types, taps Send (with your OK first) and reads the conversation back. |
 | **Detailed status** | Battery, network, storage, memory, local time, ringer: everything an agent needs to know about the phone. |
 | **Shizuku** (elevated shell, no root) | `shizuku_run`, `shizuku_status`, `shizuku_check_permission`: run shell commands with elevated privileges after you grant Buddy permission in the Shizuku app or via ADB. |
 | **Bubble personalization** | Make the floating button smaller or larger (`small`/`medium`/`large`), and show or hide the status text next to it — in Settings. |

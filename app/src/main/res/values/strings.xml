@@ -1574,6 +1574,9 @@
     <string name="tools_photo_why">Take a photo: %1$s</string>
     <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Buddy asks. -->
     <string name="tools_card_detail">%1$s:\n%2$s</string>
+    <!-- The agent sends a message in a chat app (Fase D). %1$s = the contact; %2$s = the app, e.g. Telegram;
+         %3$s = the message. Use your language's quotation marks. -->
+    <string name="tools_card_chat_send">Send this message to %1$s in %2$s?\n\n“%3$s”</string>
     <!-- Quotation marks around text on the card (a draft message, a reason). Use your language's quotation marks. -->
     <string name="tools_card_quote">“%1$s”</string>
     <!-- In an app set to Smart, when neither Claude Code nor Codex is signed in to review the tap. -->
