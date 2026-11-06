@@ -1595,6 +1595,21 @@
     <!-- Downloading Buddy's update. %1$s = version number, e.g. 2.1.13 -->
     <string name="tools_status_downloading">Downloading Buddy %1$s…</string>
 
+    <!-- Remote control (Fase E): shown in Settings when the user turns on exposing Buddy's tools over HTTP. -->
+    <string name="prefs_remote_control">Remote control (HTTP)</string>
+    <string name="prefs_remote_control_info">Expose Buddy's phone tools over HTTP on 127.0.0.1:8766, so a desktop or another app can call read_screen, tap, type_text and the rest. Off by default; only this phone can connect.</string>
+
+    <!-- Reasoning mode (Fase G): before acting, the agent writes what it sees, plans and why. -->
+    <string name="prefs_reasoning_mode">Reasoning mode</string>
+    <string name="prefs_reasoning_mode_info">Before each phone action, the agent describes what it sees, what it plans to do, and why. Off by default.</string>
+
+    <!-- Numbered legend (Fase B): read_screen_with_numbers and tap_by_number. -->
+    <string name="tools_read_screen_with_numbers">Read the screen with a numbered legend (1, 2, 3…) beside each element.</string>
+    <string name="tools_tap_by_number">Tap element number N from read_screen_with_numbers.</string>
+
+    <!-- OCR screen (Fase B): flat text lines from everything visible on screen. -->
+    <string name="tools_ocr_screen">Read all visible text on screen as plain lines with positions.</string>
+
     <!-- Smart reviewer: its reason when it fails, shown on the approval card after “Claude says ask you:”, so it starts lowercase.
          %1$s = the technical reason (reviewer_no_answer, reviewer_timed_out, or an error in English). -->
     <string name="reviewer_failed">the reviewer couldn\'t answer (%1$s)</string>
@@ -2044,5 +2059,6 @@
     <string name="setup_switch_default">Switch default</string>
     <string name="setup_switch_default_title">Default brain</string>
     <string name="signin_api_key_on">%1$s runs on your API keys: pick a model in a chat\'s model sheet, or its default under API keys.</string>
-    <string name="signin_api_key_on_plan">Chats can also use your API keys\' models (pick one in a chat\'s model sheet). Voice and the other plan features use your plan.</string>
+    <string name="signin_api_key_on_plan">Chats can also use your API keys' models (pick one in a chat's model sheet). Voice and the other plan features use your plan.</string>
+    <string name="memory_cant_create">Buddy couldn't create its memory folder.</string>
 </resources>

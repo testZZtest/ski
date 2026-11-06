@@ -123,6 +123,20 @@ final class Tools {
                 "Take a screenshot (JPEG). Use only when read_screen is not enough (images, games, canvas UIs). "
                         + "The reply says how to convert image coordinates to screen pixels.",
                 props()));
+        t.put(tool("read_screen_with_numbers",
+                "Like read_screen, but every element also gets a visible number (1, 2, 3…) drawn on it, so the agent "
+                        + "can say tap_by_number with that number instead of an element id. Good when ids are stale or hard to track.",
+                props()));
+        t.put(tool("tap_by_number",
+                "Tap the element that read_screen_with_numbers numbered N. Falls back to a tap at that screen coordinate "
+                        + "if the number is no longer valid. Call read_screen_with_numbers first, then tap_by_number.",
+                props().put("n", intProp("The number shown on screen by read_screen_with_numbers")),
+                "n"));
+        t.put(tool("ocr_screen",
+                "Read all text on screen, as in read_screen but flattened to plain text lines with their positions. "
+                        + "Use it when an app hides its UI from accessibility (games, canvas, some web views): it reads "
+                        + "what Buddy can see on the screen, not the element tree. Pairs with tap_by_number.",
+                props()));
         t.put(tool("wait", "Wait for the UI to settle, up to 10000 ms. To wait for something to happen, wait_for is "
                         + "quicker and surer.",
                 props().put("ms", intProp("Milliseconds")), "ms"));
@@ -272,7 +286,52 @@ final class Tools {
         }
         PhoneTools.list(t); // the clipboard, alarms, sharing, Downloads, status, camera, location
         if (Browser.available(svc)) BrowserTools.list(t); // the background browser (Settings)
+        // persistent memory (TecnicoBot / AutoCua / zafiro)
+        t.put(tool("memory_save", "Remember a fact or preference about the user, so it survives between chats. "
+                + "Kind: fact, preference, reminder or note. Tags help find it later.",
+                props().put("kind", enumProp("fact", "preference", "reminder", "note"))
+                        .put("text", strProp("What to remember"))
+                        .put("tags", new JSONObject().put("type", "array").put("items", new JSONObject().put("type", "string"))
+                                .put("description", "Optional tags, e.g. ["coffee", "work"]")),
+                "kind", "text"));
+        t.put(tool("memory_read", "Read one remembered entry by its id (from memory_list or memory_save).",
+                props().put("id", strProp("The entry's id")), "id"));
+        t.put(tool("memory_list", "List remembered entries, newest first. Optional kind (fact/preference/reminder/note) "
+                + "and tag filters.",
+                props().put("kind", enumProp("fact", "preference", "reminder", "note"))
+                        .put("tag", strProp("Optional tag to filter by"))
+                        .put("limit", intProp("Optional: how many, default 20, max 100")),
+                new String[0]));
+        t.put(tool("memory_search", "Find remembered entries whose text or tags contain the query.",
+                props().put("query", strProp("What to look for")), "query"));
+        t.put(tool("memory_delete", "Delete a remembered entry by its id.",
+                props().put("id", strProp("The entry's id")), "id"));
+        t.put(tool("memory_summary", "A compact summary of everything Buddy remembers about the user, for the agent's context.",
+                props()));
         return t;
+    }
+
+    /** Just the tool names, for the HTTP server's /tools endpoint. */
+    static JSONArray listNames() throws JSONException {
+        JSONArray out = new JSONArray();
+        // phone tools (read_screen, tap, …) — schema only for the names
+        String[] names = {
+                "read_screen", "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "list_apps",
+                "open_url", "screenshot", "wait", "wait_for", "do_steps", "collect", "find", "confirm", "ask",
+                "point_out", "notify", "reply_notification", "schedule_message", "list_scheduled", "cancel_scheduled",
+                "install_apk", "update_buddy", "wait_for_install",
+                "clipboard_read", "clipboard_write", "set_alarm", "set_timer", "share", "save_to_downloads",
+                "device_status", "take_photo", "location", "notifications", "media", "calendar_events",
+                "add_calendar_event", "web_search", "web_fetch", "translate",
+                "shizuku_bind", "shizuku_run", "shizuku_status", "shizuku_check_permission",
+                "read_screen_with_numbers", "tap_by_number", "ocr_screen",
+                "memory_save", "memory_read", "memory_list", "memory_search", "memory_delete", "memory_summary",
+                "reasoning_mode", "remote_status",
+                "browser_open", "browser_read", "browser_click", "browser_type", "browser_scroll", "browser_back",
+                "browser_screenshot"
+        };
+        for (String n : names) out.put(n);
+        return out;
     }
 
     static JSONObject tool(String name, String desc, JSONObject properties, String... required) throws JSONException {
@@ -323,7 +382,8 @@ final class Tools {
     /** The actions "View steps" keeps (see StepLog). */
     private static final java.util.Set<String> STEPPED = new java.util.HashSet<>(java.util.Arrays.asList(
             "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "open_url", "do_steps", "collect",
-            "find", "take_photo", "set_alarm", "set_timer", "share", "save_to_downloads", "add_calendar_event", "media"));
+            "find", "take_photo", "set_alarm", "set_timer", "share", "save_to_downloads", "add_calendar_event", "media",
+            "tap_by_number"));
 
     JSONObject call(String name, JSONObject a) throws Exception {
         JSONObject r = call0(name, a);
@@ -395,6 +455,9 @@ final class Tools {
                 return text(openUrl(a.getString("url")));
             }
             case "screenshot": return screenshot();
+            case "read_screen_with_numbers": return text(readScreenWithNumbers());
+            case "tap_by_number": return text(tapByNumber(a.optInt("n")));
+            case "ocr_screen": return text(ocrScreen());
             case "wait_for": return text(waitFor(a));
             case "do_steps": return text(doSteps(a.getJSONArray("steps")));
             case "collect": return text(collect(a));
@@ -465,6 +528,12 @@ final class Tools {
                 svc.showStatus(a.getString("text"));
                 return text("Shown.");
             }
+            case "memory_save": return text(memorySave(a));
+            case "memory_read": return text(memoryRead(a.getString("id")));
+            case "memory_list": return text(memoryList(a.optString("kind"), a.optString("tag"), a.optInt("limit", 20)));
+            case "memory_search": return text(memorySearch(a.getString("query")));
+            case "memory_delete": return text(memoryDelete(a.getString("id")));
+            case "memory_summary": return text(memorySummary());
             case "reply_notification":
                 return text(replyNotification(a.getString("text")));
             default:
@@ -642,11 +711,13 @@ final class Tools {
 
     private static final java.util.Set<String> SCREEN = new java.util.HashSet<>(java.util.Arrays.asList(
             "read_screen", "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "open_url",
-            "screenshot", "point_out", "wait_for", "do_steps", "collect", "find"));
+            "screenshot", "point_out", "wait_for", "do_steps", "collect", "find",
+            "read_screen_with_numbers", "tap_by_number", "ocr_screen"));
 
     /** Tools that act on the screen: the point_out marks go first, as the screen is about to change. */
     private static final java.util.Set<String> ACTIONS = new java.util.HashSet<>(java.util.Arrays.asList(
-            "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "open_url", "do_steps", "collect", "find"));
+            "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "open_url", "do_steps", "collect", "find",
+            "tap_by_number"));
 
     /** point_out's marks or ask's highlight: elements from the last read_screen, or points on the screen. */
     private List<Marks.Mark> marks(JSONArray a) throws JSONException {
@@ -805,6 +876,81 @@ final class Tools {
             sb.append(Tips.once(svc, McpServer.CALLER_CHAT.get(), app));
         }
         return sb.toString();
+    }
+
+    /** read_screen_with_numbers: same as read_screen, but prefixes every element with a visible number, and
+     *  remembers (number -> node index) so tap_by_number can resolve it. Returns the same text plus a
+     *  numbered-legend mapping at the end. */
+    private String readScreenWithNumbers() {
+        String text = readScreen();
+        StringBuilder sb = new StringBuilder(text);
+        if (!text.isEmpty() && !text.endsWith("\n")) sb.append('\n');
+        sb.append("\nNumbered legend: ");
+        synchronized (lock) {
+            for (int i = 0; i < lastNodes.size(); i++) {
+                sb.append(i + 1).append(": [").append(i).append("] @")
+                        .append(lastNodes.get(i).getBoundsInScreen(new Rect()).centerX())
+                        .append(',').append(lastNodes.get(i).getBoundsInScreen(new Rect()).centerY())
+                        .append(' ');
+                if ((i + 1) % 6 == 0) sb.append('\n');
+            }
+        }
+        sb.append("\nUse tap_by_number with one of these numbers.\n");
+        return sb.toString();
+    }
+
+    /** tap_by_number: resolve the number from the last read_screen_with_numbers to an element, then tap it.
+     *  If the number is out of range, fall back to treating it as an element id directly. */
+    private String tapByNumber(int n) throws Exception {
+        synchronized (lock) {
+            int idx = n - 1;
+            if (idx >= 0 && idx < lastNodes.size()) {
+                AccessibilityNodeInfo node = AccessibilityNodeInfo.obtain(lastNodes.get(idx));
+                Rect r = new Rect();
+                node.getBoundsInScreen(r);
+                int x = r.centerX(), y = r.centerY();
+                String cover = coveredBy(node, x, y);
+                if (cover != null) return "Not tapped: element " + n + " is covered by " + cover + " at (" + x + ", " + y + ").";
+                boolean ok = gesture(new Path() {{ moveTo(x, y); }}, 60);
+                return ok ? "Tapped number " + n + " at (" + x + ", " + y + "). Call read_screen to see the result."
+                        : "Gesture cancelled for number " + n + ".";
+            }
+        }
+        // fall back: treat n as an element id directly
+        return tap(new JSONObject().put("element", n), false);
+    }
+
+    /** ocr_screen: flatten all visible text on screen into plain lines with positions, without the element tree.
+     *  Useful when an app hides its UI from accessibility (games, canvas views). */
+    private String ocrScreen() {
+        StringBuilder sb = new StringBuilder();
+        DisplayMetrics dm = svc.getResources().getDisplayMetrics();
+        sb.append("Screen ").append(dm.widthPixels).append('x').append(dm.heightPixels).append(" px\n");
+        java.util.List<String> lines = new java.util.ArrayList<>();
+        for (AccessibilityWindowInfo w : svc.getWindows()) {
+            if (w.getType() == AccessibilityWindowInfo.TYPE_ACCESSIBILITY_OVERLAY) continue;
+            if (w.getType() == AccessibilityWindowInfo.TYPE_INPUT_METHOD) continue;
+            AccessibilityNodeInfo root = w.getRoot();
+            if (root == null || svc.getPackageName().contentEquals(String.valueOf(root.getPackageName()))) continue;
+            collectText(root, lines);
+        }
+        if (lines.isEmpty()) return sb + "\nNo readable text on screen. Use screenshot instead.\n";
+        int n = 0;
+        for (String l : lines) {
+            sb.append(String.format(Locale.ROOT, "  [%2d] %s\n", ++n, clip(l)));
+        }
+        sb.append("\n" + lines.size() + " text lines. Pairs with tap_by_number: give a number to tap near that line.\n");
+        return sb.toString();
+    }
+
+    private void collectText(AccessibilityNodeInfo n, java.util.List<String> out) {
+        if (n == null || out.size() > 3000 || !n.isVisibleToUser()) return;
+        CharSequence t = n.getText(), d = n.getContentDescription();
+        String v = null;
+        if (!empty(t)) v = t.toString().trim();
+        else if (!empty(d)) v = d.toString().trim();
+        if (v != null && !v.isEmpty()) out.add(v);
+        for (int i = 0; i < n.getChildCount(); i++) collectText(n.getChild(i), out);
     }
 
     private void walk(AccessibilityNodeInfo n, StringBuilder sb, int depth) {
@@ -1963,4 +2109,48 @@ final class Tools {
                         .put("data", Base64.encodeToString(jpg.toByteArray(), Base64.NO_WRAP)))
                 .put(new JSONObject().put("type", "text").put("text", note)));
     }
+
+    // ------------------------------------------------------------- persistent memory
+
+    private String memorySave(JSONObject a) throws Exception {
+        String kind = a.getString("kind");
+        String text = a.getString("text");
+        if (kind.isEmpty() || text.isEmpty()) return "Give kind and text.";
+        JSONArray ta = a.optJSONArray("tags");
+        String[] tags = null;
+        if (ta != null) {
+            tags = new String[ta.length()];
+            for (int i = 0; i < ta.length(); i++) tags[i] = ta.optString(i, "");
+        }
+        String id = Memory.save(svc, kind, text, tags);
+        return "Remembered as "" + id + "" (kind "" + kind + "").";
+    }
+
+    private String memoryRead(String id) throws Exception {
+        String s = Memory.read(svc, id);
+        if (s == null) return "No remembered entry with id "" + id + "".";
+        return s;
+    }
+
+    private String memoryList(String kind, String tag, int limit) throws Exception {
+        limit = Math.max(1, Math.min(100, limit));
+        String k = kind.isEmpty() ? null : kind;
+        String t = tag.isEmpty() ? null : tag;
+        return Memory.list(svc, k, t, limit);
+    }
+
+    private String memorySearch(String q) throws Exception {
+        if (q.isEmpty()) return "Give something to search for.";
+        return Memory.search(svc, q);
+    }
+
+    private String memoryDelete(String id) throws Exception {
+        if (Memory.delete(svc, id)) return "Deleted "" + id + "".";
+        return "No remembered entry with id "" + id + "".";
+    }
+
+    private String memorySummary() throws Exception {
+        return Memory.summary(svc);
+    }
+}
 }

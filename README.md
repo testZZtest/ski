@@ -48,8 +48,16 @@ https://github.com/user-attachments/assets/d07936fc-4788-4ab5-a105-31b3e9aeba4f
 | **Background browser** | Web pages in a browser inside Buddy, without taking over your screen, even while the phone is locked. Watch and use it live in the chat; it marks what you need to do (sign in, a captcha) and never types your passwords. |
 | **Builds apps** | Turn on Linux tools in a chat and "make me a calculator app" builds a real APK on the phone; the GitHub version also installs it for you. |
 | **Phone tools anywhere** | The same tools as a local MCP server for your own Claude Code, Codex, OpenCode, Antigravity or Grok sessions, or over stdio with [mcp-bridge](mcp-bridge) for clients that start servers as commands. |
+| **Web & memory** | Search the web (`web_search`), read any page (`web_fetch`), translate text (`translate`), and remember facts & preferences across chats (`memory_save`, `memory_list`, `memory_search`). |
+| **Detailed status** | Battery, network, storage, memory, local time, ringer: everything an agent needs to know about the phone. |
+| **Shizuku** (elevated shell, no root) | `shizuku_run`, `shizuku_status`, `shizuku_check_permission`: run shell commands with elevated privileges after you grant Buddy permission in the Shizuku app or via ADB. |
+| **Bubble personalization** | Make the floating button smaller or larger (`small`/`medium`/`large`), and show or hide the status text next to it — in Settings. |
+| **Numbered-legend UI** (Fase B) | `read_screen_with_numbers` overlays 1, 2, 3… on every element; `tap_by_number N` taps by that number. Pairs with `ocr_screen` for apps that hide their UI (games, canvas). |
+| **Remote control** (Fase E) | `McpHttpServer` on `127.0.0.1:8766`: expose Buddy's phone tools over HTTP so a desktop or another app can call them. Off by default, on in Settings. |
+| **Reasoning mode** (Fase G) | Before each phone action, the agent describes what it sees, plans and why — off by default, on in Settings. |
+| **14 languages** (Fase H) | Strings ready for translation in `res/values-<language>/strings.xml`; community skills and plugin APKs via Skills. |
 
-> **Status: 2.2, early.** It works well day to day but has rough edges. Tested most on a OnePlus 12 (Android 16). Buddy is an independent project, not made by or affiliated with Anthropic, OpenAI, Google or xAI.
+> **Status: 2.3, early.** It works well day to day but has rough edges. Tested most on a OnePlus 12 (Android 16). Buddy is an independent project, not made by or affiliated with Anthropic, OpenAI, Google or xAI.
 
 ## How it works
 

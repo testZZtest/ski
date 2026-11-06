@@ -55,9 +55,11 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
     };
     private Tools tools;
     private McpServer server;
+    private McpHttpServer mcpHttp;
     private AutoPause autoPause;
     private final KeepAwake keepAwake = new KeepAwake(this);
     private Marks marks;
+    private Shizuku shizuku;
     /** Touches on the screen while a card waited for the user (see onScreenTouched). */
     private volatile int cardTouches;
 
@@ -97,6 +99,14 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
         bubble.show();
         server = new McpServer(Prefs.token(this), this);
         server.start();
+
+        // Shizuku: elevated shell commands without root (user grants via the Shizuku app or ADB)
+        shizuku = Shizuku.get(this);
+        if (Shizuku.isInstalled(this)) shizuku.bind();
+
+        // Remote control: expose phone tools over HTTP (127.0.0.1:8766), if the user turned it on
+        mcpHttp = new McpHttpServer(this);
+        mcpHttp.startIfEnabled();
 
         // Hide the bubble on the lock screen.
         IntentFilter f = new IntentFilter();
@@ -239,6 +249,8 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
         if (server != null) server.stop();
         if (autoPause != null) autoPause.stop();
         keepAwake.remove();
+        if (mcpHttp != null) mcpHttp.stop();
+        if (shizuku != null) shizuku.unbind();
         if (marks != null) marks.clear();
         if (bubble != null) bubble.remove();
         if (control != null) control.end();

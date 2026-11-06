@@ -150,6 +150,30 @@ final class Prefs {
     }
 
     /**
+     * Floating button size: "small" (40dp face), "medium" (60dp, default) or "large" (80dp face).
+     * The ring and box scale with it.
+     */
+    static String bubbleSize(Context c) {
+        String s = sp(c).getString("bubble_size", "medium");
+        return "small".equals(s) || "large".equals(s) ? s : "medium";
+    }
+
+    static void setBubbleSize(Context c, String size) {
+        sp(c).edit().putString("bubble_size", size).apply();
+    }
+
+    /**
+     * Whether the floating status text (the pill) next to the bubble is shown.
+     */
+    static boolean bubbleShowText(Context c) {
+        return sp(c).getBoolean("bubble_show_text", true);
+    }
+
+    static void setBubbleShowText(Context c, boolean on) {
+        sp(c).edit().putBoolean("bubble_show_text", on).apply();
+    }
+
+    /**
      * What a tap on the bubble does: "panel" (open the chat panel), "talk" (start the microphone when no task runs)
      * or "app" (open the chat in the app). Before this was a choice, a switch turned "talk" on.
      */
@@ -415,6 +439,18 @@ final class Prefs {
     }
 
     /**
+     * Remote control: expose Buddy's phone tools over HTTP on 127.0.0.1:8766 (McpHttpServer, Fase E).
+     * Off by default; the user turns it on in Settings to control Buddy from a desktop or another app.
+     */
+    static boolean remoteControl(Context c) {
+        return !Flavor.PLAY && sp(c).getBoolean("remote_control", false);
+    }
+
+    static void setRemoteControl(Context c, boolean on) {
+        sp(c).edit().putBoolean("remote_control", on).apply();
+    }
+
+    /**
      * The background browser (Browser): off until the user turns it on. Never in the Play build for now: it downloads
      * and runs a whole browser (Chromium from Alpine), which Play's policies on downloaded executable code may not allow.
      */
@@ -522,6 +558,17 @@ final class Prefs {
 
     static void addTip(Context c) {
         sp(c).edit().putInt("menu_tips", tipCount(c) + 1).apply();
+    }
+
+    /** Reasoning mode: before acting, the agent writes what it sees, what it plans, and why, then asks for OK.
+     *  Off / on / always (on for risky actions too). Default: off.
+     */
+    static String reasoningMode(Context c) {
+        return sp(c).getString("reasoning_mode", "off");
+    }
+
+    static void setReasoningMode(Context c, String mode) {
+        sp(c).edit().putString("reasoning_mode", mode).apply();
     }
 
     /** Who reads replies aloud: "phone" (Android's voices) or "chatgpt" (ChatGPT's voice through Codex). */

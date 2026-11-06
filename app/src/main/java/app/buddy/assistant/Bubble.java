@@ -99,6 +99,10 @@ final class Bubble implements ChatHub.Listener {
     private boolean expanded, running, passThrough, showingList;
     private int imeTop;
     private ConfirmCallback pendingConfirm;
+    /** Floating bubble size: small=40dp face, medium=60dp (default), large=80dp face. */
+    private int faceSize, boxSize;
+    /** Whether the floating status text (pill) next to the bubble is shown. */
+    private boolean showPill;
     /** A card that waits its turn behind the one shown (another chat asked meanwhile). */
     private static final class Card {
         final String text, chat;
@@ -133,6 +137,11 @@ final class Bubble implements ChatHub.Listener {
         this.svc = svc;
         this.wm = svc.getSystemService(WindowManager.class);
         this.vibrator = svc.getSystemService(Vibrator.class);
+        String size = Prefs.bubbleSize(svc);
+        if ("small".equals(size)) { faceSize = dp(40); boxSize = dp(54); }
+        else if ("large".equals(size)) { faceSize = dp(80); boxSize = dp(94); }
+        else { faceSize = dp(60); boxSize = dp(74); }
+        showPill = Prefs.bubbleShowText(svc);
     }
 
     // ------------------------------------------------------------- layout
@@ -225,10 +234,10 @@ final class Bubble implements ChatHub.Listener {
         faceBox.setClipChildren(false);
         ring = new RingView(svc);
         ring.setVisibility(View.GONE);
-        faceBox.addView(ring, new FrameLayout.LayoutParams(dp(74), dp(74), Gravity.CENTER));
-        faceBox.addView(face, new FrameLayout.LayoutParams(dp(60), dp(60), Gravity.CENTER));
+        faceBox.addView(ring, new FrameLayout.LayoutParams(boxSize, boxSize, Gravity.CENTER));
+        faceBox.addView(face, new FrameLayout.LayoutParams(faceSize, faceSize, Gravity.CENTER));
         holdRing = new HoldRing(svc);
-        faceBox.addView(holdRing, new FrameLayout.LayoutParams(dp(74), dp(74), Gravity.CENTER));
+        faceBox.addView(holdRing, new FrameLayout.LayoutParams(boxSize, boxSize, Gravity.CENTER));
         // 4. screen readers: "double-tap and hold for actions"
         face.setContentDescription(svc.getString(R.string.bubble_face_description));
         face.setLongClickable(true);
@@ -248,7 +257,7 @@ final class Bubble implements ChatHub.Listener {
         column.setOrientation(LinearLayout.VERTICAL);
         column.setGravity(Gravity.CENTER_HORIZONTAL);
         column.setClipChildren(false);
-        column.addView(faceBox, new LinearLayout.LayoutParams(dp(74), dp(74)));
+        column.addView(faceBox, new LinearLayout.LayoutParams(boxSize, boxSize));
         // Stop, Add instruction, Stop voice… are in the hold menu (RadialMenu), not chips under the bubble
         bubbleFrame.addView(column);
 
@@ -269,7 +278,7 @@ final class Bubble implements ChatHub.Listener {
         pill.setEllipsize(TextUtils.TruncateAt.END);
         pill.setPaddingRelative(dp(12), dp(8), dp(12), dp(8));
         pill.setBackground(rounded(Ui.BG, 18, Ui.ACCENT, 1));
-        pill.setVisibility(View.GONE);
+        pill.setVisibility(showPill ? View.VISIBLE : View.GONE);
         LinearLayout.LayoutParams plp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         plp.gravity = Gravity.TOP;
