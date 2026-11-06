@@ -599,6 +599,66 @@ final class Prefs {
         sp(c).edit().putString("voice_langs", csv).apply();
     }
 
+    /**
+     * Tracing enabled (Fase G — observabilidade): sends OTLP spans to the endpoint below.
+     * Off by default; the user turns it on in Settings to profile agent runs.
+     */
+    static boolean tracingEnabled(Context c) {
+        return sp(c).getBoolean("tracing_enabled", false);
+    }
+
+    static void setTracingEnabled(Context c, boolean on) {
+        sp(c).edit().putBoolean("tracing_enabled", on).apply();
+    }
+
+    /** OTLP traces endpoint, e.g. https://collector.example/v1/traces. Empty = tracing off even if enabled. */
+    static String tracingEndpoint(Context c) {
+        return sp(c).getString("tracing_endpoint", "");
+    }
+
+    static void setTracingEndpoint(Context c, String ep) {
+        sp(c).edit().putString("tracing_endpoint", ep == null ? "" : ep).apply();
+    }
+
+    /**
+     * On-device model enabled (Fase F — IA on-device): run GGUF/LiteRT locally instead of
+     * sending every prompt to a cloud agent. Off by default.
+     */
+    static boolean localModelEnabled(Context c) {
+        return sp(c).getBoolean("local_model_enabled", false);
+    }
+
+    static void setLocalModelEnabled(Context c, boolean on) {
+        sp(c).edit().putBoolean("local_model_enabled", on).apply();
+    }
+
+    /** Path of the local model file inside Buddy's Linux, e.g. /root/.buddy/models/llama-3.2-1b.Q4_K_M.gguf. */
+    static String localModelPath(Context c) {
+        return sp(c).getString("local_model_path", "");
+    }
+
+    static void setLocalModelPath(Context c, String path) {
+        sp(c).edit().putString("local_model_path", path == null ? "" : path).apply();
+    }
+
+    /** CPU threads for the local model (0 = auto). */
+    static int localModelThreads(Context c) {
+        return sp(c).getInt("local_model_threads", 0);
+    }
+
+    static void setLocalModelThreads(Context c, int n) {
+        sp(c).edit().putInt("local_model_threads", Math.max(0, n)).apply();
+    }
+
+    /** Context size for the local model (tokens). */
+    static int localModelCtxSize(Context c) {
+        return sp(c).getInt("local_model_ctx", 2048);
+    }
+
+    static void setLocalModelCtxSize(Context c, int n) {
+        sp(c).edit().putInt("local_model_ctx", Math.max(128, n)).apply();
+    }
+
     /** The language to listen for next (one of voiceLangs). */
     static String voiceLang(Context c) {
         String all = voiceLangs(c);

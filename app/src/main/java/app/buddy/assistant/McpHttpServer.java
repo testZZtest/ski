@@ -160,6 +160,35 @@ final class McpHttpServer {
                 } catch (JSONException e) {
                     send(out, 500, "application/json", "{\"error\":\"" + e.getMessage() + "\"}");
                 }
+            } else if ("/devtools".equals(path) && "GET".equals(method)) {
+                // Fase G — DevTools: the current accessibility UI tree, for remote inspection
+                try {
+                    JSONObject tree = new JSONObject();
+                    tree.put("windows", new JSONArray());
+                    tree.put("scale", svc.getResources().getDisplayMetrics().density);
+                    for (android.view.accessibility.AccessibilityWindowInfo w : svc.getWindows()) {
+                        if (w.getType() != android.view.accessibility.AccessibilityWindowInfo.TYPE_APPLICATION
+                                && w.getType() != android.view.accessibility.AccessibilityWindowInfo.TYPE_SYSTEM) continue;
+                        android.view.accessibility.AccessibilityNodeInfo root = w.getRoot();
+                        if (root == null) continue;
+                        JSONObject win = new JSONObject();
+                        win.put("id", w.getId());
+                        win.put("type", w.getType());
+                        win.put("title", w.getTitle() == null ? "" : w.getTitle().toString());
+                        win.put("package", root.getPackageName() == null ? "" : root.getPackageName().toString());
+                        win.put("active", w.isActive());
+                        android.graphics.Rect b = new android.graphics.Rect();
+                        w.getBoundsInScreen(b);
+                        win.put("bounds", new JSONObject()
+                                .put("left", b.left).put("top", b.top)
+                                .put("right", b.right).put("bottom", b.bottom));
+                        win.put("nodes", nodeTree(root));
+                        tree.getJSONArray("windows").put(win);
+                    }
+                    send(out, 200, "application/json", tree.toString());
+                } catch (Exception e) {
+                    send(out, 500, "application/json", "{\"error\":\"" + e.getMessage() + "\"}");
+                }
             } else {
                 send(out, 404, null, null);
             }
@@ -265,6 +294,32 @@ final class McpHttpServer {
         }
         if (b == -1 && buf.size() == 0) return null;
         return buf.toString("UTF-8");
+    }
+
+    /** Converts one AccessibilityNodeInfo and its children into a DevTools-style JSON subtree. */
+    private static JSONObject nodeTree(android.view.accessibility.AccessibilityNodeInfo n) throws org.json.JSONException {
+        JSONObject j = new JSONObject();
+        j.put("class", n.getClassName() == null ? "" : n.getClassName().toString());
+        j.put("text", n.getText() == null ? "" : n.getText().toString());
+        j.put("desc", n.getContentDescription() == null ? "" : n.getContentDescription().toString());
+        j.put("clickable", n.isClickable());
+        j.put("editable", n.isEditable());
+        j.put("checked", n.isChecked());
+        j.put("enabled", n.isEnabled());
+        j.put("focused", n.isFocused());
+        j.put("password", n.isPassword());
+        android.graphics.Rect r = new android.graphics.Rect();
+        n.getBoundsInScreen(r);
+        j.put("bounds", new org.json.JSONObject()
+                .put("left", r.left).put("top", r.top)
+                .put("right", r.right).put("bottom", r.bottom));
+        JSONArray children = new JSONArray();
+        for (int i = 0; i < n.getChildCount(); i++) {
+            android.view.accessibility.AccessibilityNodeInfo child = n.getChild(i);
+            if (child != null) children.put(nodeTree(child));
+        }
+        j.put("children", children);
+        return j;
     }
 
     private static byte[] readBody(InputStream in, Map<String, String> headers) throws IOException {

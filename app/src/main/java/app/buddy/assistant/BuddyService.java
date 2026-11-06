@@ -60,6 +60,7 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
     private final KeepAwake keepAwake = new KeepAwake(this);
     private Marks marks;
     private Shizuku shizuku;
+    private OnDeviceModel onDeviceModel;
     /** Touches on the screen while a card waited for the user (see onScreenTouched). */
     private volatile int cardTouches;
 
@@ -107,6 +108,9 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
         // Remote control: expose phone tools over HTTP (127.0.0.1:8766), if the user turned it on
         mcpHttp = new McpHttpServer(this);
         mcpHttp.startIfEnabled();
+
+        // On-device model (Fase F): local GGUF/LiteRT inference, off by default
+        onDeviceModel = new OnDeviceModel(this);
 
         // Hide the bubble on the lock screen.
         IntentFilter f = new IntentFilter();
@@ -398,6 +402,10 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
 
     AutoPause autoPauser() {
         return autoPause;
+    }
+
+    OnDeviceModel onDeviceModel() {
+        return onDeviceModel;
     }
 
     /** The point_out tool's marks (main thread). */

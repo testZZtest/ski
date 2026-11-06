@@ -24,6 +24,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,11 +46,13 @@ final class Tools {
     private final List<AccessibilityNodeInfo> lastNodes = new ArrayList<>();
     private final BrowserTools browser;
     private final PhoneTools phone;
+    private final Tracing tracing;
 
     Tools(BuddyService svc) {
         this.svc = svc;
         browser = new BrowserTools(svc);
         phone = new PhoneTools(svc);
+        tracing = new Tracing(svc);
     }
 
     // ---------------------------------------------------------------- schema
@@ -308,6 +313,28 @@ final class Tools {
                 props().put("id", strProp("The entry's id")), "id"));
         t.put(tool("memory_summary", "A compact summary of everything Buddy remembers about the user, for the agent's context.",
                 props()));
+        // Fase G — observabilidade (tracing)
+        t.put(tool("trace_start", "Start an OTLP trace span for this agent step, so the user can profile it in Arize/Langfuse or any OTLP collector. Returns a span id to pass to trace_end.",
+                props().put("name", strProp("Span name, e.g. "order coffee" or "read Settings screen"))
+                        .put("tool", strProp("Optional: the tool this span wraps"))
+                        .put("agent", strProp("Optional: the agent name, e.g. claude, codex, opencode")),
+                "name"));
+        t.put(tool("trace_end", "End a trace span started with trace_start and send it to the collector. Give the span id from trace_start, plus the result (short) and whether it errored.",
+                props().put("id", strProp("The span id from trace_start"))
+                        .put("result", strProp("Optional short result text"))
+                        .put("error", boolProp("Optional: true if this step failed")),
+                "id"));
+        t.put(tool("trace_status", "Whether tracing is on and the collector endpoint (empty = not sending).", props()));
+        // Fase F — IA on-device (GGUF / LiteRT local)
+        t.put(tool("local_model", "Run a local language model inside Buddy (no cloud). Give the prompt; the model answers on the phone. Needs a model file in Buddy's Linux and local_model enabled in Settings.",
+                props().put("prompt", strProp("The prompt to run locally"))
+                        .put("model", strProp("Optional: path to a .gguf or .tflite model file (overrides the default set in Settings)")),
+                "prompt"));
+        t.put(tool("local_model_status", "Whether on-device inference is on, the model path, threads and context size.", props()));
+        // Fase H — workflow templates (FoneClaw: community skills / templates)
+        t.put(tool("workflow_template", "Get a pre-defined do_steps template by name, ready to fill in and run. Templates cover common multi-step phone tasks.",
+                props().put("name", strProp("Template name, e.g. "morning check" or "order groceries"))),
+                "name"));
         return t;
     }
 
@@ -327,6 +354,9 @@ final class Tools {
                 "read_screen_with_numbers", "tap_by_number", "ocr_screen",
                 "memory_save", "memory_read", "memory_list", "memory_search", "memory_delete", "memory_summary",
                 "reasoning_mode", "remote_status",
+                "trace_start", "trace_end", "trace_status",
+                "local_model", "local_model_status",
+                "workflow_template",
                 "browser_open", "browser_read", "browser_click", "browser_type", "browser_scroll", "browser_back",
                 "browser_screenshot"
         };
@@ -549,6 +579,57 @@ final class Tools {
                 boolean running = svc.mcpHttp != null && svc.mcpHttp.isRunning();
                 return text("Remote control: " + (on ? "enabled" : "disabled") + ", MCP HTTP server: "
                         + (running ? "running on 127.0.0.1:8766" : "stopped") + ".");
+            }
+            case "trace_start": {
+                String name = a.optString("name", "");
+                if (name.isEmpty()) return text("Give a span name.");
+                String id = tracing.start(name, McpServer.CALLER_CHAT.get(), a.optString("tool", null),
+                        a.optString("agent", null));
+                if (id == null) return text("Tracing is off or has no collector endpoint. Turn it on in Settings.");
+                return text("Trace span started: " + id + ". Pass it to trace_end when the step finishes.");
+            }
+            case "trace_end": {
+                String id = a.getString("id");
+                String result = a.optString("result", null);
+                boolean error = a.optBoolean("error", false);
+                tracing.end(id, result, error);
+                return text("Trace span ended: " + id + ".");
+            }
+            case "trace_status": {
+                boolean on = Prefs.tracingEnabled(svc);
+                String ep = Prefs.tracingEndpoint(svc);
+                return text("Tracing: " + (on ? "on" : "off") + ", endpoint: "
+                        + (ep.isEmpty() ? "(none set)" : ep) + ".");
+            }
+            case "local_model": {
+                String prompt = a.optString("prompt", "");
+                if (prompt.isEmpty()) return text("Give a prompt.");
+                String model = a.optString("model", null);
+                if (model == null || model.isEmpty()) model = Prefs.localModelPath(svc);
+                if (!Prefs.localModelEnabled(svc) || model.isEmpty())
+                    return text("On-device model is off or has no model file. Turn it on and set the model path in Settings.");
+                try {
+                    String answer = svc.onDeviceModel().run(model, prompt,
+                            Prefs.localModelThreads(svc), Prefs.localModelCtxSize(svc));
+                    return text("Local model: " + answer);
+                } catch (Exception e) {
+                    return text("Local model failed: " + e.getMessage());
+                }
+            }
+            case "local_model_status": {
+                boolean on = Prefs.localModelEnabled(svc);
+                String path = Prefs.localModelPath(svc);
+                int threads = Prefs.localModelThreads(svc);
+                int ctx = Prefs.localModelCtxSize(svc);
+                return text("Local model: " + (on ? "on" : "off") + ", model: "
+                        + (path.isEmpty() ? "(none set)" : path) + ", threads: " + threads + ", ctx: " + ctx + ".");
+            }
+            case "workflow_template": {
+                String name = a.optString("name", "");
+                if (name.isEmpty()) return text("Give a template name.");
+                String json = workflowTemplate(name);
+                if (json == null) return text("No template named " + name + ".");
+                return text(json);
             }
             default:
                 throw new IllegalArgumentException("Unknown tool " + name);
@@ -1428,6 +1509,28 @@ final class Tools {
         }
     }
 
+
+    // ------------------------------------------------------------- Fase H — workflow templates
+
+    /** Reads a pre-defined do_steps template from res/raw/workflow_templates.json. */
+    private String workflowTemplate(String name) {
+        try {
+            InputStream is = svc.getResources().openRawResource(res.raw.workflow_templates);
+            java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(is, StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = r.readLine()) != null) sb.append(line);
+            r.close();
+            JSONObject all = new JSONObject(sb.toString());
+            JSONObject t = all.optJSONObject(name);
+            if (t == null) return null;
+            return t.toString(2);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+// ------------------------------------------------------------- actions
     // ------------------------------------------------------------- actions
 
     private String tap(JSONObject a, boolean longPress) throws Exception {

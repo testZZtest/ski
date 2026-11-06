@@ -1,0 +1,71 @@
+{
+  "morning check": {
+    "name": "Morning check",
+    "description": "Read notifications, check the weather, and open the calendar for today.",
+    "steps": [
+      {"action": "press", "button": "notifications"},
+      {"action": "wait", "ms": 1000},
+      {"action": "open_app", "app": "Weather"},
+      {"action": "wait", "ms": 1500},
+      {"action": "open_app", "app": "Calendar"}
+    ]
+  },
+  "order groceries": {
+    "name": "Order groceries",
+    "description": "Open the grocery app, search for an item, and add it to the cart.",
+    "steps": [
+      {"action": "open_app", "app": "Groceries"},
+      {"action": "wait", "ms": 2000},
+      {"action": "type", "text": "milk", "target": "Search"},
+      {"action": "wait", "ms": 1000},
+      {"action": "tap", "text": "Add to cart"}
+    ]
+  },
+  "send message": {
+    "name": "Send message",
+    "description": "Open Messages, pick a contact, and type a message (still asks before sending).",
+    "steps": [
+      {"action": "open_app", "app": "Messages"},
+      {"action": "wait", "ms": 1500},
+      {"action": "tap", "text": "New message"},
+      {"action": "wait", "ms": 1000},
+      {"action": "type", "text": "Hello!", "target": "To"},
+      {"action": "wait", "ms": 500},
+      {"action": "type", "text": "", "target": "Type a message"},
+      {"action": "wait", "ms": 1000}
+    ]
+  },
+  "check price": {
+    "name": "Check price",
+    "description": "Open a shopping app, search for a product, and read its price.",
+    "steps": [
+      {"action": "open_app", "app": "Amazon"},
+      {"action": "wait", "ms": 2000},
+      {"action": "type", "text": "headphones", "target": "Search"},
+      {"action": "wait", "ms": 1500},
+      {"action": "tap", "text": "Search"},
+      {"action": "wait", "ms": 2000}
+    ]
+  },
+  "turn on wifi": {
+    "name": "Turn on Wi-Fi",
+    "description": "Open Settings and toggle Wi-Fi on.",
+    "steps": [
+      {"action": "open_app", "app": "Settings"},
+      {"action": "wait", "ms": 1500},
+      {"action": "tap", "text": "Network & internet"},
+      {"action": "wait", "ms": 1000},
+      {"action": "tap", "text": "Wi-Fi"}
+    ]
+  },
+  "take photo and share": {
+    "name": "Take photo and share",
+    "description": "Take a photo with the camera and open the share sheet.",
+    "steps": [
+      {"action": "open_app", "app": "Camera"},
+      {"action": "wait", "ms": 2000},
+      {"action": "press", "button": "volume"},
+      {"action": "wait", "ms": 1000}
+    ]
+  }
+}
