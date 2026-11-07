@@ -399,6 +399,14 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
         return bubble;
     }
 
+    McpHttpServer mcpHttp() {
+        return mcpHttp;
+    }
+
+    Shizuku shizuku() {
+        return shizuku;
+    }
+
     KeepAwake keepAwake() {
         return keepAwake;
     }

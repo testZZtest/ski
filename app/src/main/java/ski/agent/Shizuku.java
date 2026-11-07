@@ -118,7 +118,7 @@ public final class Shizuku {
             android.os.ParcelFileDescriptor[] pipe = android.os.ParcelFileDescriptor.createPipe();
             java.io.OutputStream stdin = new java.io.FileOutputStream(pipe[1].getFileDescriptor());
             stdin.write(cmd.getBytes());
-            stdin.write(('\n').getBytes());
+            stdin.write("\n".getBytes());
             stdin.close();
             Object result = exec.invoke(service, (Object) pipe);
             if (result instanceof Integer) {

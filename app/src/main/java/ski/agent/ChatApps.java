@@ -153,8 +153,8 @@ final class ChatApps {
         if (!Guard.takeApproval(true, text)) { // the agent's confirm just before covers it, if it named this text
             String answer = svc.askConfirm(summary);
             if (!answer.startsWith("APPROVED")) {
-                AccessibilityNodeInfo draft = composer(pkg);
-                if (draft != null) clear(draft); // don't leave the draft in the app
+                AccessibilityNodeInfo draftNode = composer(pkg);
+                if (draftNode != null) clear(draftNode); // don't leave the draft in the app
                 return "Not sent. " + answer;
             }
         }

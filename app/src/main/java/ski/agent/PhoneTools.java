@@ -63,7 +63,7 @@ final class PhoneTools {
     }
 
     /** The tools' descriptions, for the agent. */
-    static void list(JSONArray t) throws org.json.JSONException {
+    static void list(SkiService svc, JSONArray t) throws org.json.JSONException {
         t.put(Tools.tool("clipboard_read", "Read the text the user last copied (the clipboard). Ski asks the user "
                 + "first, every time. Returns the text, or why not.", Tools.props()));
         t.put(Tools.tool("clipboard_write", "Put text on the clipboard, so the user can paste it in any app.",
@@ -725,9 +725,9 @@ final class PhoneTools {
         String s = html;
         // replace blocks with newlines so text doesn't run together
         s = s.replaceAll("(?i)</(p|div|h[1-6]|li|tr|br|blockquote|section|article)>", "\n");
-        s = s.replaceAll("<!--.*?-->", " ", java.util.regex.Pattern.DOTALL);
-        s = s.replaceAll("<script.*?</script>", " ", java.util.regex.Pattern.DOTALL);
-        s = s.replaceAll("<style.*?</style>", " ", java.util.regex.Pattern.DOTALL);
+        s = java.util.regex.Pattern.compile("<!--.*?-->", java.util.regex.Pattern.DOTALL).matcher(s).replaceAll(" ");
+        s = java.util.regex.Pattern.compile("<script.*?</script>", java.util.regex.Pattern.DOTALL).matcher(s).replaceAll(" ");
+        s = java.util.regex.Pattern.compile("<style.*?</style>", java.util.regex.Pattern.DOTALL).matcher(s).replaceAll(" ");
         s = s.replaceAll("<[^>]+>", " ");
         s = s.replaceAll("&nbsp;", " ");
         s = s.replaceAll("&amp;", "&").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", "\"");
@@ -738,34 +738,34 @@ final class PhoneTools {
     // ------------------------------------------------------------- Shizuku
 
     private String shizukuBind() {
-        if (svc.shizuku == null) return "Shizuku support is not compiled in.";
+        if (svc.shizuku() == null) return "Shizuku support is not compiled in.";
         if (!Shizuku.isInstalled(svc)) {
             return "Shizuku is not installed. Install it from GitHub or Play Store, "
                     + "grant Ski permission in the Shizuku app, or via ADB.";
         }
-        if (svc.shizuku.bind()) return "Shizuku bind requested. Wait a moment, then call shizuku_status to check.";
+        if (svc.shizuku().bind()) return "Shizuku bind requested. Wait a moment, then call shizuku_status to check.";
         return "Already bound to Shizuku; call shizuku_status to verify.";
     }
 
     private String shizukuRun(String cmd) {
-        if (svc.shizuku == null) return "Shizuku support is not compiled in.";
-        if (!svc.shizuku.isBound()) {
+        if (svc.shizuku() == null) return "Shizuku support is not compiled in.";
+        if (!svc.shizuku().isBound()) {
             return "Shizuku is not bound yet. Call shizuku_bind first and wait for it to connect.";
         }
-        return svc.shizuku.runShell(cmd);
+        return svc.shizuku().runShell(cmd);
     }
 
     private String shizukuStatus() {
-        if (svc.shizuku == null) return "Shizuku support is not compiled in.";
+        if (svc.shizuku() == null) return "Shizuku support is not compiled in.";
         if (!Shizuku.isInstalled(svc)) return "Shizuku is not installed.";
-        if (svc.shizuku.isBound()) return "Shizuku is installed and bound: ready for elevated shell commands.";
+        if (svc.shizuku().isBound()) return "Shizuku is installed and bound: ready for elevated shell commands.";
         return "Shizuku is installed but not bound. Call shizuku_bind to connect.";
     }
 
     private String shizukuCheckPermission(String permission) {
-        if (svc.shizuku == null) return "Shizuku support is not compiled in.";
-        if (!svc.shizuku.isBound()) return "Shizuku is not bound; call shizuku_bind first.";
-        boolean ok = svc.shizuku.checkPermission(permission);
+        if (svc.shizuku() == null) return "Shizuku support is not compiled in.";
+        if (!svc.shizuku().isBound()) return "Shizuku is not bound; call shizuku_bind first.";
+        boolean ok = svc.shizuku().checkPermission(permission);
         return "Permission " + permission + ": " + (ok ? "granted" : "not granted") + ".";
     }
 }

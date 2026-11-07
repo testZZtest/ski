@@ -3,6 +3,7 @@ package ski.agent;
 import android.content.Context;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,7 +61,7 @@ final class Memory {
     static String read(Context c, String id) throws Exception {
         File f = new File(dir(c), id + ".json");
         if (!f.isFile()) return null;
-        return Linux.read(f);
+        return new String(Files.readAllBytes(f.toPath()), StandardCharsets.UTF_8);
     }
 
     /** List entries, newest first, optionally filtered by kind and/or tag. Up to limit. */
@@ -72,7 +73,7 @@ final class Memory {
         List<JSONObject> out = new ArrayList<>();
         for (File f : fs) {
             if (!f.getName().endsWith(".json")) continue;
-            String s = Linux.read(f);
+            String s = new String(Files.readAllBytes(f.toPath()), StandardCharsets.UTF_8);
             try {
                 JSONObject e = new JSONObject(s);
                 if (kind != null && !kind.equals(e.optString("kind"))) continue;
@@ -101,7 +102,7 @@ final class Memory {
         List<JSONObject> out = new ArrayList<>();
         for (File f : fs) {
             if (!f.getName().endsWith(".json")) continue;
-            String s = Linux.read(f);
+            String s = new String(Files.readAllBytes(f.toPath()), StandardCharsets.UTF_8);
             try {
                 JSONObject e = new JSONObject(s);
                 String text = e.optString("text", "").toLowerCase(Locale.ROOT);

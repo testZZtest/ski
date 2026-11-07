@@ -224,7 +224,7 @@ final class McpHttpServer {
                 case "ping":
                     return res.put("result", new JSONObject());
                 case "tools/list": {
-                    JSONArray t = Tools.list();
+                    JSONArray t = Tools.listNames();
                     JSONArray names = new JSONArray();
                     for (int i = 0; i < t.length(); i++) names.put(t.optJSONObject(i).optString("name"));
                     return res.put("result", new JSONObject().put("tools", names));

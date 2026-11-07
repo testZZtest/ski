@@ -34,6 +34,7 @@ import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import java.nio.charset.StandardCharsets;
 
 /** The phone-control tools exposed to the agents (Claude Code, Codex, OpenCode, Antigravity, Grok) over MCP. */
 final class Tools {
@@ -306,7 +307,7 @@ final class Tools {
                             .put("timeout_s", intProp("Default 120, max 300")),
                     "package"));
         }
-        PhoneTools.list(t); // the clipboard, alarms, sharing, Downloads, status, camera, location
+        PhoneTools.list(svc, t); // the clipboard, alarms, sharing, Downloads, status, camera, location
         if (Browser.available(svc)) BrowserTools.list(t); // the background browser (Settings)
         // persistent memory (TecnicoBot / AutoCua / zafiro)
         t.put(tool("memory_save", "Remember a fact or preference about the user, so it survives between chats. "
@@ -446,6 +447,13 @@ final class Tools {
         JSONArray a = new JSONArray();
         for (String v : values) a.put(v);
         return new JSONObject().put("type", "string").put("enum", a);
+    }
+
+    /** Bounds of a node on screen, in a fresh Rect (getBoundsInScreen returns void). */
+    private static android.graphics.Rect bounds(android.view.accessibility.AccessibilityNodeInfo n) {
+        android.graphics.Rect r = new android.graphics.Rect();
+        n.getBoundsInScreen(r);
+        return r;
     }
 
     /** Marks for point_out and ask's highlight: elements from read_screen, or points on the screen. */
@@ -629,7 +637,7 @@ final class Tools {
             }
             case "remote_status": {
                 boolean on = Prefs.remoteControl(svc);
-                boolean running = svc.mcpHttp != null && svc.mcpHttp.isRunning();
+                boolean running = svc.mcpHttp() != null && svc.mcpHttp().isRunning();
                 return text("Remote control: " + (on ? "enabled" : "disabled") + ", MCP HTTP server: "
                         + (running ? "running on 127.0.0.1:8766" : "stopped") + ".");
             }
@@ -700,7 +708,7 @@ final class Tools {
                 StringBuilder s = new StringBuilder();
                 s.append("Ski ").append(BuildInfo.VERSION).append(" (").append(BuildInfo.VERSION_CODE).append(")").append("\n");
                 s.append("MCP local: 127.0.0.1:8765").append("\n");
-                s.append("MCP HTTP: ").append(Prefs.remoteControl(svc) ? "enabled" : "disabled").append(", ").append(svc.mcpHttp != null && svc.mcpHttp.isRunning() ? "running on 127.0.0.1:8766" : "stopped").append("\n");
+                s.append("MCP HTTP: ").append(Prefs.remoteControl(svc) ? "enabled" : "disabled").append(", ").append(svc.mcpHttp() != null && svc.mcpHttp().isRunning() ? "running on 127.0.0.1:8766" : "stopped").append("\n");
                 s.append("Tracing: ").append(Prefs.tracingEnabled(svc) ? "on" : "off").append(", endpoint: ").append(Prefs.tracingEndpoint(svc).isEmpty() ? "(none)" : Prefs.tracingEndpoint(svc)).append("\n");
                 s.append("Local model: ").append(Prefs.localModelEnabled(svc) ? "on" : "off").append(", path: ").append(Prefs.localModelPath(svc).isEmpty() ? "(none)" : Prefs.localModelPath(svc)).append("\n");
                 s.append("Action delay: ").append(Prefs.actionDelay(svc)).append(" ms").append("\n");
@@ -1071,8 +1079,8 @@ final class Tools {
         synchronized (lock) {
             for (int i = 0; i < lastNodes.size(); i++) {
                 sb.append(i + 1).append(": [").append(i).append("] @")
-                        .append(lastNodes.get(i).getBoundsInScreen(new Rect()).centerX())
-                        .append(',').append(lastNodes.get(i).getBoundsInScreen(new Rect()).centerY())
+                        .append(bounds(lastNodes.get(i)).centerX())
+                        .append(',').append(bounds(lastNodes.get(i)).centerY())
                         .append(' ');
                 if ((i + 1) % 6 == 0) sb.append('\n');
             }
@@ -1718,7 +1726,7 @@ final class Tools {
     /** Reads a pre-defined do_steps template from res/raw/workflow_templates.json. */
     private String workflowTemplate(String name) {
         try {
-            InputStream is = svc.getResources().openRawResource(res.raw.workflow_templates);
+            InputStream is = svc.getResources().openRawResource(R.raw.workflow_templates);
             java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(is, StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
             String line;
