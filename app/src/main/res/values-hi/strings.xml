@@ -1378,7 +1378,7 @@
     <string name="github_open">GitHub खोलें</string>
     <string name="github_code_copied">कोड कॉपी हो गया</string>
     <string name="github_failed">साइन इन नहीं हो सका: %1$s</string>
-    <string name="github_signed_in">\@%1$s के रूप में साइन इन</string>
+    <string name="github_signed_in">@%1$s के रूप में साइन इन</string>
     <string name="github_signed_in_info">Linux टूल वाली चैट के एजेंट इस खाते से git और gh इस्तेमाल कर सकते हैं।</string>
     <string name="github_sign_out_title">GitHub से साइन आउट करें?</string>
     <string name="github_sign_out_text">Ski के Linux में git और GitHub CLI की आपके खाते तक पहुँच खत्म हो जाएगी।</string>

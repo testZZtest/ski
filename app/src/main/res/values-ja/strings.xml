@@ -1370,7 +1370,7 @@
     <string name="github_open">GitHub を開く</string>
     <string name="github_code_copied">コードをコピーしました</string>
     <string name="github_failed">ログインできませんでした: %1$s</string>
-    <string name="github_signed_in">\@%1$s としてログイン中</string>
+    <string name="github_signed_in">@%1$s としてログイン中</string>
     <string name="github_signed_in_info">Linux ツールのあるチャットのエージェントは、このアカウントで git と gh を使えます。</string>
     <string name="github_sign_out_title">GitHub からログアウトしますか？</string>
     <string name="github_sign_out_text">Ski の Linux の git と GitHub CLI は、あなたのアカウントにアクセスできなくなります。</string>

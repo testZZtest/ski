@@ -1369,7 +1369,7 @@
     <string name="github_open">GitHub 열기</string>
     <string name="github_code_copied">코드 복사됨</string>
     <string name="github_failed">로그인하지 못했어요: %1$s</string>
-    <string name="github_signed_in">\@%1$s(으)로 로그인됨</string>
+    <string name="github_signed_in">@%1$s(으)로 로그인됨</string>
     <string name="github_signed_in_info">Linux 도구가 있는 채팅의 에이전트는 이 계정으로 git과 gh를 쓸 수 있어요.</string>
     <string name="github_sign_out_title">GitHub에서 로그아웃할까요?</string>
     <string name="github_sign_out_text">Ski의 Linux에 있는 git과 GitHub CLI가 내 계정에 접근할 수 없게 돼요.</string>
