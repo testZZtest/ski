@@ -3,7 +3,7 @@
 <resources>
     <string name="app_name" translatable="false">Ski</string>
     <string name="service_label">Ski assistant</string>
-    <string name="service_description">Shows the Ski chat bubble and lets the agent you choose (Claude Code, Codex, OpenCode, Antigravity or Grok), running inside Ski on this phone, read the screen and tap, type and scroll for you. Nothing leaves the phone except what the agent itself sends to its AI service (Anthropic, OpenAI, Google, xAI or your OpenCode model's provider).</string>
+    <string name="service_description">Shows the Ski chat bubble and lets the agent you choose (Claude Code, Codex, OpenCode, Antigravity or Grok), running inside Ski on this phone, read the screen and tap, type and scroll for you. Nothing leaves the phone except what the agent itself sends to its AI service (Anthropic, OpenAI, Google, xAI or your OpenCode model\'s provider).</string>
 
     <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
 
@@ -12,7 +12,7 @@
     <string name="onboarding_skip_setup">Skip setup</string>
     <string name="onboarding_skip_title">Skip the setup guide?</string>
     <!-- "Settings" = Ski's own Settings tab. -->
-    <string name="onboarding_skip_text">You can finish setup any time in Settings. Chats won't run until it's done.</string>
+    <string name="onboarding_skip_text">You can finish setup any time in Settings. Chats won\'t run until it\'s done.</string>
     <!-- Verb. Confirm button of the "Skip the setup guide?" sheet. -->
     <string name="onboarding_skip_action">Skip</string>
     <!-- Progress at the top of the guide, small lowercase mono text. %1$d = this step, %2$d = number of steps. -->
@@ -27,9 +27,9 @@
     <string name="onboarding_welcome_text">A chat bubble that can use your phone for you.</string>
     <string name="onboarding_welcome_ask_title">Ask in plain words</string>
     <!-- Two example requests a user could type. Translate them naturally and use your language's quotation marks. -->
-    <string name="onboarding_welcome_ask_text">\"Reply to Sam that I'm late\", \"add milk to my basket\".</string>
+    <string name="onboarding_welcome_ask_text">\"Reply to Sam that I\'m late\", \"add milk to my basket\".</string>
     <string name="onboarding_welcome_plan_title">Your own plan, no API key</string>
-    <string name="onboarding_welcome_plan_text">Runs Claude Code from your Claude subscription. Codex with a ChatGPT plan, Antigravity with a Google account, Grok with a Google or X account and OpenCode's free models work too.</string>
+    <string name="onboarding_welcome_plan_text">Runs Claude Code from your Claude subscription. Codex with a ChatGPT plan, Antigravity with a Google account, Grok with a Google or X account and OpenCode\'s free models work too.</string>
     <string name="onboarding_welcome_control_title">You stay in control</string>
     <string name="onboarding_welcome_control_text">Sending, posting, buying and deleting always ask first.</string>
     <!-- Small lowercase mono line under the list. -->
@@ -55,13 +55,13 @@
     <!-- Guide, step: turn on Ski's accessibility service. -->
     <string name="onboarding_access_title">Let Ski see and tap</string>
     <string name="onboarding_access_done">Accessibility is on.</string>
-    <string name="onboarding_access_text">Ski's accessibility service shows the bubble and lets the agent read the screen, tap and type, only when you ask it to do something.</string>
+    <string name="onboarding_access_text">Ski\'s accessibility service shows the bubble and lets the agent read the screen, tap and type, only when you ask it to do something.</string>
     <!-- %1$s = the agent's name (Claude Code or Codex); %2$s = the company it sends to (Anthropic or OpenAI). -->
     <string name="onboarding_access_privacy">Nothing leaves the phone except what %1$s sends to %2$s to answer you. Sending, posting, buying and deleting always ask for your OK first.</string>
     <!-- Same as onboarding_access_privacy, when both Claude Code and Codex are set up. -->
     <string name="onboarding_access_privacy_both">Nothing leaves the phone except what Claude Code and Codex send to Anthropic and OpenAI to answer you. Sending, posting, buying and deleting always ask for your OK first.</string>
     <!-- Same as onboarding_access_privacy, for OpenCode. %1$s = OpenCode. The model's provider = whichever AI company runs the chosen model. -->
-    <string name="onboarding_access_privacy_opencode">Nothing leaves the phone except what %1$s sends to the model's provider to answer you. Sending, posting, buying and deleting always ask for your OK first.</string>
+    <string name="onboarding_access_privacy_opencode">Nothing leaves the phone except what %1$s sends to the model\'s provider to answer you. Sending, posting, buying and deleting always ask for your OK first.</string>
     <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Ski assistant" = Ski's service name (service_label). -->
     <string name="onboarding_access_list_hint">In the list: Downloaded apps → Ski assistant → turn it on.</string>
     <string name="onboarding_access_open">Open accessibility settings</string>
@@ -105,11 +105,11 @@
     <!-- Grok: the browser opens with a one-time code that the user confirms on the page. -->
     <string name="onboarding_agent_sign_in_grok">Sign in with your Grok account. Your browser opens; confirm the code there and Ski comes back by itself.</string>
     <!-- "Ski's Linux" = the small Linux system built into Ski. -->
-    <string name="onboarding_agent_download_claude">Downloads about 235 MB once (Ski's Linux and Claude Code from Anthropic).</string>
-    <string name="onboarding_agent_download_opencode">Downloads about 230 MB once (Ski's Linux, Node.js and OpenCode). No account needed.</string>
-    <string name="onboarding_agent_download_codex">Downloads about 150 MB once (Ski's Linux, Node.js and Codex from OpenAI).</string>
-    <string name="onboarding_agent_download_agy">Downloads about 200 MB once (Ski's Linux and the Antigravity CLI from Google).</string>
-    <string name="onboarding_agent_download_grok">Downloads about 170 MB once (Ski's Linux and Grok Build from xAI).</string>
+    <string name="onboarding_agent_download_claude">Downloads about 235 MB once (Ski\'s Linux and Claude Code from Anthropic).</string>
+    <string name="onboarding_agent_download_opencode">Downloads about 230 MB once (Ski\'s Linux, Node.js and OpenCode). No account needed.</string>
+    <string name="onboarding_agent_download_codex">Downloads about 150 MB once (Ski\'s Linux, Node.js and Codex from OpenAI).</string>
+    <string name="onboarding_agent_download_agy">Downloads about 200 MB once (Ski\'s Linux and the Antigravity CLI from Google).</string>
+    <string name="onboarding_agent_download_grok">Downloads about 170 MB once (Ski\'s Linux and Grok Build from xAI).</string>
     <!-- Buttons on the agent card. -->
     <string name="onboarding_sign_in_claude">Sign in with Claude</string>
     <string name="onboarding_sign_in_chatgpt">Sign in with ChatGPT</string>
@@ -119,7 +119,7 @@
     <string name="onboarding_install_agent">Install %1$s</string>
     <string name="onboarding_agents_wifi">Use Wi-Fi if you can. You can leave this screen while it installs.</string>
     <!-- Help questions and answers under "Stuck?". "Copy Code" = a button on Claude's web page. -->
-    <string name="onboarding_stuck_sign_in_q">Sign-in didn't come back?</string>
+    <string name="onboarding_stuck_sign_in_q">Sign-in didn\'t come back?</string>
     <string name="onboarding_stuck_sign_in_a">Claude: on the Claude page tap Copy Code, then come back to Ski; it picks the code up from the clipboard.</string>
     <string name="onboarding_stuck_install_q">Install failed?</string>
     <!-- "Install" = the Install button on the agent card (onboarding_install_agent). -->
@@ -128,7 +128,7 @@
     <!-- Guide, step: let Ski run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Keep it running</string>
     <string name="onboarding_background_done">Ski can run in the background.</string>
-    <string name="onboarding_background_text">So your phone doesn't stop Ski to save battery while the agent works.</string>
+    <string name="onboarding_background_text">So your phone doesn\'t stop Ski to save battery while the agent works.</string>
     <!-- Button: opens Android's dialog to let Ski run in the background. -->
     <string name="onboarding_allow">Allow</string>
     <string name="onboarding_skip_for_now">Skip for now</string>
@@ -145,7 +145,7 @@
     <string name="onboarding_safety_note">You can change this per app any time: Settings → App permissions. Set an app to Trust to let the agent work there without popups, or to Hard so Ski itself asks you.</string>
 
     <!-- Guide, last step: try a first task. -->
-    <string name="onboarding_try_title">You're all set</string>
+    <string name="onboarding_try_title">You\'re all set</string>
     <!-- "Settings" = Android's Settings app. -->
     <string name="onboarding_try_text">Try a first task. Ski will open Settings and read it for you.</string>
     <!-- Example request: shown on this screen and put in the chat's input box, ready to send to the agent. "Settings" = Android's Settings app. -->
@@ -167,7 +167,7 @@
     <string name="main_setup_title">Finish setup to run chats</string>
     <!-- %1$s = the name of the next setup step, e.g. Turn on the accessibility service. -->
     <string name="main_setup_next">Next: %1$s</string>
-    <string name="main_setup_next_accessibility">Next: open Ski's accessibility service</string>
+    <string name="main_setup_next_accessibility">Next: open Ski\'s accessibility service</string>
     <!-- Section header, shown in capitals: chats whose task is running now. The count follows it. -->
     <string name="main_section_working">Working</string>
     <!-- Section header, shown in capitals. -->
@@ -218,15 +218,15 @@
     <!-- Notification and sheet title. %1$s = the new version number, e.g. 2.1.14. -->
     <string name="update_available_title">Ski %1$s is available</string>
     <!-- %1$s = the installed version number. -->
-    <string name="update_notification_text">You have %1$s. Tap to see what's new and update; your chats stay.</string>
+    <string name="update_notification_text">You have %1$s. Tap to see what\'s new and update; your chats stay.</string>
     <!-- Verb: download and install the new version. Notification button and sheet button (half width). Keep short. -->
     <string name="update_action">Update</string>
     <!-- Notification button: stop update notifications. Keep short. -->
-    <string name="update_mute">Don't notify me</string>
+    <string name="update_mute">Don\'t notify me</string>
     <!-- "Settings" = Ski's own Settings tab (its Update notices switch). -->
     <string name="update_muted">No more update notices. Turn them back on in Settings.</string>
     <string name="update_checking">Checking for updates…</string>
-    <string name="update_check_failed">Couldn't reach GitHub. Try again later.</string>
+    <string name="update_check_failed">Couldn\'t reach GitHub. Try again later.</string>
     <!-- %1$s = the installed version number. -->
     <string name="update_up_to_date">Ski %1$s is up to date.</string>
     <!-- Under the sheet title. %1$s = the installed version number. -->
@@ -241,7 +241,7 @@
     <string name="update_error_no_apk">The release has no ski.apk yet.</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">The download failed (%1$s).</string>
-    <string name="update_error_not_newer">The downloaded file isn't a newer Ski, so it wasn't opened.</string>
+    <string name="update_error_not_newer">The downloaded file isn\'t a newer Ski, so it wasn\'t opened.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
     <string name="update_failed_manual">%1$s You can also get it at %2$s (ski.apk), or with Obtainium for automatic updates (see %3$s).</string>
 
@@ -327,7 +327,7 @@
     <string name="bubble_tip_stop_voice">Tip: hold the bubble to stop the voice</string>
     <string name="bubble_tip_hold_menu">Tip: hold the bubble to pause, stop or add an instruction</string>
     <string name="bubble_stopping">Stopping…</string>
-    <string name="bubble_nothing_running">Nothing is running in Ski's chats.</string>
+    <string name="bubble_nothing_running">Nothing is running in Ski\'s chats.</string>
     <string name="bubble_nothing_running_chat">Nothing is running in this chat.</string>
     <string name="bubble_allow_mic_tap_mic">Allow the microphone in Ski, then tap the mic again.</string>
     <string name="bubble_allow_mic_tap_bubble">Allow the microphone in Ski, then tap the bubble again.</string>
@@ -446,7 +446,7 @@
     <string name="control_channel_description">Shows in the status bar while an agent operates the phone.</string>
     <string name="control_title">Ski is using your phone</string>
     <!-- "Stop" is the notification's button (control_stop): use the same word. -->
-    <string name="control_text">Don't touch the screen until it's done, or tap Stop to take over.</string>
+    <string name="control_text">Don\'t touch the screen until it\'s done, or tap Stop to take over.</string>
     <!-- Notification button, verb: stops the agent and gives the phone back to the user. -->
     <string name="control_stop">Stop</string>
     <string name="pause_call_ended_title">Call ended · Ski is paused</string>
@@ -461,7 +461,7 @@
     <!-- Read by TalkBack for the speaker button at the top of the chat (turns reading replies aloud on or off). -->
     <string name="chat_read_aloud">Read replies aloud</string>
     <string name="chat_read_aloud_on">Replies will be read aloud</string>
-    <string name="chat_read_aloud_off">Replies won't be read aloud</string>
+    <string name="chat_read_aloud_off">Replies won\'t be read aloud</string>
 
     <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
     <!-- A chat's own switch that lets its agent work in Ski's Linux: run commands, install packages, edit files,
@@ -469,7 +469,7 @@
          sheets. Keep short. -->
     <string name="chat_linux_tools">Linux tools</string>
     <!-- Under the Linux tools switch in the New chat sheets. "Ski's Linux" = the Linux system inside the app. -->
-    <string name="chat_linux_tools_info">Commands, files and app builds in Ski's Linux</string>
+    <string name="chat_linux_tools_info">Commands, files and app builds in Ski\'s Linux</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Turn on Linux tools?</string>
     <!-- ~/.buddy/work is a folder: keep it as is. -->
@@ -491,9 +491,9 @@
     <!-- Section title in Chat options: apps where this chat's routine approvals need no card until its task ends. -->
     <string name="chat_allowed">Allowed without asking</string>
     <!-- Under that title. "The reviewer" = Ski's smart reviewer (App permissions). -->
-    <string name="chat_allowed_info">Until this chat's task ends, routine approvals in these apps go ahead on their own: sending a message, or a step the reviewer would ask about. Each one shows in the chat. Paying, buying, deleting, installing, passwords and security settings still ask you.</string>
+    <string name="chat_allowed_info">Until this chat\'s task ends, routine approvals in these apps go ahead on their own: sending a message, or a step the reviewer would ask about. Each one shows in the chat. Paying, buying, deleting, installing, passwords and security settings still ask you.</string>
     <!-- Under that, when the chat has a schedule: the list isn't cleared when a run ends. -->
-    <string name="chat_allowed_kept">Kept for this chat's schedule: these apps stay allowed for its scheduled runs, until you remove them or the schedule.</string>
+    <string name="chat_allowed_kept">Kept for this chat\'s schedule: these apps stay allowed for its scheduled runs, until you remove them or the schedule.</string>
     <!-- Row that opens the app picker. -->
     <string name="chat_allowed_add">Add an app</string>
     <!-- Read by TalkBack for the X beside an allowed app; %1$s = the app's name. -->
@@ -515,7 +515,7 @@
     <!-- Under that row. -->
     <string name="schedule_set_info">Send a message to this chat on its own at set times, e.g. every day at 14:00.</string>
     <!-- At the top of the Schedule sheet. -->
-    <string name="schedule_info">At the set time Ski sends this message into the chat as if you typed it, with this chat's agent and options. Approval cards still wait for you. If it needs the screen while the phone is locked, it asks you to unlock.</string>
+    <string name="schedule_info">At the set time Ski sends this message into the chat as if you typed it, with this chat\'s agent and options. Approval cards still wait for you. If it needs the screen while the phone is locked, it asks you to unlock.</string>
     <!-- Schedule sheet: section titles, the day choices and the message field. -->
     <string name="schedule_time">Time</string>
     <string name="schedule_days">Days</string>
@@ -524,7 +524,7 @@
     <string name="schedule_pick_days">Pick days</string>
     <string name="schedule_message">Message</string>
     <!-- Hint in the message field: a generic example. -->
-    <string name="schedule_message_hint">What to send, e.g. Open the app and do today's check-in</string>
+    <string name="schedule_message_hint">What to send, e.g. Open the app and do today\'s check-in</string>
     <!-- Switch in the Schedule sheet, off by default. -->
     <string name="schedule_wake">Wake the phone for this task</string>
     <!-- Under that switch. -->
@@ -605,7 +605,7 @@
     <string name="chat_speak_in_help">Choose your languages in Settings → Voice.</string>
     <!-- Live voice (CodexLive): a two-way ChatGPT voice call (through Codex) in any agent's chat; %1$s is the chat's agent (Claude, Codex…). live_label is the bar's short tag. -->
     <string name="live_option">Live voice</string>
-    <string name="live_option_sub">Talk with %1$s out loud. It answers in ChatGPT's voice and works on the phone in this chat.</string>
+    <string name="live_option_sub">Talk with %1$s out loud. It answers in ChatGPT\'s voice and works on the phone in this chat.</string>
     <string name="live_label">Live</string>
     <string name="live_end">End</string>
     <string name="live_connecting">Connecting…</string>
@@ -676,13 +676,13 @@
 
     <!-- Notes Ski posts into a chat, and the chat's status line -->
     <!-- After "Continue in Ski" on an earlier session. %1$s = agent name. -->
-    <string name="hub_continuing">Continuing an earlier %1$s session. If it's still open in a terminal, close it there first.</string>
-    <string name="hub_still_working_attachments">This chat is still working. Send attachments when it's done.</string>
+    <string name="hub_continuing">Continuing an earlier %1$s session. If it\'s still open in a terminal, close it there first.</string>
+    <string name="hub_still_working_attachments">This chat is still working. Send attachments when it\'s done.</string>
     <!-- Status right after a message is sent, until the agent's first step. -->
     <string name="hub_thinking">Thinking…</string>
     <string name="hub_still_waiting">Still waiting for the model to answer…</string>
     <!-- "the top of the chat" = the model chip under the chat title. -->
-    <string name="hub_no_answer">The model didn't answer. It may be busy: try again, or pick another model at the top of the chat.</string>
+    <string name="hub_no_answer">The model didn\'t answer. It may be busy: try again, or pick another model at the top of the chat.</string>
     <!-- After picking a model for the chat. %1$s = model name. -->
     <string name="hub_model_set">Model: %1$s</string>
     <!-- After picking an effort level. %1$s = the level as the agent names it, not translated (low, medium, high…). -->
@@ -695,7 +695,7 @@
     <string name="hub_stopped">Stopped.</string>
     <string name="hub_interrupted">Android closed Ski while the agent was working, so it stopped.</string>
     <string name="hub_resume_message">Continue where you stopped</string>
-    <string name="chat_interrupted">Android closed Ski while %1$s was working on this. Continue checks what's done and goes on from there.</string>
+    <string name="chat_interrupted">Android closed Ski while %1$s was working on this. Continue checks what\'s done and goes on from there.</string>
     <string name="chat_interrupted_continue">Continue</string>
     <string name="chat_interrupted_dismiss">Dismiss</string>
     <!-- The agent ended with an error and gave no message. %1$s = agent name. -->
@@ -703,7 +703,7 @@
     <string name="hub_something_wrong">Something went wrong.</string>
     <!-- After the user adds something while the agent works. %1$s = agent name. -->
     <string name="hub_note_added">Added while working: %1$s gets it at its next step</string>
-    <string name="hub_note_not_sent">You stopped it, so your note wasn't sent: it's back in the message box</string>
+    <string name="hub_note_not_sent">You stopped it, so your note wasn\'t sent: it\'s back in the message box</string>
     <!-- The agent received what the user added while it worked. -->
     <string name="hub_note_passed">Passed on what you added</string>
     <!-- The bubble's status pill when several chats work at once. %1$d = number of chats (always 2 or more),
@@ -765,9 +765,9 @@
     <string name="hub_tool_collect">Reading the whole list</string>
     <string name="hub_tool_find">Looking for “%1$s”</string>
     <string name="schedules_title">Scheduled</string>
-    <string name="schedules_row">Every chat's tasks and reminders</string>
-    <string name="schedules_intro">Every chat's scheduled task and the messages and reminders agents scheduled. Tap a chat's name to open it.</string>
-    <string name="schedules_none">Nothing scheduled. Set a task in a chat's options → Schedule, or ask an agent to remind you of something.</string>
+    <string name="schedules_row">Every chat\'s tasks and reminders</string>
+    <string name="schedules_intro">Every chat\'s scheduled task and the messages and reminders agents scheduled. Tap a chat\'s name to open it.</string>
+    <string name="schedules_none">Nothing scheduled. Set a task in a chat\'s options → Schedule, or ask an agent to remind you of something.</string>
     <string name="schedules_paused">paused</string>
     <string name="schedules_quiet_tag">only news</string>
     <string name="schedules_run_now">Run now</string>
@@ -775,13 +775,13 @@
     <string name="schedules_pause">Pause</string>
     <string name="schedules_resume">Resume</string>
     <string name="schedules_reminder">Reminder</string>
-    <string name="schedule_quiet">Only tell me when there's news</string>
+    <string name="schedule_quiet">Only tell me when there\'s news</string>
     <string name="schedule_quiet_info">When a run finds nothing new, it ends without a notification. Its reply is still in the chat, and a problem always notifies you.</string>
     <string name="schedule_reminder_title">Reminder</string>
     <string name="schedule_reminder_line">Reminder: %1$s</string>
     <string name="steps_view">View steps</string>
     <string name="steps_title">Steps</string>
-    <string name="steps_intro">What the agent did on the phone in this chat's last 3 runs, with how the screen looked after each step. Kept only on this phone, deleted with the chat. Tap a picture to see it bigger.</string>
+    <string name="steps_intro">What the agent did on the phone in this chat\'s last 3 runs, with how the screen looked after each step. Kept only on this phone, deleted with the chat. Tap a picture to see it bigger.</string>
     <string name="steps_none">No steps for this chat yet.</string>
     <string name="steps_run">%1$s · %2$s · %3$d steps · %4$s</string>
     <string name="steps_run_live">%1$s · %2$d steps so far</string>
@@ -844,10 +844,10 @@
 
     <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
     <string name="ui_a11y_title">How Ski uses accessibility</string>
-    <string name="ui_a11y_what">Ski uses Android's accessibility service to do what you ask in other apps: it reads what's on the screen and taps, types and scrolls for you. It also shows the floating bubble.</string>
-    <string name="ui_a11y_data">While a task runs, the screen content, which can include personal information such as messages, names or addresses, is sent to the AI service of the agent you choose (Anthropic for Claude Code, OpenAI for Codex, Google for Antigravity, xAI for Grok, or your OpenCode model's provider), only to carry out your request.</string>
-    <string name="ui_a11y_no_servers">Ski has no servers of its own. It doesn't collect, sell or share this data, and doesn't use it for ads.</string>
-    <string name="ui_a11y_asks">Before anything that sends, posts, buys or deletes, Ski asks for your OK. You can turn the service off anytime in Android's accessibility settings.</string>
+    <string name="ui_a11y_what">Ski uses Android\'s accessibility service to do what you ask in other apps: it reads what\'s on the screen and taps, types and scrolls for you. It also shows the floating bubble.</string>
+    <string name="ui_a11y_data">While a task runs, the screen content, which can include personal information such as messages, names or addresses, is sent to the AI service of the agent you choose (Anthropic for Claude Code, OpenAI for Codex, Google for Antigravity, xAI for Grok, or your OpenCode model\'s provider), only to carry out your request.</string>
+    <string name="ui_a11y_no_servers">Ski has no servers of its own. It doesn\'t collect, sell or share this data, and doesn\'t use it for ads.</string>
+    <string name="ui_a11y_asks">Before anything that sends, posts, buys or deletes, Ski asks for your OK. You can turn the service off anytime in Android\'s accessibility settings.</string>
     <string name="ui_privacy_policy">Privacy policy</string>
     <!-- Button: close the disclosure without opening the settings. -->
     <string name="ui_no_thanks">No thanks</string>
@@ -884,7 +884,7 @@
     <!-- Status in the recording bar after the user stopped talking. Keep short. -->
     <string name="voice_finishing">Finishing…</string>
     <!-- Nothing was understood. -->
-    <string name="voice_didnt_catch">Didn't catch that.</string>
+    <string name="voice_didnt_catch">Didn\'t catch that.</string>
     <!-- %1$d = Android's error number. -->
     <string name="voice_error">Speech recognition error %1$d.</string>
     <!-- Spoken aloud by text-to-speech in place of a block of code in a reply. -->
@@ -909,14 +909,14 @@
     <string name="signin_install_sub_claude">Runs Claude Code inside Ski on your Claude subscription.</string>
     <string name="signin_install_sub_opencode">Runs OpenCode inside Ski. Its free models work right away, no account needed; connect your own providers (Anthropic, OpenAI, GitHub Copilot…) anytime.</string>
     <string name="signin_install_sub_codex">Runs Codex inside Ski on your ChatGPT plan.</string>
-    <string name="signin_install_sub_agy">Runs Google's Antigravity CLI inside Ski on your Google account: its free plan, or Google AI Pro or Ultra.</string>
-    <string name="signin_install_sub_grok">Runs xAI's Grok Build inside Ski on your Grok account (signing in with Google or X works).</string>
+    <string name="signin_install_sub_agy">Runs Google\'s Antigravity CLI inside Ski on your Google account: its free plan, or Google AI Pro or Ultra.</string>
+    <string name="signin_install_sub_grok">Runs xAI\'s Grok Build inside Ski on your Grok account (signing in with Google or X works).</string>
     <!-- "Ski's Linux" = the small Linux system Ski installs inside the app. -->
-    <string name="signin_install_size_claude">Downloads about 235 MB once: Ski's Linux and Claude Code from Anthropic. Use Wi-Fi if you can.</string>
-    <string name="signin_install_size_opencode">Downloads about 230 MB once: Ski's Linux, Node.js and OpenCode. Use Wi-Fi if you can.</string>
-    <string name="signin_install_size_codex">Downloads about 150 MB once: Ski's Linux, Node.js and Codex from OpenAI. Use Wi-Fi if you can.</string>
-    <string name="signin_install_size_agy">Downloads about 200 MB once: Ski's Linux and the Antigravity CLI from Google. Use Wi-Fi if you can.</string>
-    <string name="signin_install_size_grok">Downloads about 170 MB once: Ski's Linux and Grok Build from xAI. Use Wi-Fi if you can.</string>
+    <string name="signin_install_size_claude">Downloads about 235 MB once: Ski\'s Linux and Claude Code from Anthropic. Use Wi-Fi if you can.</string>
+    <string name="signin_install_size_opencode">Downloads about 230 MB once: Ski\'s Linux, Node.js and OpenCode. Use Wi-Fi if you can.</string>
+    <string name="signin_install_size_codex">Downloads about 150 MB once: Ski\'s Linux, Node.js and Codex from OpenAI. Use Wi-Fi if you can.</string>
+    <string name="signin_install_size_agy">Downloads about 200 MB once: Ski\'s Linux and the Antigravity CLI from Google. Use Wi-Fi if you can.</string>
+    <string name="signin_install_size_grok">Downloads about 170 MB once: Ski\'s Linux and Grok Build from xAI. Use Wi-Fi if you can.</string>
 
     <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">Installing</string>
@@ -961,7 +961,7 @@
     <!-- Also shown as status text elsewhere after the code was handed over. -->
     <string name="signin_finishing">Finishing sign-in…</string>
     <!-- Error status. %1$s = the agent's last output (English, technical); may be empty. -->
-    <string name="signin_not_finished">Sign-in didn't finish. %1$s</string>
+    <string name="signin_not_finished">Sign-in didn\'t finish. %1$s</string>
 
     <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">Open this link on any device and approve. Then copy the code the page shows and paste it below.</string>
@@ -989,8 +989,8 @@
     <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Paste the code instead</string>
     <!-- "Copy Code" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
-    <string name="signin_paste_help">If Ski doesn't come back by itself: tap Copy Code on the Claude page, then paste it here.</string>
-    <string name="signin_paste_help_agy">If Ski doesn't come back by itself: tap Copy to Clipboard on the Antigravity page, then paste it here.</string>
+    <string name="signin_paste_help">If Ski doesn\'t come back by itself: tap Copy Code on the Claude page, then paste it here.</string>
+    <string name="signin_paste_help_agy">If Ski doesn\'t come back by itself: tap Copy to Clipboard on the Antigravity page, then paste it here.</string>
     <!-- Hint inside the empty text box for the code. Lowercase in English. -->
     <string name="signin_code_hint">code</string>
     <!-- Short button next to the text box: use the pasted code. Verb. -->
@@ -1011,11 +1011,11 @@
     <string name="signin_sign_out_text">%1$s in Ski stops working until you sign in again.</string>
     <string name="signin_opencode_ready">OpenCode is ready</string>
     <!-- "model chip" = the button at the top of a chat that shows the agent and model. -->
-    <string name="signin_opencode_free">Using OpenCode's free models. Pick one per chat with the model chip, or connect your own provider.</string>
+    <string name="signin_opencode_free">Using OpenCode\'s free models. Pick one per chat with the model chip, or connect your own provider.</string>
     <!-- %1$s = connected providers, comma-separated (e.g. "anthropic, openai"). -->
-    <string name="signin_opencode_connected">Connected: %1$s. OpenCode's free models stay available too.</string>
+    <string name="signin_opencode_connected">Connected: %1$s. OpenCode\'s free models stay available too.</string>
     <!-- %1$s = the command "opencode auth login", %2$s = the command "opencode auth logout" (both stay as they are). -->
-    <string name="signin_opencode_connect_note">Connecting a provider opens Ski's terminal with %1$s: pick a provider and follow its steps. To remove one later, run %2$s there.</string>
+    <string name="signin_opencode_connect_note">Connecting a provider opens Ski\'s terminal with %1$s: pick a provider and follow its steps. To remove one later, run %2$s there.</string>
     <!-- Button. -->
     <string name="signin_connect_provider">Connect a provider</string>
     <!-- Installed version. %1$s = agent name, %2$s = version number (e.g. "Claude Code 2.1.40."). -->
@@ -1041,17 +1041,17 @@
     <!-- Small tag beside an agent's name in the agent pickers (OpenCode, Antigravity, Grok): usable for free, within limits. -->
     <string name="agent_tag_free">free · limited</string>
     <!-- Install progress. -->
-    <string name="account_setting_up_linux">Setting up Ski's Linux…</string>
+    <string name="account_setting_up_linux">Setting up Ski\'s Linux…</string>
     <string name="account_installing_tools">Installing tools…</string>
     <string name="account_downloading_claude">Downloading Claude Code (about 230 MB)…</string>
     <!-- %1$s = what is downloaded: an agent name (Codex, OpenCode) or "OpenCode 2". -->
     <string name="account_downloading">Downloading %1$s…</string>
     <!-- Error. %1$s = agent name, %2$s = technical detail in English. -->
-    <string name="account_check_failed">Couldn't check %1$s: %2$s</string>
+    <string name="account_check_failed">Couldn\'t check %1$s: %2$s</string>
     <!-- Error. %1$s = technical detail in English. -->
     <string name="account_install_failed">Install failed: %1$s</string>
-    <string name="account_install_no_space">There isn't enough free space on the phone. Free up about 1 GB and try again.</string>
-    <string name="account_install_network">Ski couldn't reach the download server. Check Wi-Fi or mobile data (or a VPN or private DNS that blocks it) and try again.</string>
+    <string name="account_install_no_space">There isn\'t enough free space on the phone. Free up about 1 GB and try again.</string>
+    <string name="account_install_network">Ski couldn\'t reach the download server. Check Wi-Fi or mobile data (or a VPN or private DNS that blocks it) and try again.</string>
     <string name="account_install_refused">The download server turned the request down or asked to slow down. Try again in a few minutes.</string>
     <string name="account_install_space_needed">Only %1$s free. Installing an agent needs about 1 GB: free up some space and try again.</string>
     <string name="signin_details">Details</string>
@@ -1064,7 +1064,7 @@
     <!-- %1$s = new version number, %2$s = previous version number. -->
     <string name="account_updated_from">Updated to %1$s (was %2$s).</string>
     <!-- %1$s = the OpenCode version that is still installed. -->
-    <string name="account_update_opencode2_failed">Couldn't update to OpenCode 2; you still have %1$s. Try again on Wi-Fi.</string>
+    <string name="account_update_opencode2_failed">Couldn\'t update to OpenCode 2; you still have %1$s. Try again on Wi-Fi.</string>
     <string name="account_update_failed">Update failed: %1$s</string>
 
     <!-- Model and effort pickers of a chat, and the chat's chip ("agent · model · effort").
@@ -1080,9 +1080,9 @@
     <string name="models_default_now">now %1$s</string>
     <string name="models_default_claude">Claude Code picks it from your plan; shown here after the first message</string>
     <string name="models_default_codex">Codex picks it; shown here after the next reply</string>
-    <string name="models_default_opencode">OpenCode's default model</string>
-    <string name="models_default_agy">Antigravity's default model</string>
-    <string name="models_default_grok">Grok's default model</string>
+    <string name="models_default_opencode">OpenCode\'s default model</string>
+    <string name="models_default_agy">Antigravity\'s default model</string>
+    <string name="models_default_grok">Grok\'s default model</string>
     <!-- Effort levels in a row of up to 6 segments: keep each very short (about 5 characters).
          "Auto" = the agent decides how much to think. -->
     <string name="models_effort_auto">Auto</string>
@@ -1107,7 +1107,7 @@
     </plurals>
 
     <!-- Attaching a photo or file to a chat message (toasts). %1$s = file name. -->
-    <string name="attach_cant_open">Can't open %1$s</string>
+    <string name="attach_cant_open">Can\'t open %1$s</string>
     <string name="attach_too_large">%1$s is larger than 25 MB.</string>
 
     <!-- Remote Control session in Settings: a Claude Code session that can be continued from the Claude app. -->
@@ -1115,27 +1115,27 @@
     <string name="remote_starting">Starting…</string>
     <string name="remote_restarting">Restarting…</string>
     <!-- %1$s = technical detail in English. -->
-    <string name="remote_start_failed">Couldn't start: %1$s</string>
+    <string name="remote_start_failed">Couldn\'t start: %1$s</string>
     <string name="remote_keeps_stopping">The session keeps stopping. Turn it off and on again, or check the Claude Code sign-in.</string>
     <string name="codex_pair_getting">Getting a code…</string>
     <!-- %1$s = a time. Settings > Connections > Control other devices is the path in the ChatGPT desktop app. Keep "localhost" as is. -->
     <string name="codex_pair_text">Enter this code in ChatGPT: in Codex on a phone, or in Settings → Connections → Control other devices on a computer. It works once, until %1$s. Ski shows up there as “localhost”.</string>
     <!-- %1$s = technical detail, in English. -->
-    <string name="codex_pair_failed">Couldn't get a pairing code: %1$s</string>
+    <string name="codex_pair_failed">Couldn\'t get a pairing code: %1$s</string>
     <!-- %1$s = the last lines Codex printed, in English. -->
     <string name="codex_keeps_stopping">The Codex session keeps stopping: %1$s</string>
     <!-- %1$s = the server's last message, in English. -->
     <string name="ssh_keeps_stopping">The SSH server keeps stopping: %1$s</string>
     <!-- Shown in Termux after the copied command ran, and as a toast. "ssh ski" is a command: keep it as is. -->
-    <string name="ssh_key_added">Done. To open Ski's Linux from Termux, type ssh ski.</string>
+    <string name="ssh_key_added">Done. To open Ski\'s Linux from Termux, type ssh ski.</string>
     <!-- Shown in Termux when the copied command was already used or is too old. -->
-    <string name="ssh_code_expired">This command was already used or is more than 10 minutes old. Copy it again in Ski's Settings.</string>
+    <string name="ssh_code_expired">This command was already used or is more than 10 minutes old. Copy it again in Ski\'s Settings.</string>
 
     <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
 
     <!-- Settings screen: header. -->
     <string name="setup_settings_title">Settings</string>
-    <string name="setup_settings_subtitle">Ski runs Claude Code, Codex, OpenCode, Antigravity or Grok inside the app, on your own subscription (or OpenCode's free models and Antigravity's free plan).</string>
+    <string name="setup_settings_subtitle">Ski runs Claude Code, Codex, OpenCode, Antigravity or Grok inside the app, on your own subscription (or OpenCode\'s free models and Antigravity\'s free plan).</string>
 
     <!-- Settings screen: the setup checklist card (5 steps). -->
     <!-- Title of the setup checklist card (noun). -->
@@ -1167,8 +1167,8 @@
     <string name="setup_install">Install</string>
     <!-- Name of the sign-in setup step. -->
     <string name="setup_step_signin_title">Sign in</string>
-    <string name="setup_step_signin_opencode_done">No sign-in needed: OpenCode's free models work right away. Connect your own providers anytime.</string>
-    <string name="setup_step_signin_opencode">No sign-in needed for OpenCode's free models.</string>
+    <string name="setup_step_signin_opencode_done">No sign-in needed: OpenCode\'s free models work right away. Connect your own providers anytime.</string>
+    <string name="setup_step_signin_opencode">No sign-in needed for OpenCode\'s free models.</string>
     <string name="setup_step_signin_done">Signed in.</string>
     <!-- %1$s = the account's email address. -->
     <string name="setup_step_signin_done_email">Signed in as %1$s.</string>
@@ -1179,7 +1179,7 @@
     <string name="setup_sign_in">Sign in</string>
     <string name="setup_step_background_title">Let Ski run in the background</string>
     <string name="setup_step_background_done">Allowed.</string>
-    <string name="setup_step_background_body">So your phone doesn't stop Ski to save battery while the agent works.</string>
+    <string name="setup_step_background_body">So your phone doesn\'t stop Ski to save battery while the agent works.</string>
     <!-- Button (verb): lets Ski ignore battery optimization. -->
     <string name="setup_allow">Allow</string>
     <!-- Name of the last setup step: try Ski out. -->
@@ -1202,16 +1202,16 @@
     <!-- Label of the background tone picker. -->
     <string name="setup_surface">Surface</string>
     <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
-    <string name="setup_surface_note">Warm is Ski's original tone. Black (true black) applies in dark mode only.</string>
+    <string name="setup_surface_note">Warm is Ski\'s original tone. Black (true black) applies in dark mode only.</string>
     <!-- Setting: Ski's face on the floating bubble and next to its replies. Title above two short choices. -->
-    <string name="setup_face">Ski's look</string>
+    <string name="setup_face">Ski\'s look</string>
     <!-- Choice: Ski's own drawn face. Keep it short. -->
     <string name="setup_face_buddy">Original</string>
     <!-- Choice: a picture the user picks from the phone. Keep it short. -->
     <string name="setup_face_picture">Your picture</string>
-    <string name="setup_face_note">A PNG or WebP with a transparent background works best. It shows on the bubble and next to Ski's replies.</string>
+    <string name="setup_face_note">A PNG or WebP with a transparent background works best. It shows on the bubble and next to Ski\'s replies.</string>
     <string name="setup_face_change">Choose another picture</string>
-    <string name="setup_face_unreadable">Couldn't read that picture. Try a PNG or WebP.</string>
+    <string name="setup_face_unreadable">Couldn\'t read that picture. Try a PNG or WebP.</string>
     <!-- Read by TalkBack: the swatch that opens the custom colour sheet. -->
     <string name="setup_custom_colour">Custom colour</string>
     <string name="setup_custom_accent_title">Custom accent</string>
@@ -1244,7 +1244,7 @@
 
     <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Phone tools in your own sessions</string>
-    <string name="setup_phone_tools_info">Ski's phone tools are a regular MCP server on this phone. Run this once in a terminal on the phone (Termux, for example) and that agent gets the phone tools in every session, even without the bubble.</string>
+    <string name="setup_phone_tools_info">Ski\'s phone tools are a regular MCP server on this phone. Run this once in a terminal on the phone (Termux, for example) and that agent gets the phone tools in every session, even without the bubble.</string>
     <!-- Button. -->
     <string name="setup_copy_command">Copy command</string>
     <string name="setup_command_copied">Copied. Paste it in your terminal.</string>
@@ -1254,22 +1254,22 @@
     <string name="setup_voice_input">Voice input</string>
     <!-- Option next to Claude and ChatGPT: the phone's own speech engine. Keep short. -->
     <string name="setup_voice_phone">Phone</string>
-    <string name="setup_voice_input_claude">Claude Code's dictation on your Claude plan: very accurate. Supports English, French, German, Spanish, Italian, Portuguese, Dutch, Turkish, Russian, Japanese and more, but not Arabic: for Arabic, Ski uses the phone's recognizer. The words appear when you pause.</string>
-    <string name="setup_voice_input_chatgpt">ChatGPT's voice through Codex, on your ChatGPT plan. Understands any language, even mixed in one sentence. Only your words are used: ChatGPT's spoken replies are muted and it can't run anything.</string>
-    <string name="setup_voice_input_phone">Your phone's speech recognition (Google on most phones). Live text while you speak; detects which of your languages you're speaking.</string>
+    <string name="setup_voice_input_claude">Claude Code\'s dictation on your Claude plan: very accurate. Supports English, French, German, Spanish, Italian, Portuguese, Dutch, Turkish, Russian, Japanese and more, but not Arabic: for Arabic, Ski uses the phone\'s recognizer. The words appear when you pause.</string>
+    <string name="setup_voice_input_chatgpt">ChatGPT\'s voice through Codex, on your ChatGPT plan. Understands any language, even mixed in one sentence. Only your words are used: ChatGPT\'s spoken replies are muted and it can\'t run anything.</string>
+    <string name="setup_voice_input_phone">Your phone\'s speech recognition (Google on most phones). Live text while you speak; detects which of your languages you\'re speaking.</string>
     <string name="setup_voice_output">Voice output</string>
-    <string name="setup_voice_output_chatgpt">Replies are read in ChatGPT's natural voice (your ChatGPT plan, through Codex). It counts toward your ChatGPT voice usage; if it's unavailable, the phone's voice reads instead.</string>
-    <string name="setup_voice_output_phone">Your phone's text-to-speech voices, in the reply's language.</string>
+    <string name="setup_voice_output_chatgpt">Replies are read in ChatGPT\'s natural voice (your ChatGPT plan, through Codex). It counts toward your ChatGPT voice usage; if it\'s unavailable, the phone\'s voice reads instead.</string>
+    <string name="setup_voice_output_phone">Your phone\'s text-to-speech voices, in the reply\'s language.</string>
     <!-- Spoken aloud to preview the chosen ChatGPT voice. Mixing two languages is on purpose (it shows the voice switches languages): keep a greeting in another language. -->
-    <string name="setup_voice_sample">Bonjour ! Hi, I'm Ski. This is how I sound.</string>
+    <string name="setup_voice_sample">Bonjour ! Hi, I\'m Ski. This is how I sound.</string>
     <string name="setup_languages">Languages</string>
     <string name="setup_languages_hint">Tap to choose the languages you speak. Long-press one to make it the default. In a chat, long-press the mic to switch language.</string>
     <!-- Sheet title. %1$s = agent name (Claude Code or Codex). -->
     <string name="setup_sign_in_first">Sign in to %1$s first</string>
     <!-- %1$s = Claude Code. -->
-    <string name="setup_needs_claude">Claude's dictation runs on your Claude plan through %1$s.</string>
+    <string name="setup_needs_claude">Claude\'s dictation runs on your Claude plan through %1$s.</string>
     <!-- %1$s = Codex. -->
-    <string name="setup_needs_chatgpt">ChatGPT's voice runs on your ChatGPT plan through %1$s.</string>
+    <string name="setup_needs_chatgpt">ChatGPT\'s voice runs on your ChatGPT plan through %1$s.</string>
     <!-- Button. %1$s = agent name. -->
     <string name="setup_set_up_agent">Set up %1$s</string>
 
@@ -1287,32 +1287,32 @@
     <!-- Status, lowercase. -->
     <string name="setup_remote_stopped">stopped</string>
     <string name="setup_remote_open">Open in the Claude app</string>
-    <string name="setup_remote_open_failed">Couldn't open it.</string>
+    <string name="setup_remote_open_failed">Couldn\'t open it.</string>
     <string name="setup_codex_session">Codex session</string>
     <!-- "Codex" is a section of the ChatGPT app; "Default permissions" is a permission choice in ChatGPT. -->
-    <string name="setup_codex_session_info">Codex with the phone tools, running inside Ski. Use it from the ChatGPT app (Codex) on this phone or on a computer. Codex's sandbox can't run here, so with Default permissions it asks before each command.</string>
+    <string name="setup_codex_session_info">Codex with the phone tools, running inside Ski. Use it from the ChatGPT app (Codex) on this phone or on a computer. Codex\'s sandbox can\'t run here, so with Default permissions it asks before each command.</string>
     <!-- Status, lowercase. "localhost" is the name ChatGPT shows for Ski: keep it as is. -->
     <string name="setup_codex_active">running · “localhost” in ChatGPT</string>
     <string name="setup_codex_pair">Pair a device</string>
     <!-- SSH: the standard way to sign in to a computer's terminal from another program. Termux is an Android terminal app. -->
     <string name="setup_ssh">SSH from Termux</string>
-    <string name="setup_ssh_info">Use Ski's Linux from Termux, over SSH. Only apps on this phone can connect, and only with a key.</string>
+    <string name="setup_ssh_info">Use Ski\'s Linux from Termux, over SSH. Only apps on this phone can connect, and only with a key.</string>
     <!-- Status, lowercase. %1$d = a port number. -->
     <string name="setup_ssh_active">running · port %1$d</string>
     <!-- "ssh ski" is a command: keep it as is. -->
-    <string name="setup_ssh_how">Copy this command and run it once in Termux, within 10 minutes. After that, type ssh ski in Termux to open Ski's Linux.</string>
+    <string name="setup_ssh_how">Copy this command and run it once in Termux, within 10 minutes. After that, type ssh ski in Termux to open Ski\'s Linux.</string>
 
     <!-- Settings screen: chats left over from when Ski ran its agents in Termux. -->
     <string name="setup_old_chats_title">Remove old Termux chats</string>
     <plurals name="setup_old_chats_body">
-        <item quantity="one">%1$d chat from before Ski had its own Linux. Agents can't continue them.</item>
-        <item quantity="other">%1$d chats from before Ski had its own Linux. Agents can't continue them.</item>
+        <item quantity="one">%1$d chat from before Ski had its own Linux. Agents can\'t continue them.</item>
+        <item quantity="other">%1$d chats from before Ski had its own Linux. Agents can\'t continue them.</item>
     </plurals>
     <plurals name="setup_old_chats_remove">
         <item quantity="one">Remove %1$d old chat?</item>
         <item quantity="other">Remove %1$d old chats?</item>
     </plurals>
-    <string name="setup_old_chats_remove_body">Removes them from Ski's chat list. This can't be undone.</string>
+    <string name="setup_old_chats_remove_body">Removes them from Ski\'s chat list. This can\'t be undone.</string>
     <!-- Button (verb). -->
     <string name="setup_remove">Remove</string>
     <string name="setup_removed">Removed.</string>
@@ -1331,7 +1331,7 @@
     <!-- Choice: a tap opens the chat full screen in the app. Keep it short. -->
     <string name="setup_tap_app">Full app</string>
     <!-- Explains the "Chat panel" choice. -->
-    <string name="setup_tap_panel_info">Opens the floating chat over the app you're in. Hold the bubble for more.</string>
+    <string name="setup_tap_panel_info">Opens the floating chat over the app you\'re in. Hold the bubble for more.</string>
     <!-- Explains the "Full app" choice. -->
     <string name="setup_tap_app_info">Opens the chat full screen in Ski. Hold the bubble for more.</string>
     <!-- Setting: the size of the floating chat panel. Title above two short choices. -->
@@ -1345,7 +1345,7 @@
     <string name="setup_tap_to_talk_info">One tap opens the mic: say what you want and it sends when you pause. Hold the bubble for the chat and more.</string>
     <string name="setup_read_aloud">Read replies aloud</string>
     <!-- "Voice" = the Settings section of that name (setup_voice). -->
-    <string name="setup_read_aloud_info">Ski reads the agents' replies out loud, in the voice you pick under Voice.</string>
+    <string name="setup_read_aloud_info">Ski reads the agents\' replies out loud, in the voice you pick under Voice.</string>
     <string name="setup_update_notices">Update notices</string>
     <string name="setup_update_notices_info">Ski checks GitHub once a day and notifies you when a new version is out.</string>
     <string name="setup_check_updates">Check for updates</string>
@@ -1361,11 +1361,11 @@
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Linux tools in new chats</string>
     <string name="setup_dev_mode_info">Linux tools let the agent run commands, install packages and edit files in ~/.buddy/work, so it can build apps. New chats start with this setting; each chat can change it under its title.</string>
-    <string name="setup_agents_tap">Let agents tap Ski's screens</string>
+    <string name="setup_agents_tap">Let agents tap Ski\'s screens</string>
     <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">For testing Ski with an agent (for example Claude Code in Termux with the phone tools). The bubble, approval cards, App permissions and these switches stay off-limits.</string>
     <!-- Warning shown while Linux tools in new chats (setup_dev_mode) is on. -->
-    <string name="setup_dev_mode_warning">Best left off: turn Linux tools on just in the chats that need them. When they're on, a malicious message or web page on screen could try to trick the agent into running commands. Approval cards still guard sending, posting, buying and deleting.</string>
+    <string name="setup_dev_mode_warning">Best left off: turn Linux tools on just in the chats that need them. When they\'re on, a malicious message or web page on screen could try to trick the agent into running commands. Approval cards still guard sending, posting, buying and deleting.</string>
 
     <!-- Settings screen: footer links. -->
     <!-- Link and sheet title. -->
@@ -1375,7 +1375,7 @@
     <!-- Errors while installing Ski's built-in Linux (Alpine). Shown after "Install failed:". -->
     <!-- %1$s = SHA-256 checksum of the download. -->
     <string name="linux_download_corrupt">Alpine download is corrupt (sha256 %1$s)</string>
-    <string name="linux_move_failed">Couldn't move Alpine into place</string>
+    <string name="linux_move_failed">Couldn\'t move Alpine into place</string>
     <!-- %1$d = HTTP status code, e.g. 404. -->
     <string name="linux_download_failed_http">Download failed: HTTP %1$d</string>
     <!-- %1$s = a file path inside the downloaded archive. -->
@@ -1407,12 +1407,12 @@
     <string name="terminal_close">Close</string>
     <!-- Button (verb): starts a new shell. -->
     <string name="terminal_restart">Restart</string>
-    <string name="terminal_needs_linux">Install Claude Code, Codex, OpenCode, Antigravity or Grok in Settings first: that sets up Ski's Linux.</string>
+    <string name="terminal_needs_linux">Install Claude Code, Codex, OpenCode, Antigravity or Grok in Settings first: that sets up Ski\'s Linux.</string>
     <!-- %1$s = error message. -->
-    <string name="terminal_start_failed">Couldn't start the terminal: %1$s</string>
+    <string name="terminal_start_failed">Couldn\'t start the terminal: %1$s</string>
     <!-- Sheet title. %1$s = the tab's name, e.g. "shell 1". -->
     <string name="terminal_close_title">Close %1$s?</string>
-    <string name="terminal_close_running">It's still running. Closing it stops it and everything it started.</string>
+    <string name="terminal_close_running">It\'s still running. Closing it stops it and everything it started.</string>
     <!-- Default name of a terminal tab until the program in it sets a title. Lowercase. %1$d = tab number. -->
     <string name="terminal_shell_name">shell %1$d</string>
     <!-- Menu item and "+" tab button: opens a new shell tab. -->
@@ -1437,14 +1437,14 @@
     <string name="monitor_title">Sessions</string>
     <string name="monitor_subtitle">Every Claude Code, Codex, OpenCode, Antigravity and Grok session on this phone.</string>
     <string name="monitor_terminal_running">A shell is running · tap to return</string>
-    <string name="monitor_terminal_idle">A shell in Ski's Linux</string>
+    <string name="monitor_terminal_idle">A shell in Ski\'s Linux</string>
     <string name="monitor_running_now">Running now</string>
     <!-- Next to "Running now": the list refreshes every 3 seconds. Lowercase, monospace, keep short. -->
     <string name="monitor_refresh">refresh 3s</string>
     <string name="monitor_checking">Checking…</string>
     <string name="monitor_recent">Recent</string>
     <string name="monitor_loading">Loading…</string>
-    <string name="monitor_service_off">Ski's accessibility service is off, so sessions can't be checked. Turn it on in Settings.</string>
+    <string name="monitor_service_off">Ski\'s accessibility service is off, so sessions can\'t be checked. Turn it on in Settings.</string>
     <string name="monitor_nothing_running">Nothing running.</string>
     <!-- Title of a running session whose Ski chat was deleted. -->
     <string name="monitor_deleted_chat">Deleted Ski chat</string>
@@ -1456,15 +1456,15 @@
     <string name="monitor_tag_terminal">terminal</string>
     <!-- Monospace details line. %1$s = command name (claude-code, codex, opencode), %2$d = process id, %3$s = working folder. -->
     <string name="monitor_proc_meta">%1$s · pid %2$d · %3$s</string>
-    <string name="monitor_background_hint">Runs in Claude Code's background service, e.g. a chat you continue from the Claude app.</string>
+    <string name="monitor_background_hint">Runs in Claude Code\'s background service, e.g. a chat you continue from the Claude app.</string>
     <!-- Button. -->
     <string name="monitor_open_chat">Open chat</string>
     <!-- Button (verb): stops the session. -->
     <string name="monitor_stop">Stop</string>
     <!-- Sheet title. %1$s = agent name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="monitor_stop_title">Stop this %1$s session?</string>
-    <string name="monitor_stop_background_body">It runs in the background, for example a chat you're continuing from the Claude app. It could even be the one controlling Ski. Stopping it ends that conversation's current work.</string>
-    <string name="monitor_stop_terminal_body">It may be a session you're using in a terminal right now. It could even be the one controlling Ski. Stopping it ends that conversation's current work.</string>
+    <string name="monitor_stop_background_body">It runs in the background, for example a chat you\'re continuing from the Claude app. It could even be the one controlling Ski. Stopping it ends that conversation\'s current work.</string>
+    <string name="monitor_stop_terminal_body">It may be a session you\'re using in a terminal right now. It could even be the one controlling Ski. Stopping it ends that conversation\'s current work.</string>
     <string name="monitor_stopping">Stopping…</string>
     <string name="monitor_service_title">Claude Code background service</string>
     <!-- Monospace details line. %1$d = process id, %2$s = how long it has been running (e.g. 1:02:03). -->
@@ -1488,7 +1488,7 @@
     <!-- Approval mode name (see perms_mode_trust), keep it short. Smart = the button rules, then a reviewer AI checks every other tap. -->
     <string name="perms_mode_smart">Smart</string>
     <!-- Explains the three modes, one per line. Trust, Hard and Smart are the mode names above; Send, Pay, Delete are example button labels. -->
-    <string name="perms_modes_intro">Trust: the agent works on its own here, with no approval popups.\nHard: your button rules decide. Send, Pay, Delete… need your OK on a card.\nSmart: the rules, then a separate reviewer AI checks every other tap against your request.\nThe agent can never tap Ski's own bubble, cards or settings.</string>
+    <string name="perms_modes_intro">Trust: the agent works on its own here, with no approval popups.\nHard: your button rules decide. Send, Pay, Delete… need your OK on a card.\nSmart: the rules, then a separate reviewer AI checks every other tap against your request.\nThe agent can never tap Ski\'s own bubble, cards or settings.</string>
     <!-- Section title: which AI reviews the taps in apps set to Smart. -->
     <string name="perms_smart_reviewer">Smart reviewer</string>
     <!-- Reviewer choice in a segmented control, next to “Claude Code” and “Codex”: the same agent as the chat. Keep it short. -->
@@ -1496,9 +1496,9 @@
     <!-- Toast when the user picks a reviewer that isn't signed in. %1$s = Claude Code or Codex. -->
     <string name="perms_reviewer_sign_in">Sign in to %1$s first (Settings).</string>
     <!-- Under the reviewer choice. “allow”, “ask you” and “advise against” are the reviewer's three possible answers. -->
-    <string name="perms_reviewer_about">A temporary session per tap, without tools: it sees your request, the agent's note and the screen, and says allow, ask you, or advise against. About 3 seconds a tap. OpenCode, Antigravity and Grok chats are reviewed by Claude Code (or Codex).</string>
+    <string name="perms_reviewer_about">A temporary session per tap, without tools: it sees your request, the agent\'s note and the screen, and says allow, ask you, or advise against. About 3 seconds a tap. OpenCode, Antigravity and Grok chats are reviewed by Claude Code (or Codex).</string>
     <!-- Under the reviewer's description: it also does the check before a notification rule's countdown. -->
-    <string name="perms_reviewer_rules">It also checks replies before a notification rule's countdown sends them.</string>
+    <string name="perms_reviewer_rules">It also checks replies before a notification rule\'s countdown sends them.</string>
     <!-- In the reviewer's model picker, the first choice ("Default") described: for Claude Code it is Haiku. -->
     <string name="reviewer_default_claude">Haiku: quick and light. Recommended.</string>
     <!-- In the reviewer's model picker, the first choice ("Default") described, for Codex. -->
@@ -1570,7 +1570,7 @@
     <!-- A notification rule's run wants to open a link (it always asks first). %1$s = the link. -->
     <string name="tools_card_open_url">Open %1$s</string>
     <string name="tools_card_clipboard">Let the agent read what you last copied?</string>
-    <string name="tools_card_location">Share this phone's location with the agent?</string>
+    <string name="tools_card_location">Share this phone\'s location with the agent?</string>
     <string name="tools_photo_why">Take a photo: %1$s</string>
     <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Ski asks. -->
     <string name="tools_card_detail">%1$s:\n%2$s</string>
@@ -1600,7 +1600,7 @@
 
     <!-- Remote control (Fase E): shown in Settings when the user turns on exposing Ski's tools over HTTP. -->
     <string name="prefs_remote_control">Remote control (HTTP)</string>
-    <string name="prefs_remote_control_info">Expose Ski's phone tools over HTTP on 127.0.0.1:8766, so a desktop or another app can call read_screen, tap, type_text and the rest. Off by default; only this phone can connect.</string>
+    <string name="prefs_remote_control_info">Expose Ski\'s phone tools over HTTP on 127.0.0.1:8766, so a desktop or another app can call read_screen, tap, type_text and the rest. Off by default; only this phone can connect.</string>
 
     <!-- Reasoning mode (Fase G): before acting, the agent writes what it sees, plans and why. -->
     <string name="prefs_reasoning_mode">Reasoning mode</string>
@@ -1615,14 +1615,14 @@
 
     <!-- Smart reviewer: its reason when it fails, shown on the approval card after “Claude says ask you:”, so it starts lowercase.
          %1$s = the technical reason (reviewer_no_answer, reviewer_timed_out, or an error in English). -->
-    <string name="reviewer_failed">the reviewer couldn't answer (%1$s)</string>
+    <string name="reviewer_failed">the reviewer couldn\'t answer (%1$s)</string>
     <!-- In the parentheses of reviewer_failed: the reviewer's reply had no decision in it. -->
     <string name="reviewer_no_answer">no answer</string>
     <!-- In the parentheses of reviewer_failed: the reviewer took too long. -->
     <string name="reviewer_timed_out">timed out</string>
 
     <!-- Error when a chat can't start because Ski's built-in Linux isn't set up yet. -->
-    <string name="helper_linux_missing">Ski's Linux isn't installed yet. Open Settings to set it up.</string>
+    <string name="helper_linux_missing">Ski\'s Linux isn\'t installed yet. Open Settings to set it up.</string>
 
     <!-- Voice input (dictation). “Claude voice” and “ChatGPT voice” are the names of two voice input options: Claude Code's
          speech-to-text and ChatGPT's voice (through Codex). Status lines show in the voice bar, errors as toasts. -->
@@ -1635,17 +1635,17 @@
     <!-- Status: the recorded speech is being turned into text. -->
     <string name="dictation_transcribing">Transcribing…</string>
     <!-- Voice input ended without any words recognized. -->
-    <string name="dictation_no_speech">Didn't catch that.</string>
-    <string name="dictation_mic_failed">Couldn't open the microphone.</string>
+    <string name="dictation_no_speech">Didn\'t catch that.</string>
+    <string name="dictation_mic_failed">Couldn\'t open the microphone.</string>
     <!-- %1$s = the reason, often a technical error in English. -->
-    <string name="dictation_claude_start_failed">Claude voice couldn't start: %1$s</string>
-    <string name="dictation_claude_no_start">Claude voice didn't start.</string>
+    <string name="dictation_claude_start_failed">Claude voice couldn\'t start: %1$s</string>
+    <string name="dictation_claude_no_start">Claude voice didn\'t start.</string>
     <!-- A reason after “Claude voice couldn't start:”. -->
-    <string name="dictation_claude_code_no_start">Claude Code didn't start</string>
+    <string name="dictation_claude_code_no_start">Claude Code didn\'t start</string>
     <!-- %1$s = the reason, often a technical error in English. -->
-    <string name="dictation_chatgpt_start_failed">ChatGPT voice couldn't start: %1$s</string>
+    <string name="dictation_chatgpt_start_failed">ChatGPT voice couldn\'t start: %1$s</string>
     <!-- %1$s = how far it got, one of dictation_stage_* below. -->
-    <string name="dictation_chatgpt_no_connect">ChatGPT voice didn't connect (%1$s).</string>
+    <string name="dictation_chatgpt_no_connect">ChatGPT voice didn\'t connect (%1$s).</string>
     <!-- %1$s = what went wrong: dictation_connection_failed, or an error from ChatGPT (often in English). -->
     <string name="dictation_chatgpt_error">ChatGPT voice: %1$s</string>
     <!-- After “ChatGPT voice:”, so it starts lowercase. -->
@@ -1661,7 +1661,7 @@
     <!-- How far ChatGPT voice got (see dictation_stage_page). -->
     <string name="dictation_stage_connecting">connecting</string>
     <!-- A reason after “ChatGPT voice couldn't start:”. -->
-    <string name="dictation_codex_no_start">Codex didn't start</string>
+    <string name="dictation_codex_no_start">Codex didn\'t start</string>
     <!-- A reason after “ChatGPT voice couldn't start:” or in the smart reviewer's reason. %1$s = a technical request name, e.g. thread/start. -->
     <string name="dictation_request_timed_out">%1$s timed out</string>
     <!-- A reason after “ChatGPT voice couldn't start:” or in the smart reviewer's reason. %1$s = the end of Codex's error log (technical, English), or dictation_no_details. -->
@@ -1674,7 +1674,7 @@
     <!-- Name of Ski's entry in Android's notification access settings. -->
     <string name="rules_service_label">Ski notification rules</string>
     <string name="rules_title">Notification rules</string>
-    <string name="rules_intro">When a notification you pick arrives, Ski gives your instruction to an agent, like a message you'd type. Notifications that no rule matches are ignored.</string>
+    <string name="rules_intro">When a notification you pick arrives, Ski gives your instruction to an agent, like a message you\'d type. Notifications that no rule matches are ignored.</string>
     <string name="rules_access_off_title">Notification access is off</string>
     <string name="rules_access_off_text">Ski needs it to see the notifications your rules watch.</string>
     <!-- Button: opens Android's notification access setting for Ski. -->
@@ -1722,11 +1722,11 @@
     <string name="card_note_later">No answer in time: the reply waits in your Waiting list</string>
     <string name="rules_log_waiting">Waiting for your OK: “%1$s”</string>
     <string name="rules_log_full">Skipped: too many chats wrote at once.</string>
-    <string name="rules_log_hidden">Couldn't read the new messages: Android hid them (they may contain a code). Open the chat, and the next ones will come through.</string>
+    <string name="rules_log_hidden">Couldn\'t read the new messages: Android hid them (they may contain a code). Open the chat, and the next ones will come through.</string>
     <string name="waiting_title">Waiting for you</string>
     <string name="waiting_channel">Replies waiting for you</string>
     <string name="waiting_banner_text">Replies waiting for your OK: %1$s</string>
-    <string name="waiting_empty">Nothing waiting. When a rule's reply needs your OK and you don't answer in time, it waits here.</string>
+    <string name="waiting_empty">Nothing waiting. When a rule\'s reply needs your OK and you don\'t answer in time, it waits here.</string>
     <string name="waiting_their_messages">Their messages</string>
     <string name="waiting_reply">Reply</string>
     <string name="waiting_send">Send</string>
@@ -1741,11 +1741,11 @@
     <string name="waiting_copied">Copied. Paste it in %1$s.</string>
     <string name="waiting_note_sent">✓ Sent from your Waiting list: %1$s</string>
     <!-- %1$s = why: rules_log_no_service, rules_log_not_signed_in, or a technical error (often English). -->
-    <string name="rules_log_error">Didn't run: %1$s</string>
+    <string name="rules_log_error">Didn\'t run: %1$s</string>
     <!-- A reason after “Didn't run:”, so it starts lowercase. -->
-    <string name="rules_log_no_service">Ski's accessibility service is off</string>
+    <string name="rules_log_no_service">Ski\'s accessibility service is off</string>
     <!-- A reason after “Didn't run:”. %1$s = the agent, e.g. Claude Code. -->
-    <string name="rules_log_not_signed_in">%1$s isn't signed in</string>
+    <string name="rules_log_not_signed_in">%1$s isn\'t signed in</string>
 
     <!-- The rule editor. -->
     <string name="rules_new">New rule</string>
@@ -1761,14 +1761,14 @@
     <string name="rules_words">Containing (optional)</string>
     <string name="rules_words_hint">Anything, or words separated by commas</string>
     <string name="rules_instruction">What should Ski do?</string>
-    <string name="rules_instruction_hint">For example: Reply in my style. We're open 8 to 6, closed on Sundays.</string>
+    <string name="rules_instruction_hint">For example: Reply in my style. We\'re open 8 to 6, closed on Sundays.</string>
     <!-- Example chips under the instruction box: a tap puts the matching *_text in it. Keep the chips short. -->
     <string name="rules_example_reply">Reply for me</string>
     <string name="rules_example_reply_text">Reply in my style, short and friendly.</string>
     <string name="rules_example_summary">Summarize it</string>
     <string name="rules_example_summary_text">Tell me in one line what it says and whether I need to do anything.</string>
     <string name="rules_example_calendar">Add to calendar</string>
-    <string name="rules_example_calendar_text">If it's about an appointment or a delivery, add it to my calendar.</string>
+    <string name="rules_example_calendar_text">If it\'s about an appointment or a delivery, add it to my calendar.</string>
     <!-- Field label above the choice of Claude Code, Codex or OpenCode. -->
     <string name="rules_agent">Agent</string>
     <!-- Field label above "Ask me" / "Countdown". -->
@@ -1782,7 +1782,7 @@
     <!-- Under the countdown explanation, tappable (opens App permissions). %1$s = the reviewer, e.g. Claude Code · Haiku. -->
     <string name="rules_checker">Second AI: %1$s. Tap to change it in App permissions.</string>
     <!-- In the model picker of a rule, the first choice ("Default"), described. -->
-    <string name="rules_model_default">The agent's own default</string>
+    <string name="rules_model_default">The agent\'s own default</string>
     <!-- Switch: the rule runs, or not. -->
     <string name="rules_on">Rule on</string>
     <string name="rules_save">Save</string>
@@ -1794,8 +1794,8 @@
     <!-- Shown before Android's notification access setting (an explicit choice, as Google Play requires). -->
     <string name="rules_access_title">Allow notification access?</string>
     <string name="rules_access_what">Ski checks each notification against your rules. Notifications that no rule matches are ignored right away: not stored, not sent anywhere.</string>
-    <string name="rules_access_data">When one matches, its app, sender and text go to the rule's agent (Claude Code, Codex or OpenCode) together with your instruction.</string>
-    <string name="rules_access_reply">Ski can answer through a notification's Reply button. It asks you first, unless you give the rule a countdown.</string>
+    <string name="rules_access_data">When one matches, its app, sender and text go to the rule\'s agent (Claude Code, Codex or OpenCode) together with your instruction.</string>
+    <string name="rules_access_reply">Ski can answer through a notification\'s Reply button. It asks you first, unless you give the rule a countdown.</string>
 
     <!-- The chat a rule's run happens in shows this as the first line of each run. %1$s = the person or conversation,
          e.g. Sarah; %2$s = the app; %3$s = the notification's text; %4$s = the rule's instruction. Keep 🔔 and ⚡. -->
@@ -1828,7 +1828,7 @@
     <string name="browser_state_running">running</string>
     <string name="browser_state_idle">ready · starts when an agent needs it</string>
     <string name="browser_state_not_installed">not installed yet</string>
-    <string name="browser_install_failed">Couldn't install Chromium. Check the connection and try again.</string>
+    <string name="browser_install_failed">Couldn\'t install Chromium. Check the connection and try again.</string>
     <!-- “Continue with Google” is the button many sites show to sign in with a Google account: use the wording sites use in your language. -->
     <string name="browser_sign_in_help">Agents never type passwords. To let them use a site with your account, open the browser and sign in yourself. “Continue with Google” often fails in automated browsers: use email and password instead.</string>
     <!-- Button: opens the background browser full screen. -->
@@ -1871,7 +1871,7 @@
     <string name="browser_installing">Installing the browser…</string>
     <string name="browser_starting">Starting the browser…</string>
     <!-- A line in the chat and a short message when the agent pauses because the user touched the live view. -->
-    <string name="browser_paused_note">Paused while you use the browser. Tap Continue when you're done.</string>
+    <string name="browser_paused_note">Paused while you use the browser. Tap Continue when you\'re done.</string>
     <string name="browser_paused_toast">Paused while you use the browser</string>
 
     <!-- Approval cards for the background browser. %1$s = the button's label, e.g. Post; %2$s = the site, e.g. reddit.com. -->
@@ -1902,7 +1902,7 @@
     <string name="setup_play_rate">Rate Ski on Google Play</string>
     <string name="setup_play_rate_info">A review helps others find Ski.</string>
     <string name="setup_play_get">Ski on Google Play</string>
-    <string name="setup_play_get_info">Updates come through Play, but it can't install APKs. It's a separate install: uninstall this version first.</string>
+    <string name="setup_play_get_info">Updates come through Play, but it can\'t install APKs. It\'s a separate install: uninstall this version first.</string>
     <string name="share_label">Ask Ski</string>
     <string name="share_title">Share with Ski</string>
     <string name="share_new_chat">New chat with %1$s</string>
@@ -1910,29 +1910,29 @@
     <string name="usage_week">weekly %1$d%% · resets %2$s</string>
     <string name="usage_five_short">5h %1$d%%</string>
     <string name="usage_week_short">week %1$d%%</string>
-    <string name="usage_warn_five">You've used %1$d%% of your plan's 5-hour limit. It resets at %2$s.</string>
-    <string name="usage_warn_week">You've used %1$d%% of your plan's weekly limit. It resets %2$s.</string>
+    <string name="usage_warn_five">You\'ve used %1$d%% of your plan\'s 5-hour limit. It resets at %2$s.</string>
+    <string name="usage_warn_week">You\'ve used %1$d%% of your plan\'s weekly limit. It resets %2$s.</string>
     <string name="check_title">Check Ski</string>
-    <string name="check_info">Tests each part of Ski now and says how to fix what's wrong</string>
+    <string name="check_info">Tests each part of Ski now and says how to fix what\'s wrong</string>
     <string name="check_running">Checking…</string>
     <string name="check_all_ok">Everything works</string>
     <string name="check_a11y">Accessibility service</string>
-    <string name="check_a11y_bad">Not running, so Ski can't see or use the screen. Turn Ski on in Accessibility settings.</string>
+    <string name="check_a11y_bad">Not running, so Ski can\'t see or use the screen. Turn Ski on in Accessibility settings.</string>
     <string name="check_notifications">Notification access</string>
-    <string name="check_notifications_bad">Your notification rules need it, and it's off.</string>
+    <string name="check_notifications_bad">Your notification rules need it, and it\'s off.</string>
     <string name="check_battery">Battery optimization</string>
     <string name="check_battery_bad">On for Ski: Android may stop it in the background, and scheduled tasks may not run.</string>
-    <string name="check_linux">Ski's Linux</string>
+    <string name="check_linux">Ski\'s Linux</string>
     <string name="check_linux_ok">Starts in %1$.1f s</string>
-    <string name="check_linux_bad">Doesn't start: %1$s</string>
+    <string name="check_linux_bad">Doesn\'t start: %1$s</string>
     <string name="check_linux_missing">Not installed yet. Set it up in Settings.</string>
-    <string name="check_helper">Ski's helper</string>
+    <string name="check_helper">Ski\'s helper</string>
     <string name="check_helper_bad">Linux has an older copy than this version of Ski.</string>
     <string name="check_server">Phone tools server</string>
     <string name="check_server_bad">Not answering on 127.0.0.1:%1$d. Turn Ski off and on again in Accessibility settings.</string>
     <string name="check_agent_version">Version %1$s</string>
     <string name="check_network">Internet</string>
-    <string name="check_network_bad">Can't find %1$s. Check Wi-Fi or mobile data, or a VPN or private DNS that blocks it.</string>
+    <string name="check_network_bad">Can\'t find %1$s. Check Wi-Fi or mobile data, or a VPN or private DNS that blocks it.</string>
     <string name="check_space">Free space</string>
     <string name="check_space_ok">%1$s free</string>
     <string name="check_space_bad">Only %1$s free. Installing or updating an agent needs about 1 GB.</string>
@@ -1948,31 +1948,31 @@
         <item quantity="one">%1$d check failed</item>
         <item quantity="other">%1$d checks failed</item>
     </plurals>
-    <string name="tools_step_cap">Stopped after %1$d phone actions in one go, so a runaway task can't use up your plan. Tell it to go on if it should.</string>
+    <string name="tools_step_cap">Stopped after %1$d phone actions in one go, so a runaway task can\'t use up your plan. Tell it to go on if it should.</string>
     <string name="tools_step_loop">Stopped: it did the same thing %1$d times in a row, which looks like a loop.</string>
     <string name="setup_help">Help</string>
-    <string name="setup_help_info">Ski's user guide, on GitHub. You can also ask any agent how Ski works.</string>
+    <string name="setup_help_info">Ski\'s user guide, on GitHub. You can also ask any agent how Ski works.</string>
     <string name="signin_api_key">Use an API key instead</string>
     <string name="signin_api_base_bad">Enter an address that starts with https://</string>
     <string name="account_plan_api_key_at">API key · %1$s</string>
     <string name="models_via">%1$s via %2$s</string>
     <string name="signin_api_keys">API keys</string>
     <string name="api_keys_title">API keys</string>
-    <string name="api_keys_row_none">Other services' models, with your key</string>
-    <string name="api_keys_intro">Use other services' models with Claude Code, Codex and OpenCode, next to your plans or instead of them. Each chat picks its model in its model sheet. Use with a key is billed to that key's account. Keys are stored encrypted on this phone and never reach the agents: Ski adds them to each request.</string>
+    <string name="api_keys_row_none">Other services\' models, with your key</string>
+    <string name="api_keys_intro">Use other services\' models with Claude Code, Codex and OpenCode, next to your plans or instead of them. Each chat picks its model in its model sheet. Use with a key is billed to that key\'s account. Keys are stored encrypted on this phone and never reach the agents: Ski adds them to each request.</string>
     <string name="api_keys_none">No API keys yet.</string>
     <string name="api_keys_add">Add API key</string>
     <string name="api_keys_models">%1$s · %2$d models</string>
     <string name="api_keys_for">For %1$s</string>
     <string name="api_keys_defaults">Chats on Default</string>
-    <string name="api_keys_defaults_info">What a chat uses when its model is Default. Its own default runs on the agent's plan.</string>
+    <string name="api_keys_defaults_info">What a chat uses when its model is Default. Its own default runs on the agent\'s plan.</string>
     <string name="api_keys_own_default">Its own default</string>
     <string name="api_keys_name_hint">Name</string>
     <string name="api_keys_key_hint">API key</string>
     <string name="api_keys_key_keep_hint">API key (leave empty to keep it)</string>
     <string name="api_keys_anthropic_hint">Anthropic-style address</string>
     <string name="api_keys_openai_hint">OpenAI-style address</string>
-    <string name="api_keys_addresses_info">Claude Code uses the Anthropic-style address. Codex uses the OpenAI-style one, when the service has OpenAI's Responses API. OpenCode uses either. Leave an address empty if the service doesn't have it.</string>
+    <string name="api_keys_addresses_info">Claude Code uses the Anthropic-style address. Codex uses the OpenAI-style one, when the service has OpenAI\'s Responses API. OpenCode uses either. Leave an address empty if the service doesn\'t have it.</string>
     <string name="api_keys_check">Check now</string>
     <string name="api_keys_check_info">Optional: sends a very small test request, which may use a tiny bit of API credit.</string>
     <string name="api_keys_check_ok">%1$s: works.</string>
@@ -1981,14 +1981,14 @@
     <string name="api_keys_check_unsure">%1$s: no clear answer. %2$s</string>
     <string name="api_keys_service">Service</string>
     <string name="api_keys_custom">Custom</string>
-    <string name="setup_step_signin_key_mismatch">Your API keys (%2$s) don't work with %1$s. They work with %3$s.</string>
+    <string name="setup_step_signin_key_mismatch">Your API keys (%2$s) don\'t work with %1$s. They work with %3$s.</string>
     <string name="setup_step_signin_free">No account? OpenCode has free models and needs no sign-in.</string>
     <string name="setup_use_agent">Use %1$s</string>
     <string name="api_keys_save">Save</string>
     <string name="api_keys_saving">Checking the key…</string>
     <string name="api_keys_need_key">Enter the API key.</string>
     <string name="api_keys_need_address">Add at least one address.</string>
-    <string name="api_keys_failed">Couldn't list this service's models with this key: %1$s</string>
+    <string name="api_keys_failed">Couldn\'t list this service\'s models with this key: %1$s</string>
     <string name="api_keys_remove">Remove</string>
     <string name="api_keys_remove_title">Remove %1$s?</string>
     <string name="api_keys_remove_text">Its key is deleted from this phone. Chats that use its models go back to Default.</string>
@@ -1999,14 +1999,14 @@
     <string name="skills_title">Skills</string>
     <string name="skills_row_none">Instructions the agents share</string>
     <string name="skills_intro">Skills are instructions an agent follows for a kind of task: a writing style, a checklist, steps in an app. Claude Code, Codex and OpenCode use one when a task fits, or when you type / in the message box and pick it. They use the SKILL.md format, so skills from Claude or ChatGPT work here too.</string>
-    <string name="skills_need_linux">Skills live in Ski's Linux: set up an agent first.</string>
+    <string name="skills_need_linux">Skills live in Ski\'s Linux: set up an agent first.</string>
     <string name="skills_none">No skills yet.</string>
     <string name="skills_import">Import</string>
     <string name="skills_write">Write one</string>
     <string name="skills_how">Import takes a .zip or .skill file (as Claude exports skills) or a SKILL.md. In a chat with Linux tools, you can also ask the agent to write a skill.</string>
     <string name="skills_delete">Delete</string>
     <string name="skills_delete_title">Delete /%1$s?</string>
-    <string name="skills_delete_text">The agents won't have it anymore.</string>
+    <string name="skills_delete_text">The agents won\'t have it anymore.</string>
     <string name="skills_write_info">The description says when to use it: the agents read it to decide.</string>
     <string name="skills_name_hint">Name, e.g. weekly-report</string>
     <string name="skills_desc_hint">What it does and when to use it</string>
@@ -2014,38 +2014,38 @@
     <string name="skills_need_all">Add a description and the instructions.</string>
     <string name="skills_added">Added /%1$s.</string>
     <string name="skills_need_name">Give it a name.</string>
-    <string name="skills_exists">There's already a skill called %1$s.</string>
-    <string name="skills_bad_file">That's not a skill: it needs a SKILL.md with a name.</string>
+    <string name="skills_exists">There\'s already a skill called %1$s.</string>
+    <string name="skills_bad_file">That\'s not a skill: it needs a SKILL.md with a name.</string>
     <string name="skills_slash_none">No skill by that name. Tap to add skills.</string>
     <string name="github_row_none">Let agents push to your repositories</string>
     <string name="github_intro">Sign in to GitHub for the Linux tools: Ski installs git and the GitHub CLI in its Linux, signs them in to your account, and sets git to your name and private noreply email.</string>
-    <string name="github_risk">Agents in chats with Linux tools can then clone, commit and push with your account, and open issues and pull requests. They're told to ask you first before anything they push or post.</string>
+    <string name="github_risk">Agents in chats with Linux tools can then clone, commit and push with your account, and open issues and pull requests. They\'re told to ask you first before anything they push or post.</string>
     <string name="github_sign_in">Sign in with GitHub</string>
     <string name="github_installing">Installing git and the GitHub CLI…</string>
     <string name="github_finishing">Setting up git…</string>
-    <string name="github_enter_code">Enter this code on GitHub and approve. It's copied, so you can paste it.</string>
+    <string name="github_enter_code">Enter this code on GitHub and approve. It\'s copied, so you can paste it.</string>
     <string name="github_open">Open GitHub</string>
     <string name="github_code_copied">Code copied</string>
-    <string name="github_failed">Couldn't sign in: %1$s</string>
+    <string name="github_failed">Couldn\'t sign in: %1$s</string>
     <string name="github_signed_in">Signed in as @%1$s</string>
     <string name="github_signed_in_info">Agents in chats with Linux tools can use git and gh with this account.</string>
     <string name="github_sign_out_title">Sign out of GitHub?</string>
-    <string name="github_sign_out_text">git and the GitHub CLI in Ski's Linux lose access to your account.</string>
+    <string name="github_sign_out_text">git and the GitHub CLI in Ski\'s Linux lose access to your account.</string>
     <string name="backup_title">Backup and move</string>
     <string name="backup_row">Your chats and settings in one file</string>
-    <string name="backup_intro">Saves your chats, settings, rules, pictures, skills, the agents' projects and what they keep of each conversation into one file in Downloads/Ski. Restore it here or on another phone.</string>
-    <string name="backup_left_out">Sign-ins and API keys aren't in it: sign in again and add your keys after a restore. Projects leave out their build folders.</string>
+    <string name="backup_intro">Saves your chats, settings, rules, pictures, skills, the agents\' projects and what they keep of each conversation into one file in Downloads/Ski. Restore it here or on another phone.</string>
+    <string name="backup_left_out">Sign-ins and API keys aren\'t in it: sign in again and add your keys after a restore. Projects leave out their build folders.</string>
     <string name="backup_now">Back up now</string>
     <string name="backup_restore">Restore from a backup</string>
     <string name="backup_restore_title">Restore this backup?</string>
-    <string name="backup_restore_text">Your chats and settings on this phone are replaced by the backup's. Ski restarts when it's done.</string>
+    <string name="backup_restore_text">Your chats and settings on this phone are replaced by the backup\'s. Ski restarts when it\'s done.</string>
     <string name="backup_making">Backing up… (projects can take a while)</string>
     <string name="backup_restoring">Restoring…</string>
     <string name="backup_made">Saved to Downloads/Ski/%1$s.</string>
     <string name="backup_restored">Restored. Ski restarts now.</string>
-    <string name="backup_restored_no_linux">Restored your chats and settings. Its Linux part (skills, projects, the agents' records) needs Ski's Linux: set up an agent, then restore again. Ski restarts now.</string>
-    <string name="backup_failed">Didn't work: %1$s</string>
-    <string name="backup_not_one">That file isn't a Ski backup.</string>
+    <string name="backup_restored_no_linux">Restored your chats and settings. Its Linux part (skills, projects, the agents\' records) needs Ski\'s Linux: set up an agent, then restore again. Ski restarts now.</string>
+    <string name="backup_failed">Didn\'t work: %1$s</string>
+    <string name="backup_not_one">That file isn\'t a Ski backup.</string>
     <string name="chat_incognito">Incognito</string>
     <string name="chat_incognito_info">This chat is deleted, with what its agent kept of it, when Ski restarts.</string>
     <string name="models_context">%1$s context</string>
@@ -2056,12 +2056,12 @@
     <string name="chat_context_compact">Compact now</string>
     <string name="hub_compacting">Compacting the conversation…</string>
     <string name="hub_compacted">Conversation compacted: %1$s → %2$s tokens</string>
-    <string name="signin_api_models_none">The service didn't list any models.</string>
+    <string name="signin_api_models_none">The service didn\'t list any models.</string>
     <string name="setup_step_signin_api_key">Or use an API key: Settings → API keys.</string>
     <string name="setup_step_signin_others">%1$s is your default brain, but these are ready: %2$s. Make one of them the default and Ski works right away.</string>
     <string name="setup_switch_default">Switch default</string>
     <string name="setup_switch_default_title">Default brain</string>
-    <string name="signin_api_key_on">%1$s runs on your API keys: pick a model in a chat's model sheet, or its default under API keys.</string>
-    <string name="signin_api_key_on_plan">Chats can also use your API keys' models (pick one in a chat's model sheet). Voice and the other plan features use your plan.</string>
-    <string name="memory_cant_create">Ski couldn't create its memory folder.</string>
+    <string name="signin_api_key_on">%1$s runs on your API keys: pick a model in a chat\'s model sheet, or its default under API keys.</string>
+    <string name="signin_api_key_on_plan">Chats can also use your API keys\' models (pick one in a chat\'s model sheet). Voice and the other plan features use your plan.</string>
+    <string name="memory_cant_create">Ski couldn\'t create its memory folder.</string>
 </resources>
