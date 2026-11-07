@@ -642,9 +642,9 @@ final class Tools {
                         + (running ? "running on 127.0.0.1:8766" : "stopped") + ".");
             }
             case "trace_start": {
-                String name = a.optString("name", "");
-                if (name.isEmpty()) return text("Give a span name.");
-                String id = tracing.start(name, McpServer.CALLER_CHAT.get(), a.optString("tool", null),
+                String spanName = a.optString("name", "");
+                if (spanName.isEmpty()) return text("Give a span name.");
+                String id = tracing.start(spanName, McpServer.CALLER_CHAT.get(), a.optString("tool", null),
                         a.optString("agent", null));
                 if (id == null) return text("Tracing is off or has no collector endpoint. Turn it on in Settings.");
                 return text("Trace span started: " + id + ". Pass it to trace_end when the step finishes.");
@@ -686,9 +686,9 @@ final class Tools {
                         + (path.isEmpty() ? "(none set)" : path) + ", threads: " + threads + ", ctx: " + ctx + ".");
             }
             case "workflow_template": {
-                String name = a.optString("name", "");
-                if (name.isEmpty()) return text("Give a template name.");
-                String json = workflowTemplate(name);
+                String templateName = a.optString("name", "");
+                if (templateName.isEmpty()) return text("Give a template name.");
+                String json = workflowTemplate(templateName);
                 if (json == null) return text("No template named " + name + ".");
                 return text(json);
             }
