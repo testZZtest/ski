@@ -2,7 +2,7 @@
 <!-- Every text Ski shows, in Italian (tu). Source: res/values/strings.xml (English, with translator comments). -->
 <resources>
     <string name="service_label">Assistente Ski</string>
-    <string name="service_description">Mostra la bolla della chat di Ski e permette all\'agente che scegli (Claude Code, Codex, OpenCode, Antigravity o Grok), in esecuzione dentro Ski su questo telefono, di leggere lo schermo, toccare, scrivere e scorrere al posto tuo. Dal telefono non esce nulla, tranne ciò che l\'agente stesso invia al suo servizio di IA (Anthropic, OpenAI, Google, xAI o il provider del tuo modello OpenCode).</string>
+    <string name="service_description">Mostra la bolla della chat di Ski e permette all'agente che scegli (Claude Code, Codex, OpenCode, Antigravity o Grok), in esecuzione dentro Ski su questo telefono, di leggere lo schermo, toccare, scrivere e scorrere al posto tuo. Dal telefono non esce nulla, tranne ciò che l'agente stesso invia al suo servizio di IA (Anthropic, OpenAI, Google, xAI o il provider del tuo modello OpenCode).</string>
 
     <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
 
@@ -38,7 +38,7 @@
     <!-- Guide, step: choose the agent. Agent names next to each option stay in English. -->
     <string name="onboarding_brain_title">Scegli il tuo agente</string>
     <!-- "Settings" = Ski's own Settings tab. -->
-    <string name="onboarding_brain_text">L\'agente che risponde alle tue chat. Puoi aggiungerne altri più tardi in Impostazioni.</string>
+    <string name="onboarding_brain_text">L'agente che risponde alle tue chat. Puoi aggiungerne altri più tardi in Impostazioni.</string>
     <string name="onboarding_brain_claude">Usa il tuo abbonamento Claude (Pro o Max).</string>
     <string name="onboarding_brain_codex">Usa il tuo piano ChatGPT.</string>
     <string name="onboarding_brain_opencode">Senza account. Collega i tuoi provider più tardi.</string>
@@ -51,8 +51,8 @@
 
     <!-- Guide, step: turn on Ski's accessibility service. -->
     <string name="onboarding_access_title">Permetti a Ski di vedere e toccare</string>
-    <string name="onboarding_access_done">L\'accessibilità è attiva.</string>
-    <string name="onboarding_access_text">Il servizio di accessibilità di Ski mostra la bolla e permette all\'agente di leggere lo schermo, toccare e scrivere, solo quando gli chiedi di fare qualcosa.</string>
+    <string name="onboarding_access_done">L'accessibilità è attiva.</string>
+    <string name="onboarding_access_text">Il servizio di accessibilità di Ski mostra la bolla e permette all'agente di leggere lo schermo, toccare e scrivere, solo quando gli chiedi di fare qualcosa.</string>
     <!-- %1$s = the agent's name (Claude Code or Codex); %2$s = the company it sends to (Anthropic or OpenAI). -->
     <string name="onboarding_access_privacy">Dal telefono non esce nulla, tranne ciò che %1$s invia a %2$s per risponderti. Prima di inviare, pubblicare, acquistare o eliminare, Ski chiede sempre il tuo OK.</string>
     <!-- Same as onboarding_access_privacy, when both Claude Code and Codex are set up. -->
@@ -60,7 +60,7 @@
     <!-- Same as onboarding_access_privacy, for OpenCode. %1$s = OpenCode. The model's provider = whichever AI company runs the chosen model. -->
     <string name="onboarding_access_privacy_opencode">Dal telefono non esce nulla, tranne ciò che %1$s invia al provider del modello per risponderti. Prima di inviare, pubblicare, acquistare o eliminare, Ski chiede sempre il tuo OK.</string>
     <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Ski assistant" = Ski's service name (service_label). -->
-    <string name="onboarding_access_list_hint">Nell\'elenco: App scaricate → Assistente Ski → attivalo.</string>
+    <string name="onboarding_access_list_hint">Nell'elenco: App scaricate → Assistente Ski → attivalo.</string>
     <string name="onboarding_access_open">Apri impostazioni di accessibilità</string>
     <!-- Android 13+ greys out the switch for apps installed from a file. Title of a help box and a help question. -->
     <string name="onboarding_access_greyed_title">Interruttore in grigio?</string>
@@ -80,7 +80,7 @@
     <!-- Same as onboarding_agents_done, when both Claude Code and Codex are set up. -->
     <string name="onboarding_agents_done_both">Claude Code e Codex sono installati e connessi.</string>
     <!-- %1$s = the agent's name (Claude Code, Codex, OpenCode) or onboarding_agent_names_both. -->
-    <string name="onboarding_agents_text">Ski installa %1$s nell\'app, poi accedi una volta sola. Non serve Termux.</string>
+    <string name="onboarding_agents_text">Ski installa %1$s nell'app, poi accedi una volta sola. Non serve Termux.</string>
     <!-- Both agents together, inserted as %1$s into onboarding_agents_text. -->
     <string name="onboarding_agent_names_both">Claude Code e Codex</string>
     <!-- Agent card status lines: small lowercase mono text, one line. -->
@@ -112,9 +112,9 @@
     <string name="onboarding_sign_in_grok">Accedi con Grok</string>
     <!-- %1$s = the agent's name (Claude Code, Codex or OpenCode). -->
     <string name="onboarding_install_agent">Installa %1$s</string>
-    <string name="onboarding_agents_wifi">Usa il Wi-Fi se puoi. Puoi uscire da questa schermata durante l\'installazione.</string>
+    <string name="onboarding_agents_wifi">Usa il Wi-Fi se puoi. Puoi uscire da questa schermata durante l'installazione.</string>
     <!-- Help questions and answers under "Stuck?". "Copy Code" = a button on Claude's web page. -->
-    <string name="onboarding_stuck_sign_in_q">Ski non torna dopo l\'accesso?</string>
+    <string name="onboarding_stuck_sign_in_q">Ski non torna dopo l'accesso?</string>
     <string name="onboarding_stuck_sign_in_a">Claude: nella pagina di Claude tocca Copia codice, poi torna su Ski; prende il codice dagli appunti.</string>
     <string name="onboarding_stuck_install_q">Installazione non riuscita?</string>
     <!-- "Install" = the Install button on the agent card (onboarding_install_agent). -->
@@ -123,7 +123,7 @@
     <!-- Guide, step: let Ski run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Tienilo attivo</string>
     <string name="onboarding_background_done">Ski può funzionare in background.</string>
-    <string name="onboarding_background_text">Così il telefono non chiude Ski per risparmiare batteria mentre l\'agente lavora.</string>
+    <string name="onboarding_background_text">Così il telefono non chiude Ski per risparmiare batteria mentre l'agente lavora.</string>
     <!-- Button: opens Android's dialog to let Ski run in the background. -->
     <string name="onboarding_allow">Consenti</string>
     <string name="onboarding_skip_for_now">Salta per ora</string>
@@ -133,11 +133,11 @@
     <!-- Ends with a colon: the two options follow. -->
     <string name="onboarding_safety_text">Per le app di messaggistica, social, shopping, pagamenti e banca, Ski chiede sempre il tuo OK prima di inviare, pubblicare, acquistare o eliminare. Per le altre app:</string>
     <string name="onboarding_safety_ask_title">Chiedimi prima</string>
-    <string name="onboarding_safety_ask_text">L\'agente chiede prima di qualsiasi azione rischiosa, come modificare un\'impostazione. Più sicuro, ma con più conferme.</string>
+    <string name="onboarding_safety_ask_text">L'agente chiede prima di qualsiasi azione rischiosa, come modificare un'impostazione. Più sicuro, ma con più conferme.</string>
     <string name="onboarding_safety_auto_title">Lavora in autonomia</string>
-    <string name="onboarding_safety_auto_text">Nessuna conferma: l\'agente fa semplicemente ciò che hai chiesto, come accendere una telecamera o una luce.</string>
+    <string name="onboarding_safety_auto_text">Nessuna conferma: l'agente fa semplicemente ciò che hai chiesto, come accendere una telecamera o una luce.</string>
     <!-- "Settings → App permissions" = Ski's own screens. "Trust" and "Hard" = names of approval modes; use the same translations as those mode labels. -->
-    <string name="onboarding_safety_note">Puoi cambiarlo per ogni app quando vuoi: Impostazioni → Autorizzazioni app. Imposta un\'app su Libero per far lavorare l\'agente senza conferme, o su Rigido perché sia Ski stesso a chiederti.</string>
+    <string name="onboarding_safety_note">Puoi cambiarlo per ogni app quando vuoi: Impostazioni → Autorizzazioni app. Imposta un'app su Libero per far lavorare l'agente senza conferme, o su Rigido perché sia Ski stesso a chiederti.</string>
 
     <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">È tutto pronto</string>
@@ -225,7 +225,7 @@
     <!-- %1$s = the installed version number. -->
     <string name="update_up_to_date">Ski %1$s è aggiornato.</string>
     <!-- Under the sheet title. %1$s = the installed version number. -->
-    <string name="update_sheet_text">Hai la versione %1$s. L\'aggiornamento mantiene chat, impostazioni e accessi.</string>
+    <string name="update_sheet_text">Hai la versione %1$s. L'aggiornamento mantiene chat, impostazioni e accessi.</string>
     <!-- Sheet button (half width): close without updating. -->
     <string name="update_later">Più tardi</string>
     <!-- On the Update button while the new version downloads. -->
@@ -238,7 +238,7 @@
     <string name="update_error_download">Il download non è riuscito (%1$s).</string>
     <string name="update_error_not_newer">Il file scaricato non è una versione più recente di Ski, quindi non è stato aperto.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s Puoi anche scaricare l\'aggiornamento da %2$s (ski.apk) oppure usare Obtainium per gli aggiornamenti automatici (vedi %3$s).</string>
+    <string name="update_failed_manual">%1$s Puoi anche scaricare l'aggiornamento da %2$s (ski.apk) oppure usare Obtainium per gli aggiornamenti automatici (vedi %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->
@@ -319,12 +319,12 @@
 
     <!-- Toasts from the bubble. "hold" = long-press. -->
     <string name="bubble_tip_stop_voice">Suggerimento: tieni premuta la bolla per fermare la voce</string>
-    <string name="bubble_tip_hold_menu">Suggerimento: tieni premuta la bolla per mettere in pausa, interrompere o aggiungere un\'istruzione</string>
+    <string name="bubble_tip_hold_menu">Suggerimento: tieni premuta la bolla per mettere in pausa, interrompere o aggiungere un'istruzione</string>
     <string name="bubble_stopping">Interruzione…</string>
     <string name="bubble_nothing_running">Niente in corso nelle chat di Ski.</string>
     <string name="bubble_nothing_running_chat">Niente in corso in questa chat.</string>
-    <string name="bubble_allow_mic_tap_mic">Consenti l\'uso del microfono in Ski, poi tocca di nuovo il microfono.</string>
-    <string name="bubble_allow_mic_tap_bubble">Consenti l\'uso del microfono in Ski, poi tocca di nuovo la bolla.</string>
+    <string name="bubble_allow_mic_tap_mic">Consenti l'uso del microfono in Ski, poi tocca di nuovo il microfono.</string>
+    <string name="bubble_allow_mic_tap_bubble">Consenti l'uso del microfono in Ski, poi tocca di nuovo la bolla.</string>
     <!-- After dictating an instruction while the agent works. %1$s: the agent's name (Claude Code, Codex or OpenCode). -->
     <string name="bubble_note_added">Ricevuto: %1$s ne terrà conto</string>
     <!-- A message was copied to the clipboard. -->
@@ -339,7 +339,7 @@
     <!-- Chat panel opened from the bubble: header buttons (read by TalkBack) and titles. -->
     <!-- Starts a new chat: the + button, and the title of the agent picker it opens. -->
     <string name="bubble_new_chat">Nuova chat</string>
-    <string name="bubble_open_in_app">Apri nell\'app</string>
+    <string name="bubble_open_in_app">Apri nell'app</string>
     <!-- Closes the chat panel. -->
     <string name="bubble_close">Chiudi</string>
     <!-- Panel title while the list of chats shows. -->
@@ -390,7 +390,7 @@
     <string name="bubble_effort">Impegno</string>
     <!-- "Auto" is the name of the first effort choice below it; "Higher" = the higher effort levels; "plan" = the
          user's subscription plan. -->
-    <string name="bubble_effort_note">Con Auto decide l\'agente. Più alto è il livello, più a lungo ragiona e più consuma del tuo piano.</string>
+    <string name="bubble_effort_note">Con Auto decide l'agente. Più alto è il livello, più a lungo ragiona e più consuma del tuo piano.</string>
     <!-- Section heading, shown in capitals: the AI model. -->
     <string name="bubble_model">Modello</string>
 
@@ -401,7 +401,7 @@
     <string name="card_label_question">DOMANDA</string>
     <!-- The card's label when the request comes from an agent session outside Ski's chats (e.g. a terminal).
          %1$s: card_label_approval or card_label_question. All caps. -->
-    <string name="card_label_other_session">%1$s · DA UN\'ALTRA SESSIONE</string>
+    <string name="card_label_other_session">%1$s · DA UN'ALTRA SESSIONE</string>
     <string name="card_label_queue">%1$s · 1 DI %2$d</string>
     <!-- Buttons side by side at the bottom of the card: keep them short. -->
     <string name="card_deny">Rifiuta</string>
@@ -458,7 +458,7 @@
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Attivare gli strumenti Linux?</string>
     <!-- ~/.buddy/work is a folder: keep it as is. -->
-    <string name="chat_linux_tools_what">L\'agente potrà eseguire comandi, installare pacchetti e modificare file in ~/.buddy/work, così può creare app.</string>
+    <string name="chat_linux_tools_what">L'agente potrà eseguire comandi, installare pacchetti e modificare file in ~/.buddy/work, così può creare app.</string>
     <!-- When the change applies: a task already running goes on as it was. -->
     <string name="chat_linux_tools_when">Solo in questa chat, dal tuo prossimo messaggio.</string>
     <!-- "it" = the agent. -->
@@ -468,11 +468,11 @@
 
     <string name="chat_options">Opzioni della chat</string>
     <string name="chat_keep_awake">Tieni lo schermo acceso mentre lavora</string>
-    <string name="chat_keep_awake_info">Per i compiti lunghi: il telefono resta sveglio mentre questa chat lavora, e una notifica ti dice com\'è andata. Bloccare il telefono spegne comunque lo schermo.</string>
+    <string name="chat_keep_awake_info">Per i compiti lunghi: il telefono resta sveglio mentre questa chat lavora, e una notifica ti dice com'è andata. Bloccare il telefono spegne comunque lo schermo.</string>
     <string name="chat_allowed">Consentito senza chiedere</string>
     <string name="chat_allowed_info">Finché il compito di questa chat non finisce, le approvazioni di routine in queste app vanno avanti da sole: inviare un messaggio, o un passaggio su cui il revisore chiederebbe. Ognuna appare nella chat. Pagare, comprare, eliminare, installare, password e impostazioni di sicurezza ti chiedono sempre.</string>
     <string name="chat_allowed_kept">Tenute per la programmazione di questa chat: queste app restano consentite nelle sue esecuzioni programmate, finché non le rimuovi o rimuovi la programmazione.</string>
-    <string name="chat_allowed_add">Aggiungi un\'app</string>
+    <string name="chat_allowed_add">Aggiungi un'app</string>
     <string name="chat_allowed_remove">Rimuovi %1$s</string>
     <string name="run_rule_approved">Approvato dalla tua regola per questo compito: %1$s</string>
     <string name="run_end_done">%1$s ha finito</string>
@@ -481,14 +481,14 @@
     <string name="schedule_title">Programmazione</string>
     <string name="schedule_set">Imposta una programmazione</string>
     <string name="schedule_set_info">Invia da solo un messaggio a questa chat a orari fissi, ad es. ogni giorno alle 14:00.</string>
-    <string name="schedule_info">All\'ora impostata Ski invia questo messaggio nella chat come se l\'avessi scritto tu, con l\'agente e le opzioni di questa chat. Le schede di approvazione ti aspettano comunque. Se gli serve lo schermo mentre il telefono è bloccato, ti chiede di sbloccarlo.</string>
+    <string name="schedule_info">All'ora impostata Ski invia questo messaggio nella chat come se l'avessi scritto tu, con l'agente e le opzioni di questa chat. Le schede di approvazione ti aspettano comunque. Se gli serve lo schermo mentre il telefono è bloccato, ti chiede di sbloccarlo.</string>
     <string name="schedule_time">Ora</string>
     <string name="schedule_days">Giorni</string>
     <string name="schedule_daily">Ogni giorno</string>
     <string name="schedule_weekdays">Giorni feriali</string>
     <string name="schedule_pick_days">Scegli i giorni</string>
     <string name="schedule_message">Messaggio</string>
-    <string name="schedule_message_hint">Cosa inviare, ad es. Apri l\'app e fai il check-in di oggi</string>
+    <string name="schedule_message_hint">Cosa inviare, ad es. Apri l'app e fai il check-in di oggi</string>
     <string name="schedule_wake">Riattiva il telefono per questo compito</string>
     <string name="schedule_wake_info">Quando gli serve lo schermo, lo schermo si accende (e una schermata di blocco senza PIN, sequenza o impronta si apre). Mentre è in corso, chiunque vicino può vedere lo schermo.</string>
     <string name="schedule_inexact">Le sveglie esatte sono disattivate per Ski, quindi può partire qualche minuto in ritardo.</string>
@@ -507,8 +507,8 @@
     <string name="schedule_skipped_title">Compito programmato saltato: %1$s</string>
     <string name="schedule_stopped_title">Compito programmato interrotto: %1$s</string>
     <string name="schedule_skip_running">Questa chat stava ancora lavorando al compito precedente.</string>
-    <string name="schedule_skip_busy">Ski è stato occupato per un\'ora (un altro compito, una pausa o niente internet).</string>
-    <string name="schedule_skip_screen">Il telefono è rimasto bloccato per un\'ora.</string>
+    <string name="schedule_skip_busy">Ski è stato occupato per un'ora (un altro compito, una pausa o niente internet).</string>
+    <string name="schedule_skip_screen">Il telefono è rimasto bloccato per un'ora.</string>
     <string name="schedule_marker">Programmato</string>
 
     <!-- Chat screen: the strip shown while the agent works -->
@@ -523,7 +523,7 @@
     <!-- Hint in the message box. %1$s = agent name (Claude Code, Codex, OpenCode). -->
     <string name="chat_input_hint">Chiedi a %1$s…</string>
     <!-- Hint in the message box while the agent works: what you type now reaches it at its next step. -->
-    <string name="chat_input_hint_running">Aggiungi un\'istruzione mentre lavora…</string>
+    <string name="chat_input_hint_running">Aggiungi un'istruzione mentre lavora…</string>
     <!-- Read by TalkBack for the mic button. Verb: starts voice input. -->
     <string name="chat_talk">Parla</string>
     <!-- Read by TalkBack for the send button. Verb. -->
@@ -531,7 +531,7 @@
     <!-- Shown in a chat with no messages yet. %1$s = agent name (Claude Code, Codex, OpenCode). -->
     <string name="chat_empty_hint">Nuova chat con %1$s. Chiedigli di fare qualcosa sul telefono.</string>
     <!-- Same, when the chat has Linux tools on. %1$s = agent name. -->
-    <string name="chat_empty_hint_dev">Nuova chat con %1$s e gli strumenti Linux. Chiedigli di fare qualcosa sul telefono o di creare un\'app.</string>
+    <string name="chat_empty_hint_dev">Nuova chat con %1$s e gli strumenti Linux. Chiedigli di fare qualcosa sul telefono o di creare un'app.</string>
 
     <!-- Model sheet (tap the model chip under the chat title) -->
     <!-- %1$s = agent name, e.g. "Claude Code model". -->
@@ -540,7 +540,7 @@
     <!-- Section label, shown in capitals: how hard the model thinks (reasoning effort). -->
     <string name="chat_effort">Impegno</string>
     <!-- "Auto" is the first effort option below it; "Higher" means the higher options. -->
-    <string name="chat_effort_help">Con Auto decide l\'agente. Più alto è il livello, più a lungo ragiona e più consuma del tuo piano.</string>
+    <string name="chat_effort_help">Con Auto decide l'agente. Più alto è il livello, più a lungo ragiona e più consuma del tuo piano.</string>
     <!-- Section label, shown in capitals, above the list of models. -->
     <string name="chat_model">Modello</string>
     <!-- Hint of the box for typing any model id. %1$s = an example model id (not translated). -->
@@ -642,7 +642,7 @@
     <string name="hub_stopping">Interruzione…</string>
     <!-- Note after the task was stopped. -->
     <string name="hub_stopped">Interrotto.</string>
-    <string name="hub_interrupted">Android ha chiuso Ski mentre l\'agente lavorava, quindi si è fermato.</string>
+    <string name="hub_interrupted">Android ha chiuso Ski mentre l'agente lavorava, quindi si è fermato.</string>
     <string name="hub_resume_message">Riprendi da dove ti eri fermato</string>
     <string name="chat_interrupted">Android ha chiuso Ski mentre %1$s ci stava lavorando. Continua controlla cosa è fatto e riprende da lì.</string>
     <string name="chat_interrupted_continue">Continua</string>
@@ -667,13 +667,13 @@
     <string name="hub_tool_read_screen">Lettura dello schermo</string>
     <string name="hub_tool_screenshot">Acquisizione screenshot</string>
     <!-- %1$d = number of an element on the screen. -->
-    <string name="hub_tool_tap_element">Tocco sull\'elemento %1$d</string>
+    <string name="hub_tool_tap_element">Tocco sull'elemento %1$d</string>
     <!-- %1$d,%2$d = x,y position on the screen. -->
     <string name="hub_tool_tap_point">Tocco su %1$d,%2$d</string>
     <string name="hub_tool_long_press">Pressione prolungata</string>
     <!-- %1$s = the text being typed. -->
     <string name="hub_tool_type">Digitazione di «%1$s»</string>
-    <string name="hub_tool_scroll_up">Scorrimento verso l\'alto</string>
+    <string name="hub_tool_scroll_up">Scorrimento verso l'alto</string>
     <string name="hub_tool_scroll_down">Scorrimento verso il basso</string>
     <string name="hub_tool_scroll_left">Scorrimento verso sinistra</string>
     <string name="hub_tool_scroll_right">Scorrimento verso destra</string>
@@ -711,7 +711,7 @@
     <string name="hub_tool_add_event">Aggiunta al calendario: %1$s</string>
     <string name="hub_tool_wait_for">Attesa dello schermo</string>
     <string name="hub_tool_do_steps">Esecuzione di %1$d passi</string>
-    <string name="hub_tool_collect">Lettura dell\'intera lista</string>
+    <string name="hub_tool_collect">Lettura dell'intera lista</string>
     <string name="hub_tool_find">Ricerca di «%1$s»</string>
     <string name="schedules_title">Programmati</string>
     <string name="schedules_row">Compiti e promemoria di tutte le chat</string>
@@ -725,12 +725,12 @@
     <string name="schedules_resume">Riprendi</string>
     <string name="schedules_reminder">Promemoria</string>
     <string name="schedule_quiet">Avvisami solo se ci sono novità</string>
-    <string name="schedule_quiet_info">Quando un\'esecuzione non trova niente di nuovo, finisce senza notifica. La risposta resta comunque nella chat, e un problema ti avvisa sempre.</string>
+    <string name="schedule_quiet_info">Quando un'esecuzione non trova niente di nuovo, finisce senza notifica. La risposta resta comunque nella chat, e un problema ti avvisa sempre.</string>
     <string name="schedule_reminder_title">Promemoria</string>
     <string name="schedule_reminder_line">Promemoria: %1$s</string>
     <string name="steps_view">Vedi i passi</string>
     <string name="steps_title">Passi</string>
-    <string name="steps_intro">Cosa ha fatto l\'agente sul telefono nelle ultime 3 esecuzioni di questa chat, con com\'era lo schermo dopo ogni passo. Salvato solo su questo telefono, eliminato con la chat. Tocca un\'immagine per vederla più grande.</string>
+    <string name="steps_intro">Cosa ha fatto l'agente sul telefono nelle ultime 3 esecuzioni di questa chat, con com'era lo schermo dopo ogni passo. Salvato solo su questo telefono, eliminato con la chat. Tocca un'immagine per vederla più grande.</string>
     <string name="steps_none">Ancora nessun passo in questa chat.</string>
     <string name="steps_run">%1$s · %2$s · %3$d passi · %4$s</string>
     <string name="steps_run_live">%1$s · %2$d passi finora</string>
@@ -757,7 +757,7 @@
     <string name="hub_tool_asking">Domanda: %1$s</string>
     <string name="hub_tool_point_out">Ti indica: %1$s</string>
     <string name="hub_tool_point_out_any">Ti indica qualcosa sullo schermo</string>
-    <string name="hub_tool_update_download">Download dell\'aggiornamento di Ski</string>
+    <string name="hub_tool_update_download">Download dell'aggiornamento di Ski</string>
     <string name="hub_tool_update_check">Ricerca di un aggiornamento di Ski</string>
     <!-- %1$s = what is searched for. -->
     <string name="hub_tool_web_search">Ricerca sul web: %1$s</string>
@@ -790,9 +790,9 @@
     <string name="ui_no_app_for_link">Nessuna app può aprire questo link</string>
 
     <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
-    <string name="ui_a11y_title">Come Ski usa l\'accessibilità</string>
-    <string name="ui_a11y_what">Ski usa il servizio di accessibilità di Android per fare ciò che chiedi in altre app: legge ciò che c\'è sullo schermo, tocca, scrive e scorre per te. Mostra anche la bolla fluttuante.</string>
-    <string name="ui_a11y_data">Mentre è in corso un\'attività, il contenuto dello schermo, che può includere dati personali come messaggi, nomi o indirizzi, viene inviato al servizio di IA dell\'agente che scegli (Anthropic per Claude Code, OpenAI per Codex, Google per Antigravity, xAI per Grok o il provider del tuo modello OpenCode), solo per eseguire la tua richiesta.</string>
+    <string name="ui_a11y_title">Come Ski usa l'accessibilità</string>
+    <string name="ui_a11y_what">Ski usa il servizio di accessibilità di Android per fare ciò che chiedi in altre app: legge ciò che c'è sullo schermo, tocca, scrive e scorre per te. Mostra anche la bolla fluttuante.</string>
+    <string name="ui_a11y_data">Mentre è in corso un'attività, il contenuto dello schermo, che può includere dati personali come messaggi, nomi o indirizzi, viene inviato al servizio di IA dell'agente che scegli (Anthropic per Claude Code, OpenAI per Codex, Google per Antigravity, xAI per Grok o il provider del tuo modello OpenCode), solo per eseguire la tua richiesta.</string>
     <string name="ui_a11y_no_servers">Ski non ha server propri. Non raccoglie, non vende e non condivide questi dati, e non li usa per la pubblicità.</string>
     <string name="ui_a11y_asks">Prima di qualsiasi azione che invia, pubblica, acquista o elimina, Ski chiede il tuo OK. Puoi disattivare il servizio in qualsiasi momento nelle impostazioni di accessibilità di Android.</string>
     <string name="ui_privacy_policy">Informativa sulla privacy</string>
@@ -811,7 +811,7 @@
 
     <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
     <!-- Toast when a pause runs out after 5 minutes. -->
-    <string name="service_pause_expired">In pausa da 5 minuti, quindi Ski ha interrotto l\'attività.</string>
+    <string name="service_pause_expired">In pausa da 5 minuti, quindi Ski ha interrotto l'attività.</string>
     <!-- Toast after the user stops the task to use the phone. -->
     <string name="service_stopped_toast">Interrotto. Il telefono è di nuovo tuo.</string>
     <!-- Note in the chat when the user pauses the agent. -->
@@ -824,7 +824,7 @@
 
     <!-- Voice input and output -->
     <!-- 🎙 = the mic button. -->
-    <string name="voice_mic_needed">Ski ha bisogno del microfono. Apri l\'app Ski e tocca 🎙 una volta per consentirlo.</string>
+    <string name="voice_mic_needed">Ski ha bisogno del microfono. Apri l'app Ski e tocca 🎙 una volta per consentirlo.</string>
     <string name="voice_no_recognizer">Nessun servizio di riconoscimento vocale su questo telefono.</string>
     <!-- Status in the recording bar while speech recognition starts. Keep short. -->
     <string name="voice_starting">Avvio…</string>
@@ -878,7 +878,7 @@
     <string name="signin_sub_claude">Usa il tuo account Claude (Pro o Max). Si apre il browser: approva lì e Ski torna da solo.</string>
     <string name="signin_sub_chatgpt">Usa il tuo account ChatGPT (Plus, Pro o Business). Si apre il browser: approva lì e Ski torna da solo.</string>
     <string name="signin_sub_agy">Usa il tuo account Google. Si apre il browser: accedi lì e Ski recupera il codice da solo. Antigravity aspetta circa un minuto.</string>
-    <string name="signin_sub_grok">Usa il tuo account Grok; funziona anche l\'accesso con Google o X. Si apre il browser con un codice: confermalo lì e Ski torna da solo.</string>
+    <string name="signin_sub_grok">Usa il tuo account Grok; funziona anche l'accesso con Google o X. Si apre il browser con un codice: confermalo lì e Ski torna da solo.</string>
     <!-- Main button. -->
     <string name="signin_with_claude">Accedi con Claude</string>
     <string name="signin_with_chatgpt">Accedi con ChatGPT</string>
@@ -893,21 +893,21 @@
     <!-- Screen title while the sign-in starts. -->
     <string name="signin_sign_in">Accesso</string>
     <!-- Also shown as status text elsewhere while the sign-in starts. -->
-    <string name="signin_starting">Avvio dell\'accesso…</string>
+    <string name="signin_starting">Avvio dell'accesso…</string>
     <string name="signin_approve_title">Approva nel browser</string>
     <!-- "Authorize" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
     <string name="signin_approve_claude">Tocca Autorizza nella pagina di Claude. Ski recupera il codice e torna da solo.</string>
     <string name="signin_approve_codex">Accedi e autorizza Codex. Poi torna su Ski: completa da solo.</string>
-    <string name="signin_approve_agy">Accedi e autorizza Antigravity. Ski recupera il codice mostrato nella pagina e torna da solo. Se ci vuole più di un minuto, riavvia l\'accesso.</string>
+    <string name="signin_approve_agy">Accedi e autorizza Antigravity. Ski recupera il codice mostrato nella pagina e torna da solo. Se ci vuole più di un minuto, riavvia l'accesso.</string>
     <string name="signin_approve_grok">Controlla che la pagina mostri %1$s, poi conferma e accedi. Ski torna da solo.</string>
     <!-- Button. -->
     <string name="signin_open_again">Riapri la pagina di accesso</string>
     <!-- Screen title after the code was handed over. -->
     <string name="signin_signing_in">Accesso in corso</string>
     <!-- Also shown as status text elsewhere after the code was handed over. -->
-    <string name="signin_finishing">Completamento dell\'accesso…</string>
+    <string name="signin_finishing">Completamento dell'accesso…</string>
     <!-- Error status. %1$s = the agent's last output (English, technical); may be empty. -->
-    <string name="signin_not_finished">L\'accesso non è stato completato. %1$s</string>
+    <string name="signin_not_finished">L'accesso non è stato completato. %1$s</string>
 
     <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">Apri questo link su qualsiasi dispositivo e approva. Poi copia il codice mostrato nella pagina e incollalo qui sotto.</string>
@@ -942,7 +942,7 @@
     <!-- Short button next to the text box: use the pasted code. Verb. -->
     <string name="signin_use_code">Usa</string>
     <!-- Toast when there is no sign-in waiting for a code. -->
-    <string name="signin_start_again">Prima riavvia l\'accesso.</string>
+    <string name="signin_start_again">Prima riavvia l'accesso.</string>
 
     <!-- Sign-in screen: signed in, or OpenCode installed (it needs no sign-in). -->
     <string name="signin_signed_in">Accesso effettuato</string>
@@ -1003,7 +1003,7 @@
     <!-- Update progress and result. %1$s = agent name: checking for a newer version of it. -->
     <string name="account_update_checking">Ricerca di una nuova versione di %1$s…</string>
     <!-- %1$s = version number. -->
-    <string name="account_update_latest">Hai l\'ultima versione (%1$s).</string>
+    <string name="account_update_latest">Hai l'ultima versione (%1$s).</string>
     <!-- %1$s = new version number. -->
     <string name="account_updated">Aggiornato alla versione %1$s.</string>
     <!-- %1$s = new version number, %2$s = previous version number. -->
@@ -1061,7 +1061,7 @@
     <string name="remote_restarting">Riavvio…</string>
     <!-- %1$s = technical detail in English. -->
     <string name="remote_start_failed">Impossibile avviare: %1$s</string>
-    <string name="remote_keeps_stopping">La sessione continua a interrompersi. Disattivala e riattivala, oppure controlla l\'accesso a Claude Code.</string>
+    <string name="remote_keeps_stopping">La sessione continua a interrompersi. Disattivala e riattivala, oppure controlla l'accesso a Claude Code.</string>
     <string name="codex_pair_getting">Recupero del codice…</string>
     <string name="codex_pair_text">Inserisci questo codice in ChatGPT: in Codex su un telefono, oppure in Impostazioni → Connessioni → Controlla altri dispositivi su un computer. Funziona una volta, fino alle %1$s. Ski compare lì come «localhost».</string>
     <string name="codex_pair_failed">Impossibile ottenere un codice di associazione: %1$s</string>
@@ -1074,7 +1074,7 @@
 
     <!-- Settings screen: header. -->
     <string name="setup_settings_title">Impostazioni</string>
-    <string name="setup_settings_subtitle">Ski esegue Claude Code, Codex, OpenCode, Antigravity o Grok dentro l\'app, con il tuo abbonamento (o i modelli gratuiti di OpenCode e il piano gratuito di Antigravity).</string>
+    <string name="setup_settings_subtitle">Ski esegue Claude Code, Codex, OpenCode, Antigravity o Grok dentro l'app, con il tuo abbonamento (o i modelli gratuiti di OpenCode e il piano gratuito di Antigravity).</string>
 
     <!-- Settings screen: the setup checklist card (5 steps). -->
     <!-- Title of the setup checklist card (noun). -->
@@ -1118,7 +1118,7 @@
     <string name="setup_sign_in">Accedi</string>
     <string name="setup_step_background_title">Consenti a Ski di funzionare in background</string>
     <string name="setup_step_background_done">Consentito.</string>
-    <string name="setup_step_background_body">Così il telefono non chiude Ski per risparmiare batteria mentre l\'agente lavora.</string>
+    <string name="setup_step_background_body">Così il telefono non chiude Ski per risparmiare batteria mentre l'agente lavora.</string>
     <!-- Button (verb): lets Ski ignore battery optimization. -->
     <string name="setup_allow">Consenti</string>
     <!-- Name of the last setup step: try Ski out. -->
@@ -1130,7 +1130,7 @@
     <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
     <string name="setup_step_name_a11y">Attiva il servizio di accessibilità</string>
     <string name="setup_step_name_install">Installa il tuo agente</string>
-    <string name="setup_step_name_background">Consenti l\'esecuzione in background</string>
+    <string name="setup_step_name_background">Consenti l'esecuzione in background</string>
 
     <!-- Settings screen: Appearance. Section labels are shown in ALL CAPS. -->
     <string name="setup_appearance">Aspetto</string>
@@ -1146,7 +1146,7 @@
     <string name="setup_face_buddy">Originale</string>
     <string name="setup_face_picture">La tua immagine</string>
     <string name="setup_face_note">Funziona meglio un PNG o WebP con sfondo trasparente. Appare sulla bolla e accanto alle risposte di Ski.</string>
-    <string name="setup_face_change">Scegli un\'altra immagine</string>
+    <string name="setup_face_change">Scegli un'altra immagine</string>
     <string name="setup_face_unreadable">Impossibile leggere questa immagine. Prova con un PNG o WebP.</string>
     <!-- Read by TalkBack: the swatch that opens the custom colour sheet. -->
     <string name="setup_custom_colour">Colore personalizzato</string>
@@ -1160,7 +1160,7 @@
     <!-- Which AI agent answers new chats. -->
     <string name="setup_default_brain">Cervello predefinito</string>
     <!-- "New chat" is the name of a button in Ski. -->
-    <string name="setup_default_brain_info">L\'agente che risponde alle nuove chat avviate dalla bolla o dal pulsante Nuova chat. Claude Code usa il tuo piano Claude, Codex il tuo piano ChatGPT, Antigravity il tuo account Google, Grok il tuo account Grok, OpenCode i suoi modelli gratuiti o i tuoi provider. Puoi scegliere solo gli agenti già configurati.</string>
+    <string name="setup_default_brain_info">L'agente che risponde alle nuove chat avviate dalla bolla o dal pulsante Nuova chat. Claude Code usa il tuo piano Claude, Codex il tuo piano ChatGPT, Antigravity il tuo account Google, Grok il tuo account Grok, OpenCode i suoi modelli gratuiti o i tuoi provider. Puoi scegliere solo gli agenti già configurati.</string>
     <!-- Toast. %1$s = agent name. "New chat" is the name of a button in Ski. -->
     <string name="setup_default_brain_set">Le nuove chat useranno %1$s. Puoi scegliere per ogni chat con il pulsante Nuova chat.</string>
     <!-- Toast. %1$s = agent name. -->
@@ -1180,7 +1180,7 @@
 
     <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Strumenti del telefono nelle tue sessioni</string>
-    <string name="setup_phone_tools_info">Gli strumenti del telefono di Ski sono un normale server MCP su questo telefono. Esegui questo comando una volta in un terminale del telefono (ad esempio Termux) e quell\'agente avrà gli strumenti del telefono in ogni sessione, anche senza la bolla.</string>
+    <string name="setup_phone_tools_info">Gli strumenti del telefono di Ski sono un normale server MCP su questo telefono. Esegui questo comando una volta in un terminale del telefono (ad esempio Termux) e quell'agente avrà gli strumenti del telefono in ogni sessione, anche senza la bolla.</string>
     <!-- Button. -->
     <string name="setup_copy_command">Copia comando</string>
     <string name="setup_command_copied">Copiato. Incollalo nel terminale.</string>
@@ -1190,7 +1190,7 @@
     <string name="setup_voice_input">Input vocale</string>
     <!-- Option next to Claude and ChatGPT: the phone's own speech engine. Keep short. -->
     <string name="setup_voice_phone">Telefono</string>
-    <string name="setup_voice_input_claude">La dettatura di Claude Code con il tuo piano Claude: molto precisa. Supporta inglese, francese, tedesco, spagnolo, italiano, portoghese, olandese, turco, russo, giapponese e altre lingue, ma non l\'arabo: per l\'arabo Ski usa il riconoscimento vocale del telefono. Le parole compaiono quando fai una pausa.</string>
+    <string name="setup_voice_input_claude">La dettatura di Claude Code con il tuo piano Claude: molto precisa. Supporta inglese, francese, tedesco, spagnolo, italiano, portoghese, olandese, turco, russo, giapponese e altre lingue, ma non l'arabo: per l'arabo Ski usa il riconoscimento vocale del telefono. Le parole compaiono quando fai una pausa.</string>
     <string name="setup_voice_input_chatgpt">La voce di ChatGPT tramite Codex, con il tuo piano ChatGPT. Capisce qualsiasi lingua, anche più lingue mescolate nella stessa frase. Vengono usate solo le tue parole: le risposte vocali di ChatGPT sono disattivate e non può eseguire nulla.</string>
     <string name="setup_voice_input_phone">Il riconoscimento vocale del telefono (Google sulla maggior parte dei telefoni). Testo in tempo reale mentre parli; riconosce quale delle tue lingue stai parlando.</string>
     <string name="setup_voice_output">Output vocale</string>
@@ -1214,18 +1214,18 @@
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Sessione Claude Code</string>
     <!-- "Code" is the name of a section of the Claude app. -->
-    <string name="setup_remote_session_info">Una sessione Claude Code che gira dentro Ski, con gli strumenti del telefono. Continuala dall\'app Claude (Code) su questo telefono o da qualsiasi altro posto.</string>
+    <string name="setup_remote_session_info">Una sessione Claude Code che gira dentro Ski, con gli strumenti del telefono. Continuala dall'app Claude (Code) su questo telefono o da qualsiasi altro posto.</string>
     <string name="setup_remote_sign_in_first">Prima accedi a Claude Code.</string>
     <!-- Status, lowercase. %1$s = the session's name as shown in the Claude app. -->
-    <string name="setup_remote_active">attiva · «%1$s» nell\'app Claude</string>
+    <string name="setup_remote_active">attiva · «%1$s» nell'app Claude</string>
     <!-- Status, lowercase. -->
     <string name="setup_remote_starting">avvio…</string>
     <!-- Status, lowercase. -->
     <string name="setup_remote_stopped">interrotta</string>
-    <string name="setup_remote_open">Apri nell\'app Claude</string>
+    <string name="setup_remote_open">Apri nell'app Claude</string>
     <string name="setup_remote_open_failed">Impossibile aprirla.</string>
     <string name="setup_codex_session">Sessione Codex</string>
-    <string name="setup_codex_session_info">Codex con gli strumenti del telefono, dentro Ski. Usalo dall\'app ChatGPT (Codex) su questo telefono o su un computer. La sandbox di Codex qui non funziona, quindi con le autorizzazioni predefinite chiede prima di ogni comando.</string>
+    <string name="setup_codex_session_info">Codex con gli strumenti del telefono, dentro Ski. Usalo dall'app ChatGPT (Codex) su questo telefono o su un computer. La sandbox di Codex qui non funziona, quindi con le autorizzazioni predefinite chiede prima di ogni comando.</string>
     <string name="setup_codex_active">attiva · «localhost» in ChatGPT</string>
     <string name="setup_codex_pair">Associa un dispositivo</string>
     <string name="setup_ssh">SSH da Termux</string>
@@ -1243,7 +1243,7 @@
         <item quantity="one">Rimuovere %1$d vecchia chat?</item>
         <item quantity="other">Rimuovere %1$d vecchie chat?</item>
     </plurals>
-    <string name="setup_old_chats_remove_body">Verranno rimosse dall\'elenco delle chat di Ski. L\'operazione non può essere annullata.</string>
+    <string name="setup_old_chats_remove_body">Verranno rimosse dall'elenco delle chat di Ski. L'operazione non può essere annullata.</string>
     <!-- Button (verb). -->
     <string name="setup_remove">Rimuovi</string>
     <string name="setup_removed">Rimozione completata.</string>
@@ -1257,13 +1257,13 @@
     <string name="setup_tap_panel">Pannello</string>
     <string name="setup_tap_talk">Parla</string>
     <string name="setup_tap_app">App completa</string>
-    <string name="setup_tap_panel_info">Apre la chat fluttuante sopra l\'app in cui ti trovi. Tieni premuta la bolla per altre opzioni.</string>
+    <string name="setup_tap_panel_info">Apre la chat fluttuante sopra l'app in cui ti trovi. Tieni premuta la bolla per altre opzioni.</string>
     <string name="setup_tap_app_info">Apre la chat a schermo intero in Ski. Tieni premuta la bolla per altre opzioni.</string>
     <string name="setup_panel_size">Dimensioni del pannello</string>
     <string name="setup_panel_full">Grande</string>
     <string name="setup_panel_compact">Compatto</string>
     <string name="setup_panel_size_info">Grande occupa lo schermo da bordo a bordo. Compatto è più piccolo e lascia liberi i bordi dello schermo, così i gesti laterali continuano a funzionare.</string>
-    <string name="setup_tap_to_talk_info">Un tocco apre il microfono: di\' cosa vuoi e il messaggio parte quando fai una pausa. Tieni premuta la bolla per la chat e altro.</string>
+    <string name="setup_tap_to_talk_info">Un tocco apre il microfono: di' cosa vuoi e il messaggio parte quando fai una pausa. Tieni premuta la bolla per la chat e altro.</string>
     <string name="setup_read_aloud">Leggi le risposte ad alta voce</string>
     <string name="setup_read_aloud_info">Ski legge ad alta voce le risposte degli agenti, con la voce che scegli nella sezione Voce.</string>
     <string name="setup_update_notices">Avvisi di aggiornamento</string>
@@ -1274,15 +1274,15 @@
     <!-- Name of the App permissions screen. -->
     <string name="setup_app_permissions">Autorizzazioni app</string>
     <!-- "Trust" and "Hard" are names of approval modes on the App permissions screen: use the same words. Send, Pay, Delete are example buttons in other apps. -->
-    <string name="setup_app_permissions_info">Scegli per ogni app: con Libero l\'agente lavora senza conferme; con Rigido è Ski stesso a chiederti prima di Invia, Paga, Elimina…</string>
+    <string name="setup_app_permissions_info">Scegli per ogni app: con Libero l'agente lavora senza conferme; con Rigido è Ski stesso a chiederti prima di Invia, Paga, Elimina…</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Strumenti Linux nelle nuove chat</string>
-    <string name="setup_dev_mode_info">Con gli strumenti Linux l\'agente può eseguire comandi, installare pacchetti e modificare file in ~/.buddy/work, così può creare app. Le nuove chat partono con questa impostazione; ogni chat può cambiarla sotto il suo titolo.</string>
+    <string name="setup_dev_mode_info">Con gli strumenti Linux l'agente può eseguire comandi, installare pacchetti e modificare file in ~/.buddy/work, così può creare app. Le nuove chat partono con questa impostazione; ogni chat può cambiarla sotto il suo titolo.</string>
     <string name="setup_agents_tap">Consenti agli agenti di toccare le schermate di Ski</string>
     <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">Per testare Ski con un agente (ad esempio Claude Code in Termux con gli strumenti del telefono). La bolla, le schede di approvazione, Autorizzazioni app e questi interruttori restano inaccessibili.</string>
     <!-- Warning shown while Linux tools in new chats (setup_dev_mode) is on. -->
-    <string name="setup_dev_mode_warning">Meglio lasciare questa opzione disattivata e attivare gli strumenti Linux solo nelle chat che ne hanno bisogno. Quando sono attivi, un messaggio o una pagina web dannosi sullo schermo potrebbero indurre l\'agente a eseguire comandi. Le schede di approvazione continuano a proteggere invii, pubblicazioni, acquisti ed eliminazioni.</string>
+    <string name="setup_dev_mode_warning">Meglio lasciare questa opzione disattivata e attivare gli strumenti Linux solo nelle chat che ne hanno bisogno. Quando sono attivi, un messaggio o una pagina web dannosi sullo schermo potrebbero indurre l'agente a eseguire comandi. Le schede di approvazione continuano a proteggere invii, pubblicazioni, acquisti ed eliminazioni.</string>
 
     <!-- Settings screen: footer links. -->
     <!-- Link and sheet title. -->
@@ -1296,7 +1296,7 @@
     <!-- %1$d = HTTP status code, e.g. 404. -->
     <string name="linux_download_failed_http">Download non riuscito: HTTP %1$d</string>
     <!-- %1$s = a file path inside the downloaded archive. -->
-    <string name="linux_unsafe_path">Percorso non sicuro nell\'archivio: %1$s</string>
+    <string name="linux_unsafe_path">Percorso non sicuro nell'archivio: %1$s</string>
     <!-- Creating a symbolic link failed. %1$s = file path, %2$s = the system's error message. -->
     <string name="linux_symlink_failed">symlink %1$s: %2$s</string>
     <string name="linux_truncated_archive">Archivio troncato</string>
@@ -1373,14 +1373,14 @@
     <string name="monitor_tag_terminal">terminale</string>
     <!-- Monospace details line. %1$s = command name (claude-code, codex, opencode), %2$d = process id, %3$s = working folder. -->
     <string name="monitor_proc_meta">%1$s · pid %2$d · %3$s</string>
-    <string name="monitor_background_hint">Gira nel servizio in background di Claude Code, ad esempio una chat che continui dall\'app Claude.</string>
+    <string name="monitor_background_hint">Gira nel servizio in background di Claude Code, ad esempio una chat che continui dall'app Claude.</string>
     <!-- Button. -->
     <string name="monitor_open_chat">Apri chat</string>
     <!-- Button (verb): stops the session. -->
     <string name="monitor_stop">Interrompi</string>
     <!-- Sheet title. %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="monitor_stop_title">Interrompere questa sessione di %1$s?</string>
-    <string name="monitor_stop_background_body">Gira in background, ad esempio una chat che stai continuando dall\'app Claude. Potrebbe anche essere quella che controlla Ski. Interromperla termina il lavoro in corso di quella conversazione.</string>
+    <string name="monitor_stop_background_body">Gira in background, ad esempio una chat che stai continuando dall'app Claude. Potrebbe anche essere quella che controlla Ski. Interromperla termina il lavoro in corso di quella conversazione.</string>
     <string name="monitor_stop_terminal_body">Potrebbe essere una sessione che stai usando in un terminale proprio ora. Potrebbe anche essere quella che controlla Ski. Interromperla termina il lavoro in corso di quella conversazione.</string>
     <string name="monitor_stopping">Interruzione…</string>
     <string name="monitor_service_title">Servizio in background di Claude Code</string>
@@ -1405,7 +1405,7 @@
     <!-- Approval mode name (see perms_mode_trust), keep it short. Smart = the button rules, then a reviewer AI checks every other tap. -->
     <string name="perms_mode_smart">Smart</string>
     <!-- Explains the three modes, one per line. Trust, Hard and Smart are the mode names above; Send, Pay, Delete are example button labels. -->
-    <string name="perms_modes_intro">Libero: qui l\'agente lavora da solo, senza richieste di approvazione.\nRigido: decidono le tue regole sui pulsanti. Invia, Paga, Elimina… richiedono il tuo OK su una scheda.\nSmart: le regole, poi un\'altra IA fa da revisore e controlla ogni altro tocco rispetto alla tua richiesta.\nL\'agente non può mai toccare la bolla, le schede o le impostazioni di Ski.</string>
+    <string name="perms_modes_intro">Libero: qui l'agente lavora da solo, senza richieste di approvazione.\nRigido: decidono le tue regole sui pulsanti. Invia, Paga, Elimina… richiedono il tuo OK su una scheda.\nSmart: le regole, poi un'altra IA fa da revisore e controlla ogni altro tocco rispetto alla tua richiesta.\nL'agente non può mai toccare la bolla, le schede o le impostazioni di Ski.</string>
     <!-- Section title: which AI reviews the taps in apps set to Smart. -->
     <string name="perms_smart_reviewer">Revisore Smart</string>
     <!-- Reviewer choice in a segmented control, next to “Claude Code” and “Codex”: the same agent as the chat. Keep it short. -->
@@ -1413,7 +1413,7 @@
     <!-- Toast when the user picks a reviewer that isn't signed in. %1$s = Claude Code or Codex. -->
     <string name="perms_reviewer_sign_in">Prima accedi a %1$s (Impostazioni).</string>
     <!-- Under the reviewer choice. “allow”, “ask you” and “advise against” are the reviewer's three possible answers. -->
-    <string name="perms_reviewer_about">Una sessione temporanea per ogni tocco, senza strumenti: il revisore vede la tua richiesta, la nota dell\'agente e lo schermo, e decide se consentire, chiederti o sconsigliare. Circa 3 secondi per tocco. Le chat di OpenCode, Antigravity e Grok vengono controllate da Claude Code (o Codex).</string>
+    <string name="perms_reviewer_about">Una sessione temporanea per ogni tocco, senza strumenti: il revisore vede la tua richiesta, la nota dell'agente e lo schermo, e decide se consentire, chiederti o sconsigliare. Circa 3 secondi per tocco. Le chat di OpenCode, Antigravity e Grok vengono controllate da Claude Code (o Codex).</string>
     <string name="perms_reviewer_rules">Controlla anche le risposte prima che il timer di una regola per le notifiche le invii.</string>
     <string name="reviewer_default_claude">Haiku: veloce e leggero. Consigliato.</string>
     <string name="reviewer_default_codex">Modello piccolo e veloce. Consigliato.</string>
@@ -1429,7 +1429,7 @@
     <string name="perms_reset_suggested">Ripristina le modalità suggerite</string>
 
     <!-- Button rules screen: buttons that always or never need the user's OK. Hard and Smart are approval mode names (perms_mode_*). -->
-    <string name="perms_rules_intro">Per le app in modalità Rigido o Smart. Una regola scelta dai suggerimenti vale per quell\'app; il testo digitato vale per tutte le app. Tocca una regola per rimuoverla.</string>
+    <string name="perms_rules_intro">Per le app in modalità Rigido o Smart. Una regola scelta dai suggerimenti vale per quell'app; il testo digitato vale per tutte le app. Tocca una regola per rimuoverla.</string>
     <!-- Switch title: Ski's own list of risky button words. -->
     <string name="perms_builtin_title">Parole a rischio integrate</string>
     <!-- Switch description. The words are examples from the built-in list, which only covers the languages named here:
@@ -1448,7 +1448,7 @@
     <!-- Section title: buttons the agent tapped lately, to put them on a list with one tap. -->
     <string name="perms_seen_title">Pulsanti visti di recente</string>
     <!-- Shown while no buttons were seen yet. Hard and Smart are approval mode names. -->
-    <string name="perms_seen_empty">Qui compaiono i pulsanti che l\'agente tocca nelle app in modalità Rigido e Smart.</string>
+    <string name="perms_seen_empty">Qui compaiono i pulsanti che l'agente tocca nelle app in modalità Rigido e Smart.</string>
 
     <!-- Button rules and modes, as App permissions shows them. -->
     <!-- A button rule that applies in every app, on a chip and in the suggestions. %1$s = the button's label, e.g. Send. -->
@@ -1568,13 +1568,13 @@
     <string name="setup_rules_info">Lascia che un agente agisca quando arriva una notifica: rispondere a un messaggio, segnare una consegna nel calendario…</string>
     <string name="tools_card_reply">Rispondere a %1$s in %2$s:\n«%3$s»</string>
     <string name="tools_card_open_url">Aprire %1$s</string>
-    <string name="tools_card_clipboard">Lasciare che l\'agente legga l\'ultima cosa che hai copiato?</string>
-    <string name="tools_card_location">Condividere la posizione di questo telefono con l\'agente?</string>
+    <string name="tools_card_clipboard">Lasciare che l'agente legga l'ultima cosa che hai copiato?</string>
+    <string name="tools_card_location">Condividere la posizione di questo telefono con l'agente?</string>
     <string name="tools_photo_why">Scatta una foto: %1$s</string>
     <string name="rules_service_label">Regole per le notifiche di Ski</string>
     <string name="rules_title">Regole per le notifiche</string>
-    <string name="rules_intro">Quando arriva una notifica che hai scelto, Ski passa la tua istruzione a un agente, come se l\'avessi scritta tu. Le notifiche che non corrispondono a nessuna regola vengono ignorate.</string>
-    <string name="rules_access_off_title">L\'accesso alle notifiche è disattivato</string>
+    <string name="rules_intro">Quando arriva una notifica che hai scelto, Ski passa la tua istruzione a un agente, come se l'avessi scritta tu. Le notifiche che non corrispondono a nessuna regola vengono ignorate.</string>
+    <string name="rules_access_off_title">L'accesso alle notifiche è disattivato</string>
     <string name="rules_access_off_text">Ski ne ha bisogno per vedere le notifiche controllate dalle tue regole.</string>
     <string name="rules_access_turn_on">Attiva</string>
     <string name="rules_run">Attiva le regole</string>
@@ -1595,11 +1595,11 @@
     <string name="rules_activity_clear">Cancella</string>
     <string name="rules_log_replied">Risposta inviata: «%1$s»</string>
     <string name="rules_log_done_empty">Fatto, senza risposta.</string>
-    <string name="rules_log_limit">Saltato: troppe volte nell\'ultima ora.</string>
-    <string name="rules_log_held">In attesa: troppe volte nell\'ultima ora. I nuovi messaggi verranno gestiti insieme in un\'unica esecuzione alle %1$s.</string>
+    <string name="rules_log_limit">Saltato: troppe volte nell'ultima ora.</string>
+    <string name="rules_log_held">In attesa: troppe volte nell'ultima ora. I nuovi messaggi verranno gestiti insieme in un'unica esecuzione alle %1$s.</string>
     <string name="rules_limit">Limite orario</string>
     <string name="rules_limit_off">Illimitato</string>
-    <string name="rules_limit_info">Numero massimo di esecuzioni all\'ora per una conversazione, e il triplo per l\'intera regola. Oltre, i nuovi messaggi aspettano e poi vengono gestiti insieme in un\'unica esecuzione.</string>
+    <string name="rules_limit_info">Numero massimo di esecuzioni all'ora per una conversazione, e il triplo per l'intera regola. Oltre, i nuovi messaggi aspettano e poi vengono gestiti insieme in un'unica esecuzione.</string>
     <string name="rules_tag_limit">%1$d/h</string>
     <string name="rules_tag_no_limit">Illimitato</string>
     <string name="rules_log_busy">Saltato: il telefono è rimasto occupato troppo a lungo.</string>
@@ -1620,7 +1620,7 @@
     <string name="waiting_open_chat">Apri chat</string>
     <string name="waiting_state_wrote_again">%1$s ha scritto di nuovo nel frattempo: questa risposta potrebbe non essere più attuale.</string>
     <string name="waiting_state_answered">Hai già risposto in %1$s.</string>
-    <string name="waiting_state_gone">La notifica non c\'è più: Ski copia la risposta e apre %1$s per incollarla.</string>
+    <string name="waiting_state_gone">La notifica non c'è più: Ski copia la risposta e apre %1$s per incollarla.</string>
     <string name="waiting_sent">Inviato a %1$s</string>
     <string name="waiting_copied">Copiato. Incollalo in %1$s.</string>
     <string name="waiting_note_sent">✓ Inviato da «In attesa di te»: %1$s</string>
@@ -1630,7 +1630,7 @@
     <string name="rules_new">Nuova regola</string>
     <string name="rules_edit">Modifica regola</string>
     <string name="rules_app">Quando arriva una notifica da</string>
-    <string name="rules_pick_app">Scegli un\'app</string>
+    <string name="rules_pick_app">Scegli un'app</string>
     <string name="rules_search_apps">Cerca app</string>
     <string name="rules_from">Da (facoltativo)</string>
     <string name="rules_from_hint">Chiunque o nomi separati da virgole</string>
@@ -1649,18 +1649,18 @@
     <string name="rules_approval_ask">Chiedimi</string>
     <string name="rules_approval_countdown">Timer</string>
     <string name="rules_approval_ask_info">Le schede di approvazione ti aspettano, come in qualsiasi chat.</string>
-    <string name="rules_approval_countdown_info">Allo scadere del timer, la scheda si approva da sola, a meno che tu non la tocchi per fermarla. Vale solo per l\'invio di un messaggio, dopo che una seconda IA l\'ha controllato rispetto alla tua regola. Pagamenti, acquisti, eliminazioni e apertura di link aspettano sempre il tuo OK.</string>
+    <string name="rules_approval_countdown_info">Allo scadere del timer, la scheda si approva da sola, a meno che tu non la tocchi per fermarla. Vale solo per l'invio di un messaggio, dopo che una seconda IA l'ha controllato rispetto alla tua regola. Pagamenti, acquisti, eliminazioni e apertura di link aspettano sempre il tuo OK.</string>
     <string name="rules_checker">Seconda IA: %1$s. Tocca per cambiarla in Autorizzazioni app.</string>
-    <string name="rules_model_default">Modello predefinito dell\'agente</string>
+    <string name="rules_model_default">Modello predefinito dell'agente</string>
     <string name="rules_on">Regola attiva</string>
     <string name="rules_save">Salva</string>
     <string name="rules_delete">Elimina</string>
     <string name="rules_delete_title">Eliminare questa regola?</string>
-    <string name="rules_need_app">Prima scegli un\'app.</string>
+    <string name="rules_need_app">Prima scegli un'app.</string>
     <string name="rules_need_instruction">Scrivi cosa deve fare Ski.</string>
-    <string name="rules_access_title">Consentire l\'accesso alle notifiche?</string>
+    <string name="rules_access_title">Consentire l'accesso alle notifiche?</string>
     <string name="rules_access_what">Ski confronta ogni notifica con le tue regole. Quelle che non corrispondono a nessuna regola vengono ignorate subito: non vengono salvate né inviate da nessuna parte.</string>
-    <string name="rules_access_data">Quando una corrisponde, la sua app, il mittente e il testo vengono inviati all\'agente della regola (Claude Code, Codex o OpenCode) insieme alla tua istruzione.</string>
+    <string name="rules_access_data">Quando una corrisponde, la sua app, il mittente e il testo vengono inviati all'agente della regola (Claude Code, Codex o OpenCode) insieme alla tua istruzione.</string>
     <string name="rules_access_reply">Ski può rispondere tramite il pulsante Rispondi di una notifica. Prima ti chiede conferma, a meno che tu non imposti un timer per la regola.</string>
     <string name="rules_chat_shown">🔔 %1$s · %2$s: %3$s\n⚡ %4$s</string>
     <string name="rules_status_checking">Verifica rispetto alla tua regola…</string>
@@ -1714,7 +1714,7 @@
     <string name="browser_card_dialog">Rispondi OK su %1$s:\n«%2$s»</string>
     <string name="hub_tool_browser_open">Browser: apertura di %1$s</string>
     <string name="hub_tool_browser_read">Browser: lettura della pagina</string>
-    <string name="hub_tool_browser_click">Browser: tocco sull\'elemento %1$d</string>
+    <string name="hub_tool_browser_click">Browser: tocco sull'elemento %1$d</string>
     <string name="hub_tool_browser_type">Browser: digitazione di «%1$s»</string>
     <string name="hub_tool_browser_scroll">Browser: scorrimento</string>
     <string name="hub_tool_browser_screenshot">Browser: osservazione della pagina</string>
@@ -1789,15 +1789,15 @@
     <string name="api_keys_choose_search">Cerca</string>
     <string name="skills_title">Skill</string>
     <string name="skills_row_none">Istruzioni condivise dagli agenti</string>
-    <string name="skills_intro">Le skill sono istruzioni che un agente segue per un tipo di attività: uno stile di scrittura, una checklist, i passaggi in un\'app. Claude Code, Codex e OpenCode ne usano una quando è adatta all\'attività, o quando scrivi / nella casella del messaggio e la scegli. Usano il formato SKILL.md, quindi le skill di Claude o ChatGPT funzionano anche qui.</string>
+    <string name="skills_intro">Le skill sono istruzioni che un agente segue per un tipo di attività: uno stile di scrittura, una checklist, i passaggi in un'app. Claude Code, Codex e OpenCode ne usano una quando è adatta all'attività, o quando scrivi / nella casella del messaggio e la scegli. Usano il formato SKILL.md, quindi le skill di Claude o ChatGPT funzionano anche qui.</string>
     <string name="skills_need_linux">Le skill stanno nel Linux di Ski: prima configura un agente.</string>
     <string name="skills_none">Ancora nessuna skill.</string>
     <string name="skills_import">Importa</string>
     <string name="skills_write">Scrivine una</string>
-    <string name="skills_how">L\'importazione accetta un file .zip o .skill (come Claude esporta le skill) o un SKILL.md. In una chat con gli strumenti Linux puoi anche chiedere all\'agente di scrivere una skill.</string>
+    <string name="skills_how">L'importazione accetta un file .zip o .skill (come Claude esporta le skill) o un SKILL.md. In una chat con gli strumenti Linux puoi anche chiedere all'agente di scrivere una skill.</string>
     <string name="skills_delete">Elimina</string>
     <string name="skills_delete_title">Eliminare /%1$s?</string>
-    <string name="skills_delete_text">Gli agenti non l\'avranno più.</string>
+    <string name="skills_delete_text">Gli agenti non l'avranno più.</string>
     <string name="skills_write_info">La descrizione dice quando usarla: gli agenti la leggono per decidere.</string>
     <string name="skills_name_hint">Nome, es. weekly-report</string>
     <string name="skills_desc_hint">Cosa fa e quando usarla</string>
@@ -1810,7 +1810,7 @@
     <string name="skills_slash_none">Nessuna skill con questo nome. Tocca per aggiungere skill.</string>
     <string name="github_row_none">Lascia che gli agenti facciano push sui tuoi repository</string>
     <string name="github_intro">Accedi a GitHub per gli strumenti Linux: Ski installa git e GitHub CLI nel suo Linux, li collega al tuo account e imposta git con il tuo nome e la tua email noreply privata.</string>
-    <string name="github_risk">Gli agenti nelle chat con gli strumenti Linux potranno clonare, fare commit e push con il tuo account e aprire issue e pull request. Hanno l\'istruzione di chiederti prima di qualsiasi push o pubblicazione.</string>
+    <string name="github_risk">Gli agenti nelle chat con gli strumenti Linux potranno clonare, fare commit e push con il tuo account e aprire issue e pull request. Hanno l'istruzione di chiederti prima di qualsiasi push o pubblicazione.</string>
     <string name="github_sign_in">Accedi con GitHub</string>
     <string name="github_installing">Installazione di git e GitHub CLI…</string>
     <string name="github_finishing">Configurazione di git…</string>
@@ -1821,7 +1821,7 @@
     <string name="github_signed_in">Accesso eseguito come @%1$s</string>
     <string name="github_signed_in_info">Gli agenti nelle chat con gli strumenti Linux possono usare git e gh con questo account.</string>
     <string name="github_sign_out_title">Uscire da GitHub?</string>
-    <string name="github_sign_out_text">git e GitHub CLI nel Linux di Ski perdono l\'accesso al tuo account.</string>
+    <string name="github_sign_out_text">git e GitHub CLI nel Linux di Ski perdono l'accesso al tuo account.</string>
     <string name="backup_title">Backup e trasferimento</string>
     <string name="backup_row">Le tue chat e impostazioni in un solo file</string>
     <string name="backup_intro">Salva chat, impostazioni, regole, immagini, skill, i progetti degli agenti e ciò che conservano di ogni conversazione in un unico file in Downloads/Ski. Ripristinalo qui o su un altro telefono.</string>
@@ -1830,7 +1830,7 @@
     <string name="backup_restore">Ripristina da un backup</string>
     <string name="backup_restore_title">Ripristinare questo backup?</string>
     <string name="backup_restore_text">Le chat e le impostazioni su questo telefono vengono sostituite da quelle del backup. Ski si riavvia alla fine.</string>
-    <string name="backup_making">Backup in corso… (i progetti possono richiedere un po\')</string>
+    <string name="backup_making">Backup in corso… (i progetti possono richiedere un po')</string>
     <string name="backup_restoring">Ripristino…</string>
     <string name="backup_made">Salvato in Downloads/Ski/%1$s.</string>
     <string name="backup_restored">Ripristinato. Ski si riavvia ora.</string>
@@ -1846,7 +1846,7 @@
     <string name="api_keys_need_key">Inserisci la chiave API.</string>
     <string name="api_keys_saving">Verifica della chiave…</string>
     <string name="api_keys_save">Salva</string>
-    <string name="api_keys_addresses_info">Claude Code usa l\'indirizzo stile Anthropic. Codex usa quello stile OpenAI, se il servizio ha la Responses API di OpenAI. OpenCode usa l\'uno o l\'altro. Lascia vuoto un indirizzo se il servizio non ce l\'ha.</string>
+    <string name="api_keys_addresses_info">Claude Code usa l'indirizzo stile Anthropic. Codex usa quello stile OpenAI, se il servizio ha la Responses API di OpenAI. OpenCode usa l'uno o l'altro. Lascia vuoto un indirizzo se il servizio non ce l'ha.</string>
     <string name="api_keys_check">Controlla ora</string>
     <string name="api_keys_check_info">Facoltativo: invia una richiesta di prova molto piccola, che può consumare una minima parte del credito API.</string>
     <string name="api_keys_check_ok">%1$s: funziona.</string>
@@ -1856,7 +1856,7 @@
     <string name="api_keys_service">Servizio</string>
     <string name="api_keys_custom">Personalizzato</string>
     <string name="setup_step_signin_key_mismatch">Le tue chiavi API (%2$s) non funzionano con %1$s. Funzionano con %3$s.</string>
-    <string name="setup_step_signin_free">Niente account? OpenCode ha modelli gratuiti e non richiede l\'accesso.</string>
+    <string name="setup_step_signin_free">Niente account? OpenCode ha modelli gratuiti e non richiede l'accesso.</string>
     <string name="setup_use_agent">Usa %1$s</string>
     <string name="api_keys_openai_hint">Indirizzo stile OpenAI</string>
     <string name="api_keys_anthropic_hint">Indirizzo stile Anthropic</string>
@@ -1864,13 +1864,13 @@
     <string name="api_keys_key_hint">Chiave API</string>
     <string name="api_keys_name_hint">Nome</string>
     <string name="api_keys_own_default">Il suo predefinito</string>
-    <string name="api_keys_defaults_info">Cosa usa una chat quando il suo modello è Predefinito. Il suo predefinito usa il piano dell\'agente.</string>
+    <string name="api_keys_defaults_info">Cosa usa una chat quando il suo modello è Predefinito. Il suo predefinito usa il piano dell'agente.</string>
     <string name="api_keys_defaults">Chat su Predefinito</string>
     <string name="api_keys_for">Per %1$s</string>
     <string name="api_keys_models">%1$s · %2$d modelli</string>
     <string name="api_keys_add">Aggiungi chiave API</string>
     <string name="api_keys_none">Ancora nessuna chiave API.</string>
-    <string name="api_keys_intro">Usa i modelli di altri servizi con Claude Code, Codex e OpenCode, insieme ai tuoi piani o al loro posto. Ogni chat sceglie il modello nel suo menu dei modelli. L\'uso con una chiave è addebitato all\'account di quella chiave. Le chiavi sono salvate cifrate su questo telefono e non arrivano mai agli agenti: Ski le aggiunge a ogni richiesta.</string>
+    <string name="api_keys_intro">Usa i modelli di altri servizi con Claude Code, Codex e OpenCode, insieme ai tuoi piani o al loro posto. Ogni chat sceglie il modello nel suo menu dei modelli. L'uso con una chiave è addebitato all'account di quella chiave. Le chiavi sono salvate cifrate su questo telefono e non arrivano mai agli agenti: Ski le aggiunge a ogni richiesta.</string>
     <string name="api_keys_row_none">I modelli di altri servizi, con la tua chiave</string>
     <string name="api_keys_title">Chiavi API</string>
     <string name="signin_api_keys">Chiavi API</string>

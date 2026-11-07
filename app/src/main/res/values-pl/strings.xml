@@ -485,9 +485,9 @@
     <string name="hub_effort_default">Wysiłek: domyślny</string>
     <string name="hub_stopping">Zatrzymuję…</string>
     <string name="hub_stopped">Zatrzymano.</string>
-    <string name="hub_interrupted">Android zamknął Ski\'ego, gdy agent pracował, więc przerwał.</string>
+    <string name="hub_interrupted">Android zamknął Ski'ego, gdy agent pracował, więc przerwał.</string>
     <string name="hub_resume_message">Kontynuuj od miejsca, w którym przerwałeś</string>
-    <string name="chat_interrupted">Android zamknął Ski\'ego, gdy %1$s nad tym pracował. Kontynuuj sprawdza, co zrobiono, i idzie dalej.</string>
+    <string name="chat_interrupted">Android zamknął Ski'ego, gdy %1$s nad tym pracował. Kontynuuj sprawdza, co zrobiono, i idzie dalej.</string>
     <string name="chat_interrupted_continue">Kontynuuj</string>
     <string name="chat_interrupted_dismiss">Odrzuć</string>
     <string name="hub_agent_stopped">%1$s przerwał pracę.</string>
@@ -859,10 +859,10 @@
     <string name="setup_accent">Kolor akcentu</string>
     <string name="setup_surface">Tło</string>
     <string name="setup_surface_note">Ciepły to oryginalny odcień Ski. Czarny (czysta czerń) działa tylko w trybie ciemnym.</string>
-    <string name="setup_face">Wygląd Ski\'ego</string>
+    <string name="setup_face">Wygląd Ski'ego</string>
     <string name="setup_face_buddy">Oryginalny</string>
     <string name="setup_face_picture">Twój obrazek</string>
-    <string name="setup_face_note">Najlepiej sprawdzi się PNG lub WebP z przezroczystym tłem. Pojawia się na dymku i obok odpowiedzi Ski\'ego.</string>
+    <string name="setup_face_note">Najlepiej sprawdzi się PNG lub WebP z przezroczystym tłem. Pojawia się na dymku i obok odpowiedzi Ski'ego.</string>
     <string name="setup_face_change">Wybierz inny obrazek</string>
     <string name="setup_face_unreadable">Nie udało się odczytać tego obrazka. Spróbuj PNG lub WebP.</string>
     <string name="setup_custom_colour">Własny kolor</string>

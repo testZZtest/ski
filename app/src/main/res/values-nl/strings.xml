@@ -72,11 +72,11 @@
     <string name="onboarding_agent_sign_in_codex">Log in met je ChatGPT-account in de browser en kom daarna terug.</string>
     <string name="onboarding_agent_sign_in_agy">Log in met je Google-account. Je browser wordt geopend; log daar in en Ski pakt de code vanzelf op.</string>
     <string name="onboarding_agent_sign_in_grok">Log in met je Grok-account. Je browser wordt geopend; bevestig daar de code en Ski komt vanzelf terug.</string>
-    <string name="onboarding_agent_download_claude">Downloadt eenmalig ongeveer 235 MB (Ski\'s Linux en Claude Code van Anthropic).</string>
-    <string name="onboarding_agent_download_opencode">Downloadt eenmalig ongeveer 230 MB (Ski\'s Linux, Node.js en OpenCode). Geen account nodig.</string>
-    <string name="onboarding_agent_download_codex">Downloadt eenmalig ongeveer 150 MB (Ski\'s Linux, Node.js en Codex van OpenAI).</string>
-    <string name="onboarding_agent_download_agy">Downloadt eenmalig ongeveer 200 MB (Ski\'s Linux en de Antigravity CLI van Google).</string>
-    <string name="onboarding_agent_download_grok">Downloadt eenmalig ongeveer 170 MB (Ski\'s Linux en Grok Build van xAI).</string>
+    <string name="onboarding_agent_download_claude">Downloadt eenmalig ongeveer 235 MB (Ski's Linux en Claude Code van Anthropic).</string>
+    <string name="onboarding_agent_download_opencode">Downloadt eenmalig ongeveer 230 MB (Ski's Linux, Node.js en OpenCode). Geen account nodig.</string>
+    <string name="onboarding_agent_download_codex">Downloadt eenmalig ongeveer 150 MB (Ski's Linux, Node.js en Codex van OpenAI).</string>
+    <string name="onboarding_agent_download_agy">Downloadt eenmalig ongeveer 200 MB (Ski's Linux en de Antigravity CLI van Google).</string>
+    <string name="onboarding_agent_download_grok">Downloadt eenmalig ongeveer 170 MB (Ski's Linux en Grok Build van xAI).</string>
     <string name="onboarding_sign_in_claude">Inloggen met Claude</string>
     <string name="onboarding_sign_in_chatgpt">Inloggen met ChatGPT</string>
     <string name="onboarding_sign_in_google">Inloggen met Google</string>
@@ -235,7 +235,7 @@
     <string name="bubble_tip_stop_voice">Tip: houd de bubbel ingedrukt om de stem te stoppen</string>
     <string name="bubble_tip_hold_menu">Tip: houd de bubbel ingedrukt om te pauzeren, te stoppen of iets aan te vullen</string>
     <string name="bubble_stopping">Stoppen…</string>
-    <string name="bubble_nothing_running">Er loopt nu niets in Ski\'s chats.</string>
+    <string name="bubble_nothing_running">Er loopt nu niets in Ski's chats.</string>
     <string name="bubble_nothing_running_chat">Er loopt nu niets in deze chat.</string>
     <string name="bubble_allow_mic_tap_mic">Geef Ski toegang tot de microfoon en tik daarna opnieuw op de microfoon.</string>
     <string name="bubble_allow_mic_tap_bubble">Geef Ski toegang tot de microfoon en tik daarna opnieuw op de bubbel.</string>
@@ -325,7 +325,7 @@
 
     <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
     <string name="chat_linux_tools">Linux-tools</string>
-    <string name="chat_linux_tools_info">Opdrachten, bestanden en apps bouwen in Ski\'s Linux</string>
+    <string name="chat_linux_tools_info">Opdrachten, bestanden en apps bouwen in Ski's Linux</string>
     <string name="chat_linux_tools_title">Linux-tools aanzetten?</string>
     <string name="chat_linux_tools_what">De agent kan dan opdrachten uitvoeren, pakketten installeren en bestanden bewerken in ~/.buddy/work, zodat hij apps kan bouwen.</string>
     <string name="chat_linux_tools_when">Alleen in deze chat, vanaf je volgende bericht.</string>
@@ -439,10 +439,10 @@
     <string name="chat_attach">Bijvoegen</string>
     <string name="chat_attach_camera">Foto maken</string>
     <string name="chat_attach_camera_sub">De camera gebruiken</string>
-    <string name="chat_attach_photos">Foto\'s</string>
+    <string name="chat_attach_photos">Foto's</string>
     <string name="chat_attach_photos_sub">Kiezen uit je galerij</string>
     <string name="chat_attach_files">Bestanden</string>
-    <string name="chat_attach_files_sub">PDF\'s, documenten, alles tot 25 MB</string>
+    <string name="chat_attach_files_sub">PDF's, documenten, alles tot 25 MB</string>
     <string name="chat_no_app_for_action">Er is geen app op deze telefoon die dat kan.</string>
     <string name="chat_adding">Toevoegen…</string>
     <plurals name="chat_adding_files">
@@ -632,11 +632,11 @@
     <string name="signin_install_sub_codex">Draait Codex binnen Ski met je ChatGPT-abonnement.</string>
     <string name="signin_install_sub_agy">Draait Googles Antigravity CLI binnen Ski met je Google-account: gratis abonnement, Google AI Pro of Ultra.</string>
     <string name="signin_install_sub_grok">Draait Grok Build van xAI binnen Ski met je Grok-account (inloggen met Google of X kan ook).</string>
-    <string name="signin_install_size_claude">Downloadt eenmalig ongeveer 235 MB: Ski\'s Linux en Claude Code van Anthropic. Gebruik wifi als dat kan.</string>
-    <string name="signin_install_size_opencode">Downloadt eenmalig ongeveer 230 MB: Ski\'s Linux, Node.js en OpenCode. Gebruik wifi als dat kan.</string>
-    <string name="signin_install_size_codex">Downloadt eenmalig ongeveer 150 MB: Ski\'s Linux, Node.js en Codex van OpenAI. Gebruik wifi als dat kan.</string>
-    <string name="signin_install_size_agy">Downloadt eenmalig ongeveer 200 MB: Ski\'s Linux en de Antigravity CLI van Google. Gebruik wifi als dat kan.</string>
-    <string name="signin_install_size_grok">Downloadt eenmalig ongeveer 170 MB: Ski\'s Linux en Grok Build van xAI. Gebruik wifi als dat kan.</string>
+    <string name="signin_install_size_claude">Downloadt eenmalig ongeveer 235 MB: Ski's Linux en Claude Code van Anthropic. Gebruik wifi als dat kan.</string>
+    <string name="signin_install_size_opencode">Downloadt eenmalig ongeveer 230 MB: Ski's Linux, Node.js en OpenCode. Gebruik wifi als dat kan.</string>
+    <string name="signin_install_size_codex">Downloadt eenmalig ongeveer 150 MB: Ski's Linux, Node.js en Codex van OpenAI. Gebruik wifi als dat kan.</string>
+    <string name="signin_install_size_agy">Downloadt eenmalig ongeveer 200 MB: Ski's Linux en de Antigravity CLI van Google. Gebruik wifi als dat kan.</string>
+    <string name="signin_install_size_grok">Downloadt eenmalig ongeveer 170 MB: Ski's Linux en Grok Build van xAI. Gebruik wifi als dat kan.</string>
 
     <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">Installeren</string>
@@ -707,7 +707,7 @@
     <string name="signin_opencode_ready">OpenCode is klaar voor gebruik</string>
     <string name="signin_opencode_free">Gebruikt de gratis modellen van OpenCode. Kies per chat bovenaan een model, of koppel je eigen aanbieder.</string>
     <string name="signin_opencode_connected">Gekoppeld: %1$s. De gratis modellen van OpenCode blijven ook beschikbaar.</string>
-    <string name="signin_opencode_connect_note">Een aanbieder koppelen opent Ski\'s terminal met %1$s: kies een aanbieder en volg de stappen. Voer daar later %2$s uit om er een te verwijderen.</string>
+    <string name="signin_opencode_connect_note">Een aanbieder koppelen opent Ski's terminal met %1$s: kies een aanbieder en volg de stappen. Voer daar later %2$s uit om er een te verwijderen.</string>
     <string name="signin_connect_provider">Aanbieder koppelen</string>
     <string name="signin_version">%1$s %2$s.</string>
     <string name="signin_version_old_opencode">OpenCode %1$s. OpenCode 2 is uit: update om nieuwe versies te blijven krijgen. Je gekoppelde aanbieders blijven behouden.</string>
@@ -725,7 +725,7 @@
     <string name="account_tagline_agy">Gebruikt je Google-account</string>
     <string name="account_tagline_grok">Gebruikt je Grok-account</string>
     <string name="agent_tag_free">gratis · beperkt</string>
-    <string name="account_setting_up_linux">Ski\'s Linux instellen…</string>
+    <string name="account_setting_up_linux">Ski's Linux instellen…</string>
     <string name="account_installing_tools">Tools installeren…</string>
     <string name="account_downloading_claude">Claude Code downloaden (ongeveer 230 MB)…</string>
     <string name="account_downloading">%1$s downloaden…</string>
@@ -784,7 +784,7 @@
     <string name="codex_pair_failed">Kan geen koppelcode ophalen: %1$s</string>
     <string name="codex_keeps_stopping">De Codex-sessie stopt steeds: %1$s</string>
     <string name="ssh_keeps_stopping">De SSH-server stopt steeds: %1$s</string>
-    <string name="ssh_key_added">Klaar. Typ ssh ski om Ski\'s Linux vanuit Termux te openen.</string>
+    <string name="ssh_key_added">Klaar. Typ ssh ski om Ski's Linux vanuit Termux te openen.</string>
     <string name="ssh_code_expired">Deze opdracht is al gebruikt of is ouder dan 10 minuten. Kopieer hem opnieuw in de Instellingen van Ski.</string>
 
     <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
@@ -905,9 +905,9 @@
     <string name="setup_codex_active">actief · “localhost” in ChatGPT</string>
     <string name="setup_codex_pair">Apparaat koppelen</string>
     <string name="setup_ssh">SSH vanuit Termux</string>
-    <string name="setup_ssh_info">Gebruik Ski\'s Linux vanuit Termux, via SSH. Alleen apps op deze telefoon kunnen verbinden, en alleen met een sleutel.</string>
+    <string name="setup_ssh_info">Gebruik Ski's Linux vanuit Termux, via SSH. Alleen apps op deze telefoon kunnen verbinden, en alleen met een sleutel.</string>
     <string name="setup_ssh_active">actief · poort %1$d</string>
-    <string name="setup_ssh_how">Kopieer deze opdracht en voer hem binnen 10 minuten één keer uit in Termux. Typ daarna ssh ski in Termux om Ski\'s Linux te openen.</string>
+    <string name="setup_ssh_how">Kopieer deze opdracht en voer hem binnen 10 minuten één keer uit in Termux. Typ daarna ssh ski in Termux om Ski's Linux te openen.</string>
 
     <!-- Settings screen: chats left over from when Ski ran its agents in Termux. -->
     <string name="setup_old_chats_title">Oude Termux-chats verwijderen</string>
@@ -948,7 +948,7 @@
     <string name="setup_app_permissions_info">Kies per app: met Vrij werkt de agent daar zonder pop-ups; met Streng vraagt Ski het je zelf vóór Verzenden, Betalen, Verwijderen…</string>
     <string name="setup_dev_mode">Linux-tools in nieuwe chats</string>
     <string name="setup_dev_mode_info">Met Linux-tools mag de agent opdrachten uitvoeren, pakketten installeren en bestanden bewerken in ~/.buddy/work, zodat hij apps kan bouwen. Nieuwe chats beginnen met deze instelling; elke chat kan die onder zijn titel wijzigen.</string>
-    <string name="setup_agents_tap">Agents laten tikken op Ski\'s schermen</string>
+    <string name="setup_agents_tap">Agents laten tikken op Ski's schermen</string>
     <string name="setup_agents_tap_info">Om Ski te testen met een agent (bijvoorbeeld Claude Code in Termux met de telefoontools). De bubbel, goedkeuringskaarten, App-rechten en deze schakelaars blijven verboden terrein.</string>
     <string name="setup_dev_mode_warning">Laat dit liever uit en zet Linux-tools alleen aan in de chats die ze nodig hebben. Als ze aanstaan, kan een kwaadwillend bericht of een kwaadwillende webpagina op het scherm proberen de agent te misleiden zodat hij opdrachten uitvoert. Goedkeuringskaarten bewaken nog steeds verzenden, plaatsen, kopen en verwijderen.</string>
 
@@ -978,7 +978,7 @@
     <string name="terminal_session_ended_code">Sessie beëindigd · exitcode %1$d</string>
     <string name="terminal_close">Sluiten</string>
     <string name="terminal_restart">Opnieuw starten</string>
-    <string name="terminal_needs_linux">Installeer eerst Claude Code, Codex, OpenCode, Antigravity of Grok via Instellingen: daarmee wordt Ski\'s Linux ingesteld.</string>
+    <string name="terminal_needs_linux">Installeer eerst Claude Code, Codex, OpenCode, Antigravity of Grok via Instellingen: daarmee wordt Ski's Linux ingesteld.</string>
     <string name="terminal_start_failed">Kan de terminal niet starten: %1$s</string>
     <string name="terminal_close_title">%1$s sluiten?</string>
     <string name="terminal_close_running">Er draait nog iets. Sluiten stopt het, samen met alles wat het heeft gestart.</string>
@@ -1002,7 +1002,7 @@
     <string name="monitor_title">Sessies</string>
     <string name="monitor_subtitle">Alle sessies van Claude Code, Codex, OpenCode, Antigravity en Grok op deze telefoon.</string>
     <string name="monitor_terminal_running">Er draait een shell · tik om terug te gaan</string>
-    <string name="monitor_terminal_idle">Een shell in Ski\'s Linux</string>
+    <string name="monitor_terminal_idle">Een shell in Ski's Linux</string>
     <string name="monitor_running_now">Nu actief</string>
     <string name="monitor_refresh">ververst elke 3 s</string>
     <string name="monitor_checking">Controleren…</string>
@@ -1037,7 +1037,7 @@
     <string name="perms_mode_trust">Vrij</string>
     <string name="perms_mode_hard">Streng</string>
     <string name="perms_mode_smart">Slim</string>
-    <string name="perms_modes_intro">Vrij: de agent werkt hier zelfstandig, zonder om goedkeuring te vragen.\nStreng: je knopregels beslissen. Verzenden, Betalen, Verwijderen… hebben je akkoord nodig op een kaart.\nSlim: eerst de regels, daarna controleert een aparte AI-beoordelaar elke andere tik aan de hand van je verzoek.\nDe agent kan nooit tikken op Ski\'s eigen bubbel, kaarten of instellingen.</string>
+    <string name="perms_modes_intro">Vrij: de agent werkt hier zelfstandig, zonder om goedkeuring te vragen.\nStreng: je knopregels beslissen. Verzenden, Betalen, Verwijderen… hebben je akkoord nodig op een kaart.\nSlim: eerst de regels, daarna controleert een aparte AI-beoordelaar elke andere tik aan de hand van je verzoek.\nDe agent kan nooit tikken op Ski's eigen bubbel, kaarten of instellingen.</string>
     <string name="perms_smart_reviewer">Beoordelaar voor Slim</string>
     <string name="perms_reviewer_same">Als de chat</string>
     <string name="perms_reviewer_sign_in">Log eerst in bij %1$s (Instellingen).</string>
@@ -1098,7 +1098,7 @@
     <string name="reviewer_timed_out">time-out</string>
 
     <!-- Error when a chat can't start because Ski's built-in Linux isn't set up yet. -->
-    <string name="helper_linux_missing">Ski\'s Linux is nog niet geïnstalleerd. Open Instellingen om het in te stellen.</string>
+    <string name="helper_linux_missing">Ski's Linux is nog niet geïnstalleerd. Open Instellingen om het in te stellen.</string>
 
     <!-- Voice input (dictation): "Claude voice" and "ChatGPT voice" are the two voice input options. -->
     <string name="dictation_claude_sign_in">Log via Instellingen in bij Claude Code om Claude-spraak te gebruiken.</string>
@@ -1200,9 +1200,9 @@
     <string name="rules_pick_app">Kies een app</string>
     <string name="rules_search_apps">Apps zoeken</string>
     <string name="rules_from">Van (optioneel)</string>
-    <string name="rules_from_hint">Iedereen, of namen gescheiden door komma\'s</string>
+    <string name="rules_from_hint">Iedereen, of namen gescheiden door komma's</string>
     <string name="rules_words">Bevat (optioneel)</string>
-    <string name="rules_words_hint">Alles, of woorden gescheiden door komma\'s</string>
+    <string name="rules_words_hint">Alles, of woorden gescheiden door komma's</string>
     <string name="rules_instruction">Wat moet Ski doen?</string>
     <string name="rules_instruction_hint">Bijvoorbeeld: Antwoord in mijn stijl. We zijn open van 8 tot 18 uur, op zondag gesloten.</string>
     <string name="rules_example_reply">Voor mij antwoorden</string>
@@ -1240,7 +1240,7 @@
     <!-- Background browser -->
     <string name="browser_section">Achtergrondbrowser</string>
     <string name="browser_switch">Achtergrondbrowser</string>
-    <string name="browser_switch_info">Een browser in Ski waarmee agents webpagina\'s gebruiken zonder je telefoon over te nemen. Je kunt hem in de chat bekijken en gebruiken. De eerste keer downloadt Ski Chromium (ongeveer 300 MB).</string>
+    <string name="browser_switch_info">Een browser in Ski waarmee agents webpagina's gebruiken zonder je telefoon over te nemen. Je kunt hem in de chat bekijken en gebruiken. De eerste keer downloadt Ski Chromium (ongeveer 300 MB).</string>
     <string name="browser_state_installing">Chromium installeren…</string>
     <string name="browser_state_starting">starten…</string>
     <string name="browser_state_running">actief</string>
@@ -1356,7 +1356,7 @@
     <string name="skills_title">Skills</string>
     <string name="skills_row_none">Instructies die de agents delen</string>
     <string name="skills_intro">Skills zijn instructies die een agent volgt voor een soort taak: een schrijfstijl, een checklist, stappen in een app. Claude Code, Codex en OpenCode gebruiken er een als die bij een taak past, of als je / in het berichtveld typt en hem kiest. Ze gebruiken het SKILL.md-formaat, dus skills uit Claude of ChatGPT werken hier ook.</string>
-    <string name="skills_need_linux">Skills staan in Ski\'s Linux: stel eerst een agent in.</string>
+    <string name="skills_need_linux">Skills staan in Ski's Linux: stel eerst een agent in.</string>
     <string name="skills_none">Nog geen skills.</string>
     <string name="skills_import">Importeren</string>
     <string name="skills_write">Zelf schrijven</string>
@@ -1374,7 +1374,7 @@
     <string name="skills_exists">Er is al een skill met de naam %1$s.</string>
     <string name="skills_bad_file">Dat is geen skill: er moet een SKILL.md met een naam in zitten.</string>
     <string name="skills_slash_none">Geen skill met die naam. Tik om skills toe te voegen.</string>
-    <string name="github_row_none">Laat agents naar je repository\'s pushen</string>
+    <string name="github_row_none">Laat agents naar je repository's pushen</string>
     <string name="github_intro">Log in bij GitHub voor de Linux-tools: Ski installeert git en de GitHub CLI in zijn Linux, logt ze in op je account en stelt git in op je naam en je privé-noreply-e-mailadres.</string>
     <string name="github_risk">Agents in chats met Linux-tools kunnen dan met je account clonen, committen en pushen, en issues en pull requests openen. Ze krijgen de opdracht het je eerst te vragen voordat ze iets pushen of plaatsen.</string>
     <string name="github_sign_in">Inloggen met GitHub</string>
@@ -1387,7 +1387,7 @@
     <string name="github_signed_in">Ingelogd als @%1$s</string>
     <string name="github_signed_in_info">Agents in chats met Linux-tools kunnen git en gh met dit account gebruiken.</string>
     <string name="github_sign_out_title">Uitloggen bij GitHub?</string>
-    <string name="github_sign_out_text">git en de GitHub CLI in Ski\'s Linux verliezen toegang tot je account.</string>
+    <string name="github_sign_out_text">git en de GitHub CLI in Ski's Linux verliezen toegang tot je account.</string>
     <string name="backup_title">Back-up en overzetten</string>
     <string name="backup_row">Je chats en instellingen in één bestand</string>
     <string name="backup_intro">Slaat je chats, instellingen, regels, afbeeldingen, skills, de projecten van de agents en wat ze van elk gesprek bewaren op in één bestand in Downloads/Ski. Zet het hier of op een andere telefoon terug.</string>
@@ -1400,7 +1400,7 @@
     <string name="backup_restoring">Terugzetten…</string>
     <string name="backup_made">Opgeslagen in Downloads/Ski/%1$s.</string>
     <string name="backup_restored">Teruggezet. Ski herstart nu.</string>
-    <string name="backup_restored_no_linux">Je chats en instellingen zijn teruggezet. Het Linux-deel (skills, projecten, wat de agents bijhouden) heeft Ski\'s Linux nodig: stel een agent in en zet daarna opnieuw terug. Ski herstart nu.</string>
+    <string name="backup_restored_no_linux">Je chats en instellingen zijn teruggezet. Het Linux-deel (skills, projecten, wat de agents bijhouden) heeft Ski's Linux nodig: stel een agent in en zet daarna opnieuw terug. Ski herstart nu.</string>
     <string name="backup_failed">Dat lukte niet: %1$s</string>
     <string name="backup_not_one">Dat bestand is geen Ski-back-up.</string>
     <string name="chat_incognito">Incognito</string>

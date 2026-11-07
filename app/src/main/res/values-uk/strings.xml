@@ -118,7 +118,7 @@
     <string name="onboarding_stuck_sign_in_a">Claude: на сторінці Claude натисніть «Copy Code» і поверніться в Ski — він сам візьме код із буфера обміну.</string>
     <string name="onboarding_stuck_install_q">Не вдалося встановити?</string>
     <!-- "Install" = the Install button on the agent card (onboarding_install_agent). -->
-    <string name="onboarding_stuck_install_a">Перевірте з\'єднання й знову натисніть «Установити» — установлення продовжиться з місця зупинки.</string>
+    <string name="onboarding_stuck_install_a">Перевірте з'єднання й знову натисніть «Установити» — установлення продовжиться з місця зупинки.</string>
 
     <!-- Guide, step: let Ski run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Нехай працює у фоні</string>
@@ -227,7 +227,7 @@
     <!-- "Settings" = Ski's own Settings tab (its Update notices switch). -->
     <string name="update_muted">Сповіщень про оновлення більше не буде. Їх можна знову ввімкнути на вкладці «Налаштування».</string>
     <string name="update_checking">Перевірка оновлень…</string>
-    <string name="update_check_failed">Не вдалося з\'єднатися з GitHub. Спробуйте пізніше.</string>
+    <string name="update_check_failed">Не вдалося з'єднатися з GitHub. Спробуйте пізніше.</string>
     <!-- %1$s = the installed version number. -->
     <string name="update_up_to_date">У вас найновіша версія Ski (%1$s).</string>
     <!-- Under the sheet title. %1$s = the installed version number. -->
@@ -258,7 +258,7 @@
     <!-- Accent colour names, read aloud by TalkBack for the colour swatches. -->
     <string name="prefs_accent_coral">Корал</string>
     <string name="prefs_accent_ocean">Океан</string>
-    <string name="prefs_accent_mint">М\'ята</string>
+    <string name="prefs_accent_mint">М'ята</string>
     <string name="prefs_accent_violet">Фіалка</string>
     <string name="prefs_accent_rose">Троянда</string>
     <string name="prefs_accent_amber">Бурштин</string>
@@ -1039,8 +1039,8 @@
     <!-- Small grey line under "Default" in the model picker. Lowercase in English.
          %1$s = the model the agent uses by default (e.g. "Opus 5.5"). -->
     <string name="models_default_now">зараз %1$s</string>
-    <string name="models_default_claude">Claude Code вибирає її залежно від вашої підписки; з\'явиться тут після першого повідомлення</string>
-    <string name="models_default_codex">Codex вибирає її сам; з\'явиться тут після наступної відповіді</string>
+    <string name="models_default_claude">Claude Code вибирає її залежно від вашої підписки; з'явиться тут після першого повідомлення</string>
+    <string name="models_default_codex">Codex вибирає її сам; з'явиться тут після наступної відповіді</string>
     <string name="models_default_opencode">Типова модель OpenCode</string>
     <string name="models_default_agy">Типова модель Antigravity</string>
     <string name="models_default_grok">Типова модель Grok</string>
@@ -1163,7 +1163,7 @@
     <string name="setup_face">Вигляд Ski</string>
     <string name="setup_face_buddy">Оригінал</string>
     <string name="setup_face_picture">Своє зображення</string>
-    <string name="setup_face_note">Найкраще підійде PNG або WebP із прозорим фоном. Воно з\'явиться на бульбашці та поруч із відповідями Ski.</string>
+    <string name="setup_face_note">Найкраще підійде PNG або WebP із прозорим фоном. Воно з'явиться на бульбашці та поруч із відповідями Ski.</string>
     <string name="setup_face_change">Вибрати інше зображення</string>
     <string name="setup_face_unreadable">Не вдалося прочитати зображення. Спробуйте PNG або WebP.</string>
     <!-- Read by TalkBack: the swatch that opens the custom colour sheet. -->
@@ -1208,9 +1208,9 @@
     <string name="setup_voice_input">Голосове введення</string>
     <!-- Option next to Claude and ChatGPT: the phone's own speech engine. Keep short. -->
     <string name="setup_voice_phone">Телефон</string>
-    <string name="setup_voice_input_claude">Диктування Claude Code за вашою підпискою Claude: дуже точне. Підтримує англійську, французьку, німецьку, іспанську, італійську, португальську, нідерландську, турецьку, російську, японську та інші мови, але не арабську: для арабської Ski використовує розпізнавання мовлення телефона. Слова з\'являються, коли ви робите паузу.</string>
+    <string name="setup_voice_input_claude">Диктування Claude Code за вашою підпискою Claude: дуже точне. Підтримує англійську, французьку, німецьку, іспанську, італійську, португальську, нідерландську, турецьку, російську, японську та інші мови, але не арабську: для арабської Ski використовує розпізнавання мовлення телефона. Слова з'являються, коли ви робите паузу.</string>
     <string name="setup_voice_input_chatgpt">Голос ChatGPT через Codex за вашою підпискою ChatGPT. Розуміє будь-яку мову, навіть кілька мов в одному реченні. Використовуються лише ваші слова: голосові відповіді ChatGPT вимкнено, і він не може нічого запускати.</string>
-    <string name="setup_voice_input_phone">Розпізнавання мовлення вашого телефона (на більшості телефонів — Google). Текст з\'являється, поки ви говорите; визначає, якою з ваших мов ви говорите.</string>
+    <string name="setup_voice_input_phone">Розпізнавання мовлення вашого телефона (на більшості телефонів — Google). Текст з'являється, поки ви говорите; визначає, якою з ваших мов ви говорите.</string>
     <string name="setup_voice_output">Озвучення</string>
     <string name="setup_voice_output_chatgpt">Відповіді читає природний голос ChatGPT (за вашою підпискою ChatGPT, через Codex). Це зараховується до ліміту голосових функцій ChatGPT; якщо він недоступний, читає голос телефона.</string>
     <string name="setup_voice_output_phone">Голоси синтезу мовлення вашого телефона, мовою відповіді.</string>
@@ -1274,7 +1274,7 @@
     <string name="setup_experience">Взаємодія</string>
     <string name="setup_chat_bubble">Бульбашка чату</string>
     <!-- ✕ is the close target that appears while dragging the bubble. -->
-    <string name="setup_chat_bubble_info">Показується поверх інших додатків. Перетягніть її на ✕, щоб сховати; картки схвалення все одно з\'являтимуться, коли агентові потрібен ваш дозвіл.</string>
+    <string name="setup_chat_bubble_info">Показується поверх інших додатків. Перетягніть її на ✕, щоб сховати; картки схвалення все одно з'являтимуться, коли агентові потрібен ваш дозвіл.</string>
     <!-- Setting: what a tap on the floating bubble does. Title above three short choices. -->
     <string name="setup_tap_action">Натискання бульбашки</string>
     <!-- Choice: a tap opens the floating chat panel. Keep it short (it shares a row with two more). -->
@@ -1486,7 +1486,7 @@
     <!-- Section title: buttons the agent tapped lately, to put them on a list with one tap. -->
     <string name="perms_seen_title">Нещодавно помічені кнопки</string>
     <!-- Shown while no buttons were seen yet. Hard and Smart are approval mode names. -->
-    <string name="perms_seen_empty">Тут з\'являтимуться кнопки, які агент натискає в додатках із режимом «Суворий» або «Розумний».</string>
+    <string name="perms_seen_empty">Тут з'являтимуться кнопки, які агент натискає в додатках із режимом «Суворий» або «Розумний».</string>
 
     <!-- Button rules and modes, as App permissions shows them. -->
     <!-- A button rule that applies in every app, on a chip and in the suggestions. %1$s = the button's label, e.g. Send. -->
@@ -1576,7 +1576,7 @@
     <!-- %1$s = what went wrong: dictation_connection_failed, or an error from ChatGPT (often in English). -->
     <string name="dictation_chatgpt_error">Голос ChatGPT: %1$s</string>
     <!-- After “ChatGPT voice:”, so it starts lowercase. -->
-    <string name="dictation_connection_failed">помилка з\'єднання</string>
+    <string name="dictation_connection_failed">помилка з'єднання</string>
     <!-- How far ChatGPT voice got, in the parentheses of dictation_chatgpt_no_connect, so lowercase. -->
     <string name="dictation_stage_page">запуск сторінки</string>
     <!-- How far ChatGPT voice got (see dictation_stage_page). -->
@@ -1670,9 +1670,9 @@
     <string name="rules_app">Коли надходить сповіщення від</string>
     <string name="rules_pick_app">Виберіть додаток</string>
     <string name="rules_search_apps">Пошук додатків</string>
-    <string name="rules_from">Від кого (необов\'язково)</string>
+    <string name="rules_from">Від кого (необов'язково)</string>
     <string name="rules_from_hint">Будь-хто або імена через кому</string>
-    <string name="rules_words">Містить (необов\'язково)</string>
+    <string name="rules_words">Містить (необов'язково)</string>
     <string name="rules_words_hint">Будь-що або слова через кому</string>
     <string name="rules_instruction">Що має зробити Ski?</string>
     <string name="rules_instruction_hint">Наприклад: Відповідай у моєму стилі. Ми працюємо з 8 до 18, у неділю вихідний.</string>
@@ -1887,7 +1887,7 @@
     <string name="api_keys_save">Зберегти</string>
     <string name="api_keys_addresses_info">Claude Code використовує адресу у стилі Anthropic. Codex — адресу у стилі OpenAI, якщо сервіс має Responses API від OpenAI. OpenCode — будь-яку. Залиште адресу порожньою, якщо в сервісу її немає.</string>
     <string name="api_keys_check">Перевірити зараз</string>
-    <string name="api_keys_check_info">Необов\'язково: надсилає дуже маленький тестовий запит, на який може піти зовсім трохи коштів API.</string>
+    <string name="api_keys_check_info">Необов'язково: надсилає дуже маленький тестовий запит, на який може піти зовсім трохи коштів API.</string>
     <string name="api_keys_check_ok">%1$s: працює.</string>
     <string name="api_keys_check_chat">%1$s: працює з OpenCode, але немає Responses API, тому не з Codex.</string>
     <string name="api_keys_check_none">%1$s: за цією адресою ніхто не відповів. %2$s</string>
