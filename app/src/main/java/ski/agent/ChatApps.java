@@ -260,7 +260,7 @@ final class ChatApps {
     }
 
     /** Opens the app and the contact's chat: null when on screen, otherwise why not. */
-    private String openChat(App app, String pkg, String contact) throws InterruptedException {
+    private String openChat(App app, String pkg, String contact) throws Exception {
         if (!pkg.equals(svc.foregroundPkg())) {
             tools.openApp(pkg);
             for (int i = 0; i < 8 && !pkg.equals(svc.foregroundPkg()); i++) Thread.sleep(250);
