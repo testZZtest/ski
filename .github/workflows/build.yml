@@ -52,6 +52,8 @@ jobs:
       - name: Build release APK (GitHub) and bundle (Google Play)
         env:
           SKI_KEYSTORE_PASSWORD: ${{ secrets.SKI_KEYSTORE_PASSWORD }}
+          SKI_KEY_ALIAS: ${{ secrets.SKI_KEY_ALIAS }}
+          SKI_KEY_PASSWORD: ${{ secrets.SKI_KEY_PASSWORD }}
         run: ./gradlew --no-daemon assembleGithubRelease bundlePlayRelease
 
       - name: Collect APK
