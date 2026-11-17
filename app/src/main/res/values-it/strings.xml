@@ -419,7 +419,7 @@
     <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">La tua risposta…</string>
     <string name="chat_background">Lavora in background</string>
-    <string name="chat_background_info">L'agente usa uno schermo tutto suo e tu continui a usare il telefono. Un passaggio che ha bisogno di te, come un accesso, arriva sul tuo schermo.</string>
+    <string name="chat_background_info">L\'agente usa uno schermo tutto suo e tu continui a usare il telefono. Un passaggio che ha bisogno di te, come un accesso, arriva sul tuo schermo.</string>
 
     <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
          after it. %1$s: the answer, the requested change or what was approved (shortened). -->
@@ -1849,13 +1849,13 @@
     <string name="setup_mirror_china">Cina</string>
     <string name="setup_mirror_russia">Russia</string>
     <string name="setup_mirror_iran">Iran</string>
-    <string name="first_app_question">L'agente sta per agire in %1$s, per cui non hai impostato una modalità. Come deve lavorare lì? (La cambi poi in %2$s.)</string>
+    <string name="first_app_question">L\'agente sta per agire in %1$s, per cui non hai impostato una modalità. Come deve lavorare lì? (La cambi poi in %2$s.)</string>
     <string name="first_app_trust">“%1$s”: agisce da solo, senza chiedere</string>
     <string name="first_app_hard">“%1$s”: chiede prima di ogni azione</string>
     <string name="work_title">Ski sta lavorando</string>
     <string name="hub_agent_switched">Questa chat ora è con %1$s. Riparte da zero: digli cosa stavi facendo o cosa ti serve dopo.</string>
-    <string name="hub_helper_gone">L'assistente di Ski per questa chat è finito senza dire perché. L'esecuzione si è fermata.</string>
-    <string name="hub_helper_killed">Android ha terminato gli assistenti di Ski per liberare memoria. Per eseguirne di più insieme, libera un po' di spazio o chiudi altre app.</string>
+    <string name="hub_helper_gone">L\'assistente di Ski per questa chat è finito senza dire perché. L\'esecuzione si è fermata.</string>
+    <string name="hub_helper_killed">Android ha terminato gli assistenti di Ski per liberare memoria. Per eseguirne di più insieme, libera un po\' di spazio o chiudi altre app.</string>
     <string name="chat_incognito">Incognito</string>
     <string name="chat_incognito_info">Questa chat viene eliminata al riavvio di Ski, insieme a ciò che il suo agente ne ha conservato.</string>
     <string name="api_keys_remove_title">Rimuovere %1$s?</string>

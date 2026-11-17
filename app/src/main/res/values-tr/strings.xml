@@ -1422,8 +1422,8 @@
     <string name="first_app_hard">“%1$s”: her işlemden önce bana sorar</string>
     <string name="work_title">Ski çalışıyor</string>
     <string name="hub_agent_switched">Bu sohbet artık %1$s ile. Yeni başlıyor: ne yaptığınızı ya da bundan sonra neye ihtiyacınız olduğunu söyleyin.</string>
-    <string name="hub_helper_gone">Bu sohbet için Ski'nin yardımcısı neden söylemeden sonlandı. Çalışma durduruldu.</string>
-    <string name="hub_helper_killed">Android, bellek açmak için Ski'nin yardımcılarını sonlandırdı. Aynı anda daha fazlasını çalıştırmak için biraz yer açın ya da diğer uygulamaları kapatın.</string>
+    <string name="hub_helper_gone">Bu sohbet için Ski\'nin yardımcısı neden söylemeden sonlandı. Çalışma durduruldu.</string>
+    <string name="hub_helper_killed">Android, bellek açmak için Ski\'nin yardımcılarını sonlandırdı. Aynı anda daha fazlasını çalıştırmak için biraz yer açın ya da diğer uygulamaları kapatın.</string>
     <string name="chat_incognito">Gizli</string>
     <string name="chat_incognito_info">Bu sohbet, ajanının ondan sakladıklarıyla birlikte Ski yeniden başladığında silinir.</string>
     <string name="api_keys_remove_title">%1$s kaldırılsın mı?</string>
