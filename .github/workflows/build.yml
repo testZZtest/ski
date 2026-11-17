@@ -77,16 +77,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh api "repos/$GITHUB_REPOSITORY/contents/ski.apk?ref=dist" --jq .sha > /tmp/sha.txt 2>/dev/null; then
-            SHA=$(cat /tmp/sha.txt)
-            gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ski.apk" \
-              -f message="ski.apk from $GITHUB_SHA" -f sha="$SHA" \
-              -f content="$(base64 -w0 dist/ski.apk)" -f branch=dist --jq .commit.sha
+          # the payload goes in a file: the base64 APK (~4 MB) is too long for an argument list
+          EXISTING=$(gh api "repos/$GITHUB_REPOSITORY/contents/ski.apk?ref=dist" --jq .sha 2>/dev/null || true)
+          B64=$(base64 -w0 dist/ski.apk)
+          if [ -n "$EXISTING" ]; then
+            printf '{"message":"ski.apk from %s","sha":"%s","content":"%s","branch":"dist"}' \
+              "$GITHUB_SHA" "$EXISTING" "$B64" > /tmp/payload.json
           else
-            gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ski.apk" \
-              -f message="ski.apk from $GITHUB_SHA" \
-              -f content="$(base64 -w0 dist/ski.apk)" -f branch=dist --jq .commit.sha
+            printf '{"message":"ski.apk from %s","content":"%s","branch":"dist"}' \
+              "$GITHUB_SHA" "$B64" > /tmp/payload.json
           fi
+          gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ski.apk" --input /tmp/payload.json --jq .commit.sha
           echo "APK published: https://github.com/$GITHUB_REPOSITORY/raw/dist/ski.apk" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload APK artifact (kept 30 days)
