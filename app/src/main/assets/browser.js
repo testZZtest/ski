@@ -1,13 +1,13 @@
 // Ski's background browser: run in the page by Browser.java (Runtime.evaluate, in an isolated world the page's own
 // scripts can't reach) for the agents' browser tools.
 // It reads the whole page as text with numbered items ([12]), and finds an item again by its number. The numbers
-// are kept on the elements (data-buddy-ref), so they stay valid until the page changes.
+// are kept on the elements (data-ski-ref), so they stay valid until the page changes.
 (function () {
-  if (window.__buddy) return;
-  var B = window.__buddy = {seq: 0};
+  if (window.__ski) return;
+  var B = window.__ski = {seq: 0};
   // a new world on a page Ski already numbered: go on from its numbers, so none is given twice
-  document.querySelectorAll('[data-buddy-ref]').forEach(function (el) {
-    B.seq = Math.max(B.seq, +el.getAttribute('data-buddy-ref') || 0);
+  document.querySelectorAll('[data-ski-ref]').forEach(function (el) {
+    B.seq = Math.max(B.seq, +el.getAttribute('data-ski-ref') || 0);
   });
   var SKIP = {SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEMPLATE: 1, HEAD: 1, META: 1, LINK: 1, SVG: 1, CANVAS: 1};
   var BLOCK = /^(block|flex|grid|list-item|table|table-row|table-caption|flow-root)$/;
@@ -111,17 +111,17 @@
   }
 
   function refOf(el) {
-    var r = el.getAttribute('data-buddy-ref');
+    var r = el.getAttribute('data-ski-ref');
     if (!r) {
       r = String(++B.seq);
-      el.setAttribute('data-buddy-ref', r);
+      el.setAttribute('data-ski-ref', r);
     }
     return r;
   }
 
   // read() numbers items inside shadow roots too (web components, e.g. Reddit's forms): look there as well
   B.find = function (ref) {
-    var sel = '[data-buddy-ref="' + String(ref).replace(/[^0-9]/g, '') + '"]';
+    var sel = '[data-ski-ref="' + String(ref).replace(/[^0-9]/g, '') + '"]';
     return (function deep(root) {
       var el = root.querySelector(sel);
       if (el) return el;
@@ -344,12 +344,12 @@
       var all = root.querySelectorAll('*');
       for (var i = 0; i < all.length && found.length < 2; i++) {
         var e = all[i];
-        if (!e.hasAttribute('data-buddy-ref') && role(e) === r && label(e) === l && shown(e) && e.getClientRects().length) found.push(e);
+        if (!e.hasAttribute('data-ski-ref') && role(e) === r && label(e) === l && shown(e) && e.getClientRects().length) found.push(e);
         if (e.shadowRoot) deep(e.shadowRoot);
       }
     })(document);
     if (found.length !== 1) return false;
-    found[0].setAttribute('data-buddy-ref', String(ref));
+    found[0].setAttribute('data-ski-ref', String(ref));
     return true;
   };
 

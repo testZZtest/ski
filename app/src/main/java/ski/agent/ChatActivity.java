@@ -1515,7 +1515,7 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
             return;
         }
         show(m.kind, m.text);
-        if (m.kind == Bubble.Kind.BUDDY) { // pictures the reply names (see ChatHub.pictures), under it
+        if (m.kind == Bubble.Kind.SKI) { // pictures the reply names (see ChatHub.pictures), under it
             for (String id : m.files) {
                 LinearLayout.LayoutParams fp = wrap();
                 fp.setMarginStart(dp(this, 32));
@@ -1744,7 +1744,7 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
                 v = tv;
                 break;
             }
-            case BUDDY: {
+            case SKI: {
                 LinearLayout r = row(this);
                 r.setGravity(Gravity.BOTTOM);
                 FrameLayout av = new FrameLayout(this);

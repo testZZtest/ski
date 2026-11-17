@@ -322,7 +322,7 @@
     <string name="chat_linux_tools">Linux ツール</string>
     <string name="chat_linux_tools_info">Ski の Linux でのコマンド実行、ファイル編集、アプリのビルド</string>
     <string name="chat_linux_tools_title">Linux ツールをオンにしますか？</string>
-    <string name="chat_linux_tools_what">エージェントがコマンドの実行、パッケージのインストール、~/.buddy/work 内のファイル編集を行えるようになり、アプリのビルドもできます。</string>
+    <string name="chat_linux_tools_what">エージェントがコマンドの実行、パッケージのインストール、~/.ski/work 内のファイル編集を行えるようになり、アプリのビルドもできます。</string>
     <string name="chat_linux_tools_when">このチャットのみで、次のメッセージから有効になります。</string>
     <string name="chat_linux_tools_risk">画面上の悪意のあるメッセージやウェブページが、エージェントをだましてコマンドを実行させようとするおそれがあります。送信、投稿、購入、削除は引き続き承認カードで保護されます。</string>
     <string name="chat_linux_tools_turn_on">オンにする</string>
@@ -829,7 +829,7 @@
     <string name="setup_surface">背景</string>
     <string name="setup_surface_note">「ウォーム」は Ski 本来のトーンです。「ブラック」（完全な黒）はダークモードでのみ適用されます。</string>
     <string name="setup_face">Ski の見た目</string>
-    <string name="setup_face_buddy">オリジナル</string>
+    <string name="setup_face_ski">オリジナル</string>
     <string name="setup_face_picture">自分の画像</string>
     <string name="setup_face_note">背景が透明な PNG か WebP がおすすめです。バブルと Ski の返信の横に表示されます。</string>
     <string name="setup_face_change">別の画像を選ぶ</string>
@@ -935,7 +935,7 @@
     <string name="setup_app_permissions">アプリの権限</string>
     <string name="setup_app_permissions_info">アプリごとに選べます。「信頼」ではエージェントがポップアップなしで操作し、「厳格」では送信、支払い、削除などの前に Ski 自身が確認します。</string>
     <string name="setup_dev_mode">新しいチャットの Linux ツール</string>
-    <string name="setup_dev_mode_info">Linux ツールを使うと、エージェントがコマンドの実行、パッケージのインストール、~/.buddy/work 内のファイル編集を行えるため、アプリのビルドもできます。新しいチャットはこの設定で始まり、各チャットのタイトルの下で変更できます。</string>
+    <string name="setup_dev_mode_info">Linux ツールを使うと、エージェントがコマンドの実行、パッケージのインストール、~/.ski/work 内のファイル編集を行えるため、アプリのビルドもできます。新しいチャットはこの設定で始まり、各チャットのタイトルの下で変更できます。</string>
     <string name="setup_agents_tap">エージェントによる Ski の画面操作を許可</string>
     <string name="setup_agents_tap_info">エージェントを使って Ski をテストするための設定です（例：スマートフォンツールを使う Termux の Claude Code）。バブル、承認カード、「アプリの権限」、これらのスイッチは引き続き操作できません。</string>
     <string name="setup_dev_mode_warning">普段はオフにして、必要なチャットでだけ Linux ツールをオンにしてください。オンのときは、画面上の悪意のあるメッセージやウェブページが、エージェントをだましてコマンドを実行させようとするおそれがあります。送信、投稿、購入、削除は引き続き承認カードで保護されます。</string>

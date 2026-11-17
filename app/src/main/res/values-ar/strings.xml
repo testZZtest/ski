@@ -340,7 +340,7 @@
     <string name="chat_linux_tools">أدوات Linux</string>
     <string name="chat_linux_tools_info">الأوامر والملفات وإنشاء التطبيقات في نظام Linux في Ski</string>
     <string name="chat_linux_tools_title">هل تريد تفعيل أدوات Linux؟</string>
-    <string name="chat_linux_tools_what">سيتمكن الوكيل حينها من تنفيذ الأوامر وتثبيت الحزم وتعديل الملفات في &#x200E;~/.buddy/work، وبالتالي إنشاء التطبيقات.</string>
+    <string name="chat_linux_tools_what">سيتمكن الوكيل حينها من تنفيذ الأوامر وتثبيت الحزم وتعديل الملفات في &#x200E;~/.ski/work، وبالتالي إنشاء التطبيقات.</string>
     <string name="chat_linux_tools_when">في هذه المحادثة فقط، بدءًا من رسالتك التالية.</string>
     <string name="chat_linux_tools_risk">قد تحاول رسالة أو صفحة ويب ضارة على الشاشة خداع الوكيل لتنفيذ أوامر. وتظل بطاقات الموافقة تحمي عمليات الإرسال والنشر والشراء والحذف.</string>
     <string name="chat_linux_tools_turn_on">تفعيل</string>
@@ -870,7 +870,7 @@
     <string name="setup_surface">الخلفية</string>
     <string name="setup_surface_note">«دافئ» هو اللون الأصلي لـ Ski. ويُطبَّق «أسود» (أسود حقيقي) في الوضع الداكن فقط.</string>
     <string name="setup_face">مظهر Ski</string>
-    <string name="setup_face_buddy">الأصلي</string>
+    <string name="setup_face_ski">الأصلي</string>
     <string name="setup_face_picture">صورتك</string>
     <string name="setup_face_note">يفضَّل ملف PNG أو WebP بخلفية شفافة. تظهر الصورة على الفقاعة وبجانب ردود Ski.</string>
     <string name="setup_face_change">اختر صورة أخرى</string>
@@ -985,7 +985,7 @@
     <string name="setup_app_permissions">أذونات التطبيقات</string>
     <string name="setup_app_permissions_info">اختر لكل تطبيق: «موثوق» يتيح للوكيل العمل فيه دون نوافذ منبثقة، و«صارم» يعني أن Ski نفسه يسألك قبل «إرسال» و«دفع» و«حذف»…</string>
     <string name="setup_dev_mode">أدوات Linux في المحادثات الجديدة</string>
-    <string name="setup_dev_mode_info">تتيح أدوات Linux للوكيل تنفيذ الأوامر وتثبيت الحزم وتعديل الملفات في &#x200E;~/.buddy/work، ليتمكن من إنشاء التطبيقات. تبدأ المحادثات الجديدة بهذا الإعداد، ويمكن تغييره لكل محادثة أسفل عنوانها.</string>
+    <string name="setup_dev_mode_info">تتيح أدوات Linux للوكيل تنفيذ الأوامر وتثبيت الحزم وتعديل الملفات في &#x200E;~/.ski/work، ليتمكن من إنشاء التطبيقات. تبدأ المحادثات الجديدة بهذا الإعداد، ويمكن تغييره لكل محادثة أسفل عنوانها.</string>
     <string name="setup_agents_tap">السماح للوكلاء بالنقر على شاشات Ski</string>
     <string name="setup_agents_tap_info">لاختبار Ski باستخدام وكيل (مثل Claude Code في Termux مع أدوات الهاتف). تظل الفقاعة وبطاقات الموافقة و«أذونات التطبيقات» وهذه المفاتيح خارج نطاق الوصول.</string>
     <string name="setup_dev_mode_warning">الأفضل إبقاؤه متوقفًا وتفعيل أدوات Linux في المحادثات التي تحتاجها فقط. عند تفعيلها، قد تحاول رسالة أو صفحة ويب ضارة على الشاشة خداع الوكيل لتنفيذ أوامر. وتظل بطاقات الموافقة تحمي عمليات الإرسال والنشر والشراء والحذف.</string>

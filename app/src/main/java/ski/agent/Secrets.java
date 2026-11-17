@@ -17,7 +17,7 @@ import javax.crypto.spec.GCMParameterSpec;
  * Ski's storage alone doesn't reveal them. They stay out of Ski's Linux, where any agent could read a file.
  */
 final class Secrets {
-    private static final String ALIAS = "buddy_secrets";
+    private static final String ALIAS = "ski_secrets";
 
     private Secrets() {
     }

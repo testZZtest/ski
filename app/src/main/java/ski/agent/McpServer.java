@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
  */
 final class McpServer {
     static final int PORT = 8765;
-    private static final String TAG = "BuddyMcp";
+    private static final String TAG = "SkiMcp";
     private static final String DEFAULT_PROTOCOL = "2025-06-18";
     /** What a client shows its model ahead of the tools: how to work with them, and the rules Ski enforces anyway. */
     static final String INSTRUCTIONS = "Tools to see and operate this Android phone, through the Ski app. "
@@ -67,7 +67,7 @@ final class McpServer {
 
     void start() {
         running = true;
-        Thread t = new Thread(this::acceptLoop, "buddy-mcp");
+        Thread t = new Thread(this::acceptLoop, "ski-mcp");
         t.setDaemon(true);
         t.start();
     }
@@ -245,7 +245,7 @@ final class McpServer {
                     JSONObject result = new JSONObject()
                             .put("protocolVersion", params.optString("protocolVersion", DEFAULT_PROTOCOL))
                             .put("capabilities", new JSONObject().put("tools", new JSONObject()))
-                            .put("serverInfo", new JSONObject().put("name", "buddy-phone").put("version", BuildInfo.VERSION))
+                            .put("serverInfo", new JSONObject().put("name", "ski-phone").put("version", BuildInfo.VERSION))
                             .put("instructions", INSTRUCTIONS);
                     return res.put("result", result);
                 }

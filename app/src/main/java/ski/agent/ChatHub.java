@@ -31,7 +31,7 @@ final class ChatHub {
     private final List<Listener> listeners = new ArrayList<>();
     private final List<Sessions.Session> viewing = new ArrayList<>();
     private String flash;
-    /** Receives buddy_procs / buddy_recent / buddy_transcript replies for the monitor screens. */
+    /** Receives ski_procs / ski_recent / ski_transcript replies for the monitor screens. */
     interface MonitorListener {
         void onMonitor(JSONObject ev);
     }
@@ -245,9 +245,9 @@ final class ChatHub {
         return modelUsage.optLong("inputTokens") + modelUsage.optLong("cacheReadInputTokens");
     }
 
-    /** The end of what the agent wrote to stderr this run (buddy-run keeps it), or "": a hung agent often says why there. */
+    /** The end of what the agent wrote to stderr this run (ski-run keeps it), or "": a hung agent often says why there. */
     private String lastError(Sessions.Session ses) {
-        java.io.File f = new java.io.File(Linux.root(app), "root/.buddy/sessions/" + ses.id + "/last-error.log");
+        java.io.File f = new java.io.File(Linux.root(app), "root/.ski/sessions/" + ses.id + "/last-error.log");
         try (java.io.RandomAccessFile r = new java.io.RandomAccessFile(f, "r")) {
             long n = Math.min(r.length(), 300);
             byte[] b = new byte[(int) n];
@@ -350,7 +350,7 @@ final class ChatHub {
         if (svc != null) svc.stopPaused();
         try {
             Helper.run(app, "stop", ses.id);
-            // set now: the run's own buddy_done can arrive before buddy_stopped, and must not send the notes
+            // set now: the run's own ski_done can arrive before ski_stopped, and must not send the notes
             ses.outcome = "stopped";
             ses.status = app.getString(R.string.hub_stopping);
         } catch (Exception e) {
@@ -370,14 +370,14 @@ final class ChatHub {
     }
 
     void onEvent(JSONObject ev) {
-        Sessions.Session ses = sessions.find(ev.optString("buddy_session", null));
+        Sessions.Session ses = sessions.find(ev.optString("ski_session", null));
         if (ses == null) return; // unknown chat (deleted, or started outside Ski)
         ses.lastEventAt = SystemClock.elapsedRealtime();
         String type = ev.optString("type");
         if (!ses.running && (("system".equals(type) && !"model".equals(ev.optString("subtype"))) || "assistant".equals(type))) startRun(ses);
         switch (type) {
             case "system":
-                if ("model".equals(ev.optString("subtype"))) { // Codex, after its turn (see buddy-run)
+                if ("model".equals(ev.optString("subtype"))) { // Codex, after its turn (see ski-run)
                     String m = ev.optString("model", "");
                     if (!m.isEmpty() && !m.equals(ses.actualModel)) {
                         ses.actualModel = m;
@@ -424,7 +424,7 @@ final class ChatHub {
                             t = t.replace(QUIET, "").trim();
                         }
                         if (!t.isEmpty()) {
-                            add(ses, Bubble.Kind.BUDDY, t, pictures(t));
+                            add(ses, Bubble.Kind.SKI, t, pictures(t));
                             ses.lastReply = t;
                             ses.gotText = true;
                             CodexLive.agentSaid(ses, t); // a live voice call in this chat tells the user
@@ -466,24 +466,24 @@ final class ChatHub {
                     ses.quietSaid = true;
                     r = r.replace(QUIET, "").trim();
                     if (!ses.gotText && !r.isEmpty()) {
-                        add(ses, Bubble.Kind.BUDDY, r, pictures(r));
+                        add(ses, Bubble.Kind.SKI, r, pictures(r));
                         ses.lastReply = r;
                     }
                 } else if (!ses.gotText && !r.isEmpty()) {
-                    add(ses, Bubble.Kind.BUDDY, r, pictures(r));
+                    add(ses, Bubble.Kind.SKI, r, pictures(r));
                     ses.lastReply = r;
                     CodexLive.agentSaid(ses, r);
                 }
                 break;
             }
-            case "buddy_error": {
+            case "ski_error": {
                 if (ses.outcome == null) ses.outcome = "failed";
                 String text = ev.optString("text", app.getString(R.string.hub_something_wrong));
                 add(ses, Bubble.Kind.ERROR, text);
                 CodexLive.agentSaid(ses, text);
                 break;
             }
-            case "buddy_stopped":
+            case "ski_stopped":
                 ses.outcome = "stopped";
                 add(ses, Bubble.Kind.STEP, app.getString(R.string.hub_stopped));
                 break;
@@ -492,15 +492,15 @@ final class ChatHub {
                 if (warning != null) add(ses, Bubble.Kind.STEP, warning);
                 break;
             }
-            case "buddy_context": // Codex, after its turn (see buddy-run): how full the context is, and its size
+            case "ski_context": // Codex, after its turn (see ski-run): how full the context is, and its size
                 if (ev.optLong("used") > 0) ses.ctxUsed = ev.optLong("used");
                 if (ev.optLong("window") > 0) ses.ctxWindow = ev.optLong("window");
                 sessions.save();
                 break;
-            case "buddy_step": // a line from the helper under the steps (Antigravity: a refused step)
+            case "ski_step": // a line from the helper under the steps (Antigravity: a refused step)
                 add(ses, Bubble.Kind.STEP, ev.optString("text"));
                 break;
-            case "buddy_done":
+            case "ski_done":
                 if (ses.running) {
                     ses.running = false;
                     ses.status = "";
@@ -551,7 +551,7 @@ final class ChatHub {
         String request = "", note = "";
         for (int i = latest.messages.size() - 1; i >= 0; i--) {
             Sessions.Msg m = latest.messages.get(i);
-            if (note.isEmpty() && (m.kind == Bubble.Kind.BUDDY || m.kind == Bubble.Kind.STEP)) note = m.text;
+            if (note.isEmpty() && (m.kind == Bubble.Kind.SKI || m.kind == Bubble.Kind.STEP)) note = m.text;
             if (m.kind == Bubble.Kind.USER) {
                 request = m.text;
                 break;
@@ -720,14 +720,14 @@ final class ChatHub {
     private void add(Sessions.Session ses, Bubble.Kind kind, String text, List<String> files) {
         if (text == null) return;
         sessions.add(ses, kind, text, files);
-        if (kind == Bubble.Kind.BUDDY && !viewing.contains(ses)) ses.unread = true;
+        if (kind == Bubble.Kind.SKI && !viewing.contains(ses)) ses.unread = true;
         // not during a live voice call: the voice tells the user itself
-        if (kind == Bubble.Kind.BUDDY && Prefs.speakReplies(app) && !CodexLive.on()) Voice.speak(app, text);
+        if (kind == Bubble.Kind.SKI && Prefs.speakReplies(app) && !CodexLive.on()) Voice.speak(app, text);
         Sessions.Msg m = ses.messages.get(ses.messages.size() - 1);
         for (Listener l : new ArrayList<>(listeners)) l.onMessage(ses, m);
     }
 
-    /** A picture's path in Ski's Linux, as agents write it: /root/.buddy/work/chart.png, ~/out/photo.jpg. */
+    /** A picture's path in Ski's Linux, as agents write it: /root/.ski/work/chart.png, ~/out/photo.jpg. */
     private static final java.util.regex.Pattern PICTURE = java.util.regex.Pattern.compile(
             "(?<![\\w/.~-])(~|/(?:root|tmp|home|srv|opt|var|mnt|media))(/[^\\s`'\"()\\[\\]<>|*]+?\\.(?i:png|jpe?g|webp|gif))(?![\\w/])");
 
@@ -850,7 +850,7 @@ final class ChatHub {
                 return labels.length() > 0 ? SkiApp.str(R.string.hub_tool_point_out, clip(labels.toString(), 60))
                         : SkiApp.str(R.string.hub_tool_point_out_any);
             }
-            case "update_buddy": return SkiApp.str(in.optBoolean("install") ? R.string.hub_tool_update_download : R.string.hub_tool_update_check);
+            case "update_ski": return SkiApp.str(in.optBoolean("install") ? R.string.hub_tool_update_download : R.string.hub_tool_update_check);
             case "notify": return in.optString("text");
             case "schedule_message": return SkiApp.str(R.string.hub_tool_schedule_message, clip(in.optString("message"), 40));
             case "list_scheduled": return SkiApp.str(R.string.hub_tool_list_scheduled);

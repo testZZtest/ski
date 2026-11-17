@@ -472,7 +472,7 @@ final class Guard {
     }
 
     /** Is this Ski's own UI (its screens, the bubble, its approval card)? */
-    static boolean isBuddy(AccessibilityNodeInfo n) {
+    static boolean isSki(AccessibilityNodeInfo n) {
         return n != null && n.getPackageName() != null
                 && BuildInfo.class.getPackage().getName().contentEquals(n.getPackageName());
     }
@@ -483,8 +483,8 @@ final class Guard {
      * switches) stay off-limits. The bubble and its card are overlays that taps never land on (see nodeAt).
      */
     static boolean offLimits(android.content.Context c, AccessibilityNodeInfo n) {
-        if (!isBuddy(n)) return false;
-        if (!Prefs.agentsTapBuddy(c)) return true;
+        if (!isSki(n)) return false;
+        if (!Prefs.agentsTapSki(c)) return true;
         AccessibilityNodeInfo cur = n;
         for (int i = 0; cur != null && i < 60; i++) {
             if (cur.getExtras().getBoolean(Ui.PROTECTED, false)) return true;

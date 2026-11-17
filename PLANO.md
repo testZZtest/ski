@@ -19,7 +19,7 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 - `Tools.java` (~2350 linhas) — Registro de schemas (`list()`) e despacho de execução (`call0()`) de todas as ferramentas de automação Android, sistema, memória, navegador e chat.
 - `PhoneTools.java` — Implementação das ferramentas do sistema: clipboard, alarme, timer, compartilhamento, downloads, status do dispositivo, câmera, notificações, mídia e calendário.
 - `ChatApps.java` (Fase D) — Suporte a 8 aplicativos de mensagem (Telegram, WhatsApp, Discord, Slack, Weixin, Lark, QQ, Zulip) com automação via acessibilidade (`chat_send`, `chat_read`).
-- `Memory.java` — Sistema de memória persistente em vault local (`~/.buddy/memory/`), com suporte a busca por tag, id e resumo.
+- `Memory.java` — Sistema de memória persistente em vault local (`~/.ski/memory/`), com suporte a busca por tag, id e resumo.
 - `Browser.java` / `BrowserTools.java` — Navegador headless em segundo plano para automação web silenciosa.
 - `Linux.java` — Ambiente Alpine Linux embarcado via `proot` dentro da pasta interna do app (`c.getFilesDir()/linux/alpine`).
 - `Shizuku.java` (Fase J) — Integração com o Shizuku (`moe.shizuku.privileged.API`) para comandos de shell com permissões elevadas sem root.
@@ -35,7 +35,7 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 
 - **Interface & Acessibilidade:** `read_screen`, `tap`, `long_press`, `type_text`, `scroll`, `swipe`, `press`, `open_app`, `list_apps`, `open_url`, `screenshot`, `read_screen_with_numbers`, `tap_by_number`, `find_and_tap` (texto/descrição/view id, com scroll), `ocr_screen`.
 - **Controle & Fluxo:** `wait`, `wait_for`, `do_steps`, `collect`, `find`, `confirm`, `ask`, `point_out`, `notify`, `reply_notification`.
-- **Agendamento & Instalação:** `schedule_message`, `list_scheduled`, `cancel_scheduled`, `install_apk`, `update_buddy`, `wait_for_install`.
+- **Agendamento & Instalação:** `schedule_message`, `list_scheduled`, `cancel_scheduled`, `install_apk`, `update_ski`, `wait_for_install`.
 - **Utilitários do Dispositivo:** `clipboard_read`, `clipboard_write`, `set_alarm`, `set_timer`, `share`, `save_to_downloads`, `device_status`, `take_photo`, `location`, `notifications`, `media`, `calendar_events`, `add_calendar_event`.
 - **Web & Tradução:** `web_search`, `web_fetch`, `translate`.
 - **Permissões Elevadas (Shizuku):** `shizuku_bind`, `shizuku_run`, `shizuku_status`, `shizuku_check_permission`.

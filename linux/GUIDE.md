@@ -28,7 +28,7 @@ The short version is in the [README](../README.md). This page has the details.
 **Automatic updates with [Obtainium](https://obtainium.imranr.dev)** (free, open source; it checks GitHub for you and installs new versions):
 1. Install Obtainium (from its website, F-Droid or IzzyOnDroid).
 2. In Obtainium, tap **Add App** and paste `https://github.com/testZZtest/ski`, then **Add**.
-3. Each release has two identical APKs (`ski.apk` and `buddy-vX.Y.Z.apk`). If Obtainium asks which one, pick `ski.apk`. To never be asked, set **Filter APKs by regular expression** to `^buddy\.apk$` in the app's settings in Obtainium.
+3. Each release has two identical APKs (`ski.apk` and `ski-vX.Y.Z.apk`). If Obtainium asks which one, pick `ski.apk`. To never be asked, set **Filter APKs by regular expression** to `^ski\.apk$` in the app's settings in Obtainium.
 4. Obtainium now notifies you when a new version is out; tap **Update** and confirm Android's installer (the first time, allow Obtainium to install apps).
 
 **By hand:** open the [latest `ski.apk`](https://github.com/testZZtest/ski/releases/latest/download/ski.apk) on the phone and install it over the current one. To get an email for each new version, sign in to GitHub and choose **Watch → Custom → Releases** on the repository.
@@ -124,7 +124,7 @@ Turn on **Settings → Background browser**: the first time, Ski downloads Chrom
 
 ## Linux tools: building apps
 
-Each chat has its own **Linux tools**, off by default. With them on, the chat's agent may run commands in Ski's Linux (including installing packages with `apk`) and create or edit files in `~/.buddy/work`. Turn them on with the **Linux tools** chip under the chat's title (a sheet says what that allows first) or with the switch in **New chat**; the chat's next message gets them, and turning them off again is one tap. Settings → Experience → **Linux tools in new chats** sets what new chats start with; it also decides whether your own sessions outside Ski's chats may install apps. With the bundled **android-app** skill (plus `AGENTS.md` for Codex) you can ask *"make me a calculator app"*: it sets up a toolchain the first time (OpenJDK, aapt2, d8, apksigner; about 400 MB), writes plain Java, builds a signed APK on the phone without Gradle, and opens Android's installer for you to confirm. The first time, Android asks you to allow Ski to install apps. Installing is in the GitHub version only: Google Play doesn't allow it, so the Play version builds the APK but can't install it.
+Each chat has its own **Linux tools**, off by default. With them on, the chat's agent may run commands in Ski's Linux (including installing packages with `apk`) and create or edit files in `~/.ski/work`. Turn them on with the **Linux tools** chip under the chat's title (a sheet says what that allows first) or with the switch in **New chat**; the chat's next message gets them, and turning them off again is one tap. Settings → Experience → **Linux tools in new chats** sets what new chats start with; it also decides whether your own sessions outside Ski's chats may install apps. With the bundled **android-app** skill (plus `AGENTS.md` for Codex) you can ask *"make me a calculator app"*: it sets up a toolchain the first time (OpenJDK, aapt2, d8, apksigner; about 400 MB), writes plain Java, builds a signed APK on the phone without Gradle, and opens Android's installer for you to confirm. The first time, Android asks you to allow Ski to install apps. Installing is in the GitHub version only: Google Play doesn't allow it, so the Play version builds the APK but can't install it.
 
 Turn them on only in the chats that need them: with Linux tools on, text on screen that tries to trick the agent could lead to commands being run.
 
@@ -151,15 +151,15 @@ The agent can never tap or type in Ski's own bubble, cards or settings, so it ca
 ## How it works
 
 ```
-Ski app / bubble ──► Ski's Linux (Alpine via proot): buddy-run ──► claude -p, codex exec, opencode run, agy -p or grok -p
+Ski app / bubble ──► Ski's Linux (Alpine via proot): ski-run ──► claude -p, codex exec, opencode run, agy -p or grok -p
         ▲                                                                  │
         └────────────── streamed replies (POST /event) ◄───────────────────┤
                                                                            ▼
 Ski accessibility service ◄──── MCP over http://127.0.0.1:8765/mcp (phone tools)
 ```
 
-- The **accessibility service** draws the bubble and runs a small local **MCP server** with the phone tools: `read_screen`, `tap`, `long_press`, `type_text`, `scroll`, `swipe`, `press`, `open_app`, `list_apps`, `open_url`, `screenshot`, `wait`, `install_apk`, `wait_for_install`, `confirm`, `ask`, `point_out`, `notify`, `reply_notification` and `update_buddy`.
+- The **accessibility service** draws the bubble and runs a small local **MCP server** with the phone tools: `read_screen`, `tap`, `long_press`, `type_text`, `scroll`, `swipe`, `press`, `open_app`, `list_apps`, `open_url`, `screenshot`, `wait`, `install_apk`, `wait_for_install`, `confirm`, `ask`, `point_out`, `notify`, `reply_notification` and `update_ski`.
 - **Typing on web pages** (Chrome, apps' web views) goes in as a paste, so page editors keep it; your clipboard then holds that text.
-- **Tips per app.** When an app or site costs an agent time (a button that needs a second tap, a field that only takes a paste), it can note that in `~/.buddy/tips/<app or site>.md` in Ski's Linux. Ski shows the note the first time that app or site comes up in a chat. The notes stay on your phone; delete them there if you like.
+- **Tips per app.** When an app or site costs an agent time (a button that needs a second tap, a field that only takes a paste), it can note that in `~/.ski/tips/<app or site>.md` in Ski's Linux. Ski shows the note the first time that app or site comes up in a chat. The notes stay on your phone; delete them there if you like.
 - **Ski's Linux** is a small Alpine Linux that Ski downloads into its own storage (4 MB) and runs with [proot](https://proot-me.github.io/), which ships inside the APK. Claude Code installs there with Anthropic's official installer, Antigravity with Google's, Grok with xAI's; Codex and OpenCode from npm.
 - Your message goes to the agent in Ski's Linux, which uses those tools and streams its progress back to the app.

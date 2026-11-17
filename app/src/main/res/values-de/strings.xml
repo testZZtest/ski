@@ -327,7 +327,7 @@
     <string name="chat_linux_tools">Linux-Tools</string>
     <string name="chat_linux_tools_info">Befehle, Dateien und App-Builds in Skis Linux</string>
     <string name="chat_linux_tools_title">Linux-Tools aktivieren?</string>
-    <string name="chat_linux_tools_what">Der Agent kann dann Befehle ausführen, Pakete installieren und Dateien in ~/.buddy/work bearbeiten, also Apps bauen.</string>
+    <string name="chat_linux_tools_what">Der Agent kann dann Befehle ausführen, Pakete installieren und Dateien in ~/.ski/work bearbeiten, also Apps bauen.</string>
     <string name="chat_linux_tools_when">Nur in diesem Chat, ab deiner nächsten Nachricht.</string>
     <string name="chat_linux_tools_risk">Eine bösartige Nachricht oder Webseite auf dem Bildschirm könnte versuchen, ihn zum Ausführen von Befehlen zu verleiten. Freigabekarten schützen weiterhin Senden, Posten, Kaufen und Löschen.</string>
     <string name="chat_linux_tools_turn_on">Aktivieren</string>
@@ -839,7 +839,7 @@
     <string name="setup_surface">Hintergrund</string>
     <string name="setup_surface_note">Warm ist der ursprüngliche Farbton von Ski. Schwarz (echtes Schwarz) gilt nur im dunklen Modus.</string>
     <string name="setup_face">Skis Aussehen</string>
-    <string name="setup_face_buddy">Original</string>
+    <string name="setup_face_ski">Original</string>
     <string name="setup_face_picture">Eigenes Bild</string>
     <string name="setup_face_note">Am besten passt ein PNG oder WebP mit transparentem Hintergrund. Es erscheint auf der Bubble und neben Skis Antworten.</string>
     <string name="setup_face_change">Anderes Bild wählen</string>
@@ -947,7 +947,7 @@
     <string name="setup_app_permissions">App-Berechtigungen</string>
     <string name="setup_app_permissions_info">Wähle pro App: Bei „Frei“ arbeitet der Agent dort ohne Rückfragen; bei „Streng“ fragt Ski dich selbst vor Senden, Bezahlen, Löschen …</string>
     <string name="setup_dev_mode">Linux-Tools in neuen Chats</string>
-    <string name="setup_dev_mode_info">Mit Linux-Tools darf der Agent Befehle ausführen, Pakete installieren und Dateien in ~/.buddy/work bearbeiten, also Apps bauen. Neue Chats starten mit dieser Einstellung; jeder Chat kann sie unter seinem Titel ändern.</string>
+    <string name="setup_dev_mode_info">Mit Linux-Tools darf der Agent Befehle ausführen, Pakete installieren und Dateien in ~/.ski/work bearbeiten, also Apps bauen. Neue Chats starten mit dieser Einstellung; jeder Chat kann sie unter seinem Titel ändern.</string>
     <string name="setup_agents_tap">Agenten auf Skis Bildschirmen tippen lassen</string>
     <string name="setup_agents_tap_info">Zum Testen von Ski mit einem Agenten (zum Beispiel Claude Code in Termux mit den Smartphone-Tools). Die Bubble, Freigabekarten, App-Berechtigungen und diese Schalter bleiben gesperrt.</string>
     <string name="setup_dev_mode_warning">Lieber ausgeschaltet lassen und Linux-Tools nur in den Chats einschalten, die sie brauchen. Sind sie an, könnte eine bösartige Nachricht oder Webseite auf dem Bildschirm versuchen, den Agenten zum Ausführen von Befehlen zu verleiten. Freigabekarten schützen weiterhin Senden, Posten, Kaufen und Löschen.</string>

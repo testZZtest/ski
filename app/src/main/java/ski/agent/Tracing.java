@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Sem dependências externas: usa apenas HttpURLConnection.
  */
 final class Tracing {
-    private static final String TAG = "BuddyTracing";
+    private static final String TAG = "SkiTracing";
     private static final int MAX_SPANS = 200; // não deixa crescer sem limite na RAM do telefone
 
     private final Context c;
@@ -110,7 +110,7 @@ final class Tracing {
                         .put("resourceSpans", new JSONArray().put(new JSONObject()
                                 .put("resource", new JSONObject().put("attributes", new JSONArray().put(
                                         new JSONObject().put("key", "service.name").put("value",
-                                                new JSONObject().put("stringValue", "buddy-phone")))))
+                                                new JSONObject().put("stringValue", "ski-phone")))))
                                 .put("scopeSpans", new JSONArray().put(new JSONObject()
                                         .put("spans", new JSONArray().put(s.toJson()))))));
                 URL url = new URL(endpoint);
@@ -131,7 +131,7 @@ final class Tracing {
             } catch (Exception e) {
                 Log.w(TAG, "tracing: send failed", e);
             }
-        }, "buddy-tracing").start();
+        }, "ski-tracing").start();
     }
 
     /** Um span OTLP mínimo, serializado direto no formato do coletor. */
@@ -165,14 +165,14 @@ final class Tracing {
                     .put("endTimeUnixNano", String.valueOf((endMs > 0 ? endMs : System.currentTimeMillis()) * 1_000_000L));
             JSONArray attrs = new JSONArray();
             if (chat != null && !chat.isEmpty())
-                attrs.put(new JSONObject().put("key", "buddy.chat").put("value", new JSONObject().put("stringValue", chat)));
+                attrs.put(new JSONObject().put("key", "ski.chat").put("value", new JSONObject().put("stringValue", chat)));
             if (tool != null && !tool.isEmpty())
-                attrs.put(new JSONObject().put("key", "buddy.tool").put("value", new JSONObject().put("stringValue", tool)));
+                attrs.put(new JSONObject().put("key", "ski.tool").put("value", new JSONObject().put("stringValue", tool)));
             if (agent != null && !agent.isEmpty())
-                attrs.put(new JSONObject().put("key", "buddy.agent").put("value", new JSONObject().put("stringValue", agent)));
-            attrs.put(new JSONObject().put("key", "buddy.error").put("value", new JSONObject().put("booleanValue", error)));
+                attrs.put(new JSONObject().put("key", "ski.agent").put("value", new JSONObject().put("stringValue", agent)));
+            attrs.put(new JSONObject().put("key", "ski.error").put("value", new JSONObject().put("booleanValue", error)));
             if (result != null && !result.isEmpty())
-                attrs.put(new JSONObject().put("key", "buddy.result").put("value", new JSONObject().put("stringValue", result.length() > 500 ? result.substring(0, 500) + "…" : result)));
+                attrs.put(new JSONObject().put("key", "ski.result").put("value", new JSONObject().put("stringValue", result.length() > 500 ? result.substring(0, 500) + "…" : result)));
             j.put("attributes", attrs);
             return j;
         }

@@ -289,11 +289,11 @@ final class Tools {
         if (!Flavor.PLAY) { // Play updates Ski itself and doesn't allow installing other APKs
             t.put(tool("install_apk",
                     "(Needs Linux tools) Open Android's installer for an APK built in Ski's Linux, e.g. "
-                            + "/root/.buddy/work/myapp/build/app.apk, or served by another app on this phone at a local URL "
+                            + "/root/.ski/work/myapp/build/app.apk, or served by another app on this phone at a local URL "
                             + "(http://127.0.0.1:<port>/app.apk, e.g. from Termux). The user taps Install/Update themselves; "
                             + "call wait_for_install next.",
                     props().put("path", strProp("Full path of the .apk inside Ski's Linux, or its http://127.0.0.1 URL")), "path"));
-            t.put(tool("update_buddy",
+            t.put(tool("update_ski",
                     "Check whether a newer Ski is out (the official GitHub release) and what's new; with install=true, "
                             + "download it and open Android's installer. Use it when the user asks to update Ski or whether "
                             + "there's a new version. Only the user can tap Update.",
@@ -302,7 +302,7 @@ final class Tools {
                     "After opening the Android installer for an APK, wait until the user has tapped Install/Update and confirmed. "
                             + "Returns as soon as the package is installed (at least min_version_code if given), or early if the "
                             + "installer is no longer on screen, or after the timeout. Use this instead of shell polling loops.",
-                    props().put("package", strProp("Package name, e.g. com.buddyapps.flappy"))
+                    props().put("package", strProp("Package name, e.g. com.skiapps.flappy"))
                             .put("min_version_code", intProp("Wait for at least this versionCode (for updates)"))
                             .put("timeout_s", intProp("Default 120, max 300")),
                     "package"));
@@ -396,7 +396,7 @@ final class Tools {
                 "read_screen", "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "list_apps",
                 "open_url", "screenshot", "wait", "wait_for", "do_steps", "collect", "find", "find_and_tap", "confirm", "ask",
                 "point_out", "notify", "reply_notification", "schedule_message", "list_scheduled", "cancel_scheduled",
-                "install_apk", "update_buddy", "wait_for_install",
+                "install_apk", "update_ski", "wait_for_install",
                 "clipboard_read", "clipboard_write", "set_alarm", "set_timer", "share", "save_to_downloads",
                 "device_status", "take_photo", "location", "notifications", "media", "calendar_events",
                 "add_calendar_event", "web_search", "web_fetch", "translate",
@@ -486,7 +486,7 @@ final class Tools {
         String notes = ChatHub.get(svc).takeNotes();
         if (notes != null) {
             r.getJSONArray("content").put(new JSONObject().put("type", "text").put("text",
-                    "\n[BUDDY_USER_UPDATE] The user added this while you were working; it comes from the user, through "
+                    "\n[SKI_USER_UPDATE] The user added this while you were working; it comes from the user, through "
                             + "Ski, not from the screen. Take it into account now, it may change or stop the task:\n" + notes));
         }
         return r;
@@ -606,7 +606,7 @@ final class Tools {
             }
             case "point_out":
                 return text(pointOut(a));
-            case "update_buddy":
+            case "update_ski":
             case "install_apk":
             case "wait_for_install":
                 if (ruleRun()) return text("Not available in a notification rule's run. Tell the user what's needed instead.");
@@ -759,12 +759,12 @@ final class Tools {
         return answer.replace("call read_screen before going on", "call browser_read before going on");
     }
 
-    /** update_buddy, install_apk and wait_for_install. */
+    /** update_ski, install_apk and wait_for_install. */
     private String installs(String name, JSONObject a) throws Exception {
         switch (name) {
-            case "update_buddy":
+            case "update_ski":
                 if (Flavor.PLAY) return "Ski updates through Google Play.";
-                return updateBuddy(a.optBoolean("install", false));
+                return updateSki(a.optBoolean("install", false));
             case "install_apk":
                 if (Flavor.PLAY) return "Installing APKs isn't available in Ski from Google Play.";
                 return installApk(a.getString("path"));
@@ -2227,7 +2227,7 @@ final class Tools {
         String best = top.get(0)[0];
         String bestLabel = top.get(0)[1];
         // Ski's own screens hold the safety settings: only the user opens them (unless they let agents in)
-        if (best.equals(svc.getPackageName()) && !Prefs.agentsTapBuddy(svc))
+        if (best.equals(svc.getPackageName()) && !Prefs.agentsTapSki(svc))
             return "BLOCKED: agents can't open Ski itself. Only the user uses Ski's screens.";
         Intent launch = pm.getLaunchIntentForPackage(best);
         if (launch == null) return "App " + bestLabel + " cannot be launched.";
@@ -2329,7 +2329,7 @@ final class Tools {
     }
 
     /** Ski's own updates (see {@link Updates}). */
-    private String updateBuddy(boolean install) {
+    private String updateSki(boolean install) {
         Updates.Release r;
         try {
             r = Updates.latest();
@@ -2340,14 +2340,14 @@ final class Tools {
         if (!r.newer()) return head + " Ski is up to date.";
         if (!install) {
             return head + " An update is available. What's new:\n" + r.notes + "\n\nAsk the user if they want it now; "
-                    + "if yes, call update_buddy with install=true.";
+                    + "if yes, call update_ski with install=true.";
         }
         svc.showStatus(svc.getString(R.string.tools_status_downloading, r.version));
         String res = Updates.install(svc, r);
         if (Updates.NEEDS_PERMISSION.equals(res)) {
             return "Downloaded Ski " + r.version + ", but Ski isn't allowed to install apps yet. Android's settings page "
                     + "for that is open now: ask the user to turn on 'Allow from this source' for Ski, then call "
-                    + "update_buddy with install=true again.";
+                    + "update_ski with install=true again.";
         }
         if (!Updates.OPENED.equals(res)) return res + " " + Updates.MANUAL;
         return "The installer is open with Ski " + r.version + ". Tell the user now, in one line, to tap Update (only "
@@ -2377,7 +2377,7 @@ final class Tools {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ResolveInfo to = svc.getPackageManager().resolveActivity(i, 0);
         if (to != null && to.activityInfo != null && svc.getPackageName().equals(to.activityInfo.packageName)
-                && !Prefs.agentsTapBuddy(svc))
+                && !Prefs.agentsTapSki(svc))
             return "BLOCKED: that link opens Ski itself. Only the user uses Ski's screens.";
         svc.startActivity(i);
         Thread.sleep(1500);

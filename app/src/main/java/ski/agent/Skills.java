@@ -15,7 +15,7 @@ import java.util.zip.ZipInputStream;
 /**
  * Skills shared by the agents (Settings → Skills): folders with a SKILL.md (a name and description up top, then the
  * instructions), the format Claude, ChatGPT and Codex use. They live in ~/.agents/skills in Ski's Linux, where Codex
- * and OpenCode look; buddy-run links each into ~/.claude/skills for Claude Code. An agent uses one when a task fits, or
+ * and OpenCode look; ski-run links each into ~/.claude/skills for Claude Code. An agent uses one when a task fits, or
  * when the user picks it with / in the message box.
  */
 final class Skills {

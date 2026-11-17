@@ -1886,7 +1886,7 @@ final class Bubble implements ChatHub.Listener {
             String last = "";
             for (int i = ses.messages.size() - 1; i >= 0; i--) {
                 Sessions.Msg m = ses.messages.get(i);
-                if (m.kind == Kind.BUDDY || m.kind == Kind.USER) {
+                if (m.kind == Kind.SKI || m.kind == Kind.USER) {
                     String t = Ui.linkText(m.label()).replace('\n', ' ');
                     last = m.kind == Kind.USER ? svc.getString(R.string.bubble_chat_row_you, t) : t;
                     break;
@@ -2079,7 +2079,7 @@ final class Bubble implements ChatHub.Listener {
     @Override
     public void onMessage(Sessions.Session ses, Sessions.Msg msg) {
         if (ses == sessions.current && renderedFor == ses) showMessage(msg.kind, msg.label());
-        if (msg.kind == Kind.BUDDY && !(expanded && ses == sessions.current && !showingList)) vibrate(30);
+        if (msg.kind == Kind.SKI && !(expanded && ses == sessions.current && !showingList)) vibrate(30);
     }
 
     /** The approval being asked right now (shown inline in the chat screen too), or null. */
@@ -2455,7 +2455,7 @@ final class Bubble implements ChatHub.Listener {
 
     // --------------------------------------------------------------- views
 
-    enum Kind { USER, BUDDY, STEP, ERROR }
+    enum Kind { USER, SKI, STEP, ERROR }
 
     /** What a tool is doing right now (see setActivity), shown in the pill for a few seconds. */
     private String activity;
@@ -2750,7 +2750,7 @@ final class Bubble implements ChatHub.Listener {
                 v = tv;
                 break;
             }
-            case BUDDY: {
+            case SKI: {
                 LinearLayout r = new LinearLayout(svc);
                 r.setGravity(Gravity.BOTTOM);
                 FrameLayout av = new FrameLayout(svc);

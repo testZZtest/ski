@@ -258,10 +258,10 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
                 });
 
         PowerManager pm = getSystemService(PowerManager.class);
-        boolean buddyBg = pm.isIgnoringBatteryOptimizations(getPackageName());
-        steps[3] = step(getString(R.string.setup_step_background_title), getString(buddyBg
+        boolean skiBg = pm.isIgnoringBatteryOptimizations(getPackageName());
+        steps[3] = step(getString(R.string.setup_step_background_title), getString(skiBg
                         ? R.string.setup_step_background_done : R.string.setup_step_background_body),
-                buddyBg, buddyBg ? null : getString(R.string.setup_allow), v -> startActivity(new Intent(
+                skiBg, skiBg ? null : getString(R.string.setup_allow), v -> startActivity(new Intent(
                         Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:" + getPackageName()))),
                 null, null);
 
@@ -303,11 +303,11 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         fr.addView(ft, new LinearLayout.LayoutParams(dp(this, 38), dp(this, 38)));
         LinearLayout.LayoutParams fp = weight1();
         fp.setMarginStart(dp(this, 12));
-        fr.addView(segmented(this, new String[][]{{"buddy", getString(R.string.setup_face_buddy)},
-                {"picture", getString(R.string.setup_face_picture)}}, own ? "picture" : "buddy", false, v -> {
+        fr.addView(segmented(this, new String[][]{{"ski", getString(R.string.setup_face_ski)},
+                {"picture", getString(R.string.setup_face_picture)}}, own ? "picture" : "ski", false, v -> {
             Prefs.setFace(this, v);
             if ("picture".equals(v) && Face.picture(this) == null) { // none saved yet, or it can't be read
-                Prefs.setFace(this, "buddy");
+                Prefs.setFace(this, "ski");
                 pickFace();
             } else {
                 faceChanged();
@@ -367,9 +367,9 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         final String cmd = "codex".equals(mcpAgent)
                 // Codex reads the bearer token from an environment variable, so save it in ~/.bashrc too; `codex mcp
                 // add` has no timeout option, so that line goes under the table it just wrote
-                ? "codex mcp add phone --url " + url + " --bearer-token-env-var BUDDY_TOKEN"
+                ? "codex mcp add phone --url " + url + " --bearer-token-env-var SKI_TOKEN"
                 + " && sed -i '/^\\[mcp_servers\\.phone\\]$/a tool_timeout_sec = 600' ~/.codex/config.toml"
-                + " && echo 'export BUDDY_TOKEN=" + token + "' >> ~/.bashrc && export BUDDY_TOKEN=" + token
+                + " && echo 'export SKI_TOKEN=" + token + "' >> ~/.bashrc && export SKI_TOKEN=" + token
                 : "opencode".equals(mcpAgent)
                 // OpenCode reads extra config from OPENCODE_CONFIG_CONTENT; keep it for every shell
                 ? "echo 'export OPENCODE_CONFIG_CONTENT='\\''{\"mcp\":{\"phone\":{\"type\":\"remote\",\"url\":\"" + url
@@ -770,8 +770,8 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         })), full());
         ex.addView(divider(), lineParams());
         ex.addView(protect(switchRow(this, getString(R.string.setup_agents_tap), getString(R.string.setup_agents_tap_info),
-                Prefs.agentsTapBuddy(this), on -> {
-            Prefs.setAgentsTapBuddy(this, on);
+                Prefs.agentsTapSki(this), on -> {
+            Prefs.setAgentsTapSki(this, on);
             render();
         })), full());
         if (dev) {
@@ -789,7 +789,7 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         ex.addView(bk, full());
         addCard(ex);
 
-        TextView ver = monoText(this, "buddy " + BuildInfo.VERSION + " · " + getPackageName(), 12, MUTED);
+        TextView ver = monoText(this, "ski " + BuildInfo.VERSION + " · " + getPackageName(), 12, MUTED);
         ver.setGravity(Gravity.CENTER);
         ver.setPaddingRelative(0, dp(this, 24), 0, 0);
         list.addView(ver, full());
@@ -1169,7 +1169,7 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         });
     }
 
-    /** The Termux command that lets Termux in (SshServer): its key, sent with the one-time code, then `ssh buddy`. */
+    /** The Termux command that lets Termux in (SshServer): its key, sent with the one-time code, then `ssh ski`. */
     private static String sshCommand(String code) {
         return "{ command -v ssh && command -v curl; } >/dev/null || pkg install -y openssh curl;"
                 + " mkdir -p ~/.ssh && { [ -f ~/.ssh/id_ed25519 ] || ssh-keygen -q -t ed25519 -N '' -f ~/.ssh/id_ed25519; }"
@@ -1177,13 +1177,13 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
                 + " http://127.0.0.1:" + McpServer.PORT + "/ssh-key"
                 + " && { grep -qx 'Host ski' ~/.ssh/config 2>/dev/null || printf '\\nHost ski\\n  HostName 127.0.0.1\\n  Port "
                 + SshServer.PORT + "\\n  User root\\n' >> ~/.ssh/config; }"
-                + " && ssh -o StrictHostKeyChecking=accept-new buddy true";
+                + " && ssh -o StrictHostKeyChecking=accept-new ski true";
     }
 
     private java.util.List<Sessions.Session> termuxChats() {
         java.util.List<Sessions.Session> out = new java.util.ArrayList<>();
         if (!Linux.installed(this)) return out;
-        java.io.File dir = new java.io.File(Linux.root(this), "root/.buddy/sessions");
+        java.io.File dir = new java.io.File(Linux.root(this), "root/.ski/sessions");
         for (Sessions.Session s : ChatHub.get(this).sessions.all) {
             if (!s.messages.isEmpty() && !s.running && !new java.io.File(dir, s.id).isDirectory()) out.add(s);
         }

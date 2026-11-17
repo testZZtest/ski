@@ -327,7 +327,7 @@
     <string name="chat_linux_tools">Linux-tools</string>
     <string name="chat_linux_tools_info">Opdrachten, bestanden en apps bouwen in Ski\'s Linux</string>
     <string name="chat_linux_tools_title">Linux-tools aanzetten?</string>
-    <string name="chat_linux_tools_what">De agent kan dan opdrachten uitvoeren, pakketten installeren en bestanden bewerken in ~/.buddy/work, zodat hij apps kan bouwen.</string>
+    <string name="chat_linux_tools_what">De agent kan dan opdrachten uitvoeren, pakketten installeren en bestanden bewerken in ~/.ski/work, zodat hij apps kan bouwen.</string>
     <string name="chat_linux_tools_when">Alleen in deze chat, vanaf je volgende bericht.</string>
     <string name="chat_linux_tools_risk">Een kwaadwillend bericht of een kwaadwillende webpagina op het scherm kan proberen hem te misleiden zodat hij opdrachten uitvoert. Goedkeuringskaarten bewaken nog steeds verzenden, plaatsen, kopen en verwijderen.</string>
     <string name="chat_linux_tools_turn_on">Aanzetten</string>
@@ -839,7 +839,7 @@
     <string name="setup_surface">Achtergrond</string>
     <string name="setup_surface_note">Warm is de oorspronkelijke tint van Ski. Zwart (echt zwart) geldt alleen in de donkere modus.</string>
     <string name="setup_face">Uiterlijk van Ski</string>
-    <string name="setup_face_buddy">Origineel</string>
+    <string name="setup_face_ski">Origineel</string>
     <string name="setup_face_picture">Eigen afbeelding</string>
     <string name="setup_face_note">Een PNG of WebP met een transparante achtergrond werkt het best. Hij staat op de bubbel en naast de antwoorden van Ski.</string>
     <string name="setup_face_change">Andere afbeelding kiezen</string>
@@ -947,7 +947,7 @@
     <string name="setup_app_permissions">App-rechten</string>
     <string name="setup_app_permissions_info">Kies per app: met Vrij werkt de agent daar zonder pop-ups; met Streng vraagt Ski het je zelf vóór Verzenden, Betalen, Verwijderen…</string>
     <string name="setup_dev_mode">Linux-tools in nieuwe chats</string>
-    <string name="setup_dev_mode_info">Met Linux-tools mag de agent opdrachten uitvoeren, pakketten installeren en bestanden bewerken in ~/.buddy/work, zodat hij apps kan bouwen. Nieuwe chats beginnen met deze instelling; elke chat kan die onder zijn titel wijzigen.</string>
+    <string name="setup_dev_mode_info">Met Linux-tools mag de agent opdrachten uitvoeren, pakketten installeren en bestanden bewerken in ~/.ski/work, zodat hij apps kan bouwen. Nieuwe chats beginnen met deze instelling; elke chat kan die onder zijn titel wijzigen.</string>
     <string name="setup_agents_tap">Agents laten tikken op Ski\'s schermen</string>
     <string name="setup_agents_tap_info">Om Ski te testen met een agent (bijvoorbeeld Claude Code in Termux met de telefoontools). De bubbel, goedkeuringskaarten, App-rechten en deze schakelaars blijven verboden terrein.</string>
     <string name="setup_dev_mode_warning">Laat dit liever uit en zet Linux-tools alleen aan in de chats die ze nodig hebben. Als ze aanstaan, kan een kwaadwillend bericht of een kwaadwillende webpagina op het scherm proberen de agent te misleiden zodat hij opdrachten uitvoert. Goedkeuringskaarten bewaken nog steeds verzenden, plaatsen, kopen en verwijderen.</string>

@@ -11,7 +11,7 @@ permissions:
   contents: write # needed to attach the APK to a GitHub release on tags
 
 jobs:
-  # buddy-run's translation of each agent's output, on recorded runs (linux/test/run.sh); jq comes with the runner
+  # ski-run's translation of each agent's output, on recorded runs (linux/test/run.sh); jq comes with the runner
   helper-tests:
     runs-on: ubuntu-latest
     steps:

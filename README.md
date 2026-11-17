@@ -4,7 +4,7 @@
 
 Type or say what you want — *"reply to Sam that I'm running late"*, *"add a Switch 2 to my Amazon cart"*, *"turn on the bedroom lights"* — and Ski reads the screen, taps, types and scrolls to get it done. It asks you before anything is sent, posted, bought or deleted.
 
-Ski is a fork of [Buddy](https://github.com/ghorbelhamdi/buddy-android) (Apache-2.0) with its own package identity (`ski.agent`), so it installs side by side with the original app and updates only from this repository.
+Ski is a fork of [Ski](https://github.com/ghorbelhamdi/ski-android) (Apache-2.0) with its own package identity (`ski.agent`), so it installs side by side with the original app and updates only from this repository.
 
 - **Android 11+, 64-bit**
 - **No root, no adb, no PC**
@@ -52,7 +52,7 @@ You need a 64-bit Android 11+ phone, plus an account for the agent you pick (Cla
 
 Ski is not on Google Play (the store does not allow apps that use accessibility to carry out tasks), so the APK is installed by hand. If Play Protect blocks it, see [Setup in detail](docs/GUIDE.md#setup-in-detail).
 
-Because the package is `ski.agent`, this build can coexist with the original Buddy app. It does not see Buddy's chats or settings, and Buddy does not see Ski's.
+Because the package is `ski.agent`, this build can coexist with the original Ski app. It does not see Ski's chats or settings, and Ski does not see Ski's.
 
 ## Updating
 
@@ -122,6 +122,6 @@ docs/                          user guide and privacy policy
 
 ## Credits and license
 
-Ski is a fork of [Buddy](https://github.com/ghorbelhamdi/buddy-android) by Hamdi Ghorbel. The original design, the Linux integration and most of the code are his; this fork changes the app identity and adds the improvements listed above.
+Ski is a fork of [Ski](https://github.com/ghorbelhamdi/ski-android) by Hamdi Ghorbel. The original design, the Linux integration and most of the code are his; this fork changes the app identity and adds the improvements listed above.
 
 [Apache-2.0](LICENSE). Geist fonts: SIL Open Font License. Icons: Material Symbols (Apache-2.0). Bundled proot (GPL-2.0), talloc (LGPL-3.0) and libandroid-shmem (BSD-3-Clause): see [third_party](third_party/README.md) for licences and source.

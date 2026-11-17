@@ -12,7 +12,7 @@ import org.json.JSONObject;
  * OpenAI-style one (OpenCode, and Codex when it has the Responses API), or both, and the models it lists. A chat picks
  * one of its models in the model sheet ("@id/model"); an agent can also use one by default. Keys stay in Secrets and
  * never enter Ski's Linux: the agents talk to Relay, which adds them. Linux only gets $D/providers/&lt;id&gt;.json
- * (no key), so buddy-run knows how to point each agent there.
+ * (no key), so ski-run knows how to point each agent there.
  */
 final class Providers {
     static final class P {
@@ -172,7 +172,7 @@ final class Providers {
         JSONArray a = new JSONArray();
         for (P p : all()) a.put(json(p).put("models", p.models));
         Prefs.setProviders(c, a.toString());
-        File dir = new File(Linux.root(c), "root/.buddy/providers");
+        File dir = new File(Linux.root(c), "root/.ski/providers");
         File[] old = dir.listFiles();
         if (old != null) for (File f : old) f.delete();
         if (!Linux.installed(c)) return;
@@ -379,7 +379,7 @@ final class Providers {
                     if (p.anthropic.isEmpty()) p.anthropic = pr[1];
                     if (p.openai.isEmpty()) p.openai = pr[2];
                 }
-                File f = new File(Linux.root(c), "root/.buddy/" + agent + "-key");
+                File f = new File(Linux.root(c), "root/.ski/" + agent + "-key");
                 String model = "";
                 try {
                     model = new String(java.nio.file.Files.readAllBytes(f.toPath())).trim();
@@ -395,7 +395,7 @@ final class Providers {
                 Secrets.remove(c, old);
                 Prefs.setApiBase(c, agent, "");
                 f.delete();
-                new File(Linux.root(c), "root/.buddy/" + agent + "-models").delete();
+                new File(Linux.root(c), "root/.ski/" + agent + "-models").delete();
                 Prefs.setKeyModels(c, agent, "");
             } catch (Exception ignored) {
             }

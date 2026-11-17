@@ -12,7 +12,7 @@ Found a way for an agent to act without your approval, or to approve for you? Pl
 
 See [For developers](README.md#for-developers) in the README: `./gradlew assembleRelease`, or `./build.sh` right on the phone in Termux.
 
-`bash linux/test/run.sh` feeds recorded runs of each agent (`linux/test/fixtures`) through `linux/buddy-run` and compares the events. CI runs it too.
+`bash linux/test/run.sh` feeds recorded runs of each agent (`linux/test/fixtures`) through `linux/ski-run` and compares the events. CI runs it too.
 
 There are two flavors: `github` (the full app) and `play` (without self-updates and developer mode, as Google Play requires).
 
@@ -44,14 +44,14 @@ Ski is [Apache-2.0](LICENSE). By opening a pull request with a translation you a
 | `.../Rules.java`, `RulesActivity.java`, `NotificationWatcher.java`, `Triggers.java`, `Waiting.java`, `WaitingActivity.java` | Notification rules: the rules and their screen, notification access, the runs they start, and the replies waiting for your OK |
 | `.../Ui.java`, `Theme.java` | Components and the light/dark/accent theme |
 | `.../Linux.java` | Ski's Linux: downloads Alpine and runs commands through proot |
-| `.../Helper.java` | Runs `buddy-run` inside Linux and keeps its files up to date |
+| `.../Helper.java` | Runs `ski-run` inside Linux and keeps its files up to date |
 | `.../Account.java`, `SignInActivity.java` | Install, one-tap sign-in and status for Claude Code, Codex, OpenCode, Antigravity and Grok |
 | `.../RemoteSession.java` | The Remote Control session |
 | `.../CodexRemote.java` | The Codex session: runs `linux/codex-remote` and passes on pairing requests |
 | `.../SshServer.java` | SSH from Termux: the server in Ski's Linux and the one-time code that lets a key in |
 | `app/src/main/res/values/strings.xml` | Every text Ski shows, in English; `values-<language>/` holds the translations |
 | `app/src/main/jniLibs/arm64-v8a/` | proot and its libraries (see [third_party](third_party/README.md)) |
-| `linux/buddy-run` | Runs the agent with the phone tools and streams events back |
+| `linux/ski-run` | Runs the agent with the phone tools and streams events back |
 | `linux/codex-remote` | Codex's app-server with remote control and the phone tools; makes pairing codes in the same proot |
 | `linux/system-prompt.md` | Ski's instructions for the agent |
 | `linux/android-app/` | The developer-mode skill: toolchain setup and `build-apk.sh` |

@@ -302,7 +302,7 @@ final class ChatApps {
             ResolveInfo to = svc.getPackageManager().resolveActivity(i, 0);
             if (to == null) return false;
             if (to.activityInfo != null && svc.getPackageName().equals(to.activityInfo.packageName)
-                    && !Prefs.agentsTapBuddy(svc)) return false;
+                    && !Prefs.agentsTapSki(svc)) return false;
             svc.startActivity(i);
             Thread.sleep(1800);
             return true;

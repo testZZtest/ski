@@ -462,7 +462,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
 
     @Override
     public void onEvent(final JSONObject event) {
-        if ("buddy_pong".equals(event.optString("type"))) {
+        if ("ski_pong".equals(event.optString("type"))) {
             Prefs.setHelperStatus(this, event.optString("text"));
             Prefs.setHelperVersion(this, event.optInt("helper", 1));
             if (event.has("signed")) Prefs.setSignedAgents(this, event.optString("signed"));
@@ -489,7 +489,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
             return;
         }
         String t = event.optString("type");
-        if ("buddy_procs".equals(t) || "buddy_recent".equals(t) || "buddy_transcript".equals(t)) {
+        if ("ski_procs".equals(t) || "ski_recent".equals(t) || "ski_transcript".equals(t)) {
             main.post(() -> ChatHub.get(this).onMonitorEvent(event));
             return;
         }
@@ -508,7 +508,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
                     && !"point_out".equals(tool) && !"wait".equals(tool) && !"list_apps".equals(tool)
                     && !Tools.SCHEDULING.contains(tool)
                     // installing: Android's installer asks the user, the agent doesn't touch the screen
-                    && !"update_buddy".equals(tool) && !"install_apk".equals(tool) && !"wait_for_install".equals(tool)
+                    && !"update_ski".equals(tool) && !"install_apk".equals(tool) && !"wait_for_install".equals(tool)
                     && !tool.startsWith("browser_")) { // the background browser isn't the phone
                 control.onActivity();
             }
@@ -617,7 +617,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
         autoPause(R.string.service_autopaused_touch);
     }
 
-    /** Agents waiting for the user to confirm an install (wait_for_install, update_buddy): touches are theirs. */
+    /** Agents waiting for the user to confirm an install (wait_for_install, update_ski): touches are theirs. */
     volatile int installWaits;
 
     /** Android's package installer is in front (its Install/Update dialog). */

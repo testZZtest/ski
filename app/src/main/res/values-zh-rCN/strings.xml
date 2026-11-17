@@ -453,8 +453,8 @@
     <string name="chat_linux_tools_info">在 Ski 的 Linux 中运行命令、编辑文件和构建应用</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">开启 Linux 工具？</string>
-    <!-- ~/.buddy/work is a folder: keep it as is. -->
-    <string name="chat_linux_tools_what">智能体将可以运行命令、安装软件包，并编辑 ~/.buddy/work 中的文件，从而能够开发应用。</string>
+    <!-- ~/.ski/work is a folder: keep it as is. -->
+    <string name="chat_linux_tools_what">智能体将可以运行命令、安装软件包，并编辑 ~/.ski/work 中的文件，从而能够开发应用。</string>
     <!-- When the change applies: a task already running goes on as it was. -->
     <string name="chat_linux_tools_when">仅限此对话，从你的下一条消息开始生效。</string>
     <!-- "it" = the agent. -->
@@ -1134,7 +1134,7 @@
     <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
     <string name="setup_surface_note">“暖色”是 Ski 的原始色调。“纯黑”仅在深色模式下生效。</string>
     <string name="setup_face">Ski 的形象</string>
-    <string name="setup_face_buddy">原版</string>
+    <string name="setup_face_ski">原版</string>
     <string name="setup_face_picture">你的图片</string>
     <string name="setup_face_note">背景透明的 PNG 或 WebP 效果最好。它会显示在气泡上和 Ski 的回复旁边。</string>
     <string name="setup_face_change">选择其他图片</string>
@@ -1277,7 +1277,7 @@
     <string name="setup_app_permissions_info">按应用选择：“信任”让智能体在其中直接操作、不弹窗；“严格”表示 Ski 会在点按发送、支付、删除等按钮前亲自询问你。</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">新对话中的 Linux 工具</string>
-    <string name="setup_dev_mode_info">开启 Linux 工具后，智能体可以运行命令、安装软件包，并编辑 ~/.buddy/work 中的文件，从而能够开发应用。新对话会以此设置开始；每个对话都可以在标题下方单独更改。</string>
+    <string name="setup_dev_mode_info">开启 Linux 工具后，智能体可以运行命令、安装软件包，并编辑 ~/.ski/work 中的文件，从而能够开发应用。新对话会以此设置开始；每个对话都可以在标题下方单独更改。</string>
     <string name="setup_agents_tap">允许智能体点按 Ski 的界面</string>
     <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">用于借助智能体测试 Ski（例如在 Termux 中使用带手机工具的 Claude Code）。气泡、确认卡片、“应用权限”和这些开关仍禁止智能体点按。</string>

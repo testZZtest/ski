@@ -34,12 +34,12 @@ import static ski.agent.Ui.*;
 
 /**
  * Ski's own updates, only ever from its official GitHub release (Android also refuses an APK that isn't signed
- * like the installed one). Used by the update_buddy tool, the daily check behind the "update available"
+ * like the installed one). Used by the update_ski tool, the daily check behind the "update available"
  * notification (Settings → Update notices), and the sheet that notification opens.
  */
 public final class Updates extends BroadcastReceiver {
     static final String REPO = "https://github.com/testZZtest/ski";
-    /** For the agent (update_buddy), so English; the sheet shows R.string.update_failed_manual instead. */
+    /** For the agent (update_ski), so English; the sheet shows R.string.update_failed_manual instead. */
     static final String MANUAL = "You can also get it at " + REPO + "/releases/latest (ski.apk), or with Obtainium "
             + "for automatic updates (see " + REPO + "#updating).";
     private static final String API = "https://api.github.com/repos/testZZtest/ski/releases/latest";

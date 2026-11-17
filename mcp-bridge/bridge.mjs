@@ -3,7 +3,7 @@
 // phone (http://127.0.0.1:8765/mcp), for MCP clients that start servers as commands instead of connecting to a URL.
 // No dependencies. The token is the one Ski shows in Settings → Phone tools in your own sessions.
 //
-//   BUDDY_TOKEN=<token> node bridge.mjs        (BUDDY_URL overrides the address)
+//   SKI_TOKEN=<token> node bridge.mjs        (SKI_URL overrides the address)
 //
 // When Ski can't be reached (no phone, Ski not running, a wrong token), the tool list comes from tools.json, a
 // copy of Ski's, and each tool call says why it couldn't run.
@@ -11,9 +11,9 @@
 import { readFileSync } from "node:fs";
 import { createInterface } from "node:readline";
 
-const URL_ = process.env.BUDDY_URL || "http://127.0.0.1:8765/mcp";
-const TOKEN = (process.env.BUDDY_TOKEN || "").replace(/^Bearer\s+/i, "");
-const GET_BUDDY = "Ski is a free Android app, https://github.com/testZZtest/ski (APK: https://github.com/testZZtest/ski/releases/latest/download/ski.apk)";
+const URL_ = process.env.SKI_URL || "http://127.0.0.1:8765/mcp";
+const TOKEN = (process.env.SKI_TOKEN || "").replace(/^Bearer\s+/i, "");
+const GET_SKI = "Ski is a free Android app, https://github.com/testZZtest/ski (APK: https://github.com/testZZtest/ski/releases/latest/download/ski.apk)";
 const TIMEOUT_MS = 10 * 60_000; // an approval card can wait for the user
 const TOOLS = JSON.parse(readFileSync(new URL("./tools.json", import.meta.url), "utf8"));
 // Ski's own instructions (McpServer.INSTRUCTIONS), for when Ski can't be asked
@@ -24,7 +24,7 @@ function send(msg) {
 }
 
 // Ski's answer to one JSON-RPC request; throws when Ski can't be reached
-async function buddy(method, params) {
+async function ski(method, params) {
   const r = await fetch(URL_, {
     method: "POST",
     headers: {
@@ -35,7 +35,7 @@ async function buddy(method, params) {
     body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
     signal: AbortSignal.timeout(TIMEOUT_MS),
   });
-  if (r.status === 401 || r.status === 403) throw new Error("Ski refused the token: set BUDDY_TOKEN to the one in Ski's Settings");
+  if (r.status === 401 || r.status === 403) throw new Error("Ski refused the token: set SKI_TOKEN to the one in Ski's Settings");
   if (!r.ok) throw new Error("Ski answered HTTP " + r.status);
   const text = await r.text();
   const json = text.trimStart().startsWith("{") ? text : (text.match(/^data: (.*)$/m) || [])[1]; // JSON or one SSE event
@@ -51,12 +51,12 @@ async function handle(m) {
     case "initialize": {
       let instructions = INSTRUCTIONS;
       try {
-        instructions = (await buddy("initialize", m.params || {})).instructions || INSTRUCTIONS;
+        instructions = (await ski("initialize", m.params || {})).instructions || INSTRUCTIONS;
       } catch {}
       return reply({
         protocolVersion: m.params?.protocolVersion || "2025-06-18",
         capabilities: { tools: {} },
-        serverInfo: { name: "buddy-phone-bridge", version: "1.2.0" },
+        serverInfo: { name: "ski-phone-bridge", version: "1.2.0" },
         instructions,
       });
     }
@@ -64,19 +64,19 @@ async function handle(m) {
       return reply({});
     case "tools/list":
       try {
-        return reply(await buddy("tools/list", m.params || {}));
+        return reply(await ski("tools/list", m.params || {}));
       } catch {
         return reply({ tools: TOOLS });
       }
     case "tools/call":
       try {
-        return reply(await buddy("tools/call", m.params));
+        return reply(await ski("tools/call", m.params));
       } catch (e) {
         if (e.rpc) return fail(e.rpc.code, e.rpc.message);
         const why = e.name === "TimeoutError" ? "Ski didn't answer in time" : e.message;
         return reply({
           isError: true,
-          content: [{ type: "text", text: `Couldn't use Ski at ${URL_}: ${why}. Ski must be running on this phone, with its accessibility service on. If it isn't installed: ${GET_BUDDY}` }],
+          content: [{ type: "text", text: `Couldn't use Ski at ${URL_}: ${why}. Ski must be running on this phone, with its accessibility service on. If it isn't installed: ${GET_SKI}` }],
         });
       }
     default:

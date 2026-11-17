@@ -338,7 +338,7 @@
     <string name="chat_linux_tools">Narzędzia Linux</string>
     <string name="chat_linux_tools_info">Polecenia, pliki i budowanie aplikacji we wbudowanym Linuksie</string>
     <string name="chat_linux_tools_title">Włączyć narzędzia Linux?</string>
-    <string name="chat_linux_tools_what">Agent będzie mógł uruchamiać polecenia, instalować pakiety i edytować pliki w ~/.buddy/work, by tworzyć aplikacje.</string>
+    <string name="chat_linux_tools_what">Agent będzie mógł uruchamiać polecenia, instalować pakiety i edytować pliki w ~/.ski/work, by tworzyć aplikacje.</string>
     <string name="chat_linux_tools_when">Tylko w tym czacie, od twojej następnej wiadomości.</string>
     <string name="chat_linux_tools_risk">Złośliwa wiadomość lub strona na ekranie może próbować nakłonić go do uruchomienia poleceń. Karty zatwierdzenia nadal chronią wysyłanie, publikowanie, kupowanie i usuwanie.</string>
     <string name="chat_linux_tools_turn_on">Włącz</string>
@@ -860,7 +860,7 @@
     <string name="setup_surface">Tło</string>
     <string name="setup_surface_note">Ciepły to oryginalny odcień Ski. Czarny (czysta czerń) działa tylko w trybie ciemnym.</string>
     <string name="setup_face">Wygląd Ski\'ego</string>
-    <string name="setup_face_buddy">Oryginalny</string>
+    <string name="setup_face_ski">Oryginalny</string>
     <string name="setup_face_picture">Twój obrazek</string>
     <string name="setup_face_note">Najlepiej sprawdzi się PNG lub WebP z przezroczystym tłem. Pojawia się na dymku i obok odpowiedzi Ski\'ego.</string>
     <string name="setup_face_change">Wybierz inny obrazek</string>
@@ -972,7 +972,7 @@
     <string name="setup_app_permissions">Uprawnienia aplikacji</string>
     <string name="setup_app_permissions_info">Wybierz dla każdej aplikacji: Zaufany pozwala agentowi działać w niej bez wyskakujących okienek; Ścisły oznacza, że to Ski pyta cię przed Wyślij, Zapłać, Usuń…</string>
     <string name="setup_dev_mode">Narzędzia Linux w nowych czatach</string>
-    <string name="setup_dev_mode_info">Z narzędziami Linux agent może uruchamiać polecenia, instalować pakiety i edytować pliki w ~/.buddy/work, by tworzyć aplikacje. Nowe czaty dostają to ustawienie; każdy czat może je zmienić pod swoim tytułem.</string>
+    <string name="setup_dev_mode_info">Z narzędziami Linux agent może uruchamiać polecenia, instalować pakiety i edytować pliki w ~/.ski/work, by tworzyć aplikacje. Nowe czaty dostają to ustawienie; każdy czat może je zmienić pod swoim tytułem.</string>
     <string name="setup_agents_tap">Pozwól agentom klikać ekrany Ski</string>
     <string name="setup_agents_tap_info">Do testowania Ski z agentem (np. Claude Code w Termux z narzędziami telefonu). Dymek, karty zatwierdzenia, Uprawnienia aplikacji i te przełączniki pozostają niedostępne.</string>
     <string name="setup_dev_mode_warning">Najlepiej zostaw to wyłączone i włączaj narzędzia Linux tylko w czatach, które ich potrzebują. Gdy są włączone, złośliwa wiadomość lub strona na ekranie może próbować nakłonić agenta do uruchomienia poleceń. Karty zatwierdzenia nadal chronią wysyłanie, publikowanie, kupowanie i usuwanie.</string>

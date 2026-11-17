@@ -161,10 +161,10 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
     @Override
     public void onMonitor(JSONObject ev) {
         switch (ev.optString("type")) {
-            case "buddy_procs":
+            case "ski_procs":
                 showProcs(ev.optJSONArray("procs"));
                 break;
-            case "buddy_recent":
+            case "ski_recent":
                 showRecent(ev.optJSONArray("sessions"));
                 break;
             default:
@@ -192,12 +192,12 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
         for (final JSONObject p : sessions) {
             final String backend = p.optString("agent");
             final String agent = Account.nameOf(backend);
-            final Sessions.Session chat = hub.sessions.find(p.optString("buddy"));
+            final Sessions.Session chat = hub.sessions.find(p.optString("ski"));
             final String kind = p.optString("kind", "terminal");
             final boolean background = "background".equals(kind);
             String title = p.optString("title").trim();
             final String where = chat != null ? chat.label()
-                    : !p.optString("buddy").isEmpty() ? getString(R.string.monitor_deleted_chat)
+                    : !p.optString("ski").isEmpty() ? getString(R.string.monitor_deleted_chat)
                     : !title.isEmpty() ? title
                     : getString(background ? R.string.monitor_background_session : R.string.monitor_terminal_session);
 
@@ -213,7 +213,7 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
 
             LinearLayout tags = row(this);
             tags.setPaddingRelative(0, dp(this, 6), 0, 0);
-            tags.addView(tag(chat != null ? "buddy" : getString(background ? R.string.monitor_tag_background
+            tags.addView(tag(chat != null ? "ski" : getString(background ? R.string.monitor_tag_background
                     : R.string.monitor_tag_terminal), chat != null || background));
             String ses = p.optString("session");
             if (ses.length() >= 8) {
@@ -295,7 +295,7 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
             final JSONObject s = list.optJSONObject(i);
             if (s == null) continue;
             final String backend = s.optString("agent");
-            final Sessions.Session chat = hub.sessions.find(s.optString("buddy"));
+            final Sessions.Session chat = hub.sessions.find(s.optString("ski"));
             String title = s.optString("title");
             final String t = title.isEmpty() ? getString(R.string.monitor_no_messages) : title;
 
@@ -308,7 +308,7 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
             tt.setEllipsize(TextUtils.TruncateAt.END);
             first.addView(tt, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
             if (chat != null) {
-                TextView tag = monoText(this, "buddy", 11, ACCENT_TEXT);
+                TextView tag = monoText(this, "ski", 11, ACCENT_TEXT);
                 tag.setPaddingRelative(dp(this, 6), dp(this, 1), dp(this, 6), dp(this, 1));
                 tag.setBackground(rounded(this, ACCENT_SOFT, 6));
                 LinearLayout.LayoutParams tp = wrap();

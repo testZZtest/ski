@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
  *
  * Estrutura para rodar um modelo de linguagem dentro do telefone, sem nuvem.
  * O modelo fica num arquivo (.gguf via llama.cpp, ou .tflite via LiteRT) dentro
- * do Linux do Ski (/root/.buddy/models/...). A inferência roda por shell com
+ * do Linux do Ski (/root/.ski/models/...). A inferência roda por shell com
  * o binário do modelo, passando o prompt via stdin e lendo a resposta pelo stdout.
  *
  * Sem dependências nativas no build: o usuário baixa o modelo e o binário de
@@ -26,8 +26,8 @@ import java.nio.charset.StandardCharsets;
  * Desligado por padrão. Quando off, o agent continua usando seu plano na nuvem.
  */
 final class OnDeviceModel {
-    private static final String TAG = "BuddyOnDevice";
-    private static final String WORK_ROOT = "/root/.buddy";
+    private static final String TAG = "SkiOnDevice";
+    private static final String WORK_ROOT = "/root/.ski";
 
     private final Context c;
     private volatile boolean enabled;

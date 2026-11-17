@@ -1,4 +1,4 @@
-# Ski's shell setup (installed as /etc/profile.d/buddy.sh by the app; changes are overwritten on update)
+# Ski's shell setup (installed as /etc/profile.d/ski.sh by the app; changes are overwritten on update)
 # Alpine's /etc/profile resets PATH: keep Claude Code (~/.local/bin) and Ski's tools reachable.
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export EDITOR="${EDITOR:-vi}"

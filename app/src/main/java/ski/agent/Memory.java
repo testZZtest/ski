@@ -16,12 +16,12 @@ import org.json.JSONObject;
  * Persistent memory vault (TecnicoBot / AutoCua / zafiro): facts about the user and their
  * preferences, saved between sessions so agents can remember context across chats.
  *
- * Each entry is a small JSON file under ~/.buddy/memory/ with fields:
+ * Each entry is a small JSON file under ~/.ski/memory/ with fields:
  *   {id, kind, text, tags[], created, updated, source}
  *   kind: "fact" | "preference" | "reminder" | "note"
  */
 final class Memory {
-    private static final String DIR = "root/.buddy/memory";
+    private static final String DIR = "root/.ski/memory";
 
     private Memory() {
     }
@@ -52,7 +52,7 @@ final class Memory {
         e.put("tags", ta);
         e.put("created", date);
         e.put("updated", date);
-        e.put("source", "buddy");
+        e.put("source", "ski");
         Linux.write(new File(dir(c), id + ".json"), e.toString(2));
         return id;
     }

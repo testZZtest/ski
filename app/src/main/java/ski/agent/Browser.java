@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * The background browser: one headless Chromium inside Ski's Linux (linux/buddy-browser), started when an agent or
+ * The background browser: one headless Chromium inside Ski's Linux (linux/ski-browser), started when an agent or
  * the user first needs it and stopped after a while unused. Ski drives it with the DevTools protocol over the
  * script's stdin and stdout (NUL-separated JSON, Chromium's --remote-debugging-pipe) instead of a debugging port: a
  * port on 127.0.0.1 would let any app or agent on the phone drive the browser around Ski's approvals, and the pipe
@@ -181,9 +181,9 @@ final class Browser {
         work.execute(() -> {
             try {
                 Helper.sync(a);
-                String out = Linux.exec(a, "/bin/sh /root/bin/buddy-browser install 2>&1", 1800);
-                set(out.contains("BUDDY_INSTALLED") ? State.OFF : State.ERROR,
-                        out.contains("BUDDY_INSTALLED") ? "" : lastLines(out));
+                String out = Linux.exec(a, "/bin/sh /root/bin/ski-browser install 2>&1", 1800);
+                set(out.contains("SKI_INSTALLED") ? State.OFF : State.ERROR,
+                        out.contains("SKI_INSTALLED") ? "" : lastLines(out));
             } catch (Exception e) {
                 set(State.ERROR, e.getMessage());
             }
@@ -195,7 +195,7 @@ final class Browser {
         try {
             Helper.sync(app);
             String lang = java.util.Locale.getDefault().toLanguageTag();
-            ProcessBuilder pb = Linux.builder(app, "/usr/bin/env", "BUDDY_LANG=" + lang, "/bin/sh", "/root/bin/buddy-browser", "run");
+            ProcessBuilder pb = Linux.builder(app, "/usr/bin/env", "SKI_LANG=" + lang, "/bin/sh", "/root/bin/ski-browser", "run");
             pb.redirectErrorStream(false); // stdout carries the protocol; proot's and the script's notes come on stderr
             p = pb.start();
         } catch (Exception e) {
@@ -213,8 +213,8 @@ final class Browser {
                 String line;
                 while ((line = in.readLine()) != null) {
                     line = line.trim();
-                    if (line.equals("BUDDY_STATUS installing")) set(State.INSTALLING, "");
-                    else if (line.equals("BUDDY_STATUS starting")) {
+                    if (line.equals("SKI_STATUS installing")) set(State.INSTALLING, "");
+                    else if (line.equals("SKI_STATUS starting")) {
                         set(State.STARTING, "");
                         launching.countDown();
                     } else if (!line.isEmpty() && !line.startsWith("proot warning")) {
@@ -227,10 +227,10 @@ final class Browser {
             } catch (IOException ignored) {
             }
             launching.countDown();
-        }, "buddy-browser-err");
+        }, "ski-browser-err");
         err.setDaemon(true);
         err.start();
-        Thread reader = new Thread(() -> read(p), "buddy-browser");
+        Thread reader = new Thread(() -> read(p), "ski-browser");
         reader.setDaemon(true);
         reader.start();
         try {
@@ -252,7 +252,7 @@ final class Browser {
             main.postDelayed(idleCheck, 60_000);
         } catch (Exception e) {
             stopProcess(p);
-            String why = notes.toString().contains("BUDDY_FAILED")
+            String why = notes.toString().contains("SKI_FAILED")
                     ? app.getString(R.string.browser_install_failed) : e.getMessage();
             set(State.ERROR, why);
         }
@@ -275,7 +275,7 @@ final class Browser {
                     try {
                         onMessage(new JSONObject(text));
                     } catch (Exception e) {
-                        android.util.Log.w("BuddyBrowser", "bad message", e);
+                        android.util.Log.w("SkiBrowser", "bad message", e);
                     }
                 }
                 msg.write(buf, from, n - from);
@@ -363,7 +363,7 @@ final class Browser {
         String[] l = out.trim().split("\n");
         StringBuilder sb = new StringBuilder();
         for (int i = Math.max(0, l.length - 3); i < l.length; i++) {
-            if (l[i].startsWith("[exit") || l[i].startsWith("BUDDY_")) continue;
+            if (l[i].startsWith("[exit") || l[i].startsWith("SKI_")) continue;
             sb.append(l[i].trim()).append(' ');
         }
         return sb.toString().trim();
@@ -545,7 +545,7 @@ final class Browser {
         if (m == null) return null;
         JSONArray refs = new JSONArray();
         for (int i = 0; i < m.length(); i++) refs.put(m.getJSONObject(i).getInt("ref"));
-        Object r = eval(key, "__buddy.boxes(" + refs + ", " + reveal + ")");
+        Object r = eval(key, "__ski.boxes(" + refs + ", " + reveal + ")");
         return r instanceof JSONArray ? (JSONArray) r : null;
     }
 
@@ -691,14 +691,14 @@ final class Browser {
 
     /**
      * The tab's page helpers run in a world of their own: the page's scripts share its document but can't see or
-     * replace them (a page defining its own __buddy would otherwise decide what a click looks like to the guard).
+     * replace them (a page defining its own __ski would otherwise decide what a click looks like to the guard).
      * Made, with the helpers in it, once per page.
      */
     private static int world(String session) throws Exception {
         Integer w = worlds.get(session);
         if (w != null) return w;
         String frame = call("Page.getFrameTree", null, session, 10_000).getJSONObject("frameTree").getJSONObject("frame").getString("id");
-        int id = call("Page.createIsolatedWorld", new JSONObject().put("frameId", frame).put("worldName", "buddy"), session, 10_000)
+        int id = call("Page.createIsolatedWorld", new JSONObject().put("frameId", frame).put("worldName", "ski"), session, 10_000)
                 .getInt("executionContextId");
         JSONObject r = call("Runtime.evaluate", new JSONObject().put("expression", js).put("contextId", id), session, 20_000);
         if (r.has("exceptionDetails")) throw new IllegalStateException("Page helpers failed to load.");
@@ -870,7 +870,7 @@ final class Browser {
             deliver(key, BitmapFactory.decodeByteArray(jpg, 0, jpg.length));
             changed();
         } catch (Exception e) {
-            android.util.Log.w("BuddyBrowser", "screencast", e);
+            android.util.Log.w("SkiBrowser", "screencast", e);
         }
     }
 
@@ -913,7 +913,7 @@ final class Browser {
             try {
                 r.run();
             } catch (Exception e) {
-                android.util.Log.w("BuddyBrowser", "live view action", e);
+                android.util.Log.w("SkiBrowser", "live view action", e);
             }
         });
     }
@@ -925,7 +925,7 @@ final class Browser {
     /** Wipes the browser's profile: every sign-in, cookie, history and cache. Not on the main thread. */
     static void wipe(Context c) {
         stop();
-        Linux.deleteTree(new File(Linux.root(c), "root/.buddy/browser"));
+        Linux.deleteTree(new File(Linux.root(c), "root/.ski/browser"));
         c.getSharedPreferences("browser", 0).edit().remove("signins").apply(); // from the Signed-in sites list Ski had
         changed();
     }

@@ -1,11 +1,11 @@
 {
-  "name": "buddy-phone-bridge",
+  "name": "ski-phone-bridge",
   "version": "1.2.0",
   "description": "Ski's Android phone tools as a stdio MCP server (a bridge to the free Ski app on your phone)",
-  "mcpName": "io.github.ghorbelhamdi/buddy-phone-bridge",
+  "mcpName": "io.github.ghorbelhamdi/ski-phone-bridge",
   "type": "module",
   "bin": {
-    "buddy-phone-bridge": "bridge.mjs"
+    "ski-phone-bridge": "bridge.mjs"
   },
   "files": [
     "bridge.mjs",
@@ -29,6 +29,6 @@
     "accessibility",
     "claude-code",
     "codex",
-    "buddy"
+    "ski"
   ]
 }

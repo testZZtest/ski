@@ -453,8 +453,8 @@
     <string name="chat_linux_tools_info">Perintah, file, dan build aplikasi di Linux Ski</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Aktifkan alat Linux?</string>
-    <!-- ~/.buddy/work is a folder: keep it as is. -->
-    <string name="chat_linux_tools_what">Agen lalu dapat menjalankan perintah, menginstal paket, dan mengedit file di ~/.buddy/work, sehingga bisa membuat aplikasi.</string>
+    <!-- ~/.ski/work is a folder: keep it as is. -->
+    <string name="chat_linux_tools_what">Agen lalu dapat menjalankan perintah, menginstal paket, dan mengedit file di ~/.ski/work, sehingga bisa membuat aplikasi.</string>
     <!-- When the change applies: a task already running goes on as it was. -->
     <string name="chat_linux_tools_when">Hanya di chat ini, mulai dari pesan Anda berikutnya.</string>
     <!-- "it" = the agent. -->
@@ -1134,7 +1134,7 @@
     <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
     <string name="setup_surface_note">Hangat adalah nuansa asli Ski. Hitam (hitam pekat) hanya berlaku dalam mode gelap.</string>
     <string name="setup_face">Tampilan Ski</string>
-    <string name="setup_face_buddy">Asli</string>
+    <string name="setup_face_ski">Asli</string>
     <string name="setup_face_picture">Gambar Anda</string>
     <string name="setup_face_note">PNG atau WebP dengan latar transparan paling cocok. Gambar muncul di balon dan di samping balasan Ski.</string>
     <string name="setup_face_change">Pilih gambar lain</string>
@@ -1277,7 +1277,7 @@
     <string name="setup_app_permissions_info">Pilih per aplikasi: Percaya membiarkan agen bekerja di sana tanpa pop-up; Ketat berarti Ski sendiri yang bertanya kepada Anda sebelum Kirim, Bayar, Hapus…</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Alat Linux di chat baru</string>
-    <string name="setup_dev_mode_info">Dengan alat Linux, agen dapat menjalankan perintah, menginstal paket, dan mengedit file di ~/.buddy/work, sehingga bisa membuat aplikasi. Chat baru dimulai dengan setelan ini; setiap chat bisa mengubahnya di bawah judulnya.</string>
+    <string name="setup_dev_mode_info">Dengan alat Linux, agen dapat menjalankan perintah, menginstal paket, dan mengedit file di ~/.ski/work, sehingga bisa membuat aplikasi. Chat baru dimulai dengan setelan ini; setiap chat bisa mengubahnya di bawah judulnya.</string>
     <string name="setup_agents_tap">Izinkan agen mengetuk layar Ski</string>
     <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">Untuk menguji Ski dengan agen (misalnya Claude Code di Termux dengan alat ponsel). Balon, kartu persetujuan, Izin aplikasi, dan tombol-tombol ini tetap tidak bisa diketuk agen.</string>

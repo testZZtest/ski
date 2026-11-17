@@ -117,7 +117,7 @@ public class TranscriptActivity extends Screen implements ChatHub.MonitorListene
 
     @Override
     public void onMonitor(JSONObject ev) {
-        if (!"buddy_transcript".equals(ev.optString("type"))) return;
+        if (!"ski_transcript".equals(ev.optString("type"))) return;
         messages.removeAllViews();
         JSONArray list = ev.optJSONArray("messages");
         if (list == null || list.length() == 0) {

@@ -472,8 +472,8 @@
     <string name="chat_linux_tools_info">Commands, files and app builds in Ski\'s Linux</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Turn on Linux tools?</string>
-    <!-- ~/.buddy/work is a folder: keep it as is. -->
-    <string name="chat_linux_tools_what">The agent can then run commands, install packages and edit files in ~/.buddy/work, so it can build apps.</string>
+    <!-- ~/.ski/work is a folder: keep it as is. -->
+    <string name="chat_linux_tools_what">The agent can then run commands, install packages and edit files in ~/.ski/work, so it can build apps.</string>
     <!-- When the change applies: a task already running goes on as it was. -->
     <string name="chat_linux_tools_when">Only in this chat, from your next message.</string>
     <!-- "it" = the agent. -->
@@ -1206,7 +1206,7 @@
     <!-- Setting: Ski's face on the floating bubble and next to its replies. Title above two short choices. -->
     <string name="setup_face">Ski\'s look</string>
     <!-- Choice: Ski's own drawn face. Keep it short. -->
-    <string name="setup_face_buddy">Original</string>
+    <string name="setup_face_ski">Original</string>
     <!-- Choice: a picture the user picks from the phone. Keep it short. -->
     <string name="setup_face_picture">Your picture</string>
     <string name="setup_face_note">A PNG or WebP with a transparent background works best. It shows on the bubble and next to Ski\'s replies.</string>
@@ -1360,7 +1360,7 @@
     <string name="setup_rules_info">Let an agent act when a notification arrives: answer a message, put a delivery in your calendar…</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Linux tools in new chats</string>
-    <string name="setup_dev_mode_info">Linux tools let the agent run commands, install packages and edit files in ~/.buddy/work, so it can build apps. New chats start with this setting; each chat can change it under its title.</string>
+    <string name="setup_dev_mode_info">Linux tools let the agent run commands, install packages and edit files in ~/.ski/work, so it can build apps. New chats start with this setting; each chat can change it under its title.</string>
     <string name="setup_agents_tap">Let agents tap Ski\'s screens</string>
     <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">For testing Ski with an agent (for example Claude Code in Termux with the phone tools). The bubble, approval cards, App permissions and these switches stay off-limits.</string>

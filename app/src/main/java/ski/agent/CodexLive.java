@@ -38,7 +38,7 @@ import java.util.concurrent.Executors;
  * what the agent says goes back to the call for the voice to say. (The voice's own hand-off tool is unreliable for short
  * commands, and it then claims things it never did, so Ski doesn't depend on it: a hand-off is taken like the rest.)
  * One call at a time; it ends with End (the chat's live bar or the notification), when the screen goes off, when Ski
- * is paused or stopped, or after a while with nothing said. Every call logs what happens to ~/.buddy/live.log in
+ * is paused or stopped, or after a while with nothing said. Every call logs what happens to ~/.ski/live.log in
  * Ski's Linux.
  */
 final class CodexLive {
@@ -131,13 +131,13 @@ final class CodexLive {
         return t != null && t.equals(thread);
     }
 
-    // ------------------------------------------------------------------ the log (~/.buddy/live.log in Ski's Linux)
+    // ------------------------------------------------------------------ the log (~/.ski/live.log in Ski's Linux)
 
     private static final ExecutorService logger = Executors.newSingleThreadExecutor();
     private static volatile long logStart;
 
     private static File logFile() {
-        return new File(Linux.root(app), "root/.buddy/live.log");
+        return new File(Linux.root(app), "root/.ski/live.log");
     }
 
     /** One line in the call's log, any thread. */
@@ -494,7 +494,7 @@ final class CodexLive {
                         return;
                     }
                     saying.setLength(0);
-                    if (!text.isEmpty()) ChatHub.get(app).note(ses, Bubble.Kind.BUDDY, VOICE_MARK + text);
+                    if (!text.isEmpty()) ChatHub.get(app).note(ses, Bubble.Kind.SKI, VOICE_MARK + text);
                     status();
                 });
                 break;
@@ -700,7 +700,7 @@ final class CodexLive {
                 });
             }
         }, "Ski");
-        web.loadDataWithBaseURL("https://buddy.local/", PAGE, "text/html", "utf-8", null);
+        web.loadDataWithBaseURL("https://ski.local/", PAGE, "text/html", "utf-8", null);
     }
 
     /** Codex places the call with ChatGPT on a conversation of its own; the answer comes back as a notification. */

@@ -12,26 +12,26 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Runs Ski's helper script (assets/linux/buddy-run) inside the built-in Linux. The helper streams
+ * Runs Ski's helper script (assets/linux/ski-run) inside the built-in Linux. The helper streams
  * the agent's progress back to the app over the local server (POST /event), like before.
  */
 final class Helper {
     private static final String[][] FILES = {
             // asset, path inside Linux, mode
-            {"linux/buddy-run", "/root/bin/buddy-run", "700"},
+            {"linux/ski-run", "/root/bin/ski-run", "700"},
             {"linux/codex-remote", "/root/bin/codex-remote", "700"}, // the Codex session (CodexRemote)
-            {"linux/buddy-browser", "/root/bin/buddy-browser", "700"}, // the background browser (Browser)
-            {"linux/profile.sh", "/etc/profile.d/buddy.sh", "644"},
+            {"linux/ski-browser", "/root/bin/ski-browser", "700"}, // the background browser (Browser)
+            {"linux/profile.sh", "/etc/profile.d/ski.sh", "644"},
             {"linux/arecord", "/usr/local/bin/arecord", "755"},
-            {"linux/asound-cards", "/etc/buddy/asound-cards", "644"},
+            {"linux/asound-cards", "/etc/ski/asound-cards", "644"},
             {"linux/arecord", "/usr/local/bin/rec", "755"}, // SoX's recorder, same arguments that matter (-r, -c)
-            {"linux/system-prompt.md", "/root/.buddy/system-prompt.md", "600"},
-            {"linux/GUIDE.md", "/root/.buddy/GUIDE.md", "644"}, // Ski's user guide, for questions about Ski itself
-            {"linux/browser-prompt.md", "/root/.buddy/browser-prompt.md", "600"},
-            {"linux/AGENTS.md", "/root/.buddy/work/AGENTS.md", "600"},
-            {"linux/android-app/SKILL.md", "/root/.buddy/work/.claude/skills/android-app/SKILL.md", "600"},
-            {"linux/android-app/build-apk.sh", "/root/.buddy/work/.claude/skills/android-app/build-apk.sh", "700"},
-            {"linux/android-app/setup-toolchain.sh", "/root/.buddy/work/.claude/skills/android-app/setup-toolchain.sh", "700"},
+            {"linux/system-prompt.md", "/root/.ski/system-prompt.md", "600"},
+            {"linux/GUIDE.md", "/root/.ski/GUIDE.md", "644"}, // Ski's user guide, for questions about Ski itself
+            {"linux/browser-prompt.md", "/root/.ski/browser-prompt.md", "600"},
+            {"linux/AGENTS.md", "/root/.ski/work/AGENTS.md", "600"},
+            {"linux/android-app/SKILL.md", "/root/.ski/work/.claude/skills/android-app/SKILL.md", "600"},
+            {"linux/android-app/build-apk.sh", "/root/.ski/work/.claude/skills/android-app/build-apk.sh", "700"},
+            {"linux/android-app/setup-toolchain.sh", "/root/.ski/work/.claude/skills/android-app/setup-toolchain.sh", "700"},
     };
     private static final ExecutorService pool = Executors.newCachedThreadPool();
     private static int syncedFor = -1;
@@ -44,7 +44,7 @@ final class Helper {
         return Linux.installed(c);
     }
 
-    /** Runs `buddy-run <token> args…` in the background. Throws with a readable message if Linux isn't set up. */
+    /** Runs `ski-run <token> args…` in the background. Throws with a readable message if Linux isn't set up. */
     static void run(Context c, String... args) {
         final Context app = c.getApplicationContext();
         if (!Linux.installed(app)) {
@@ -52,7 +52,7 @@ final class Helper {
         }
         final String[] cmd = new String[args.length + 3];
         cmd[0] = "/bin/bash";
-        cmd[1] = "/root/bin/buddy-run";
+        cmd[1] = "/root/bin/ski-run";
         cmd[2] = Prefs.token(app);
         System.arraycopy(args, 0, cmd, 3, args.length);
         pool.execute(() -> {
@@ -75,10 +75,10 @@ final class Helper {
         });
     }
 
-    /** The user's App permissions choices, which buddy-run appends to the agent's instructions. */
+    /** The user's App permissions choices, which ski-run appends to the agent's instructions. */
     static void writePermissions(Context c) {
-        // the background browser's instructions go along only while it's on (buddy-run looks for this file)
-        File on = new File(Linux.root(c), "root/.buddy/browser-on");
+        // the background browser's instructions go along only while it's on (ski-run looks for this file)
+        File on = new File(Linux.root(c), "root/.ski/browser-on");
         try {
             if (Browser.available(c)) on.createNewFile();
             else on.delete();
@@ -101,7 +101,7 @@ final class Helper {
             text += (text.isEmpty() ? "" : "\n") + "Buttons the user marked \"Never ask\" (tap them without confirming "
                     + "when the task calls for it):\n" + never;
         }
-        File f = new File(Linux.root(c), "root/.buddy/permissions.md");
+        File f = new File(Linux.root(c), "root/.ski/permissions.md");
         try {
             if (text.isEmpty()) {
                 f.delete();
@@ -131,7 +131,7 @@ final class Helper {
 
     /** Copies the helper files from the APK into Linux once per app version. */
     static synchronized void sync(Context c) throws IOException {
-        if (syncedFor == BuildInfo.VERSION_CODE && new File(Linux.root(c), "root/bin/buddy-run").exists()) return;
+        if (syncedFor == BuildInfo.VERSION_CODE && new File(Linux.root(c), "root/bin/ski-run").exists()) return;
         File root = Linux.root(c);
         for (String[] f : FILES) {
             File out = new File(root, f[1].substring(1));
@@ -146,7 +146,7 @@ final class Helper {
             } catch (Exception ignored) {
             }
         }
-        new File(root, "root/.buddy/sessions").mkdirs();
+        new File(root, "root/.ski/sessions").mkdirs();
         syncedFor = BuildInfo.VERSION_CODE;
     }
 }

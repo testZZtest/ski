@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The helper's translation of each agent's output, tested on real recorded runs: every fixtures/<agent>/<case>_<cli
-# version>.jsonl goes through buddy-run's stream_<agent>, and its events must match <case>_<cli version>.expected.jsonl
+# version>.jsonl goes through ski-run's stream_<agent>, and its events must match <case>_<cli version>.expected.jsonl
 # (compared as sorted JSON). When an agent update changes its output, add the new version's recording next to the old
 # one rather than replacing it, as long as Ski supports both.
 #   run.sh            run every fixture
@@ -9,7 +9,7 @@ set -u
 cd "$(dirname "$0")" || exit 2
 H=$(mktemp -d)
 trap 'rm -rf "$H"' EXIT
-# buddy-run sets its own PATH (Alpine's), which has $HOME/bin first: the tools it uses go there, wherever they are here
+# ski-run sets its own PATH (Alpine's), which has $HOME/bin first: the tools it uses go there, wherever they are here
 mkdir -p "$H/bin"
 for t in jq cat sed sort paste find rm mv mkdir tail head grep; do
   p=$(command -v "$t") && ln -s "$p" "$H/bin/$t"
@@ -20,8 +20,8 @@ for f in fixtures/*/*.jsonl; do
   case $f in *.expected.jsonl) continue ;; esac
   agent=$(basename "$(dirname "$f")")
   exp=${f%.jsonl}.expected.jsonl
-  got=$(HOME=$H BUDDY_TEST_STREAM=$agent bash ../buddy-run test ask fixture "$agent" 0 x <"$f" | jq -S -c .)
-  rm -rf "$H/.buddy" "$H/.codex"
+  got=$(HOME=$H SKI_TEST_STREAM=$agent bash ../ski-run test ask fixture "$agent" 0 x <"$f" | jq -S -c .)
+  rm -rf "$H/.ski" "$H/.codex"
   n=$((n + 1))
   if [ "$update" = --update ]; then
     printf '%s\n' "$got" >"$exp"

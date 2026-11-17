@@ -79,13 +79,13 @@ final class PhoneTools {
                 "seconds"));
         t.put(Tools.tool("share", "Open Android's share sheet with a text or a file, so the user picks the app to send "
                 + "it with (a chat, an email, a cloud drive). The user chooses; nothing is sent by opening it. The file "
-                + "must be in your work folder (/root/.buddy/work) or this chat's files.",
+                + "must be in your work folder (/root/.ski/work) or this chat's files.",
                 Tools.props().put("text", Tools.strProp("Text to share (or a caption with the file)"))
                         .put("path", Tools.strProp("Optional: full path of a file in Ski's Linux"))
                         .put("title", Tools.strProp("Optional: the share sheet's title"))));
         t.put(Tools.tool("save_to_downloads", "Copy a file from Ski's Linux into the phone's Downloads folder "
                 + "(Downloads/Ski), where the user and their apps can open it. The file must be in your work folder "
-                + "(/root/.buddy/work) or this chat's files.",
+                + "(/root/.ski/work) or this chat's files.",
                 Tools.props().put("path", Tools.strProp("Full path of the file in Ski's Linux"))
                         .put("name", Tools.strProp("Optional: the file's name in Downloads")),
                 "path"));
@@ -261,11 +261,11 @@ final class PhoneTools {
         File root = Linux.root(svc).getCanonicalFile();
         File f = new File(root, path.substring(1)).getCanonicalFile();
         String chat = McpServer.CALLER_CHAT.get();
-        File work = new File(root, "root/.buddy/work").getCanonicalFile();
-        File files = chat == null ? null : new File(root, "root/.buddy/sessions/" + chat + "/files").getCanonicalFile();
+        File work = new File(root, "root/.ski/work").getCanonicalFile();
+        File files = chat == null ? null : new File(root, "root/.ski/sessions/" + chat + "/files").getCanonicalFile();
         boolean ok = f.getPath().startsWith(work.getPath() + "/")
                 || (files != null && f.getPath().startsWith(files.getPath() + "/"));
-        if (!ok) throw new IllegalArgumentException("Only files in /root/.buddy/work or this chat's files can leave Ski's Linux.");
+        if (!ok) throw new IllegalArgumentException("Only files in /root/.ski/work or this chat's files can leave Ski's Linux.");
         if (!f.isFile()) throw new IllegalArgumentException("There's no file at " + path + ".");
         return f;
     }
@@ -376,11 +376,11 @@ final class PhoneTools {
         String chat = McpServer.CALLER_CHAT.get();
         String saved = null;
         if (chat != null && chat.matches("[A-Za-z0-9_-]+")) {
-            File dir = new File(Linux.root(svc), "root/.buddy/sessions/" + chat + "/files");
+            File dir = new File(Linux.root(svc), "root/.ski/sessions/" + chat + "/files");
             if (dir.isDirectory() || dir.mkdirs()) {
                 String name = "photo-" + new SimpleDateFormat("yyyyMMdd-HHmmss", Locale.ROOT).format(new Date()) + ".jpg";
                 copy(new FileInputStream(shot), new java.io.FileOutputStream(new File(dir, name)));
-                saved = "/root/.buddy/sessions/" + chat + "/files/" + name;
+                saved = "/root/.ski/sessions/" + chat + "/files/" + name;
             }
         }
         BitmapFactory.Options o = new BitmapFactory.Options();

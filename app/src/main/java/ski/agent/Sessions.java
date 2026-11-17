@@ -37,7 +37,7 @@ final class Sessions {
             if (files.isEmpty()) return text;
             String n = files.size() == 1 ? "📎 " + Attachments.name(files.get(0))
                     : SkiApp.plural(R.plurals.attach_count, files.size(), files.size());
-            return text.isEmpty() ? n : kind == Bubble.Kind.BUDDY ? text + "\n" + n : n + "\n" + text;
+            return text.isEmpty() ? n : kind == Bubble.Kind.SKI ? text + "\n" + n : n + "\n" + text;
         }
     }
 
@@ -59,7 +59,7 @@ final class Sessions {
         boolean incognito;
         /** This run may end quietly (a scheduled task's "only tell me when there's news"); quietSaid: it did. Runtime. */
         boolean quietRun, quietSaid;
-        /** Linux tools: the agent may run commands and edit files in ~/.buddy/work (buddy-run's dev). Never on Play. */
+        /** Linux tools: the agent may run commands and edit files in ~/.ski/work (ski-run's dev). Never on Play. */
         boolean dev;
         /** Long-task mode: the screen stays on while this chat works, and its end is a notification (see KeepAwake). */
         boolean awake;
@@ -111,7 +111,7 @@ final class Sessions {
 
     Sessions(Context c) {
         app = c;
-        sp = c.getSharedPreferences("buddy_sessions", Context.MODE_PRIVATE);
+        sp = c.getSharedPreferences("ski_sessions", Context.MODE_PRIVATE);
         boolean older = load(); // chats from before Linux tools were per chat
         if (all.isEmpty()) create(Prefs.backend(c));
         String cur = sp.getString("current", null);

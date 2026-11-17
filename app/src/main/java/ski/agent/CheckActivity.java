@@ -144,7 +144,7 @@ public class CheckActivity extends Screen {
             r.add(new Result(getString(R.string.check_linux), ok, ok ? getString(R.string.check_linux_ok,
                     (System.currentTimeMillis() - t0) / 1000.0) : getString(R.string.check_linux_bad, clip(out.trim(), 200)),
                     null, null));
-            int want = helperVersion(null), have = helperVersion(new File(Linux.root(this), "root/bin/buddy-run"));
+            int want = helperVersion(null), have = helperVersion(new File(Linux.root(this), "root/bin/ski-run"));
             boolean current = want > 0 && want == have;
             r.add(new Result(getString(R.string.check_helper), current, current ? null : getString(R.string.check_helper_bad),
                     getString(R.string.check_fix), () -> new Thread(() -> {
@@ -204,7 +204,7 @@ public class CheckActivity extends Screen {
 
     /** HELPER_VERSION in the helper copied into Linux (f), or in the app's own copy (null); 0 if not found. */
     private int helperVersion(File f) {
-        try (BufferedReader in = f == null ? new BufferedReader(new InputStreamReader(getAssets().open("linux/buddy-run")))
+        try (BufferedReader in = f == null ? new BufferedReader(new InputStreamReader(getAssets().open("linux/ski-run")))
                 : new BufferedReader(new FileReader(f))) {
             for (int i = 0; i < 40; i++) {
                 String l = in.readLine();
@@ -274,7 +274,7 @@ public class CheckActivity extends Screen {
         return Build.MANUFACTURER + " " + Build.MODEL + ", Android " + Build.VERSION.RELEASE;
     }
 
-    private static String buddy() {
+    private static String ski() {
         return BuildInfo.VERSION + " (" + (Flavor.PLAY ? "Play" : "GitHub") + ")";
     }
 
@@ -302,7 +302,7 @@ public class CheckActivity extends Screen {
 
     /** Plain text, no personal content: versions, the phone, the default agent and the results. */
     private String report() {
-        StringBuilder b = new StringBuilder("Ski " + buddy() + "\n" + phone() + "\nDefault agent: "
+        StringBuilder b = new StringBuilder("Ski " + ski() + "\n" + phone() + "\nDefault agent: "
                 + Account.nameOf(Prefs.backend(this)) + "\nAgents: " + agents() + "\n\n");
         for (Result r : results) {
             b.append(r.ok ? "OK    " : "FAIL  ").append(r.name).append(r.detail == null ? "" : ": " + r.detail).append('\n');
@@ -314,11 +314,11 @@ public class CheckActivity extends Screen {
     private void reportBug() {
         String extra = "Default agent: " + Account.nameOf(Prefs.backend(this)) + "\nAgents: " + agents()
                 + "\n\nCheck Ski:\n" + failures();
-        String shown = getString(R.string.check_report_text) + "\n\n" + phone() + "\nBuddy " + buddy() + "\n" + extra;
+        String shown = getString(R.string.check_report_text) + "\n\n" + phone() + "\nSki " + ski() + "\n" + extra;
         confirmSheet(this, getString(R.string.check_report_title), shown, getString(R.string.check_report_open), false, () -> {
             Uri u = Uri.parse(ISSUES).buildUpon()
                     .appendQueryParameter("phone", phone())
-                    .appendQueryParameter("buddy", buddy())
+                    .appendQueryParameter("ski", ski())
                     .appendQueryParameter("agent", Account.nameOf(Prefs.backend(this))) // a dropdown may not take it: in extra too
                     .appendQueryParameter("extra", extra)
                     .build();

@@ -273,7 +273,7 @@ public final class Schedules extends BroadcastReceiver {
     }
 
     private static PendingIntent laterAlarm(Context c, String chat, String later) {
-        Intent i = new Intent(c, Schedules.class).setAction(ACTION_FIRE).setData(Uri.parse("buddy-later:" + chat + "/" + later))
+        Intent i = new Intent(c, Schedules.class).setAction(ACTION_FIRE).setData(Uri.parse("ski-later:" + chat + "/" + later))
                 .putExtra("id", chat).putExtra("later", later);
         return PendingIntent.getBroadcast(c, 0, i, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -291,7 +291,7 @@ public final class Schedules extends BroadcastReceiver {
 
     private static PendingIntent alarm(Context c, String id, long at) {
         // one alarm per chat: told apart by its data, which the extras don't do
-        Intent i = new Intent(c, Schedules.class).setAction(ACTION_FIRE).setData(Uri.parse("buddy-schedule:" + id))
+        Intent i = new Intent(c, Schedules.class).setAction(ACTION_FIRE).setData(Uri.parse("ski-schedule:" + id))
                 .putExtra("id", id).putExtra("at", at);
         return PendingIntent.getBroadcast(c, 0, i, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -419,10 +419,10 @@ public final class Schedules extends BroadcastReceiver {
         String text = l != null ? l.text : s.schedule.text;
         boolean locked = Triggers.locked(app);
         StringBuilder prompt = new StringBuilder(l != null
-                ? "[BUDDY_SCHEDULED] Earlier in this chat you scheduled the message below for " + english(l.at)
+                ? "[SKI_SCHEDULED] Earlier in this chat you scheduled the message below for " + english(l.at)
                 + " (schedule_message), and Ski sent it now: the user may not be watching. Do what it says; approval "
                 + "cards still wait for them.\n"
-                : "[BUDDY_SCHEDULED] The user set this chat to send the message below " + s.schedule.english()
+                : "[SKI_SCHEDULED] The user set this chat to send the message below " + s.schedule.english()
                 + ", and Ski sent it now on its own: they may not be watching. Do it as if they had just typed it; "
                 + "approval cards still wait for them.\n");
         if (locked) {
@@ -691,7 +691,7 @@ public final class Schedules extends BroadcastReceiver {
     /** The run keeps working with the screen off; an hour's wait for the user fits in, with time to finish. */
     private static void holdWake() {
         if (wake == null) {
-            wake = app.getSystemService(PowerManager.class).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "buddy:schedule");
+            wake = app.getSystemService(PowerManager.class).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ski:schedule");
             wake.setReferenceCounted(false);
         }
         wake.acquire(WAIT_MS + 30 * 60_000L);

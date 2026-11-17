@@ -36,7 +36,7 @@ import java.util.concurrent.Executors;
  */
 final class McpHttpServer {
     static final int PORT = 8766;
-    private static final String TAG = "BuddyMcpHttp";
+    private static final String TAG = "SkiMcpHttp";
 
     private final SkiService svc;
     private final ExecutorService pool = Executors.newCachedThreadPool();
@@ -51,7 +51,7 @@ final class McpHttpServer {
     void startIfEnabled() {
         if (!Prefs.remoteControl(svc) || running) return;
         running = true;
-        Thread t = new Thread(this::acceptLoop, "buddy-mcp-http");
+        Thread t = new Thread(this::acceptLoop, "ski-mcp-http");
         t.setDaemon(true);
         t.start();
         Log.d(TAG, "McpHttpServer listening on :" + PORT);
@@ -217,7 +217,7 @@ final class McpHttpServer {
                     JSONObject result = new JSONObject()
                             .put("protocolVersion", params.optString("protocolVersion", "2025-06-18"))
                             .put("capabilities", new JSONObject().put("tools", new JSONObject()))
-                            .put("serverInfo", new JSONObject().put("name", "buddy-phone-http").put("version", BuildInfo.VERSION))
+                            .put("serverInfo", new JSONObject().put("name", "ski-phone-http").put("version", BuildInfo.VERSION))
                             .put("instructions", "Ski's phone tools over HTTP. Call tools/list, then tools/call.");
                     return res.put("result", result);
                 }

@@ -465,8 +465,8 @@
     <string name="chat_linux_tools_info">Команди, файли й збирання додатків у вбудованому Linux</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Увімкнути інструменти Linux?</string>
-    <!-- ~/.buddy/work is a folder: keep it as is. -->
-    <string name="chat_linux_tools_what">Агент зможе виконувати команди, встановлювати пакети й редагувати файли в ~/.buddy/work, щоб створювати додатки.</string>
+    <!-- ~/.ski/work is a folder: keep it as is. -->
+    <string name="chat_linux_tools_what">Агент зможе виконувати команди, встановлювати пакети й редагувати файли в ~/.ski/work, щоб створювати додатки.</string>
     <!-- When the change applies: a task already running goes on as it was. -->
     <string name="chat_linux_tools_when">Лише в цьому чаті, починаючи з вашого наступного повідомлення.</string>
     <!-- "it" = the agent. -->
@@ -1161,7 +1161,7 @@
     <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
     <string name="setup_surface_note">«Теплий» — оригінальний тон Ski. «Чорний» (справжній чорний) діє лише в темній темі.</string>
     <string name="setup_face">Вигляд Ski</string>
-    <string name="setup_face_buddy">Оригінал</string>
+    <string name="setup_face_ski">Оригінал</string>
     <string name="setup_face_picture">Своє зображення</string>
     <string name="setup_face_note">Найкраще підійде PNG або WebP із прозорим фоном. Воно з\'явиться на бульбашці та поруч із відповідями Ski.</string>
     <string name="setup_face_change">Вибрати інше зображення</string>
@@ -1310,7 +1310,7 @@
     <string name="setup_app_permissions_info">Вибирайте для кожного додатка: у режимі «Довіра» агент працює там без запитів; у режимі «Суворий» Ski сам питає вас перед «Надіслати», «Оплатити», «Видалити»…</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Інструменти Linux у нових чатах</string>
-    <string name="setup_dev_mode_info">З інструментами Linux агент може виконувати команди, встановлювати пакети й редагувати файли в ~/.buddy/work, щоб створювати додатки. Нові чати отримують це значення; у кожному чаті його можна змінити під назвою чату.</string>
+    <string name="setup_dev_mode_info">З інструментами Linux агент може виконувати команди, встановлювати пакети й редагувати файли в ~/.ski/work, щоб створювати додатки. Нові чати отримують це значення; у кожному чаті його можна змінити під назвою чату.</string>
     <string name="setup_agents_tap">Дозволити агентам натискати на екранах Ski</string>
     <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">Для тестування Ski за допомогою агента (наприклад, Claude Code у Termux з інструментами телефона). Бульбашка, картки схвалення, «Дозволи додатків» і ці перемикачі залишаються недоступними.</string>

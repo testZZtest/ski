@@ -322,7 +322,7 @@
     <string name="chat_linux_tools">Linux 도구</string>
     <string name="chat_linux_tools_info">Ski의 Linux에서 명령 실행, 파일 편집, 앱 빌드</string>
     <string name="chat_linux_tools_title">Linux 도구를 켤까요?</string>
-    <string name="chat_linux_tools_what">에이전트가 명령을 실행하고 패키지를 설치하고 ~/.buddy/work의 파일을 편집할 수 있게 되어, 앱을 빌드할 수 있어요.</string>
+    <string name="chat_linux_tools_what">에이전트가 명령을 실행하고 패키지를 설치하고 ~/.ski/work의 파일을 편집할 수 있게 되어, 앱을 빌드할 수 있어요.</string>
     <string name="chat_linux_tools_when">이 채팅에서만, 다음 메시지부터 적용돼요.</string>
     <string name="chat_linux_tools_risk">화면에 표시된 악성 메시지나 웹페이지가 에이전트를 속여 명령을 실행하게 할 수 있어요. 보내기, 게시, 구매, 삭제는 여전히 승인 카드로 보호돼요.</string>
     <string name="chat_linux_tools_turn_on">켜기</string>
@@ -829,7 +829,7 @@
     <string name="setup_surface">배경 톤</string>
     <string name="setup_surface_note">‘웜’은 Ski 고유의 톤이에요. ‘블랙’(완전한 검정)은 다크 모드에서만 적용돼요.</string>
     <string name="setup_face">Ski 모습</string>
-    <string name="setup_face_buddy">기본</string>
+    <string name="setup_face_ski">기본</string>
     <string name="setup_face_picture">내 이미지</string>
     <string name="setup_face_note">배경이 투명한 PNG나 WebP가 가장 잘 어울려요. 버블과 Ski 답장 옆에 표시돼요.</string>
     <string name="setup_face_change">다른 이미지 선택</string>
@@ -935,7 +935,7 @@
     <string name="setup_app_permissions">앱 권한</string>
     <string name="setup_app_permissions_info">앱별로 고를 수 있어요. ‘신뢰’는 에이전트가 팝업 없이 작업하고, ‘엄격’은 보내기, 결제, 삭제 등을 하기 전에 Ski가 직접 물어봐요.</string>
     <string name="setup_dev_mode">새 채팅의 Linux 도구</string>
-    <string name="setup_dev_mode_info">Linux 도구를 켜면 에이전트가 명령을 실행하고 패키지를 설치하고 ~/.buddy/work의 파일을 편집할 수 있어서, 앱을 빌드할 수 있어요. 새 채팅은 이 설정으로 시작하고, 채팅마다 제목 아래에서 바꿀 수 있어요.</string>
+    <string name="setup_dev_mode_info">Linux 도구를 켜면 에이전트가 명령을 실행하고 패키지를 설치하고 ~/.ski/work의 파일을 편집할 수 있어서, 앱을 빌드할 수 있어요. 새 채팅은 이 설정으로 시작하고, 채팅마다 제목 아래에서 바꿀 수 있어요.</string>
     <string name="setup_agents_tap">에이전트가 Ski 화면을 탭하도록 허용</string>
     <string name="setup_agents_tap_info">에이전트로 Ski를 테스트할 때 사용해요(예: 휴대전화 도구를 쓰는 Termux의 Claude Code). 버블, 승인 카드, ‘앱 권한’, 이 스위치들은 계속 조작할 수 없어요.</string>
     <string name="setup_dev_mode_warning">평소에는 꺼 두고, 필요한 채팅에서만 Linux 도구를 켜세요. 켜 두면 화면에 표시된 악성 메시지나 웹페이지가 에이전트를 속여 명령을 실행하게 할 수 있어요. 보내기, 게시, 구매, 삭제는 여전히 승인 카드로 보호돼요.</string>

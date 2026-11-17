@@ -24,9 +24,9 @@ import java.util.zip.ZipOutputStream;
  */
 final class Backup {
     /** Ski's settings and chats (the API key services' list and choices stay out, as their keys do). */
-    private static final String[] PREFS = {"buddy", "buddy_sessions", "browser"};
+    private static final String[] PREFS = {"ski", "ski_sessions", "browser"};
     /** In Ski's Linux, what to keep (no sign-ins): projects without their builds, skills, the agents' conversations. */
-    private static final String LINUX_PARTS = "root/.buddy/sessions root/.buddy/work root/.agents/skills root/.claude/projects "
+    private static final String LINUX_PARTS = "root/.ski/sessions root/.ski/work root/.agents/skills root/.claude/projects "
             + "root/.codex/sessions root/.local/share/opencode/opencode.db";
 
     private Backup() {
@@ -34,15 +34,15 @@ final class Backup {
 
     /** Writes the backup to Downloads/Ski and returns its name. */
     static String create(Context c) throws Exception {
-        String name = "buddy-backup-" + new SimpleDateFormat("yyyy-MM-dd-HHmm", Locale.ROOT).format(new Date()) + ".zip";
+        String name = "ski-backup-" + new SimpleDateFormat("yyyy-MM-dd-HHmm", Locale.ROOT).format(new Date()) + ".zip";
         File tmp = new File(c.getCacheDir(), "backup.zip");
         File linux = new File(c.getCacheDir(), "linux.tar.gz");
         linux.delete();
         if (Linux.installed(c)) {
-            String out = Linux.exec(c, "cd / && rm -f /tmp/buddy-backup.tar.gz; p=$(ls -d " + LINUX_PARTS + " 2>/dev/null); "
-                    + "[ -z \"$p\" ] || tar czf /tmp/buddy-backup.tar.gz --exclude=node_modules --exclude=build "
+            String out = Linux.exec(c, "cd / && rm -f /tmp/ski-backup.tar.gz; p=$(ls -d " + LINUX_PARTS + " 2>/dev/null); "
+                    + "[ -z \"$p\" ] || tar czf /tmp/ski-backup.tar.gz --exclude=node_modules --exclude=build "
                     + "--exclude=.gradle --exclude=.cxx $p 2>&1 && echo DONE", 1800);
-            File made = new File(Linux.root(c), "tmp/buddy-backup.tar.gz");
+            File made = new File(Linux.root(c), "tmp/ski-backup.tar.gz");
             if (!out.contains("DONE")) throw new Exception(out);
             if (made.isFile()) {
                 if (!made.renameTo(linux)) copyFile(made, linux);
@@ -51,14 +51,14 @@ final class Backup {
         }
         File prefsDir = new File(c.getApplicationInfo().dataDir, "shared_prefs");
         try (ZipOutputStream z = new ZipOutputStream(new FileOutputStream(tmp))) {
-            z.putNextEntry(new ZipEntry("buddy-backup.txt"));
+            z.putNextEntry(new ZipEntry("ski-backup.txt"));
             z.write(("Ski " + BuildInfo.VERSION + " backup\n").getBytes());
             for (String p : PREFS) {
                 File f = new File(prefsDir, p + ".xml");
                 if (!f.isFile()) continue;
                 String xml = new String(java.nio.file.Files.readAllBytes(f.toPath()), "UTF-8");
                 // services and their choices only make sense with their keys, which stay on this phone
-                if (p.equals("buddy")) xml = xml.replaceAll("\\s*<string name=\"(providers|agent_default_[a-z]+)\">[^<]*</string>", "");
+                if (p.equals("ski")) xml = xml.replaceAll("\\s*<string name=\"(providers|agent_default_[a-z]+)\">[^<]*</string>", "");
                 z.putNextEntry(new ZipEntry("prefs/" + p + ".xml"));
                 z.write(xml.getBytes("UTF-8"));
             }
@@ -103,15 +103,15 @@ final class Backup {
                 try (OutputStream o = new FileOutputStream(out)) {
                     pump(z, o);
                 }
-                if (e.getName().equals("buddy-backup.txt")) ok = true;
+                if (e.getName().equals("ski-backup.txt")) ok = true;
             }
         }
         if (!ok) throw new IllegalArgumentException(c.getString(R.string.backup_not_one));
         File linux = new File(staging, "linux.tar.gz");
         if (linux.isFile() && Linux.installed(c)) {
-            File in = new File(Linux.root(c), "tmp/buddy-restore.tar.gz");
+            File in = new File(Linux.root(c), "tmp/ski-restore.tar.gz");
             copyFile(linux, in);
-            Linux.exec(c, "cd / && tar xzf /tmp/buddy-restore.tar.gz; rm -f /tmp/buddy-restore.tar.gz", 1800);
+            Linux.exec(c, "cd / && tar xzf /tmp/ski-restore.tar.gz; rm -f /tmp/ski-restore.tar.gz", 1800);
             linuxDone = true;
         }
         File att = new File(staging, "files/attachments");
@@ -131,7 +131,7 @@ final class Backup {
             File f = new File(staging, "prefs/" + p + ".xml");
             if (!f.isFile()) continue;
             String xml = new String(java.nio.file.Files.readAllBytes(f.toPath()), "UTF-8");
-            if (p.equals("buddy")) {
+            if (p.equals("ski")) {
                 StringBuilder keep = new StringBuilder("<string name=\"token\">" + esc(token) + "</string>\n")
                         .append("<string name=\"providers\">").append(esc(providers)).append("</string>\n");
                 for (java.util.Map.Entry<String, String> d : defaults.entrySet()) {

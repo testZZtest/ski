@@ -10,7 +10,7 @@ final class Prefs {
     }
 
     private static SharedPreferences sp(Context c) {
-        return c.getSharedPreferences("buddy", Context.MODE_PRIVATE);
+        return c.getSharedPreferences("ski", Context.MODE_PRIVATE);
     }
 
     /** Shared secret for the local MCP server; generated once per install. */
@@ -57,12 +57,12 @@ final class Prefs {
      * Agents (any MCP client, e.g. Claude Code testing Ski) may tap and type in Ski's own screens, except the
      * bubble, approval cards, App permissions and the developer switches. Off by default.
      */
-    static boolean agentsTapBuddy(Context c) {
-        return sp(c).getBoolean("agents_tap_buddy", false);
+    static boolean agentsTapSki(Context c) {
+        return sp(c).getBoolean("agents_tap_ski", false);
     }
 
-    static void setAgentsTapBuddy(Context c, boolean on) {
-        sp(c).edit().putBoolean("agents_tap_buddy", on).apply();
+    static void setAgentsTapSki(Context c, boolean on) {
+        sp(c).edit().putBoolean("agents_tap_ski", on).apply();
     }
 
     /** Notify when a new Ski release is out (checked about once a day). */
@@ -195,9 +195,9 @@ final class Prefs {
         sp(c).edit().putString("panel_size", size).apply();
     }
 
-    /** Ski's face on the bubble and in the chats: "buddy" (the drawn one) or "picture" (one the user picked). */
+    /** Ski's face on the bubble and in the chats: "ski" (the drawn one) or "picture" (one the user picked). */
     static String face(Context c) {
-        return sp(c).getString("face", "buddy");
+        return sp(c).getString("face", "ski");
     }
 
     static void setFace(Context c, String face) {
@@ -632,7 +632,7 @@ final class Prefs {
         sp(c).edit().putBoolean("local_model_enabled", on).apply();
     }
 
-    /** Path of the local model file inside Ski's Linux, e.g. /root/.buddy/models/llama-3.2-1b.Q4_K_M.gguf. */
+    /** Path of the local model file inside Ski's Linux, e.g. /root/.ski/models/llama-3.2-1b.Q4_K_M.gguf. */
     static String localModelPath(Context c) {
         return sp(c).getString("local_model_path", "");
     }

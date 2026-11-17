@@ -21,7 +21,7 @@ final class ControlIndicator {
     static final String CHANNEL = "control", ACTION_STOP = "ski.agent.STOP_CONTROL";
     private static final int NOTIFICATION_ID = 7;
     /** Idle time before it hides when no Ski chat is running (e.g. a terminal session using the tools). */
-    private static final long IDLE_EXTERNAL_MS = 15_000, IDLE_BUDDY_MS = 4_000, TICK_MS = 1_000;
+    private static final long IDLE_EXTERNAL_MS = 15_000, IDLE_SKI_MS = 4_000, TICK_MS = 1_000;
 
     private final SkiService svc;
     private boolean active;
@@ -61,8 +61,8 @@ final class ControlIndicator {
             // A Ski chat keeps it on while it thinks between actions; once the run ends it goes away.
             // Sessions outside Ski (e.g. a terminal) only show their activity, so it times out.
             boolean runEnded = hub.runningCount() == 0 && hub.lastRunEndedAt() >= lastActivity;
-            boolean buddyRunning = hub.runningCount() > 0;
-            if ((runEnded && idle > IDLE_BUDDY_MS) || (!buddyRunning && idle > IDLE_EXTERNAL_MS)) {
+            boolean skiRunning = hub.runningCount() > 0;
+            if ((runEnded && idle > IDLE_SKI_MS) || (!skiRunning && idle > IDLE_EXTERNAL_MS)) {
                 end();
             } else {
                 svc.mainHandler().postDelayed(this, TICK_MS);

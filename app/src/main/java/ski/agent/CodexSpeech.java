@@ -106,7 +106,7 @@ final class CodexSpeech {
                 });
             }
         }, "Ski");
-        web.loadDataWithBaseURL("https://buddy.local/", PAGE, "text/html", "utf-8", null);
+        web.loadDataWithBaseURL("https://ski.local/", PAGE, "text/html", "utf-8", null);
         main.postDelayed(watchdog, 1000);
     }
 

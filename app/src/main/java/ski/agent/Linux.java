@@ -79,7 +79,7 @@ final class Linux {
                 "-b", "/dev", "-b", "/proc", "-b", "/sys",
                 // one sound card, "Ski microphone" (Android hides its own): programs then try to record, and
                 // recording goes through Ski's stand-in arecord/rec (MicServer)
-                "-b", root(c).getAbsolutePath() + "/etc/buddy/asound-cards:/proc/asound/cards",
+                "-b", root(c).getAbsolutePath() + "/etc/ski/asound-cards:/proc/asound/cards",
                 "-w", "/root"));
         // the phone's own fonts, for every script and emoji: the background browser shows pages in any language
         // without a big font download (Alpine's Chromium only brings a Latin one)

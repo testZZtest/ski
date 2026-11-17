@@ -8,7 +8,7 @@ description: Create, build, install and update a small Android app (APK) directl
 Everything runs in Ski's built-in Linux (Alpine) on the phone. There is no Gradle and no Android Studio. Use plain Java and the Android framework only (no AndroidX, no Kotlin, no external libraries).
 
 The scripts live next to this file. `SKILL_DIR` below means this skill's folder:
-`$HOME/.buddy/work/.claude/skills/android-app`.
+`$HOME/.ski/work/.claude/skills/android-app`.
 
 ## 1. Toolchain (first time only)
 
@@ -16,17 +16,17 @@ Run `bash $SKILL_DIR/setup-toolchain.sh` (downloads about 400 MB the first time;
 
 ## 2. Project layout
 
-Create one folder per app in `~/.buddy/work/<appname>/`:
+Create one folder per app in `~/.ski/work/<appname>/`:
 
 ```
-AndroidManifest.xml      <manifest package="com.buddyapps.<name>"> … one launcher <activity>
-java/com/buddyapps/<name>/MainActivity.java
+AndroidManifest.xml      <manifest package="com.skiapps.<name>"> … one launcher <activity>
+java/com/skiapps/<name>/MainActivity.java
 res/values/strings.xml   (optional; you can also build the UI in code)
 app.properties           versionCode=1  versionName=1.0  minSdk=26
 ```
 
 Rules that avoid the usual failures:
-- Package names start with `com.buddyapps.` so they never clash with real apps.
+- Package names start with `com.skiapps.` so they never clash with real apps.
 - Put `package="…"` on `<manifest>`, and `android:exported="true"` on the launcher activity.
 - Use `android:theme="@android:style/Theme.DeviceDefault"` (no AppCompat).
 - Build the UI in Java code (LinearLayout, Button, TextView…) unless the user asks otherwise: it avoids XML layout errors.
@@ -35,7 +35,7 @@ Rules that avoid the usual failures:
 
 ## 3. Build
 
-`bash $SKILL_DIR/build-apk.sh ~/.buddy/work/<appname>` produces `~/.buddy/work/<appname>/build/app.apk`.
+`bash $SKILL_DIR/build-apk.sh ~/.ski/work/<appname>` produces `~/.ski/work/<appname>/build/app.apk`.
 If compilation fails, read the error, fix the Java, and build again. Each update must bump `versionCode` in `app.properties`.
 
 ## 4. Install (the user taps the final button)
@@ -43,7 +43,7 @@ If compilation fails, read the error, fix the Java, and build again. Each update
 Android's installer and Play Protect dialogs ignore taps from accessibility apps, so you can open
 the installer but **the user has to tap Install/Update and confirm (often with a fingerprint)**.
 
-1. Call the phone tool `install_apk` with the APK's full path, e.g. `/root/.buddy/work/<appname>/build/app.apk`.
+1. Call the phone tool `install_apk` with the APK's full path, e.g. `/root/.ski/work/<appname>/build/app.apk`.
    Ski opens Android's installer for it.
 2. If it says Ski isn't allowed to install apps yet, Android's settings page is open: ask the user to turn on
    **Allow from this source** for Ski, wait for them to say so, then call `install_apk` again. Don't change that

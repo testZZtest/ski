@@ -119,11 +119,11 @@ final class CodexRemote {
                     line = line.replaceAll("\u001B\\[[0-9;?]*[ -/]*[@-~]", "").trim();
                     // Codex warns that bubblewrap is missing on every start; its sandbox can't run under proot anyway
                     if (line.isEmpty() || line.contains("bubblewrap")) continue;
-                    if (line.startsWith("BUDDY_PAIR ")) {
+                    if (line.startsWith("SKI_PAIR ")) {
                         paired(line.substring(11), null);
-                    } else if (line.startsWith("BUDDY_PAIR_ERROR ")) {
+                    } else if (line.startsWith("SKI_PAIR_ERROR ")) {
                         paired(null, line.substring(17));
-                    } else if (line.startsWith("BUDDY_READY") || line.contains("next_status=Connected")) {
+                    } else if (line.startsWith("SKI_READY") || line.contains("next_status=Connected")) {
                         quickFails = 0;
                         if (state != State.ACTIVE) set(State.ACTIVE, "");
                     } else {

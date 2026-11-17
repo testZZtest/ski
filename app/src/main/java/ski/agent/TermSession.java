@@ -82,7 +82,7 @@ final class TermSession implements TermEmulator.Host {
 
     private static TermSession launch(Context c, int rows, int cols, String shell) throws IOException {
         TermSession s = new TermSession(rows, cols);
-        Helper.sync(c); // the shell profile (/etc/profile.d/buddy.sh) comes with the helper files
+        Helper.sync(c); // the shell profile (/etc/profile.d/ski.sh) comes with the helper files
         String lib = c.getApplicationInfo().nativeLibraryDir;
         List<String> cmd = Linux.command(c, "/bin/sh", "-c", shell);
         String[] args = cmd.toArray(new String[0]);
