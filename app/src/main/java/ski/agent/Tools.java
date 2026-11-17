@@ -2050,7 +2050,57 @@ final class Tools {
         String done = (ok ? (longPress ? "Long-pressed" : "Tapped") : "Gesture was cancelled at") + " (" + x + ", " + y + ")." + note;
         if (!ok) return done + " Call read_screen to see the result.";
         String after = afterAction(before, 1200);
-        return done + (after.isEmpty() ? " Call read_screen to see the result." : after);
+        if (after.contains(NOTHING_CHANGED)) return done + " " + NOTHING_CHANGED + actionDiff(before, screenPrint(), true);
+        if (!after.isEmpty()) return done + after; // a toast: the screen changed (or the toast says it)
+        return done + actionDiff(before, screenPrint(), false);
+    }
+
+    /**
+     * The most of what an action changed, in a line or two: texts that appeared and disappeared between the before
+     * and after screen prints (a toast already went). From agent-ddp's post-action diff: the agent learns what the
+     * step did without a read_screen every time, which cut a lot of tokens there. Long lists are cut to the first
+     * few; a read_screen still shows everything.
+     */
+    private String actionDiff(String before, String after, boolean nothing) {
+        if (before == null || after == null) return "";
+        if (!nothing && before.equals(after)) return "";
+        if (nothing && before.equals(after)) return " It may have missed, the app may be slow, or it was already like that. Call read_screen to check.";
+        java.util.Set<String> was = new java.util.HashSet<>(java.util.Arrays.asList(before.split("\n")));
+        java.util.Set<String> is = new java.util.HashSet<>(java.util.Arrays.asList(after.split("\n")));
+        StringBuilder gone = new StringBuilder(), neu = new StringBuilder();
+        int g = 0, n = 0;
+        for (String line : before.split("\n")) {
+            if (was.contains(line) || is.contains(line)) continue;
+            // layout-only lines (just bounds and flags) are noise: only ones with text count
+            String text = textPart(line);
+            if (text.isEmpty() || g >= 3) { g++; continue; }
+            if (g++ < 3) gone.append(text).append(" · ");
+        }
+        for (String line : after.split("\n")) {
+            if (was.contains(line) || is.contains(line)) continue;
+            String text = textPart(line);
+            if (text.isEmpty() || n >= 4) { n++; continue; }
+            if (n++ < 4) neu.append(text).append(" · ");
+        }
+        if (gone.length() > 0) gone.setLength(gone.length() - 3);
+        if (neu.length() > 0) neu.setLength(neu.length() - 3);
+        StringBuilder out = new StringBuilder(" Changed:");
+        if (gone.length() > 0) out.append(" gone: ").append(gone);
+        if (neu.length() > 0) out.append(gone.length() > 0 ? ";" : "").append(" new: ").append(neu);
+        if (g > 3) out.append(" (+").append(g - 3).append(" more gone)");
+        if (n > 4) out.append(" (+").append(n - 4).append(" more new)");
+        return out.toString();
+    }
+
+    /** The readable part of a screen-print line: after the bounds and flags, the text|desc|state fields. */
+    private static String textPart(String line) {
+        int sp = line.indexOf(' ');
+        if (sp < 0) return "";
+        String rest = line.substring(sp + 1);
+        int cut = rest.indexOf('|');
+        String t = cut < 0 ? rest : rest.substring(0, cut);
+        t = t.trim();
+        return t.length() > 40 ? t.substring(0, 39) + "…" : t;
     }
 
     // ------------------------------------------------------------- did the action do anything?
