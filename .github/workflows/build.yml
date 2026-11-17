@@ -79,11 +79,13 @@ jobs:
         run: |
           gh auth setup-git
           clone=$(mktemp -d)
-          if gh repo view --json defaultBranchRef -q .defaultBranchRef >/dev/null 2>&1 && git ls-remote --heads origin dist | grep -q dist; then
-            git clone --depth 1 --branch dist origin "$clone/dist"
+          git clone --depth 1 --branch dist "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" "$clone/dist" 2>/dev/null \
+            || git clone --depth 1 "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" "$clone/dist"
+          if git -C "$clone/dist" rev-parse -q --verify HEAD >/dev/null; then
+            git -C "$clone/dist" checkout -q dist 2>/dev/null || true
           else
-            git clone --depth 1 origin "$clone/dist"
-            git -C "$clone/dist" checkout --orphan dist
+            git -C "$clone/dist" checkout -q --orphan dist
+            git -C "$clone/dist" rm -rqf . 2>/dev/null || true
           fi
           cp dist/ski.apk "$clone/dist/ski.apk"
           git -C "$clone/dist" add ski.apk
