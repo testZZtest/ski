@@ -1393,6 +1393,11 @@
     <string name="backup_restored_no_linux">チャットと設定を復元しました。Linux 部分（スキル、プロジェクト、エージェントの記録）には Ski の Linux が必要です。エージェントを設定してから、もう一度復元してください。Ski を再起動します。</string>
     <string name="backup_failed">うまくいきませんでした: %1$s</string>
     <string name="backup_not_one">このファイルは Ski のバックアップではありません。</string>
+    <string name="bank_mode_title">銀行モード</string>
+    <string name="bank_mode_info">Ski のユーザー補助サービスが有効な間、Ski が何もしていなくても、銀行アプリは動作を拒否します。これはそのサービスを完全にオフにします — バブルとエージェントは停止します — ワンタップで Ski を再び有効にするまで。その後、銀行アプリからはユーザー補助サービスがまったく見えなくなります。</string>
+    <string name="bank_mode_on">銀行アプリでは Ski がオフになっています。タップして戻してください。</string>
+    <string name="bank_mode_back">Ski を再び有効にする</string>
+    <string name="bank_mode_back_done">Ski は再び有効になりました。</string>
     <string name="setup_mirror_china">中国</string>
     <string name="setup_mirror_russia">ロシア</string>
     <string name="setup_mirror_iran">イラン</string>

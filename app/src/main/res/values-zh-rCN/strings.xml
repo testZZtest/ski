@@ -1841,6 +1841,11 @@
     <string name="backup_restored_no_linux">已恢复你的对话和设置。其中的 Linux 部分（技能、项目、智能体的记录）需要 Ski 的 Linux：请设置一个智能体，然后再恢复一次。Ski 现在重启。</string>
     <string name="backup_failed">没有成功：%1$s</string>
     <string name="backup_not_one">该文件不是 Ski 备份。</string>
+    <string name="bank_mode_title">银行模式</string>
+    <string name="bank_mode_info">在 Ski 的无障碍服务开启时，即使 Ski 什么都不做，你的银行应用也会拒绝运行。这会真正关闭该服务——气泡和代理都会停止——直到你一键重新开启 Ski。之后你的银行将完全看不到任何无障碍服务。</string>
+    <string name="bank_mode_on">对您的银行而言 Ski 已关闭。点按即可恢复。</string>
+    <string name="bank_mode_back">重新开启 Ski</string>
+    <string name="bank_mode_back_done">Ski 已重新开启。</string>
     <string name="setup_mirror_china">中国</string>
     <string name="setup_mirror_russia">俄罗斯</string>
     <string name="setup_mirror_iran">伊朗</string>

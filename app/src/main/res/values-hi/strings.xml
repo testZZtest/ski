@@ -1401,6 +1401,11 @@
     <string name="backup_restored_no_linux">आपकी चैट और सेटिंग रीस्टोर हो गईं। इसके Linux वाले हिस्से (स्किल, प्रोजेक्ट, एजेंट के रिकॉर्ड) के लिए Ski का Linux चाहिए: कोई एजेंट सेट अप करें, फिर दोबारा रीस्टोर करें। Ski अब रीस्टार्ट हो रहा है।</string>
     <string name="backup_failed">नहीं हो सका: %1$s</string>
     <string name="backup_not_one">यह फ़ाइल Ski का बैकअप नहीं है।</string>
+    <string name="bank_mode_title">बैंक मोड</string>
+    <string name="bank_mode_info">Ski की एक्सेसिबिलिटी सेवा चालू रहने पर आपके बैंक चलने से इनकार करते हैं, भले ही Ski कुछ न करे। यह उस सेवा को सचमुच बंद कर देता है — बबल और एजेंट रुक जाते हैं — जब तक आप एक टैप से Ski वापस चालू न कर दें। तब आपके बैंक कोई भी एक्सेसिबिलिटी सेवा नहीं देखते।</string>
+    <string name="bank_mode_on">आपके बैंकों के लिए Ski बंद है। इसे वापस लाने के लिए टैप करें।</string>
+    <string name="bank_mode_back">Ski वापस चालू करें</string>
+    <string name="bank_mode_back_done">Ski फिर चालू है।</string>
     <string name="setup_mirror_china">चीन</string>
     <string name="setup_mirror_russia">रूस</string>
     <string name="setup_mirror_iran">ईरान</string>

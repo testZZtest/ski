@@ -1880,6 +1880,11 @@
     <string name="backup_restored_no_linux">Чаты и настройки восстановлены. Для Linux-части (навыки, проекты, записи агентов) нужен встроенный Linux: настройте агента и восстановите ещё раз. Ski перезапускается.</string>
     <string name="backup_failed">Не получилось: %1$s</string>
     <string name="backup_not_one">Этот файл не резервная копия Ski.</string>
+    <string name="bank_mode_title">Режим банка</string>
+    <string name="bank_mode_info">Ваши банки отказываются работать, пока включена служба специальных возможностей Ski, даже когда Ski ничего не делает. Это действительно отключает эту службу — пузырь и агент останавливаются — пока вы снова не включите Ski одним касанием. Тогда ваши банки вообще не видят службы специальных возможностей.</string>
+    <string name="bank_mode_on">Ski выключен для ваших банков. Нажмите, чтобы вернуть его.</string>
+    <string name="bank_mode_back">Включить Ski снова</string>
+    <string name="bank_mode_back_done">Ski снова включен.</string>
     <string name="setup_mirror_china">Китай</string>
     <string name="setup_mirror_russia">Россия</string>
     <string name="setup_mirror_iran">Иран</string>

@@ -1407,6 +1407,11 @@
     <string name="backup_restored_no_linux">Je chats en instellingen zijn teruggezet. Het Linux-deel (skills, projecten, wat de agents bijhouden) heeft Ski\'s Linux nodig: stel een agent in en zet daarna opnieuw terug. Ski herstart nu.</string>
     <string name="backup_failed">Dat lukte niet: %1$s</string>
     <string name="backup_not_one">Dat bestand is geen Ski-back-up.</string>
+    <string name="bank_mode_title">Bankmodus</string>
+    <string name="bank_mode_info">Je banken weigeren te draaien terwijl Skis toegankelijkheidsdienst aan staat, zelfs als Ski niets doet. Dit zet die dienst echt uit — de bel en de agent stoppen — tot je Ski met één tik weer aanzet. Je banken zien dan helemaal geen toegankelijkheidsdienst.</string>
+    <string name="bank_mode_on">Ski staat uit voor je banken. Tik om hem terug te halen.</string>
+    <string name="bank_mode_back">Ski weer aanzetten</string>
+    <string name="bank_mode_back_done">Ski staat weer aan.</string>
     <string name="setup_mirror_china">China</string>
     <string name="setup_mirror_russia">Rusland</string>
     <string name="setup_mirror_iran">Iran</string>

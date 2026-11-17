@@ -1435,6 +1435,11 @@
     <string name="backup_restored_no_linux">Przywrócono twoje czaty i ustawienia. Część linuksowa (skille, projekty, zapisy agentów) wymaga Linuksa Ski: skonfiguruj agenta i przywróć jeszcze raz. Ski uruchamia się ponownie.</string>
     <string name="backup_failed">Nie udało się: %1$s</string>
     <string name="backup_not_one">Ten plik nie jest kopią Ski.</string>
+    <string name="bank_mode_title">Tryb bankowy</string>
+    <string name="bank_mode_info">Twoje banki odmawiają działania, gdy usługa ułatwień dostępu Ski jest włączona, nawet gdy Ski nic nie robi. To naprawdę wyłącza tę usługę — dymek i agent się zatrzymują — dopóki nie włączysz ponownie Ski jednym dotknięciem. Twoje banki nie widzą wtedy żadnej usługi ułatwień dostępu.</string>
+    <string name="bank_mode_on">Ski jest wyłączony dla twoich banków. Dotknij, aby go przywrócić.</string>
+    <string name="bank_mode_back">Włącz Ski ponownie</string>
+    <string name="bank_mode_back_done">Ski jest znowu włączony.</string>
     <string name="setup_mirror_china">Chiny</string>
     <string name="setup_mirror_russia">Rosja</string>
     <string name="setup_mirror_iran">Iran</string>

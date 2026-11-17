@@ -2017,6 +2017,11 @@
     <string name="backup_restored_no_linux">Đã khôi phục các cuộc trò chuyện và cài đặt. Phần Linux (kỹ năng, dự án, dữ liệu của agent) cần Linux của Ski: hãy thiết lập một agent, rồi khôi phục lại. Ski khởi động lại ngay bây giờ.</string>
     <string name="backup_failed">Không thành công: %1$s</string>
     <string name="backup_not_one">Tệp đó không phải bản sao lưu Ski.</string>
+    <string name="bank_mode_title">Chế độ ngân hàng</string>
+    <string name="bank_mode_info">Ngân hàng của bạn từ chối chạy khi dịch vụ trợ năng của Ski đang bật, kể cả khi Ski không làm gì. Điều này tắt hẳn dịch vụ đó — bong bóng và trợ lý dừng lại — cho đến khi bạn bật lại Ski bằng một lần chạm. Ngân hàng của bạn khi đó không thấy dịch vụ trợ năng nào cả.</string>
+    <string name="bank_mode_on">Ski đang tắt cho các ngân hàng của bạn. Chạm để bật lại.</string>
+    <string name="bank_mode_back">Bật lại Ski</string>
+    <string name="bank_mode_back_done">Ski đã bật lại.</string>
     <string name="setup_mirror_china">Trung Quốc</string>
     <string name="setup_mirror_russia">Nga</string>
     <string name="setup_mirror_iran">Iran</string>

@@ -1409,6 +1409,11 @@
     <string name="backup_restored_no_linux">Sohbetlerin ve ayarların geri yüklendi. Linux kısmı (beceriler, projeler, ajanların kayıtları) Ski\'nin Linux\'unu gerektirir: bir ajan kur, sonra yeniden geri yükle. Ski şimdi yeniden başlıyor.</string>
     <string name="backup_failed">Olmadı: %1$s</string>
     <string name="backup_not_one">Bu dosya bir Ski yedeği değil.</string>
+    <string name="bank_mode_title">Banka modu</string>
+    <string name="bank_mode_info">Ski\'nin erişilebilirlik hizmeti açıkken, Ski hiçbir şey yapmasa bile bankalarınız çalışmayı reddeder. Bu, o hizmeti gerçekten kapatır — balon ve ajan durur — Ski\'yi tek dokunuşla yeniden açana kadar. Bankalarınız o zaman hiçbir erişilebilirlik hizmeti görmez.</string>
+    <string name="bank_mode_on">Bankalarınız için Ski kapalı. Geri getirmek için dokunun.</string>
+    <string name="bank_mode_back">Ski\'yi yeniden aç</string>
+    <string name="bank_mode_back_done">Ski yeniden açık.</string>
     <string name="setup_mirror_china">Çin</string>
     <string name="setup_mirror_russia">Rusya</string>
     <string name="setup_mirror_iran">İran</string>

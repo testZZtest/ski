@@ -1453,6 +1453,11 @@
     <string name="backup_restored_no_linux">تمت استعادة محادثاتك وإعداداتك. أما جزء Linux (المهارات والمشاريع وسجلات الوكلاء) فيحتاج إلى نظام Linux في Ski: أعدّ وكيلًا ثم استعد النسخة مرة أخرى. يُعاد تشغيل Ski الآن.</string>
     <string name="backup_failed">لم ينجح ذلك: %1$s</string>
     <string name="backup_not_one">هذا الملف ليس نسخة احتياطية من Ski.</string>
+    <string name="bank_mode_title">وضع البنك</string>
+    <string name="bank_mode_info">بنوكك ترفض العمل بينما خدمة إمكانية الوصول من Ski مفعّلة، حتى عندما لا يفعل Ski شيئًا. يؤدي هذا إلى إيقاف تلك الخدمة فعليًا — تتوقف الفقاعة والوكيل — حتى تعيد تشغيل Ski بلمسة واحدة. عندها لن ترى بنوكك أي خدمة إمكانية وصول على الإطلاق.</string>
+    <string name="bank_mode_on">Ski متوقف عن عمل لبنوكك. انقر لإعادته.</string>
+    <string name="bank_mode_back">إعادة تشغيل Ski</string>
+    <string name="bank_mode_back_done">عاد Ski للعمل.</string>
     <string name="setup_mirror_china">الصين</string>
     <string name="setup_mirror_russia">روسيا</string>
     <string name="setup_mirror_iran">إيران</string>

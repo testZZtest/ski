@@ -21,6 +21,11 @@
     <string name="first_app_trust">« %1$s » : agit de lui-même, sans demander</string>
     <string name="first_app_hard">« %1$s » : demande avant chaque action</string>
     <string name="work_title">Ski travaille</string>
+    <string name="bank_mode_title">Mode banque</string>
+    <string name="bank_mode_info">Vos banques refusent de fonctionner tant que le service d\'accessibilité de Ski est actif, même quand Ski ne fait rien. Ceci désactive vraiment ce service — la bulle et l\'agent s\'arrêtent — jusqu\'à ce que vous réactiviez Ski d\'un seul geste. Vos banques ne voient alors aucun service d\'accessibilité.</string>
+    <string name="bank_mode_on">Ski est désactivé pour vos banques. Touchez pour le réactiver.</string>
+    <string name="bank_mode_back">Réactiver Ski</string>
+    <string name="bank_mode_back_done">Ski est de nouveau activé.</string>
     <string name="hub_agent_switched">Cette discussion est maintenant avec %1$s. Elle repart de zéro : dites-lui ce que vous faisiez ou ce dont vous avez besoin ensuite.</string>
     <string name="hub_helper_gone">L'assistant de Ski pour cette discussion s'est terminé sans dire pourquoi. L'exécution s'est arrêtée.</string>
     <string name="hub_helper_killed">Android a arrêté les assistants de Ski pour libérer de la mémoire. Pour en exécuter plusieurs à la fois, libérez de l'espace ou fermez d'autres applications.</string>

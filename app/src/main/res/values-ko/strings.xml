@@ -1392,6 +1392,11 @@
     <string name="backup_restored_no_linux">채팅과 설정을 복원했어요. Linux 부분(스킬, 프로젝트, 에이전트의 기록)은 Ski의 Linux가 필요해요. 에이전트를 설정한 뒤 다시 복원하세요. Ski가 지금 다시 시작돼요.</string>
     <string name="backup_failed">안 됐어요: %1$s</string>
     <string name="backup_not_one">이 파일은 Ski 백업이 아니에요.</string>
+    <string name="bank_mode_title">은행 모드</string>
+    <string name="bank_mode_info">Ski 의 접근성 서비스가 켜져 있는 동안에는 Ski 가 아무것도 하지 않더라도 은행 앱이 실행을 거부합니다. 이 옵션은 그 서비스를 실제로 끕니다 — 말풍선과 에이전트가 멈춥니다 — 한 번 탭으로 Ski 를 다시 켤 때까지. 그러면 은행 앱에서는 접근성 서비스가 전혀 보이지 않습니다.</string>
+    <string name="bank_mode_on">은행 앱에서 Ski 가 꺼져 있어요. 다시 켜려면 탭하세요.</string>
+    <string name="bank_mode_back">Ski 다시 켜기</string>
+    <string name="bank_mode_back_done">Ski 가 다시 켜졌어요.</string>
     <string name="setup_mirror_china">중국</string>
     <string name="setup_mirror_russia">러시아</string>
     <string name="setup_mirror_iran">이란</string>

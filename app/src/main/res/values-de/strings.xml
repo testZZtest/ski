@@ -1408,6 +1408,11 @@
     <string name="backup_restored_no_linux">Deine Chats und Einstellungen sind wiederhergestellt. Der Linux-Teil (Skills, Projekte, die Aufzeichnungen der Agenten) braucht Skis Linux: Richte einen Agenten ein und stell dann noch mal wieder her. Ski startet jetzt neu.</string>
     <string name="backup_failed">Hat nicht geklappt: %1$s</string>
     <string name="backup_not_one">Diese Datei ist keine Ski-Sicherung.</string>
+    <string name="bank_mode_title">Bankmodus</string>
+    <string name="bank_mode_info">Deine Banken verweigern die Ausführung, solange Skis Bedienungshilfe-Dienst aktiv ist — auch wenn Ski nichts tut. Das schaltet diesen Dienst wirklich ab — die Blase und der Agent stoppen —, bis du Ski mit einem Fingertipp wieder einschaltest. Deine Banken sehen dann überhaupt keinen Bedienungshilfe-Dienst.</string>
+    <string name="bank_mode_on">Ski ist für deine Banken aus. Tippe, um ihn zurückzuholen.</string>
+    <string name="bank_mode_back">Ski wieder einschalten</string>
+    <string name="bank_mode_back_done">Ski ist wieder an.</string>
     <string name="setup_mirror_china">China</string>
     <string name="setup_mirror_russia">Russland</string>
     <string name="setup_mirror_iran">Iran</string>

@@ -1842,6 +1842,11 @@
     <string name="backup_restored_no_linux">Chat dan setelanmu sudah dipulihkan. Bagian Linux-nya (skill, proyek, catatan para agen) perlu Linux Ski: siapkan agen, lalu pulihkan lagi. Ski dimulai ulang sekarang.</string>
     <string name="backup_failed">Tidak berhasil: %1$s</string>
     <string name="backup_not_one">File itu bukan cadangan Ski.</string>
+    <string name="bank_mode_title">Mode bank</string>
+    <string name="bank_mode_info">Bank Anda menolak berjalan selama layanan aksesibilitas Ski aktif, bahkan saat Ski tidak melakukan apa pun. Ini benar-benar mematikan layanan tersebut — gelembung dan agen berhenti — sampai Anda mengaktifkan kembali Ski dengan satu ketukan. Bank Anda kemudian tidak melihat layanan aksesibilitas apa pun.</string>
+    <string name="bank_mode_on">Ski nonaktif untuk bank Anda. Ketuk untuk mengaktifkannya kembali.</string>
+    <string name="bank_mode_back">Aktifkan kembali Ski</string>
+    <string name="bank_mode_back_done">Ski aktif kembali.</string>
     <string name="setup_mirror_china">Tiongkok</string>
     <string name="setup_mirror_russia">Rusia</string>
     <string name="setup_mirror_iran">Iran</string>

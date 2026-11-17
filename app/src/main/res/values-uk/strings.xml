@@ -1880,6 +1880,11 @@
     <string name="backup_restored_no_linux">Чати й налаштування відновлено. Для Linux-частини (навички, проєкти, записи агентів) потрібен вбудований Linux: налаштуйте агента й відновіть ще раз. Ski перезапускається.</string>
     <string name="backup_failed">Не вийшло: %1$s</string>
     <string name="backup_not_one">Цей файл не є резервною копією Ski.</string>
+    <string name="bank_mode_title">Режим банку</string>
+    <string name="bank_mode_info">Ваші банки відмовляються працювати, поки увімкнена служба спеціальних можливостей Ski, навіть коли Ski нічого не робить. Це справді вимикає цю службу — бульбашка й агент зупиняються — доки ви знову не увімкнете Ski одним дотиком. Тоді ваші банки взагалі не бачать служби спеціальних можливостей.</string>
+    <string name="bank_mode_on">Ski вимкнено для ваших банків. Торкніться, щоб повернути його.</string>
+    <string name="bank_mode_back">Увімкнути Ski знову</string>
+    <string name="bank_mode_back_done">Ski знову увімкнено.</string>
     <string name="setup_mirror_china">Китай</string>
     <string name="setup_mirror_russia">Росія</string>
     <string name="setup_mirror_iran">Іран</string>

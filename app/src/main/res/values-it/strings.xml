@@ -1841,6 +1841,11 @@
     <string name="backup_restored_no_linux">Chat e impostazioni ripristinate. La parte Linux (skill, progetti, la memoria degli agenti) richiede il Linux di Ski: configura un agente, poi ripristina di nuovo. Ski si riavvia ora.</string>
     <string name="backup_failed">Non ha funzionato: %1$s</string>
     <string name="backup_not_one">Questo file non è un backup di Ski.</string>
+    <string name="bank_mode_title">Modalità banca</string>
+    <string name="bank_mode_info">Le tue banche si rifiutano di funzionare finché il servizio di accessibilità di Ski è attivo, anche quando Ski non fa nulla. Questo spegne davvero quel servizio — la bolla e l\'agente si fermano — finché non riattivi Ski con un tocco. Le tue banche allora non vedono alcun servizio di accessibilità.</string>
+    <string name="bank_mode_on">Ski è disattivato per le tue banche. Tocca per riattivarlo.</string>
+    <string name="bank_mode_back">Riattiva Ski</string>
+    <string name="bank_mode_back_done">Ski è di nuovo attivo.</string>
     <string name="setup_mirror_china">Cina</string>
     <string name="setup_mirror_russia">Russia</string>
     <string name="setup_mirror_iran">Iran</string>

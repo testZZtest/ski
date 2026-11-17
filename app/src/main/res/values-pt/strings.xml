@@ -43,6 +43,11 @@
     <string name="first_app_trust">“%1$s”: age por conta própria, sem perguntar</string>
     <string name="first_app_hard">“%1$s”: pergunta antes de cada ação</string>
     <string name="work_title">O Ski está trabalhando</string>
+    <string name="bank_mode_title">Modo banco</string>
+    <string name="bank_mode_info">Seus bancos se recusam a rodar enquanto o serviço de acessibilidade do Ski está ligado, mesmo quando o Ski não faz nada. Isso desliga esse serviço de verdade — o balão e o agente param — até você ligar o Ski de novo com um toque. Seus bancos então não veem nenhum serviço de acessibilidade.</string>
+    <string name="bank_mode_on">O Ski está desligado para seus bancos. Toque para trazê-lo de volta.</string>
+    <string name="bank_mode_back">Ligar o Ski de novo</string>
+    <string name="bank_mode_back_done">O Ski está ligado de novo.</string>
     <string name="hub_agent_switched">Este chat agora é com %1$s. Ele começa do zero: conte o que você estava fazendo ou o que precisa em seguida.</string>
     <string name="hub_helper_gone">O auxiliar do Ski para este chat encerrou sem dizer por quê. A execução foi interrompida.</string>
     <string name="hub_helper_killed">O Android encerrou os auxiliares do Ski para liberar memória. Para rodar mais de uma vez ao mesmo tempo, libere um pouco de espaço ou feche outros apps.</string>
