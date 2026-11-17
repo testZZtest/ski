@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 /** The "Ski is hidden" notification shown after the bubble is dragged away, and its actions. */
 public final class HiddenNotice extends BroadcastReceiver {
@@ -50,6 +51,11 @@ public final class HiddenNotice extends BroadcastReceiver {
                 || WorkNotice.ACTION_STOP.equals(intent.getAction())) {
             SkiService s = SkiService.get();
             if (s != null) s.takeBackControl();
+            return;
+        }
+        if (BankMode.RESUME.equals(intent.getAction())) { // "Turn Ski back on" (bank mode)
+            BankMode.disable(c);
+            Toast.makeText(c, R.string.bank_mode_back_done, Toast.LENGTH_SHORT).show();
             return;
         }
         if (CodexLive.ACTION_END.equals(intent.getAction())) { // the live voice notification's End

@@ -82,6 +82,8 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
     protected void onServiceConnected() {
         super.onServiceConnected();
         instance = this;
+        // this service just came up (Android started it): bank mode is over, whatever turned it on
+        if (Prefs.bankMode(this)) Prefs.setBankMode(this, false);
         Theme.load(this);
         orientation = getResources().getConfiguration().orientation;
         Models.setCodex(Prefs.codexModels(this));

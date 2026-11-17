@@ -2071,6 +2071,11 @@
     <string name="first_app_trust">“%1$s”: act on its own, without asking</string>
     <string name="first_app_hard">“%1$s”: ask me before each action</string>
     <string name="work_title">Ski is working</string>
+    <string name="bank_mode_title">Bank mode</string>
+    <string name="bank_mode_info">Your banks refuse to run while Ski\'s accessibility service is on, even when Ski does nothing. This turns that service off for real — the bubble and the agent stop — until you turn Ski back on with one tap. Your banks then see no accessibility service at all.</string>
+    <string name="bank_mode_on">Ski is off for your banks. Tap to bring it back.</string>
+    <string name="bank_mode_back">Turn Ski back on</string>
+    <string name="bank_mode_back_done">Ski is back on.</string>
     <string name="hub_agent_switched">This chat is with %1$s now. It starts fresh: tell it what you were doing, or what you need next.</string>
     <string name="hub_helper_gone">Ski\'s helper for this chat ended without saying why. The run stopped.</string>
     <string name="hub_helper_killed">Android ended Ski\'s helpers to free memory. To run more at once, free some space or close other apps.</string>

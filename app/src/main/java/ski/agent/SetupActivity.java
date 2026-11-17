@@ -762,6 +762,14 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         perms.setOnClickListener(v -> startActivity(new android.content.Intent(this, AppPermissionsActivity.class)));
         ex.addView(perms, full());
         ex.addView(divider(), lineParams());
+        // bank mode: the phone's banks refuse to run while Ski's accessibility service is registered
+        ex.addView(protect(switchRow(this, getString(R.string.bank_mode_title), getString(R.string.bank_mode_info),
+                BankMode.on(this), on -> {
+            String err = on ? BankMode.enable(this) : BankMode.disable(this);
+            if (err != null) Toast.makeText(this, err, Toast.LENGTH_LONG).show();
+            render();
+        })), full());
+        ex.addView(divider(), lineParams());
         if (Linux.installed(this)) { // background mode: the agent works on a hidden display of its own
             LinearLayout bg = listRow(this);
             bg.setGravity(Gravity.CENTER_VERTICAL);

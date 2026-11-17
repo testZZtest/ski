@@ -136,6 +136,15 @@ final class Prefs {
         sp(c).edit().putBoolean("ask_new_apps", on).apply();
     }
 
+    /** Bank mode: Ski's accessibility service is off for the phone's banks (see BankMode). */
+    static boolean bankMode(Context c) {
+        return sp(c).getBoolean("bank_mode", false);
+    }
+
+    static void setBankMode(Context c, boolean on) {
+        sp(c).edit().putBoolean("bank_mode", on).apply();
+    }
+
     /** Notify when a new Ski release is out (checked about once a day). */
     static boolean updateNotices(Context c) {
         return !Flavor.PLAY && sp(c).getBoolean("update_notices", true);
