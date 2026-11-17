@@ -1,6 +1,7 @@
 package ski.agent;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.res.ColorStateList;
@@ -632,6 +633,19 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
                 ses.incognito, on -> hub.setIncognito(ses, on));
         inc.setPaddingRelative(dp(this, 4), dp(this, 12), dp(this, 4), dp(this, 12));
         c.addView(inc, full());
+        // background mode: the agent works on a hidden display of its own, so the user keeps their screen
+        if (Linux.installed(this)) {
+            LinearLayout bg = switchRow(this, getString(R.string.chat_background), getString(R.string.chat_background_info),
+                    ses.background && Background.setUp(this), on -> hub.setBackground(ses, on));
+            bg.setPaddingRelative(dp(this, 4), dp(this, 12), dp(this, 4), dp(this, 12));
+            c.addView(bg, full());
+            if (!Background.setUp(this)) {
+                TextView setup = text(this, getString(R.string.chat_bg_setup), 13, ACCENT_TEXT);
+                setup.setPaddingRelative(dp(this, 16), 0, 0, dp(this, 12));
+                setup.setOnClickListener(v -> startActivity(new Intent(this, BackgroundActivity.class)));
+                c.addView(setup, full());
+            }
+        }
         final Dialog[] sheet = new Dialog[1];
         TextView sl = sectionLabel(this, getString(R.string.schedule_title));
         sl.setPaddingRelative(0, dp(this, 12), 0, dp(this, 4));

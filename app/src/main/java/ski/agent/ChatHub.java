@@ -261,6 +261,9 @@ final class ChatHub {
     /** After the helper process of a run ended, its last events get this long to arrive. */
     private static final long HELPER_GONE_MS = 5000;
 
+    /** After a background chat's run ended, its screen stays this long for the next one, then goes. */
+    private static final long BACKGROUND_RELEASE_MS = 60_000;
+
     /**
      * The helper that ran this chat's agent is gone. It says ski_done however it ends, except when it is killed
      * outright (Android freeing memory, Ski's Linux crashing): then the chat stayed "working" for good, and a chat
@@ -436,6 +439,14 @@ final class ChatHub {
     void setAwake(Sessions.Session ses, boolean on) {
         ses.awake = on;
         sessions.save();
+        changed();
+    }
+
+    /** Background mode for a chat; switched off, its display goes (with what's on it). */
+    void setBackground(Sessions.Session ses, boolean on) {
+        ses.background = on;
+        sessions.save();
+        if (!on) Background.close(app, ses.id);
         changed();
     }
 
@@ -892,11 +903,26 @@ final class ChatHub {
     private void runEnded(Sessions.Session ses) {
         Prefs.setBusy(app, ses.id, false);
         StepLog.runEnded(app, ses);
+        if (ses.background) {
+            Background.rest(app, ses.id); // its apps aren't "on screen" between runs
+            // and a minute later, unless the chat works again, its screen goes and its apps with it: an app left
+            // there isn't on the user's screen either, and the chat kept showing it as if it still worked there
+            final int run = ses.runId;
+            main.postDelayed(() -> {
+                if (!ses.running && ses.runId == run) {
+                    Background.close(app, ses.id);
+                    changed();
+                }
+            }, BACKGROUND_RELEASE_MS);
+        }
         if (ses.schedule == null) ses.allowed.clear(); // a scheduled chat keeps them for its next scheduled run
         CodexLive.agentDone(ses, ses.outcome, !ses.lastReply.isEmpty());
         // a quiet scheduled run that found nothing new ends without a notification (a failed one always says so)
         boolean quiet = ses.quietRun && ses.quietSaid && ses.outcome == null;
-        if ((ses.awake || ses.scheduledRun) && !quiet) KeepAwake.notifyEnded(app, ses);
+        // nobody is looking: the phone is locked, or the chat worked in the background and isn't the one on screen.
+        // Then its end is a notification too, as for a long task's or a scheduled one's
+        boolean away = Triggers.locked(app) || (ses.background && !viewing.contains(ses));
+        if ((ses.awake || ses.scheduledRun || away) && !quiet) KeepAwake.notifyEnded(app, ses);
         ses.scheduledRun = false;
         ses.quietRun = false;
         ses.quietSaid = false;

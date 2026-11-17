@@ -2074,4 +2074,82 @@
     <string name="hub_agent_switched">This chat is with %1$s now. It starts fresh: tell it what you were doing, or what you need next.</string>
     <string name="hub_helper_gone">Ski\'s helper for this chat ended without saying why. The run stopped.</string>
     <string name="hub_helper_killed">Android ended Ski\'s helpers to free memory. To run more at once, free some space or close other apps.</string>
+
+    <!-- ===== Background mode (BackgroundActivity, Background): an agent works on a screen of its own that the user doesn't see ===== -->
+    <!-- Title of the screen and of its row in Settings. Keep short. -->
+    <string name="background_title">Background mode</string>
+    <string name="background_row">Agents work on a screen of their own while you use your phone</string>
+    <string name="background_intro">In background mode an agent works on a screen of its own that you don\'t see. You keep your screen, your keyboard and your Back button, and it goes on while the phone is locked.</string>
+    <!-- "Wireless debugging" is Android's name of that developer option: use the name this language's Android shows. -->
+    <string name="background_how">Android lets only Wireless debugging make such a screen, so Ski pairs with it once, here on this phone. No computer needed.</string>
+    <!-- The three steps of the set-up. "Developer options", "Wireless debugging", "Build number" and "Pair device with pairing code" are Android's own names: use the ones this language's Android shows. -->
+    <string name="background_step1">1. Tap Set up. Ski opens Developer options and finds Wireless debugging for you.</string>
+    <string name="background_step2">2. It turns Wireless debugging on (Wi-Fi must be connected) and opens “Pair device with pairing code”.</string>
+    <string name="background_step3">3. It reads the code, pairs, and brings you back here. If it stops somewhere, do that step yourself and Ski carries on.</string>
+    <!-- Button: starts the set-up. -->
+    <string name="background_setup">Set up</string>
+    <!-- Button while the set-up waits: opens Android's Developer options again. -->
+    <string name="background_open_options">Open Developer options</string>
+    <!-- Progress lines of the set-up. adb is a program's name. -->
+    <string name="background_installing">Getting adb for Ski\'s Linux…</string>
+    <string name="background_waiting">Waiting for “Pair device with pairing code” in Wireless debugging…</string>
+    <string name="background_pairing">Pairing…</string>
+    <string name="background_starting">Starting the helper…</string>
+    <!-- State: set up and its helper is running. -->
+    <string name="background_ready">Ready</string>
+    <string name="background_ready_info">Turn it on per chat: Chat options → Work in the background.</string>
+    <!-- State: set up, but the helper isn't running (after a restart of the phone). -->
+    <string name="background_paired">Paired</string>
+    <string name="background_asleep">Its helper isn\'t running. It starts with the first background task, or now. After a restart of the phone, tap Start now: Ski switches Wireless debugging on for it (Wi-Fi must be connected).</string>
+    <!-- Button: starts the helper. -->
+    <string name="background_start_now">Start now</string>
+    <!-- %1$s = what went wrong (may be in English). -->
+    <string name="background_failed">It didn\'t work: %1$s</string>
+    <string name="background_needs_linux">Background mode needs Ski\'s Linux. Install an agent first.</string>
+    <!-- "Developer options", "About device" and "Build number" are Android's own names: use the ones this language's Android shows. -->
+    <string name="background_needs_dev">Turn on Developer options first: Settings → About device → tap Build number 7 times.</string>
+    <string name="background_needs_service">Turn on Ski\'s accessibility service first.</string>
+    <string name="background_no_dialog">Ski didn\'t see the pairing dialog in time. Try again.</string>
+    <!-- Button, and the title of its confirmation: undoes the set-up. -->
+    <string name="background_remove">Remove</string>
+    <string name="background_remove_text">Ski forgets the pairing and stops its helper. Chats work on the real screen again.</string>
+    <!-- Switch on the Background mode screen. -->
+    <string name="background_default">New chats work in the background</string>
+    <string name="background_default_info">Each chat still has its own switch in Chat options.</string>
+    <string name="chat_bg_connected">Connected</string>
+    <string name="chat_bg_disconnected">Not connected</string>
+    <string name="chat_bg_not_set_up">Not set up</string>
+    <string name="chat_bg_checking">Checking…</string>
+    <string name="chat_bg_pair_again">Pair again</string>
+    <string name="chat_bg_more">More settings</string>
+    <string name="chat_bg_connected_info">Agents in background chats can work on a screen of their own.</string>
+    <string name="chat_bg_setup_info">Lets an agent work in your apps on a screen of its own while you use your phone. Set-up takes about a minute and needs Wi-Fi.</string>
+    <string name="chat_bg_setup">Set up background mode (about a minute) →</string>
+    <!-- "USB debugging" is Android's name of that developer option: use the name this language's Android shows. -->
+    <string name="background_usb_note">Ski also turns on USB debugging. With it, the helper keeps running when Wi-Fi drops and Android switches Wireless debugging off. Leave it on.</string>
+    <string name="background_security">Wireless debugging lets paired devices control this phone. Ski pairs only itself, on this phone, and its helper listens only here.</string>
+    <!-- Note in the chat when a step needs the user and the app moves from the background screen to the real one. -->
+    <string name="background_brought">Moved to your screen: this step needs you. Background mode is off for this chat now.</string>
+    <!-- Section title on the Background mode screen: commands the agent runs on the phone itself. Keep short. -->
+    <string name="background_shell">Phone commands</string>
+    <!-- Switch under it. "Linux tools" is the name of Ski's chat option (chat_linux_tools). -->
+    <string name="background_shell_switch">Agents may run commands on the phone</string>
+    <!-- "adb shell" is a program's name. -->
+    <string name="background_shell_info">In chats with Linux tools, the agent can run commands on the phone itself, as “adb shell” does: install and start apps, change settings, read logs and files. A message or web page it reads could try to trick it into running one.</string>
+    <!-- Second switch, shown while the first is on. -->
+    <string name="background_shell_ask">Ask before each command</string>
+    <string name="background_shell_ask_info">An approval card shows the command first. Without it, nothing stands between a tricked agent and your phone: a command can even tap an approval card.</string>
+    <!-- Approval card for a phone command; %1$s = the command line. -->
+    <string name="tools_card_shell">Run on the phone:\n%1$s</string>
+    <!-- In the bubble while a phone command runs. Keep short. -->
+    <string name="activity_shell">Running a phone command</string>
+    <!-- A step in the chat; %1$s = the command line, shortened. -->
+    <string name="hub_tool_phone_shell">Phone command: %1$s</string>
+    <!-- Switch in Chat options. "it" = the chat's agent. -->
+    <string name="chat_background">Work in the background</string>
+    <string name="chat_background_info">The agent uses a screen of its own and you keep using your phone. A step that needs you, like a sign-in, comes to your screen.</string>
+    <!-- Read by TalkBack: the small live picture of the background screen in a chat. -->
+    <string name="background_preview">Background screen</string>
+    <!-- Button under that picture: the app moves to the real screen and the chat goes on there. -->
+    <string name="background_show">Show on my screen</string>
 </resources>

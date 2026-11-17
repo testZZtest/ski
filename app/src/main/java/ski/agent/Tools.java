@@ -287,6 +287,12 @@ final class Tools {
         t.put(tool("cancel_scheduled", "Cancel a message scheduled with schedule_message.",
                 props().put("id", strProp("Its id, from schedule_message or list_scheduled")), "id"));
         if (!Flavor.PLAY) { // Play updates Ski itself and doesn't allow installing other APKs
+            t.put(tool("phone_shell",
+                    "(Needs background mode and Linux tools) Run a command line on the phone itself as the shell user, "
+                            + "e.g. am/pm, dumpsys, settings, content — without touching the screen. For taps, typing and "
+                            + "swipes use the phone tools. The user turns this on: Settings → Background mode → Phone commands.",
+                    props().put("command", strProp("The command line, e.g. \"dumpsys battery | grep level\""))
+                            .put("timeout_s", intProp("Default 60, max 300")), "command"));
             t.put(tool("install_apk",
                     "(Needs Linux tools) Open Android's installer for an APK built in Ski's Linux, e.g. "
                             + "/root/.ski/work/myapp/build/app.apk, or served by another app on this phone at a local URL "
@@ -507,6 +513,7 @@ final class Tools {
     }
 
     private JSONObject call0(String name, JSONObject a) throws Exception {
+        DISPLAY.remove(); // this thread's last call may have been a background chat's
         String revoked = svc.controlRevoked();
         if (revoked != null && !"notify".equals(name)) return text(revoked);
         String capped = countStep(name, a);
@@ -515,13 +522,24 @@ final class Tools {
             svc.onToolActivity(name);
             return browser.call(name, a);
         }
+        // a chat in background mode works on a display of its own: it needs no unlocked screen and no turn at it
+        if (SCREEN.contains(name) && Background.on(svc, McpServer.CALLER_CHAT.get())) {
+            if ("point_out".equals(name)) return text(toScreen("point_out marks things on the user's screen"));
+            try {
+                DISPLAY.set(Background.display(svc, McpServer.CALLER_CHAT.get()));
+            } catch (Background.Unavailable e) {
+                return text("Background mode is on for this chat, but it can't be used right now: " + e.getMessage()
+                        + ". Tell the user that. They can also turn background mode off for this chat (Chat options), "
+                        + "and then you work on the real screen.");
+            }
+        }
         // locked or dark, the screen shows nothing to read or tap: say so instead of acting blind
-        if (SCREEN.contains(name) && Triggers.locked(svc)) {
+        if (SCREEN.contains(name) && !background() && Triggers.locked(svc)) {
             // a scheduled task's run asks the user to unlock and waits a little for them (null: unlocked, go on)
             String locked = Schedules.awaitUnlock(svc, McpServer.CALLER_CHAT.get(), name);
             if (locked != null) return text(locked);
         }
-        if (SCREEN.contains(name) && Triggers.locked(svc)) {
+        if (SCREEN.contains(name) && !background() && Triggers.locked(svc)) {
             return text(Browser.available(svc) && !ruleRun()
                     ? "Phone is locked: only notification replies and the background browser work until the user unlocks. "
                     + "For web pages use the browser_* tools; for anything else, tell the user to unlock the phone."
@@ -531,13 +549,13 @@ final class Tools {
         // asking the user, posting a note, pointing something out and answering in a notification go on while paused;
         // operating the phone waits
         if (!"confirm".equals(name) && !"ask".equals(name) && !"notify".equals(name) && !"reply_notification".equals(name)
-                && !"point_out".equals(name) && !SCHEDULING.contains(name)) {
+                && !"point_out".equals(name) && !SCHEDULING.contains(name) && !background()) {
             String held = svc.awaitResume(name);
             if (held != null) return text(held);
         }
-        svc.onToolActivity(name);
+        svc.onToolActivity(name, background());
         String step = activity(name, a);
-        if (step != null) svc.showActivity(step, null);
+        if (step != null) svc.showActivity(step, pictureKey());
         if (ACTIONS.contains(name)) svc.runOnMain(() -> svc.marks().clear()); // the screen is about to change
         if (PhoneTools.NAMES.contains(name)) return phone.call(name, a, ruleRun());
         switch (name) {
@@ -573,10 +591,10 @@ final class Tools {
                 return text("Waited " + ms + " ms.");
             }
             case "confirm": {
-                final String front = svc.foregroundPkg(); // (asked once: it can change, or be unknown for a moment)
+                final String front = frontPkg(); // (asked once: it can change, or be unknown for a moment)
                 if (front != null && "trust".equals(mode(front))) { // (never in a rule's run, see mode)
                     // no card in an app the user trusts; not counted as approval for a tap in another app
-                    return text("APPROVED automatically: the user trusts " + svc.foregroundAppName() + ", so work on "
+                    return text("APPROVED automatically: the user trusts " + frontName() + ", so work on "
                             + "your own there without calling confirm. Apps on Hard or Smart still ask the user.");
                 }
                 String summary = a.getString("summary");
@@ -585,7 +603,7 @@ final class Tools {
                     // as an approval: the action itself is judged when it comes (see guard: is it a send, in an app
                     // the rule covers, not a button the user listed as always asking), and noted in the chat then
                     return text("APPROVED by the user's rule for this run: they allowed routine steps in "
-                            + svc.foregroundAppName() + " without asking. Go ahead with this, and only this, there. Ski still "
+                            + frontName() + " without asking. Go ahead with this, and only this, there. Ski still "
                             + "asks the user itself where a step isn't routine (paying, buying, deleting, installing, "
                             + "passwords, security settings), is in another app or the background browser, or is one "
                             + "they set to always ask.");
@@ -644,6 +662,8 @@ final class Tools {
             case "memory_summary": return text(memorySummary());
             case "reply_notification":
                 return text(replyNotification(a.getString("text")));
+            case "phone_shell":
+                return text(phoneShell(a));
             case "reasoning_mode": {
                 String mode = a.optString("mode", "");
                 if (mode.isEmpty()) return text("Reasoning mode: " + Prefs.reasoningMode(svc) + " (off / on / always).");
@@ -1029,6 +1049,47 @@ final class Tools {
         else if (answer.contains("\u201c" + hard + "\u201d")) Prefs.setAppSafety(svc, pkg, "hard");
     }
 
+    /** phone_shell: a command line on the phone itself, through background mode's helper (issue #22 upstream). */
+    private static final java.util.regex.Pattern SHELL_NO = java.util.regex.Pattern.compile(
+            "(?:^|[\\s;&|(`])(?:/system/bin/)?(?:input|sendevent|monkey|uiautomator)(?:\\s|$)|cmd\\s+input"
+                    + "|ski\\.agent|enabled_accessibility_services|accessibility_enabled");
+
+    private String phoneShell(JSONObject a) throws Exception {
+        String chat = McpServer.CALLER_CHAT.get();
+        if (ruleRun()) return "Not available in a notification rule's run. Tell the user what's needed instead.";
+        if (!Prefs.backgroundShell(svc) || !Background.setUp(svc)) {
+            return "Phone commands are off. Only the user turns them on: Settings → Background mode → Phone commands "
+                    + "(background mode has to be set up there first). Tell them that if the task needs it; otherwise "
+                    + "use the phone tools.";
+        }
+        if (!ChatHub.get(svc).devFor(chat)) {
+            return "Phone commands need Linux tools in this chat. Ask the user to turn them on in the chat's header (the "
+                    + "Linux tools chip under its title), wait until they say it's done, then try again.";
+        }
+        String cmd = a.getString("command").trim();
+        if (cmd.isEmpty()) return "Give the command.";
+        if (cmd.length() > 4000) return "That command is too long (4,000 characters at most). Put a script in a file under /sdcard and run that.";
+        if (SHELL_NO.matcher(cmd).find()) {
+            return "BLOCKED: phone commands don't touch the screen or Ski itself. For taps, typing and swipes use the "
+                    + "phone tools, which ask the user where they should; Ski's own settings are the user's.";
+        }
+        int secs = Math.max(1, Math.min(300, a.optInt("timeout_s", 60)));
+        if (Prefs.backgroundShellAsk(svc) && !Guard.takeApproval(false, cmd)) {
+            String answer = svc.askConfirm(svc.getString(R.string.tools_card_shell, cmd), false);
+            if (!answer.startsWith("APPROVED")) return "Not run. " + answer;
+        }
+        svc.showActivity(svc.getString(R.string.activity_shell), null);
+        String[] r;
+        try {
+            r = Background.exec(svc, cmd, secs);
+        } catch (Background.Unavailable e) {
+            return "The command couldn't be run: " + e.getMessage() + ".";
+        }
+        String out = r[1].length() > 20_000 ? "…" + r[1].substring(r[1].length() - 20_000) : r[1];
+        return ("-1".equals(r[0]) ? "Stopped after " + secs + " s without finishing." : "Exit code " + r[0] + ".")
+                + (out.trim().isEmpty() ? " No output." : "\n" + out);
+    }
+
     private static JSONObject text(String s) throws JSONException {
         return new JSONObject().put("content", new JSONArray().put(new JSONObject().put("type", "text").put("text", s)));
     }
@@ -1107,16 +1168,91 @@ final class Tools {
                 + "Don't reply; just say so.";
     }
 
+    // ---------------------------------------------------------- background mode: the chat's own display
+
+    /** The display this call works on, set when it starts: a background chat's own (see Background), else unset. */
+    private static final ThreadLocal<Integer> DISPLAY = new ThreadLocal<>();
+
+    private static int display() {
+        Integer d = DISPLAY.get();
+        return d == null ? Display.DEFAULT_DISPLAY : d;
+    }
+
+    /** Does this call work on a background chat's display instead of the real screen? */
+    private static boolean background() {
+        return display() != Display.DEFAULT_DISPLAY;
+    }
+
+    /** For the bubble's live picture: a background chat's steps show its own screen, not the phone's (see Bubble). */
+    private static String pictureKey() {
+        return background() ? Background.KEY + McpServer.CALLER_CHAT.get() : null;
+    }
+
+    /** The windows this call reads and touches: the real screen's, or those on the chat's display. */
+    private List<AccessibilityWindowInfo> windows() {
+        int d = display();
+        if (d == Display.DEFAULT_DISPLAY) return svc.getWindows();
+        List<AccessibilityWindowInfo> l = svc.getWindowsOnAllDisplays().get(d);
+        return l == null ? new ArrayList<>() : l;
+    }
+
+    /**
+     * A step that needs the user's eyes or fingers on the app (ask's highlight, point_out): the app comes to the real
+     * screen and the chat works there from now on. What the agent is told to do next.
+     */
+    private String toScreen(String why) {
+        Sessions.Session ses = ChatHub.get(svc).sessions.find(McpServer.CALLER_CHAT.get());
+        if (ses == null) return "Not available.";
+        final String[] app = {Background.bringToScreen(svc, ses)};
+        DISPLAY.remove();
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException ignored) {
+        }
+        noteInChat(ses.id, svc.getString(R.string.background_brought));
+        return "This chat was working in the background, on a screen the user can't see, and " + why + ". So Ski moved "
+                + (app[0] == null ? "the chat" : app[0]) + " to the user's real screen and turned background mode off for "
+                + "this chat: from now on you work on the real screen. Element ids changed: call read_screen, then do "
+                + "this step again.";
+    }
+
+    /**
+     * The app the calling chat works in: the one on its own screen for a background chat, else the one in front on
+     * the phone's screen. Never the user's own app for a background chat: its name stood on approval cards (a shop's
+     * button "in" the game the user was playing), and its Trust setting decided what the agent's app may do.
+     */
+    private String frontPkg() {
+        return background() ? Background.appOn(svc, McpServer.CALLER_CHAT.get()) : svc.foregroundPkg();
+    }
+
+    private String frontName() {
+        if (!background()) return svc.foregroundAppName();
+        String pkg = frontPkg();
+        if (pkg == null) return null;
+        try {
+            android.content.pm.PackageManager pm = svc.getPackageManager();
+            return pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString();
+        } catch (Exception e) {
+            return pkg;
+        }
+    }
+
+    private static String str(CharSequence s) {
+        return s == null ? null : s.toString();
+    }
+
     // ---------------------------------------------------------- read_screen
 
     private String readScreen() {
         DisplayMetrics dm = svc.getResources().getDisplayMetrics();
         StringBuilder sb = new StringBuilder();
         sb.append("Screen ").append(dm.widthPixels).append('x').append(dm.heightPixels).append(" px\n");
+        if (background()) sb.append("This is the chat's background screen: the user doesn't see it and keeps using their "
+                + "phone meanwhile. It starts empty; open_app and open_url put an app on it.\n");
         synchronized (lock) {
             for (AccessibilityNodeInfo n : lastNodes) n.recycle();
             lastNodes.clear();
-            List<AccessibilityWindowInfo> windows = svc.getWindows();
+            List<AccessibilityWindowInfo> windows = windows();
             boolean keyboard = false;
             String app = null; // the app in front, for its tips
             for (AccessibilityWindowInfo w : windows) {
@@ -1334,7 +1470,7 @@ final class Tools {
 
     /** What lies over element n at x, y so that a tap there wouldn't reach it, or null when nothing does. */
     private String coveredBy(AccessibilityNodeInfo n, int x, int y) {
-        List<AccessibilityWindowInfo> windows = svc.getWindows();
+        List<AccessibilityWindowInfo> windows = windows();
         for (AccessibilityWindowInfo w : windows) {
             if (w.getId() != n.getWindowId()) continue;
             for (Cover c : coversAbove(windows, w)) if (c.area.contains(x, y)) return c.name;
@@ -1410,7 +1546,7 @@ final class Tools {
     /** What the apps on screen show now (Ski's own windows left out), in reading order. */
     private List<String> visibleTexts() {
         List<String> out = new ArrayList<>();
-        for (AccessibilityWindowInfo w : svc.getWindows()) {
+        for (AccessibilityWindowInfo w : windows()) {
             if (w.getType() != AccessibilityWindowInfo.TYPE_APPLICATION && w.getType() != AccessibilityWindowInfo.TYPE_SYSTEM) continue;
             AccessibilityNodeInfo root = w.getRoot();
             if (root == null || svc.getPackageName().contentEquals(String.valueOf(root.getPackageName()))) continue;
@@ -1433,7 +1569,7 @@ final class Tools {
         String want = q.trim().toLowerCase(Locale.ROOT);
         if (want.isEmpty()) return null;
         AccessibilityNodeInfo[] best = new AccessibilityNodeInfo[2]; // exact, contains
-        for (AccessibilityWindowInfo w : svc.getWindows()) {
+        for (AccessibilityWindowInfo w : windows()) {
             if (w.getType() != AccessibilityWindowInfo.TYPE_APPLICATION && w.getType() != AccessibilityWindowInfo.TYPE_SYSTEM) continue;
             AccessibilityNodeInfo root = w.getRoot();
             if (root == null || svc.getPackageName().contentEquals(String.valueOf(root.getPackageName()))) continue;
@@ -1474,7 +1610,7 @@ final class Tools {
             if (!text.isEmpty()) ok = joined.contains(text.toLowerCase(Locale.ROOT));
             if (ok && !gone.isEmpty()) ok = !joined.contains(gone.toLowerCase(Locale.ROOT));
             if (ok && !app.isEmpty()) {
-                String pkg = svc.foregroundPkg(), name = svc.foregroundAppName();
+                String pkg = frontPkg(), name = frontName();
                 ok = app.equals(pkg) || (name != null && name.toLowerCase(Locale.ROOT).contains(app.toLowerCase(Locale.ROOT)));
             }
             long t = android.os.SystemClock.elapsedRealtime();
@@ -1488,7 +1624,7 @@ final class Tools {
                 return String.format(Locale.ROOT, "TIMED OUT after %.1f s: %s", (t - start) / 1000.0,
                         !text.isEmpty() && !joined.contains(text.toLowerCase(Locale.ROOT)) ? "\"" + text + "\" didn't appear."
                                 : !gone.isEmpty() && joined.contains(gone.toLowerCase(Locale.ROOT)) ? "\"" + gone + "\" is still there."
-                                : !app.isEmpty() ? app + " isn't in front (" + svc.foregroundAppName() + " is)." : "the screen kept changing.");
+                                : !app.isEmpty() ? app + " isn't in front (" + frontName() + " is)." : "the screen kept changing.");
             }
             Thread.sleep(250);
         }
@@ -1516,7 +1652,7 @@ final class Tools {
             JSONObject st = steps.getJSONObject(i);
             String action = st.optString("action");
             String tool = "type".equals(action) ? "type_text" : action;
-            String before = svc.foregroundPkg();
+            String before = frontPkg();
             String held = svc.awaitResume(tool);
             if (held != null) {
                 out.append(i + 1).append(". stopped: ").append(held).append('\n');
@@ -1607,10 +1743,10 @@ final class Tools {
             if (stepDelay > 0 && i + 1 < steps.length() && !stop) {
                 Thread.sleep(stepDelay);
             }
-            String after = svc.foregroundPkg();
+            String after = frontPkg();
             if (!"open_app".equals(action) && !"press".equals(action) && after != null && before != null && !after.equals(before)
                     && i + 1 < steps.length()) {
-                out.append("Stopped: ").append(svc.foregroundAppName()).append(" came to the front.\n");
+                out.append("Stopped: ").append(frontName()).append(" came to the front.\n");
                 break;
             }
         }
@@ -1625,7 +1761,7 @@ final class Tools {
         if (a.has("element")) sc.put("element", a.getInt("element"));
         java.util.LinkedHashSet<String> seen = new java.util.LinkedHashSet<>();
         List<List<String>> pages = new ArrayList<>(); // in screen order; reversed at the end when going up
-        String app = svc.foregroundPkg();
+        String app = frontPkg();
         int scrolls = 0, quiet = 0;
         for (List<String> page = visibleTexts(); ; page = visibleTexts()) {
             List<String> fresh = new ArrayList<>();
@@ -1633,7 +1769,7 @@ final class Tools {
             pages.add(fresh);
             quiet = fresh.isEmpty() ? quiet + 1 : 0;
             if (quiet >= 2 || scrolls >= max || seen.size() > 1500) break;
-            if (app != null && !app.equals(svc.foregroundPkg())) break;
+            if (app != null && !app.equals(frontPkg())) break;
             String capped = countStep("scroll", sc);
             if (capped != null) return capped;
             String r = scroll(sc);
@@ -1733,7 +1869,7 @@ final class Tools {
     /** Visible nodes matching every selector given (text, desc, view id); password values are never matched. */
     private List<AccessibilityNodeInfo> matches(String text, String desc, String viewId, boolean exact) {
         List<AccessibilityNodeInfo> out = new ArrayList<>();
-        for (AccessibilityWindowInfo w : svc.getWindows()) {
+        for (AccessibilityWindowInfo w : windows()) {
             if (w.getType() != AccessibilityWindowInfo.TYPE_APPLICATION
                     && w.getType() != AccessibilityWindowInfo.TYPE_SYSTEM) continue;
             AccessibilityNodeInfo root = w.getRoot();
@@ -1877,7 +2013,7 @@ final class Tools {
                     + "would land on that instead. Close it or scroll the element into the clear, then read_screen. To tap what's "
                     + "there on purpose, give x and y.";
         }
-        AccessibilityNodeInfo hit = Guard.nodeAt(svc.getWindows(), x, y);
+        AccessibilityNodeInfo hit = Guard.nodeAt(windows(), x, y);
         CARD_SHOWN.set(false);
         String blocked = guard(n, hit);
         if (blocked != null) return blocked;
@@ -1897,7 +2033,7 @@ final class Tools {
                 y = r.centerY();
                 if (coveredBy(n, x, y) != null) return changed;
             } else {
-                AccessibilityNodeInfo now = Guard.nodeAt(svc.getWindows(), x, y);
+                AccessibilityNodeInfo now = Guard.nodeAt(windows(), x, y);
                 if (now != null && Guard.offLimits(svc, now)) now = hit; // Ski's own panel still in the way: no verdict
                 if (!java.util.Objects.equals(sameButton(hit), sameButton(now))) return changed;
             }
@@ -1905,8 +2041,8 @@ final class Tools {
         if (n != null || hit != null) used((n != null ? n : hit).getPackageName());
         String label = Guard.buttonLabel(n != null ? n : hit);
         svc.showActivity(label == null ? svc.getString(R.string.activity_tapping_plain)
-                : svc.getString(R.string.activity_tapping, label), null);
-        Path p = new Path();
+                : svc.getString(R.string.activity_tapping, label), pictureKey());
+        Stroke p = new Stroke();
         p.moveTo(x, y);
         String note = otherButtonNote(n, hit);
         String before = beforeAction();
@@ -1929,16 +2065,27 @@ final class Tools {
         return screenPrint();
     }
 
+    /** The screen's state as a hash: what afterAction's polling compares (cheap; see afterAction). */
+    private String screenHash() {
+        String s = screenPrint();
+        return s == null ? null : String.valueOf(s.hashCode());
+    }
+
     /**
      * What the agent should know after an action: a toast that showed, or that the screen still reads the same after
      * waitMs (returning at once when it changes). Empty when the screen simply changed, or when it can't be read.
      */
     private String afterAction(String before, long waitMs) {
         long end = android.os.SystemClock.elapsedRealtime() + waitMs;
+        // the polling compares hashes, not the full screen text: building the whole tree dump every 150 ms cost CPU
+        // and battery on every action of every run (the wait is the common case — most steps just work)
+        String hash = before == null ? null : String.valueOf(before.hashCode());
+        String now = screenHash();
         try {
-            while (before != null && before.equals(screenPrint()) && svc.peekToast() == null
+            while (hash != null && hash.equals(now) && svc.peekToast() == null
                     && android.os.SystemClock.elapsedRealtime() < end) {
                 Thread.sleep(150);
+                now = screenHash();
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -1946,7 +2093,7 @@ final class Tools {
         }
         String toast = svc.takeToast(TOAST_FRESH_MS);
         if (toast != null) return " A toast showed: \"" + clip(toast) + "\".";
-        if (before == null || !before.equals(screenPrint())) return "";
+        if (before == null || !hash.equals(now)) return "";
         return " " + NOTHING_CHANGED + ": the screen reads the same as before. It may have missed, the app may be slow, or it "
                 + "draws something Ski can't read. Look with read_screen or screenshot before trying again, and try "
                 + "something different rather than repeating this.";
@@ -1960,7 +2107,7 @@ final class Tools {
         DisplayMetrics dm = svc.getResources().getDisplayMetrics();
         StringBuilder b = new StringBuilder();
         Rect r = new Rect();
-        for (AccessibilityWindowInfo w : svc.getWindows()) {
+        for (AccessibilityWindowInfo w : windows()) {
             int type = w.getType();
             if (type == AccessibilityWindowInfo.TYPE_INPUT_METHOD) {
                 b.append("keyboard\n");
@@ -2008,7 +2155,7 @@ final class Tools {
         String mode = mode(pkg);
         if ("trust".equals(mode)) return null;
         String label = Guard.buttonLabel(target);
-        String app = svc.foregroundAppName();
+        String app = frontName();
         Guard.remember(svc, label, pkg, app);
         if (!ruleRun() && Guard.listed(svc, "allow", label, pkg)) return null; // the user said: never ask for this one
         AccessibilityNodeInfo field = findFocusedInput();
@@ -2040,7 +2187,7 @@ final class Tools {
      */
     private String review(String what, java.util.function.Function<String, String> card, AccessibilityNodeInfo target,
                           String draft, java.util.function.BooleanSupplier rule) throws InterruptedException {
-        String app = svc.foregroundAppName();
+        String app = frontName();
         final String[][] ctx = new String[1][];
         final CountDownLatch got = new CountDownLatch(1);
         svc.runOnMain(() -> {
@@ -2055,7 +2202,7 @@ final class Tools {
             if (svc.bubble() != null) svc.bubble().setStatus(svc.getString(R.string.tools_status_checking_tap));
         });
         Reviewer.Decision d = Reviewer.review(svc, harness, cx == null ? null : cx[1], cx == null ? null : cx[2],
-                what + (app == null ? "" : " in " + app), Reviewer.screen(svc.getWindows(), target));
+                what + (app == null ? "" : " in " + app), Reviewer.screen(windows(), target));
         if ("allow".equals(d.decision)) return null;
         // the run rule covers the reviewer's "ask" on a routine step: not a risky button, not a password field
         boolean byRule = "ask".equals(d.decision) && target != null && Guard.riskyLabel(target) == null && !target.isPassword()
@@ -2088,7 +2235,7 @@ final class Tools {
                                boolean byRule, boolean otherRisk) throws InterruptedException {
         // a send's detail is the message itself: an approval for another text doesn't cover it (a card asks instead)
         if (Guard.takeApproval(send, send ? detail : null, otherRisk)) return null;
-        String app = svc.foregroundAppName();
+        String app = frontName();
         if (byRule) {
             noteInChat(McpServer.CALLER_CHAT.get(), svc.getString(R.string.run_rule_approved, card.apply(app)));
             return null;
@@ -2104,9 +2251,7 @@ final class Tools {
                 + "ask the user what they want.";
     }
 
-    private static String str(CharSequence s) {
-        return s == null ? null : s.toString();
-    }
+
 
     private static AccessibilityNodeInfo clickableAncestor(AccessibilityNodeInfo n, boolean longPress) {
         AccessibilityNodeInfo cur = n;
@@ -2225,7 +2370,7 @@ final class Tools {
     /** The focused text field, or the only visible text field when nothing has focus. */
     private AccessibilityNodeInfo findFocusedInput() {
         List<AccessibilityNodeInfo> editable = new ArrayList<>();
-        for (AccessibilityWindowInfo w : svc.getWindows()) {
+        for (AccessibilityWindowInfo w : windows()) {
             if (w.getType() == AccessibilityWindowInfo.TYPE_ACCESSIBILITY_OVERLAY
                     || w.getType() == AccessibilityWindowInfo.TYPE_INPUT_METHOD) continue;
             AccessibilityNodeInfo root = w.getRoot();
@@ -2266,7 +2411,7 @@ final class Tools {
         }
         String blocked = guardStroke(n, xy);
         if (blocked != null) return blocked;
-        Path p = new Path();
+        Stroke p = new Stroke();
         p.moveTo(xy[0], xy[1]);
         p.lineTo(xy[2], xy[3]);
         String before = beforeAction();
@@ -2283,9 +2428,9 @@ final class Tools {
         // A stroke too short to scroll anything lands as a tap, so it gets every check a tap gets
         int slop = ViewConfiguration.get(svc).getScaledTouchSlop();
         boolean tap = Math.hypot(x2 - x1, y2 - y1) <= slop;
-        String blocked = tap ? guard(null, Guard.nodeAt(svc.getWindows(), x1, y1)) : guardStroke(null, x1, y1, x2, y2);
+        String blocked = tap ? guard(null, Guard.nodeAt(windows(), x1, y1)) : guardStroke(null, x1, y1, x2, y2);
         if (blocked != null) return blocked;
-        Path p = new Path();
+        Stroke p = new Stroke();
         p.moveTo(x1, y1);
         p.lineTo(x2, y2);
         long d = Math.max(50, Math.min(3000, a.optLong("duration_ms", 300)));
@@ -2303,12 +2448,35 @@ final class Tools {
             return "BLOCKED: a card is waiting for the user's answer. Wait for it; don't touch the screen.";
         }
         boolean off = element != null && Guard.offLimits(svc, element);
-        List<AccessibilityWindowInfo> windows = svc.getWindows();
+        List<AccessibilityWindowInfo> windows = windows();
         for (int i = 0; !off && i + 1 < xy.length; i += 2) off = Guard.offLimits(svc, Guard.nodeAt(windows, xy[i], xy[i + 1]));
         return off ? "BLOCKED: that's one of Ski's own screens. Only the user touches those." : null;
     }
 
+    /** A finger's path that also remembers its points: the helper of background mode takes points, not a Path. */
+    private static final class Stroke extends Path {
+        final List<float[]> points = new ArrayList<>();
+
+        @Override
+        public void moveTo(float x, float y) {
+            super.moveTo(x, y);
+            points.add(new float[]{x, y});
+        }
+
+        @Override
+        public void lineTo(float x, float y) {
+            super.lineTo(x, y);
+            points.add(new float[]{x, y});
+        }
+    }
+
     private boolean gesture(Path path, long durationMs) throws InterruptedException {
+        if (background()) { // the helper touches the chat's display; nothing of the real screen is in the way
+            List<float[]> pts = path instanceof Stroke ? ((Stroke) path).points : new ArrayList<>();
+            boolean ok = Background.gesture(svc, McpServer.CALLER_CHAT.get(), pts, durationMs);
+            Thread.sleep(250);
+            return ok;
+        }
         svc.setBubblePassThrough(true);
         try {
             final CountDownLatch done = new CountDownLatch(1);
@@ -2339,6 +2507,18 @@ final class Tools {
     }
 
     private String press(String button) {
+        if (background()) {
+            if (!"back".equals(button)) return "In background mode there's only Back: Home, Recents and the notification "
+                    + "shade belong to the user's real screen. Use open_app to switch apps.";
+            String before = beforeAction();
+            try {
+                Background.call(svc, "key\t" + McpServer.CALLER_CHAT.get() + "\t" + android.view.KeyEvent.KEYCODE_BACK);
+                Thread.sleep(500);
+            } catch (Exception e) {
+                return "Could not press back: " + e.getMessage();
+            }
+            return "Pressed back." + afterAction(before, 500);
+        }
         int action;
         switch (button) {
             case "back": action = AccessibilityService.GLOBAL_ACTION_BACK; break;
@@ -2396,6 +2576,16 @@ final class Tools {
             return "BLOCKED: agents can't open Ski itself. Only the user uses Ski's screens.";
         Intent launch = pm.getLaunchIntentForPackage(best);
         if (launch == null) return "App " + bestLabel + " cannot be launched.";
+        if (background()) {
+            if (launch.getComponent() == null) return "App " + bestLabel + " cannot be launched.";
+            try {
+                Background.call(svc, "start\t" + McpServer.CALLER_CHAT.get() + "\t" + launch.getComponent().flattenToString());
+            } catch (java.io.IOException e) {
+                return "Could not open " + bestLabel + " in the background: " + e.getMessage();
+            }
+            Thread.sleep(1500);
+            return "Opened " + bestLabel + " (" + best + ") on this chat's background screen. Call read_screen to see it.";
+        }
         launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         svc.startActivity(launch);
         Thread.sleep(1500);
@@ -2544,12 +2734,41 @@ final class Tools {
         if (to != null && to.activityInfo != null && svc.getPackageName().equals(to.activityInfo.packageName)
                 && !Prefs.agentsTapSki(svc))
             return "BLOCKED: that link opens Ski itself. Only the user uses Ski's screens.";
+        if (background()) {
+            if (url.indexOf('\t') >= 0 || url.indexOf('\n') >= 0) return "That's not a link.";
+            try {
+                Background.call(svc, "view\t" + McpServer.CALLER_CHAT.get() + "\t" + url);
+            } catch (java.io.IOException e) {
+                return "Could not open " + url + " in the background: " + e.getMessage();
+            }
+            Thread.sleep(1500);
+            return "Opened " + url + " on this chat's background screen. Call read_screen to see it.";
+        }
         svc.startActivity(i);
         Thread.sleep(1500);
         return "Opened " + url + ". Call read_screen to see it.";
     }
 
     private JSONObject screenshot() throws Exception {
+        if (background()) {
+            byte[] raw = Background.frame(svc, McpServer.CALLER_CHAT.get(), 0, 92);
+            Bitmap full = raw == null ? null : android.graphics.BitmapFactory.decodeByteArray(raw, 0, raw.length);
+            if (full == null) return text("The background screen shows nothing yet. Open an app with open_app first.");
+            float scale = Math.min(1f, (float) SCREENSHOT_SHORT_SIDE / Math.min(full.getWidth(), full.getHeight()));
+            Bitmap small = scale < 1f
+                    ? Bitmap.createScaledBitmap(full, Math.round(full.getWidth() * scale), Math.round(full.getHeight() * scale), true)
+                    : full;
+            ByteArrayOutputStream jpg = new ByteArrayOutputStream();
+            small.compress(Bitmap.CompressFormat.JPEG, 70, jpg);
+            String note = String.format(Locale.ROOT,
+                    "Screenshot %dx%d of this chat's background screen (it is %dx%d). To tap something you see, multiply "
+                            + "image coordinates by %.3f.",
+                    small.getWidth(), small.getHeight(), full.getWidth(), full.getHeight(), 1f / scale);
+            return new JSONObject().put("content", new JSONArray()
+                    .put(new JSONObject().put("type", "image").put("mimeType", "image/jpeg")
+                            .put("data", Base64.encodeToString(jpg.toByteArray(), Base64.NO_WRAP)))
+                    .put(new JSONObject().put("type", "text").put("text", note)));
+        }
         try {
             return screenshotOnce();
         } catch (IllegalStateException e) { // too soon after "View steps" took its own: once more, a second later

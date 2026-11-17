@@ -504,17 +504,23 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
     // ------------------------------------------- called from tool threads
 
     void onToolActivity(final String tool) {
+        onToolActivity(tool, false);
+    }
+
+    /** background: this call works on a background chat's own display, not the user's screen (see Background). */
+    void onToolActivity(final String tool, final boolean background) {
         main.post(() -> {
             bubble.onToolActivity(tool);
             // asking for approval, asking a question, posting a note, pointing something out or answering in a
             // notification isn't operating the phone
-            // nor is waiting or listing apps
-            if (!"confirm".equals(tool) && !"ask".equals(tool) && !"notify".equals(tool) && !"reply_notification".equals(tool)
-                    && !"point_out".equals(tool) && !"wait".equals(tool) && !"list_apps".equals(tool)
-                    && !Tools.SCHEDULING.contains(tool)
+            // nor is waiting or listing apps; nor is a background chat's work on its own display
+            boolean screen = !background && !"confirm".equals(tool) && !"ask".equals(tool) && !"notify".equals(tool)
+                    && !"reply_notification".equals(tool) && !"point_out".equals(tool) && !"wait".equals(tool)
+                    && !"list_apps".equals(tool) && !Tools.SCHEDULING.contains(tool)
                     // installing: Android's installer asks the user, the agent doesn't touch the screen
                     && !"update_ski".equals(tool) && !"install_apk".equals(tool) && !"wait_for_install".equals(tool)
-                    && !tool.startsWith("browser_")) { // the background browser isn't the phone
+                    && !tool.startsWith("browser_"); // the background browser isn't the phone
+            if (screen) {
                 control.onActivity();
             }
         });

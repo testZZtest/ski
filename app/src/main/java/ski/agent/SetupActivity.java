@@ -762,6 +762,18 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         perms.setOnClickListener(v -> startActivity(new android.content.Intent(this, AppPermissionsActivity.class)));
         ex.addView(perms, full());
         ex.addView(divider(), lineParams());
+        if (Linux.installed(this)) { // background mode: the agent works on a hidden display of its own
+            LinearLayout bg = listRow(this);
+            bg.setGravity(Gravity.CENTER_VERTICAL);
+            LinearLayout bt = column(this);
+            bt.addView(title(this, getString(R.string.background_title), 15));
+            bt.addView(text(this, getString(R.string.chat_bg_setup_info), 13, MUTED), topGap(2));
+            bg.addView(bt, weight1());
+            bg.addView(icon(this, R.drawable.ms_chevron_right, MUTED, 20));
+            bg.setOnClickListener(v -> startActivity(new android.content.Intent(this, BackgroundActivity.class)));
+            ex.addView(bg, full());
+            ex.addView(divider(), lineParams());
+        }
         final boolean dev = Prefs.devMode(this);
         ex.addView(protect(switchRow(this, getString(R.string.setup_dev_mode), getString(R.string.setup_dev_mode_info),
                 dev, on -> {

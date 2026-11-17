@@ -159,6 +159,12 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- Settings → Background mode: pairing with Wireless debugging, the helper's state -->
+        <activity
+            android:name=".BackgroundActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+
         <activity
             android:name=".SignInActivity"
             android:exported="false" />

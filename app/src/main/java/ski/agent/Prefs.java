@@ -31,6 +31,65 @@ final class Prefs {
         return new int[]{sp(c).getInt("bx", -1), sp(c).getInt("by", 400)};
     }
 
+    /** Background mode: Ski's adb is paired with this phone's Wireless debugging (see Background). */
+    static boolean backgroundPaired(Context c) {
+        return sp(c).getBoolean("bg_paired", false);
+    }
+
+    static void setBackgroundPaired(Context c, boolean paired) {
+        sp(c).edit().putBoolean("bg_paired", paired).apply();
+    }
+
+    /** The secret the background helper is started with and asks for; generated once per install. */
+    static synchronized String backgroundToken(Context c) {
+        String t = sp(c).getString("bg_token", null);
+        if (t == null) {
+            byte[] b = new byte[24];
+            new SecureRandom().nextBytes(b);
+            StringBuilder sb = new StringBuilder();
+            for (byte x : b) sb.append(String.format("%02x", x));
+            t = sb.toString();
+            sp(c).edit().putString("bg_token", t).apply();
+        }
+        return t;
+    }
+
+    /** New chats start in background mode (each chat has its own switch in Chat options). */
+    static boolean backgroundDefault(Context c) {
+        return sp(c).getBoolean("bg_default", false);
+    }
+
+    static void setBackgroundDefault(Context c, boolean on) {
+        sp(c).edit().putBoolean("bg_default", on).apply();
+    }
+
+    /** Phone commands: agents in chats with Linux tools may run commands on the phone itself. Off unless the user turns it on. */
+    static boolean backgroundShell(Context c) {
+        return sp(c).getBoolean("bg_shell", false);
+    }
+
+    static void setBackgroundShell(Context c, boolean on) {
+        sp(c).edit().putBoolean("bg_shell", on).apply();
+    }
+
+    /** An approval card shows each phone command first. On unless the user turns it off. */
+    static boolean backgroundShellAsk(Context c) {
+        return sp(c).getBoolean("bg_shell_ask", true);
+    }
+
+    static void setBackgroundShellAsk(Context c, boolean on) {
+        sp(c).edit().putBoolean("bg_shell_ask", on).apply();
+    }
+
+    /** The port Wireless debugging had when Ski last reached it (tried first next time). */
+    static int backgroundAdbPort(Context c) {
+        return sp(c).getInt("bg_adb_port", 0);
+    }
+
+    static void setBackgroundAdbPort(Context c, int port) {
+        sp(c).edit().putInt("bg_adb_port", port).apply();
+    }
+
     /** Agents installed in Ski's Linux from the last helper ping ("claude,codex", "none"), or null if never answered. */
     static String helperStatus(Context c) {
         return sp(c).getString("helper", null);

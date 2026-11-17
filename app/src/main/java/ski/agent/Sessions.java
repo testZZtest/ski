@@ -76,6 +76,8 @@ final class Sessions {
         boolean dev;
         /** Long-task mode: the screen stays on while this chat works, and its end is a notification (see KeepAwake). */
         boolean awake;
+        /** Background mode: this chat's agent works on a screen of its own (see Background). */
+        volatile boolean background;
         /** The chat's scheduled task (see Schedules), or null. */
         Schedules.Plan schedule;
         /** Messages the agent scheduled for itself in this chat (schedule_message), soonest first. Main thread. */
@@ -235,7 +237,7 @@ final class Sessions {
                     msgs.put(mo);
                 }
                 arr.put(new JSONObject().put("id", s.id).put("backend", s.backend).put("title", s.title).put("model", s.model).put("effort", s.effort).put("actual_model", s.actualModel).put("ctx_used", s.ctxUsed).put("ctx_window", s.ctxWindow).put("interrupted", s.interrupted).put("incognito", s.incognito)
-                        .put("dev", s.dev).put("awake", s.awake).put("approvals", s.approvals).put("handover", s.handover == null ? "" : s.handover)
+                        .put("dev", s.dev).put("awake", s.awake).put("background", s.background).put("approvals", s.approvals).put("handover", s.handover == null ? "" : s.handover)
                         .put("handover_model", s.handoverModel).put("handover_effort", s.handoverEffort)
                         .put("updated", s.updated).put("messages", msgs));
                 synchronized (s.apps) {
@@ -279,6 +281,7 @@ final class Sessions {
                 older |= !o.has("dev");
                 s.dev = o.optBoolean("dev", Prefs.devMode(app));
                 s.awake = o.optBoolean("awake");
+                s.background = o.optBoolean("background");
                 s.approvals = o.optString("approvals", "");
                 s.handover = o.optString("handover", "").isEmpty() ? null : o.optString("handover");
                 s.handoverModel = o.optString("handover_model", "");
