@@ -46,7 +46,8 @@ public final class HiddenNotice extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context c, Intent intent) {
-        if (ControlIndicator.ACTION_STOP.equals(intent.getAction())) {
+        if (ControlIndicator.ACTION_STOP.equals(intent.getAction())
+                || WorkNotice.ACTION_STOP.equals(intent.getAction())) {
             SkiService s = SkiService.get();
             if (s != null) s.takeBackControl();
             return;

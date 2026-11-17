@@ -13,7 +13,7 @@
 #   ski-run <token> transcript <claude|codex> <file>   last messages of a session (ski_transcript)
 #   ski-run <token> adopt <session> <claude|codex> <agent-session-id>  continue that session as a Ski chat
 # Every event sent to the bubble carries "ski_session" so the app can route it.
-HELPER_VERSION=23
+HELPER_VERSION=25
 set -u
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # The claude launcher sets BUN_OPTIONS with a path relative to its folder; never inherit a stale one.
@@ -29,6 +29,8 @@ post() { # post one JSON event to the bubble
   curl -s -m 5 -o /dev/null -X POST -H "Authorization: Bearer $TOKEN" \
     -H 'Content-Type: application/json' --data-binary @- "$URL/event"
 }
+# Tests (linux/test/run.sh, the runs): events go to a file instead of the app.
+[ -n "${SKI_TEST_EVENTS:-}" ] && post() { cat >> "$SKI_TEST_EVENTS"; echo >> "$SKI_TEST_EVENTS"; }
 have() { command -v "$1" >/dev/null 2>&1; }
 valid_sid() { [[ "$1" =~ ^[A-Za-z0-9_-]{1,64}$ ]]; }
 # OpenCode 2 (npm @opencode/cli) rather than 1.x (opencode-ai)? 2 needs --standalone, or it leaves a background service
@@ -39,6 +41,18 @@ kill_tree() {
   local p=$1 c
   for c in $(pgrep -P "$p" 2>/dev/null); do kill_tree "$c"; done
   kill -TERM "$p" 2>/dev/null
+}
+
+# An agent's run (run_<agent>), then a line saying it has ended. Something the agent started (an MCP server, a job in
+# the background) can keep its output open after it is gone; read to the end, the stream waited for that too, and the
+# chat stayed "working" with no ski_done. Every stream_<agent> stops at this line. The agent keeps the input it had.
+AGENT_END="ski-run: the agent has ended $$"
+ended() {
+  local s
+  "$@" <&0 &
+  wait "$!"; s=$?
+  printf '\n%s\n' "$AGENT_END"
+  return "$s"
 }
 
 descendants() { # print a pid and all its descendants
@@ -204,10 +218,16 @@ case "$CMD" in
     [ -f "$S/pid" ] && kill_tree "$(cat "$S/pid")"
     # forget (an incognito chat): the agents own records of the conversation go too
     if [ "${4:-}" = forget ]; then
-      c=$(cat "$S/claude-session" 2>/dev/null); t=$(cat "$S/codex-thread" 2>/dev/null); o=$(cat "$S/opencode-session" 2>/dev/null)
-      [[ "$c" =~ ^[A-Za-z0-9-]+$ ]] && rm -f "$HOME"/.claude/projects/*/"$c".jsonl
-      [[ "$t" =~ ^[A-Za-z0-9-]+$ ]] && find "$HOME/.codex/sessions" -name "rollout-*$t.jsonl" -delete 2>/dev/null
-      [[ "$o" =~ ^[A-Za-z0-9_-]+$ ]] && have opencode && timeout 30 opencode session delete $(oc2 && echo --standalone) "$o" >/dev/null 2>&1
+      # (with the conversations an agent had here before the chat was switched away and back: the .old lists)
+      for c in $(cat "$S/claude-session" "$S/claude-session.old" 2>/dev/null); do
+        [[ "$c" =~ ^[A-Za-z0-9-]+$ ]] && rm -f "$HOME"/.claude/projects/*/"$c".jsonl
+      done
+      for t in $(cat "$S/codex-thread" "$S/codex-thread.old" 2>/dev/null); do
+        [[ "$t" =~ ^[A-Za-z0-9-]+$ ]] && find "$HOME/.codex/sessions" -name "rollout-*$t.jsonl" -delete 2>/dev/null
+      done
+      for o in $(cat "$S/opencode-session" "$S/opencode-session.old" 2>/dev/null); do
+        [[ "$o" =~ ^[A-Za-z0-9_-]+$ ]] && have opencode && timeout 30 opencode session delete $(oc2 && echo --standalone) "$o" >/dev/null 2>&1
+      done
     fi
     rm -rf "${S:?}"
     exit 0 ;;
@@ -231,13 +251,34 @@ svc_window() {
 }
 S=$D/sessions/$SID
 mkdir -p "$S"
+# How a run ended when the agent itself said nothing: shown only if the run reported no error and wasn't stopped.
+quiet_end() { jq -cn --arg text "$1" --arg s "$SID" '{type:"ski_error",text:$text,quiet:true,ski_session:$s}' | post; }
 event() { jq -cn --arg type "$1" --arg text "${2:-}" --arg s "$SID" '{type:$type,text:$text,ski_session:$s}' | post; }
 tag() { jq -c --arg s "$SID" '. + {ski_session:$s}' 2>/dev/null; }
 
 if [ -f "$S/pid" ] && kill -0 "$(cat "$S/pid")" 2>/dev/null; then
   event ski_error "This session is still working. Tap Stop first, or start another session."
-  exit 0
+  exit 75 # (Helper.BUSY: the run that is still going ends the chat's "working", this helper's end doesn't)
 fi
+
+# The chat was just switched to this agent: it starts a conversation of its own. One it had in this chat before
+# knows nothing of what came since; the app sends the conversation so far along with the message.
+if [ "${FRESH:-}" = fresh ]; then
+  case "$BACKEND" in
+    # (the id it had is kept aside: deleting an incognito chat removes that conversation's record too)
+    claude) cat "$S/claude-session" >> "$S/claude-session.old" 2>/dev/null; echo >> "$S/claude-session.old"; rm -f "$S/claude-session" ;;
+    codex) cat "$S/codex-thread" >> "$S/codex-thread.old" 2>/dev/null; echo >> "$S/codex-thread.old"; rm -f "$S/codex-thread" ;;
+    opencode) cat "$S/opencode-session" >> "$S/opencode-session.old" 2>/dev/null; echo >> "$S/opencode-session.old"; rm -f "$S/opencode-session" ;;
+    agy) rm -f "$S/agy-conversation" "$S/agy-conversation.new" ;;
+    grok) rm -f "$S/grok-session" ;;
+  esac
+fi
+
+# From here this run says ski_done however it ends: at its end, on an early exit, or stopped from outside (then the
+# agent and what it started are stopped first). Only a kill -9 of this script says nothing: the app notices that.
+RUN=""
+trap 'event ski_done' EXIT
+trap '[ -n "$RUN" ] && kill_tree "$RUN"; rm -f "$S/pid"; exit 1' TERM INT HUP
 
 if [ -n "$SVC" ] && [ ! -s "$D/providers/$SVC.json" ]; then
   event ski_error "This chat's model is from an API key that is no longer in Ski. Pick another model."
@@ -346,6 +387,7 @@ run_claude() {
 stream_claude() {
   while IFS= read -r line; do
     [ -z "$line" ] && continue
+    [ "$line" = "$AGENT_END" ] && break
     printf '%s' "$line" | tag | post
     sid=$(printf '%s' "$line" | jq -r 'select(.session_id != null) | .session_id' 2>/dev/null)
     [ -n "$sid" ] && printf '%s' "$sid" > "$S/claude-session"
@@ -396,6 +438,7 @@ run_codex() {
 stream_codex() {
   while IFS= read -r line; do
     [ -z "$line" ] && continue
+    [ "$line" = "$AGENT_END" ] && break
     tid=$(printf '%s' "$line" | jq -r 'select(.type=="thread.started") | .thread_id // empty' 2>/dev/null)
     [ -n "$tid" ] && printf '%s' "$tid" > "$S/codex-thread"
     # Codex doesn't say which model it used; its session log does (shown when the chat is on "Default")
@@ -497,6 +540,7 @@ stream_opencode() {
   local pending="" failed="" line sid typ t
   while IFS= read -r line; do
     [ -z "$line" ] && continue
+    [ "$line" = "$AGENT_END" ] && break
     sid=$(printf '%s' "$line" | jq -r '.sessionID // empty' 2>/dev/null)
     [ -n "$sid" ] && printf '%s' "$sid" > "$S/opencode-session"
     typ=$(printf '%s' "$line" | jq -r '.type // empty' 2>/dev/null)
@@ -616,6 +660,8 @@ stream_agy() {
   rm -f "$S/agy-denied"
   while IFS= read -r line; do
     [ -z "$line" ] && continue
+    [ "$line" = "$AGENT_END" ] && break
+    printf '%s\n' "$line" >> "$S/agy-last.jsonl"   # the run's raw events stay, for checking how agy reports its steps
     typ=$(printf '%s' "$line" | jq -r '.event // empty' 2>/dev/null)
     case "$typ" in
       init)
@@ -785,6 +831,7 @@ stream_grok() {
   rm -f "$S/grok-error"
   while IFS= read -r line; do
     [ -z "$line" ] && continue
+    [ "$line" = "$AGENT_END" ] && break
     typ=$(printf '%s' "$line" | jq -r '.type // empty' 2>/dev/null)
     case "$typ" in
       system)
@@ -826,6 +873,7 @@ stream_grok() {
 # Tests (linux/test/run.sh): translate an agent's recorded output from stdin with its stream_ function and print the
 # events instead of posting them.
 if [ -n "${SKI_TEST_STREAM:-}" ]; then
+  trap - EXIT
   post() { cat; echo; }
   "stream_$SKI_TEST_STREAM"
   exit 0
@@ -833,13 +881,14 @@ fi
 
 # ------------------------------------------------------------------------ run
 (
+  trap - EXIT TERM INT HUP
   if [ "$BACKEND" = opencode ]; then
     if ! have opencode; then event ski_error "OpenCode isn't installed yet. Install it in Ski's Settings."; exit 0; fi
-    run_opencode | stream_opencode
+    ended run_opencode | stream_opencode
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/opencode-session" ] && grep -q -i -E 'not found|no such|session' "$S/last-error.log" 2>/dev/null; then
       rm -f "$S/opencode-session"   # old session is gone; retry as a new conversation
-      run_opencode | stream_opencode
+      ended run_opencode | stream_opencode
       status=${PIPESTATUS[0]}
     fi
     name=OpenCode
@@ -848,18 +897,19 @@ fi
     # a rule's run must get no shell, files or web; agy's allow list can't promise that yet (see Account.runsRules)
     if [ "$DEV" = rule ]; then event ski_error "Antigravity can't run notification rules yet. Pick another agent for this rule."; exit 0; fi
     # the last run's raw events stay in the session folder, for checking how agy reports its steps
-    run_agy | tee "$S/agy-last.jsonl" | stream_agy
+    : > "$S/agy-last.jsonl"
+    ended run_agy | stream_agy
     status=${PIPESTATUS[0]}
     # a refusal ended its turn without a word: nudge it on once, in the same conversation
     if [ -s "$S/agy-denied" ] && [ -s "$S/agy-conversation" ]; then
       MSG="(From Ski, not the user) This chat doesn't allow that: $(cat "$S/agy-denied"). Carry on with the phone \
 tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
-      run_agy | tee -a "$S/agy-last.jsonl" | stream_agy last
+      ended run_agy | stream_agy last
       status=${PIPESTATUS[0]}
     fi
     if [ -s "$S/agy-conversation" ] && grep -q -i -E 'conversation.*(not found|no such|unknown)' "$S/agy-error" "$S/last-error.log" 2>/dev/null; then
       rm -f "$S/agy-conversation"   # old conversation is gone; retry as a new one
-      run_agy | stream_agy
+      ended run_agy | stream_agy
       status=${PIPESTATUS[0]}
     fi
     # a failed turn (quota reached, …) is already in the chat from its result; agy also exits non-zero and prints
@@ -868,11 +918,11 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     name=Antigravity
   elif [ "$BACKEND" = grok ]; then
     if ! have grok; then event ski_error "Grok isn't installed yet. Install it in Ski's Settings."; exit 0; fi
-    run_grok | stream_grok
+    ended run_grok | stream_grok
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/grok-session" ] && grep -q -i -E 'session.*not found|failed to restore session' "$S/last-error.log" 2>/dev/null; then
       rm -f "$S/grok-session"   # old session is gone; retry as a new conversation
-      run_grok | stream_grok
+      ended run_grok | stream_grok
       status=${PIPESTATUS[0]}
     fi
     # a failed turn (not signed in, …) is already in the chat from its result; grok also exits non-zero and prints
@@ -881,30 +931,37 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     name=Grok
   elif [ "$BACKEND" = codex ]; then
     if ! have codex; then event ski_error "Codex isn't installed yet. Install it in Ski's Settings."; exit 0; fi
-    run_codex | stream_codex
+    ended run_codex | stream_codex
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/codex-thread" ] && grep -q -i -E 'not found|no such|unknown (thread|session)' "$S/last-error.log" 2>/dev/null; then
       rm -f "$S/codex-thread"   # old thread is gone; retry as a new conversation
-      run_codex | stream_codex
+      ended run_codex | stream_codex
       status=${PIPESTATUS[0]}
     fi
     name=Codex
   else
     if ! have claude; then event ski_error "Claude Code isn't installed yet. Install it in Ski's Settings."; exit 0; fi
-    run_claude | stream_claude
+    ended run_claude | stream_claude
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && grep -q -i 'no conversation found' "$S/last-error.log" 2>/dev/null; then
       rm -f "$S/claude-session"   # old session is gone; retry as a new conversation
-      run_claude | stream_claude
+      ended run_claude | stream_claude
       status=${PIPESTATUS[0]}
     fi
     name="Claude Code"
   fi
   if [ "$status" -ne 0 ] && [ "$status" -ne 143 ] && [ -s "$S/last-error.log" ]; then
-    event ski_error "$name failed: $(tail -c 400 "$S/last-error.log")"
+    more=""; [ "$(wc -c < "$S/last-error.log")" -gt 4000 ] && more="… "
+    event ski_error "$name failed: $more$(tail -c 4000 "$S/last-error.log")"
+  elif [ "$status" -gt 128 ] && [ "$status" -ne 143 ]; then
+    # killed, and it said nothing: the chat would end without a word (the app drops this if the run said why itself)
+    quiet_end "$name was killed (signal $((status - 128)))."
+  elif [ "$status" -ne 0 ] && [ "$status" -ne 143 ]; then
+    quiet_end "$name ended with exit status $status and said nothing."
   fi
 ) &
-echo $! > "$S/pid"
-wait $! 2>/dev/null
+RUN=$!
+echo "$RUN" > "$S/pid"
+wait "$RUN" 2>/dev/null
 rm -f "$S/pid"
-event ski_done
+exit 0 # (ski_done: the EXIT trap)

@@ -29,7 +29,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
 
     private final Handler main = new Handler(Looper.getMainLooper());
     private Bubble bubble;
-    private ControlIndicator control;
+    ControlIndicator control;
     /** After the user taps Stop on the control indicator, phone actions are refused until then (elapsedRealtime). */
     private volatile long revokedUntil;
     /**
@@ -57,6 +57,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
     private McpServer server;
     private McpHttpServer mcpHttp;
     private AutoPause autoPause;
+    private WorkNotice workNotice;
     private final KeepAwake keepAwake = new KeepAwake(this);
     private Marks marks;
     private Shizuku shizuku;
@@ -97,6 +98,8 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
         marks = new Marks(this);
         bubble = new Bubble(this);
         control = new ControlIndicator(this);
+        workNotice = new WorkNotice(this);
+        ChatHub.get(this).addListener(workNotice);
         bubble.show();
         McpServer.load(this); // run tokens kept over a restart reach their chats again (see McpServer.load)
         server = new McpServer(Prefs.token(this), this);
@@ -262,6 +265,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
         if (marks != null) marks.clear();
         if (bubble != null) bubble.remove();
         if (control != null) control.end();
+        if (workNotice != null) workNotice.remove();
         instance = null;
         super.onDestroy();
     }

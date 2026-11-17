@@ -29,6 +29,22 @@ final class Backup {
     private static final String LINUX_PARTS = "root/.ski/sessions root/.ski/work root/.agents/skills root/.claude/projects "
             + "root/.codex/sessions root/.local/share/opencode/opencode.db";
 
+    /**
+     * Settings that never leave this phone in a backup and are never taken from one: the tokens that open Ski's
+     * phone tools and its background helper (anyone holding the file would hold them), and what belongs to this
+     * phone's own set-up (its pairing, its API key services).
+     */
+    private static final java.util.Set<String> OWN = new java.util.HashSet<>(java.util.Arrays.asList(
+            "token", "bg_token", "bg_paired", "bg_adb_port", "providers"));
+    /**
+     * Settings a backup can't loosen: on restore this phone's own values stay. A backup is a file from outside, and
+     * one made to harm (or just made on a phone set up differently) shouldn't switch on phone commands, Linux tools
+     * or Trust for everything, add an MCP server or a "never ask" button.
+     */
+    private static final java.util.Set<String> SAFETY = new java.util.HashSet<>(java.util.Arrays.asList(
+            "bg_shell", "bg_shell_ask", "agents_tap_ski", "dev", "autonomous_default", "guard_builtin", "guard_allow",
+            "ssh_server", "remote_session", "codex_remote", "mcp_servers", "ask_new_apps"));
+
     private Backup() {
     }
 
@@ -57,8 +73,12 @@ final class Backup {
                 File f = new File(prefsDir, p + ".xml");
                 if (!f.isFile()) continue;
                 String xml = new String(java.nio.file.Files.readAllBytes(f.toPath()), "UTF-8");
-                // services and their choices only make sense with their keys, which stay on this phone
-                if (p.equals("ski")) xml = xml.replaceAll("\\s*<string name=\"(providers|agent_default_[a-z]+)\">[^<]*</string>", "");
+                // services and their choices only make sense with their keys, which stay on this phone; nor the
+                // tokens and this phone's pairing (see OWN)
+                if (p.equals("ski")) xml = xml.replaceAll("\\s*<string name=\"(providers|agent_default_[a-z]+)\">[^<]*</string>", "")
+                        .replaceAll("\\s*<string name=\"token\">[^<]*</string>", "")
+                        .replaceAll("\\s*<string name=\"bg_token\">[^<]*</string>", "")
+                        .replaceAll("\\s*<(boolean|int) name=\"(bg_paired|bg_adb_port)\"[^>]*/>", "");
                 z.putNextEntry(new ZipEntry("prefs/" + p + ".xml"));
                 z.write(xml.getBytes("UTF-8"));
             }
@@ -111,8 +131,25 @@ final class Backup {
         if (linux.isFile() && Linux.installed(c)) {
             File in = new File(Linux.root(c), "tmp/ski-restore.tar.gz");
             copyFile(linux, in);
-            Linux.exec(c, "cd / && tar xzf /tmp/ski-restore.tar.gz; rm -f /tmp/ski-restore.tar.gz", 1800);
-            linuxDone = true;
+            // only the parts a backup holds, and nothing that reaches outside them: the archive is a file from
+            // outside, and unpacked as it is at / it could write over Ski's own scripts. So: every name must sit
+            // under one of the parts, it is unpacked into a folder of its own first, links that end outside the
+            // parts are dropped there, and only then it goes into place
+            String allowed = "^(\\./)?(" + LINUX_PARTS.replace(".", "\\.").replace(" ", "|") + ")(/|$)";
+            String out = Linux.exec(c, "cd / && d=/tmp/ski-restore.d && rm -rf $d && mkdir -p $d && f=/tmp/ski-restore.tar.gz && "
+                    + "if tar tzf $f | grep -Ev '" + allowed + "' | grep -q . || tar tzf $f | grep -Eq '(^|/)\\.\\.(/|$)'; "
+                    + "then echo UNSAFE; else tar xzf $f -C $d && "
+                    // a link stays when it ends inside one of the parts (a project's "current -> ../releases/v2")
+                    + "D=$(readlink -f $d); find $d -type l | while IFS= read -r l; do t=$(readlink \"$l\"); "
+                    + "case \"$t\" in /*) rm -f \"$l\"; continue;; esac; "
+                    + "r=$(cd \"$(dirname \"$l\")\" && readlink -f \"$t\" 2>/dev/null); "
+                    + "k=; for q in " + LINUX_PARTS + "; do case \"$r\" in \"$D/$q\"|\"$D/$q\"/*) k=1;; esac; done; "
+                    + "[ -n \"$k\" ] || rm -f \"$l\"; done; "
+                    // the parts only, so the folders above them (/, /root) keep their own modes
+                    + "(cd $d && p=$(ls -d " + LINUX_PARTS + " 2>/dev/null); [ -z \"$p\" ] || tar cf - $p) | tar xf - -C / && echo DONE; fi; "
+                    + "rm -rf $d $f", 1800);
+            if (out.contains("UNSAFE")) throw new IllegalArgumentException(c.getString(R.string.backup_not_one));
+            linuxDone = out.contains("DONE");
         }
         File att = new File(staging, "files/attachments");
         if (att.isDirectory()) {
@@ -137,8 +174,10 @@ final class Backup {
                 for (java.util.Map.Entry<String, String> d : defaults.entrySet()) {
                     keep.append("<string name=\"agent_default_").append(d.getKey()).append("\">").append(esc(d.getValue())).append("</string>\n");
                 }
+                // a backup can't loosen this phone's safety settings (see SAFETY and stays): their values here stay
                 xml = xml.replaceAll("\\s*<string name=\"(token|providers|agent_default_[a-z]+)\">[^<]*</string>", "")
                         .replace("</map>", keep + "</map>");
+                xml = dropSafety(c, xml);
             }
             c.getSharedPreferences(p, Context.MODE_PRIVATE); // loaded, so nothing pending writes over the new file later
             try (OutputStream o = new FileOutputStream(new File(prefsDir, p + ".xml"))) {
@@ -148,6 +187,45 @@ final class Backup {
         boolean skipped = linux.isFile() && !linuxDone;
         Linux.deleteTree(staging);
         return !skipped;
+    }
+
+    /**
+     * Takes the safety settings out of a backup's prefs XML: whatever decides what an agent may do (SAFETY, the
+     * per-app modes except the stricter of the two, where downloads and requests go) keeps this phone's value.
+     * The XML keeps entries only for the keys this phone has, so nothing is loosened and nothing new is added.
+     */
+    private static String dropSafety(Context c, String xml) throws java.io.IOException {
+        android.content.SharedPreferences sp = c.getSharedPreferences("ski", Context.MODE_PRIVATE);
+        java.util.Map<String, ?> mine = sp.getAll();
+        StringBuilder out = new StringBuilder();
+        java.util.regex.Pattern entry = java.util.regex.Pattern.compile(
+                "\\s*<(string|boolean|int|long|float|set) name=\"([^\"]+)\"[^>]*>([\\s\\S]*?)</\\1>|\\s*<(string|boolean|int|long|float) name=\"([^\"]+)\"[^>]*/>");
+        java.util.regex.Matcher m = entry.matcher(xml);
+        int start = xml.indexOf("<map");
+        out.append(xml, 0, xml.indexOf('>', start) + 1);
+        while (m.find()) {
+            String key = m.group(2) != null ? m.group(2) : m.group(5);
+            if (stays(key) || key.startsWith("app_safety_") || key.equals("guard_ask") || key.equals("rules")
+                    || key.startsWith("mirror") || key.startsWith("api_base_") || key.startsWith("reviewer")) {
+                Object here = mine.get(key);
+                if (here == null) continue; // this phone has none: the backup's is not taken
+                // this phone's own value, written back in its place
+                String value = esc(String.valueOf(here));
+                if (here instanceof Boolean) out.append("\n    <boolean name=\"").append(key).append("\">").append(value).append("</boolean>");
+                else if (here instanceof Integer) out.append("\n    <int name=\"").append(key).append("\">").append(value).append("</int>");
+                else if (here instanceof Long) out.append("\n    <long name=\"").append(key).append("\">").append(value).append("</long>");
+                else out.append("\n    <string name=\"").append(key).append("\">").append(value).append("</string>");
+                continue;
+            }
+            out.append(m.group(0));
+        }
+        out.append("\n</map>");
+        return out.toString();
+    }
+
+    /** A setting that is never taken from a backup: this phone's own value stays (or none). */
+    private static boolean stays(String k) {
+        return OWN.contains(k) || SAFETY.contains(k) || k.startsWith("agent_default_");
     }
 
     /** Starts Ski again in a new process, so the restored settings and chats are what it reads. */
