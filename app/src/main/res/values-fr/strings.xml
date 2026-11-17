@@ -14,4 +14,18 @@
     <string name="prefs_theme_light">Clair</string>
     <string name="prefs_theme_dark">Sombre</string>
     <string name="control_stop">Arrêter</string>
+    <string name="setup_mirror_china">Chine</string>
+    <string name="setup_mirror_russia">Russie</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">L'agent va agir dans %1$s, pour lequel vous n'avez pas défini de mode. Comment doit-il y travailler ? (À changer plus tard dans %2$s.)</string>
+    <string name="first_app_trust">« %1$s » : agit de lui-même, sans demander</string>
+    <string name="first_app_hard">« %1$s » : demande avant chaque action</string>
+    <string name="work_title">Ski travaille</string>
+    <string name="hub_agent_switched">Cette discussion est maintenant avec %1$s. Elle repart de zéro : dites-lui ce que vous faisiez ou ce dont vous avez besoin ensuite.</string>
+    <string name="hub_helper_gone">L'assistant de Ski pour cette discussion s'est terminé sans dire pourquoi. L'exécution s'est arrêtée.</string>
+    <string name="hub_helper_killed">Android a arrêté les assistants de Ski pour libérer de la mémoire. Pour en exécuter plusieurs à la fois, libérez de l'espace ou fermez d'autres applications.</string>
+    <string name="background_title">Mode arrière-plan</string>
+    <string name="chat_bg_setup">Configurer le mode arrière-plan (environ une minute) →</string>
+    <string name="chat_background">Travailler en arrière-plan</string>
+    <string name="chat_background_info">L'agent utilise un écran à lui et vous continuez d'utiliser votre téléphone. Une étape qui a besoin de vous, comme une connexion, arrive sur votre écran.</string>
 </resources>

@@ -202,6 +202,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">فقاعة Ski. انقر للفتح، واضغط مطولًا لعرض الإجراءات</string>
     <string name="bubble_show_actions">عرض الإجراءات</string>
+    <string name="background_title">وضع الخلفية</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
     <string name="bubble_pill_waiting_answer">في انتظار إجابتك</string>
@@ -292,6 +293,7 @@
     <string name="bubble_agent_default">افتراضي</string>
     <string name="bubble_agent_not_signed_in">لم يتم تسجيل الدخول · انقر للإعداد</string>
     <string name="bubble_agent_not_installed">غير مثبَّت · انقر للإعداد</string>
+    <string name="chat_bg_setup">إعداد وضع الخلفية (نحو دقيقة) ←</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">لهذه المحادثة فقط. تستمر المحادثة، وتستخدم الرسالة التالية الاختيار الجديد.</string>
@@ -311,6 +313,8 @@
     <string name="card_type_own_answer">كتابة إجابتي الخاصة…</string>
     <string name="card_change_hint">ما الذي يجب تغييره؟</string>
     <string name="card_answer_hint">إجابتك…</string>
+    <string name="chat_background">العمل في الخلفية</string>
+    <string name="chat_background_info">يستخدم الوكيل شاشة خاصة به وتبقى أنت تستخدم هاتفك. والخطوة التي تحتاجك، مثل تسجيل الدخول، تظهر على شاشتك.</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ تمت الإجابة: %1$s</string>
@@ -1449,6 +1453,16 @@
     <string name="backup_restored_no_linux">تمت استعادة محادثاتك وإعداداتك. أما جزء Linux (المهارات والمشاريع وسجلات الوكلاء) فيحتاج إلى نظام Linux في Ski: أعدّ وكيلًا ثم استعد النسخة مرة أخرى. يُعاد تشغيل Ski الآن.</string>
     <string name="backup_failed">لم ينجح ذلك: %1$s</string>
     <string name="backup_not_one">هذا الملف ليس نسخة احتياطية من Ski.</string>
+    <string name="setup_mirror_china">الصين</string>
+    <string name="setup_mirror_russia">روسيا</string>
+    <string name="setup_mirror_iran">إيران</string>
+    <string name="first_app_question">سينفّذ الوكيل إجراءات في %1$s، الذي لم تحدد له نمطًا. كيف يجب أن يعمل هناك؟ (يمكنك تغييره لاحقًا في %2$s.)</string>
+    <string name="first_app_trust">«%1$s»: التصرف من تلقاء نفسه دون سؤال</string>
+    <string name="first_app_hard">«%1$s»: اسألني قبل كل إجراء</string>
+    <string name="work_title">يعمل Ski</string>
+    <string name="hub_agent_switched">هذه المحادثة الآن مع %1$s. تبدأ من جديد: أخبره بما كنت تفعله، أو بما تحتاجه بعد ذلك.</string>
+    <string name="hub_helper_gone">انتهى مساعد Ski لهذه المحادثة دون أن يذكر السبب. توقف التنفيذ.</string>
+    <string name="hub_helper_killed">أنهى أندرويد مساعدي Ski لتحرير الذاكرة. لتشغيل المزيد في آن واحد، فرّغ بعض المساحة أو أغلق التطبيقات الأخرى.</string>
     <string name="chat_incognito">التصفح المتخفي</string>
     <string name="chat_incognito_info">تُحذف هذه المحادثة، مع ما احتفظ به وكيلها منها، عند إعادة تشغيل Ski.</string>
     <string name="api_keys_remove_title">إزالة %1$s؟</string>

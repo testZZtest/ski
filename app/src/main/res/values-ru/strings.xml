@@ -269,6 +269,7 @@
     <string name="bubble_face_description">Ski. Нажмите, чтобы открыть, или удерживайте, чтобы увидеть действия</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">показать действия</string>
+    <string name="background_title">Фоновый режим</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…".
          "hold" = long-press the bubble, which opens the hold menu. -->
@@ -391,6 +392,7 @@
     <string name="bubble_agent_default">по умолчанию</string>
     <string name="bubble_agent_not_signed_in">Вход не выполнен · нажмите, чтобы настроить</string>
     <string name="bubble_agent_not_installed">Не установлен · нажмите, чтобы настроить</string>
+    <string name="chat_bg_setup">Настроить фоновый режим (около минуты) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Только для этого чата. Разговор продолжится, а новый выбор применится со следующего сообщения.</string>
@@ -424,6 +426,8 @@
     <string name="card_change_hint">Что изменить?</string>
     <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">Ваш ответ…</string>
+    <string name="chat_background">Работать в фоне</string>
+    <string name="chat_background_info">Агент использует свой собственный экран, а вы продолжаете пользоваться телефоном. Шаг, где нужны вы, например вход в аккаунт, придёт на ваш экран.</string>
 
     <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
          after it. %1$s: the answer, the requested change or what was approved (shortened). -->
@@ -1876,6 +1880,16 @@
     <string name="backup_restored_no_linux">Чаты и настройки восстановлены. Для Linux-части (навыки, проекты, записи агентов) нужен встроенный Linux: настройте агента и восстановите ещё раз. Ski перезапускается.</string>
     <string name="backup_failed">Не получилось: %1$s</string>
     <string name="backup_not_one">Этот файл не резервная копия Ski.</string>
+    <string name="setup_mirror_china">Китай</string>
+    <string name="setup_mirror_russia">Россия</string>
+    <string name="setup_mirror_iran">Иран</string>
+    <string name="first_app_question">Агент скоро начнёт действовать в %1$s — для него вы не задали режим. Как ему там работать? (Позже можно изменить в %2$s.)</string>
+    <string name="first_app_trust">«%1$s»: действует сам, не спрашивая</string>
+    <string name="first_app_hard">«%1$s»: спрашивает перед каждым действием</string>
+    <string name="work_title">Ski работает</string>
+    <string name="hub_agent_switched">Этот разговор теперь с %1$s. Он начинает с нуля: расскажите, что вы делали, или что вам нужно дальше.</string>
+    <string name="hub_helper_gone">Помощник Ski для этого разговора завершился, не объяснив причину. Выполнение остановлено.</string>
+    <string name="hub_helper_killed">Android завершил помощников Ski, чтобы освободить память. Чтобы запустить больше одновременно, освободите место или закройте другие приложения.</string>
     <string name="chat_incognito">Инкогнито</string>
     <string name="chat_incognito_info">Этот чат удалится при перезапуске Ski вместе с тем, что агент из него запомнил.</string>
     <string name="api_keys_remove_title">Удалить %1$s?</string>

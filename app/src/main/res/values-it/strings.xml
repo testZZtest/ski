@@ -263,6 +263,7 @@
     <string name="bubble_face_description">Ski. Tocca per aprire, tieni premuto per le azioni</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">mostrare le azioni</string>
+    <string name="background_title">Modalità in background</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…".
          "hold" = long-press the bubble, which opens the hold menu. -->
@@ -383,6 +384,7 @@
     <string name="bubble_agent_default">predefinito</string>
     <string name="bubble_agent_not_signed_in">Non connesso · tocca per configurare</string>
     <string name="bubble_agent_not_installed">Non installato · tocca per configurare</string>
+    <string name="chat_bg_setup">Configura la modalità in background (circa un minuto) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Per questa chat. La conversazione continua; il prossimo messaggio userà la nuova scelta.</string>
@@ -416,6 +418,8 @@
     <string name="card_change_hint">Cosa deve cambiare?</string>
     <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">La tua risposta…</string>
+    <string name="chat_background">Lavora in background</string>
+    <string name="chat_background_info">L'agente usa uno schermo tutto suo e tu continui a usare il telefono. Un passaggio che ha bisogno di te, come un accesso, arriva sul tuo schermo.</string>
 
     <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
          after it. %1$s: the answer, the requested change or what was approved (shortened). -->
@@ -1837,6 +1841,16 @@
     <string name="backup_restored_no_linux">Chat e impostazioni ripristinate. La parte Linux (skill, progetti, la memoria degli agenti) richiede il Linux di Ski: configura un agente, poi ripristina di nuovo. Ski si riavvia ora.</string>
     <string name="backup_failed">Non ha funzionato: %1$s</string>
     <string name="backup_not_one">Questo file non è un backup di Ski.</string>
+    <string name="setup_mirror_china">Cina</string>
+    <string name="setup_mirror_russia">Russia</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">L'agente sta per agire in %1$s, per cui non hai impostato una modalità. Come deve lavorare lì? (La cambi poi in %2$s.)</string>
+    <string name="first_app_trust">“%1$s”: agisce da solo, senza chiedere</string>
+    <string name="first_app_hard">“%1$s”: chiede prima di ogni azione</string>
+    <string name="work_title">Ski sta lavorando</string>
+    <string name="hub_agent_switched">Questa chat ora è con %1$s. Riparte da zero: digli cosa stavi facendo o cosa ti serve dopo.</string>
+    <string name="hub_helper_gone">L'assistente di Ski per questa chat è finito senza dire perché. L'esecuzione si è fermata.</string>
+    <string name="hub_helper_killed">Android ha terminato gli assistenti di Ski per liberare memoria. Per eseguirne di più insieme, libera un po' di spazio o chiudi altre app.</string>
     <string name="chat_incognito">Incognito</string>
     <string name="chat_incognito_info">Questa chat viene eliminata al riavvio di Ski, insieme a ciò che il suo agente ne ha conservato.</string>
     <string name="api_keys_remove_title">Rimuovere %1$s?</string>

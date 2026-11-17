@@ -260,6 +260,7 @@
     <string name="bubble_face_description">Ski。点按可打开，长按可查看操作</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">显示操作</string>
+    <string name="background_title">后台模式</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…".
          "hold" = long-press the bubble, which opens the hold menu. -->
@@ -379,6 +380,7 @@
     <string name="bubble_agent_default">默认</string>
     <string name="bubble_agent_not_signed_in">未登录 · 点按进行设置</string>
     <string name="bubble_agent_not_installed">未安装 · 点按进行设置</string>
+    <string name="chat_bg_setup">设置后台模式（约一分钟）→</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">仅对此对话生效。对话会继续，下一条消息将使用新的选择。</string>
@@ -412,6 +414,8 @@
     <string name="card_change_hint">需要修改什么？</string>
     <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">你的回答…</string>
+    <string name="chat_background">在后台工作</string>
+    <string name="chat_background_info">智能体使用自己的屏幕，你可以继续使用手机。需要你的步骤（例如登录）会转到你的屏幕上。</string>
 
     <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
          after it. %1$s: the answer, the requested change or what was approved (shortened). -->
@@ -1837,6 +1841,16 @@
     <string name="backup_restored_no_linux">已恢复你的对话和设置。其中的 Linux 部分（技能、项目、智能体的记录）需要 Ski 的 Linux：请设置一个智能体，然后再恢复一次。Ski 现在重启。</string>
     <string name="backup_failed">没有成功：%1$s</string>
     <string name="backup_not_one">该文件不是 Ski 备份。</string>
+    <string name="setup_mirror_china">中国</string>
+    <string name="setup_mirror_russia">俄罗斯</string>
+    <string name="setup_mirror_iran">伊朗</string>
+    <string name="first_app_question">智能体即将在 %1$s 中操作，你还没有为它设置模式。它应该在那里怎样工作？（稍后可在 %2$s 中更改。）</string>
+    <string name="first_app_trust">“%1$s”：自行操作，不做询问</string>
+    <string name="first_app_hard">“%1$s”：每次操作前先问我</string>
+    <string name="work_title">Ski 正在工作</string>
+    <string name="hub_agent_switched">这个对话现在由 %1$s 负责。它是全新开始的：告诉它你刚才在做什么，或者接下来需要什么。</string>
+    <string name="hub_helper_gone">Ski 用于此对话的助手在没有说明原因的情况下结束了。运行已停止。</string>
+    <string name="hub_helper_killed">Android 为释放内存结束了 Ski 的助手。要同时运行更多，请释放一些空间或关闭其他应用。</string>
     <string name="chat_incognito">无痕</string>
     <string name="chat_incognito_info">Ski 重启时，此对话及其智能体保留的相关内容会被删除。</string>
     <string name="api_keys_remove_title">移除 %1$s?</string>

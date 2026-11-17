@@ -260,6 +260,7 @@
     <string name="bubble_face_description">Ski. Ketuk untuk membuka, tekan lama untuk melihat tindakan</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">tampilkan tindakan</string>
+    <string name="background_title">Mode latar belakang</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…".
          "hold" = long-press the bubble, which opens the hold menu. -->
@@ -379,6 +380,7 @@
     <string name="bubble_agent_default">default</string>
     <string name="bubble_agent_not_signed_in">Belum login · ketuk untuk menyiapkan</string>
     <string name="bubble_agent_not_installed">Belum terinstal · ketuk untuk menyiapkan</string>
+    <string name="chat_bg_setup">Siapkan mode latar belakang (sekitar satu menit) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Untuk chat ini. Percakapan berlanjut; pesan berikutnya memakai pilihan baru.</string>
@@ -412,6 +414,8 @@
     <string name="card_change_hint">Apa yang perlu diubah?</string>
     <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">Jawaban Anda…</string>
+    <string name="chat_background">Bekerja di latar belakang</string>
+    <string name="chat_background_info">Agen memakai layarnya sendiri dan Anda tetap memakai ponsel Anda. Langkah yang membutuhkan Anda, seperti masuk, muncul ke layar Anda.</string>
 
     <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
          after it. %1$s: the answer, the requested change or what was approved (shortened). -->
@@ -1838,6 +1842,16 @@
     <string name="backup_restored_no_linux">Chat dan setelanmu sudah dipulihkan. Bagian Linux-nya (skill, proyek, catatan para agen) perlu Linux Ski: siapkan agen, lalu pulihkan lagi. Ski dimulai ulang sekarang.</string>
     <string name="backup_failed">Tidak berhasil: %1$s</string>
     <string name="backup_not_one">File itu bukan cadangan Ski.</string>
+    <string name="setup_mirror_china">Tiongkok</string>
+    <string name="setup_mirror_russia">Rusia</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">Agen akan bekerja di %1$s, yang belum Anda atur modenya. Bagaimana cara kerjanya di sana? (Ubah nanti di %2$s.)</string>
+    <string name="first_app_trust">“%1$s”: bertindak sendiri tanpa bertanya</string>
+    <string name="first_app_hard">“%1$s”: tanya saya sebelum setiap tindakan</string>
+    <string name="work_title">Ski sedang bekerja</string>
+    <string name="hub_agent_switched">Chat ini sekarang dengan %1$s. Ia mulai dari awal: katakan apa yang sedang Anda kerjakan, atau apa yang Anda butuhkan selanjutnya.</string>
+    <string name="hub_helper_gone">Pembantu Ski untuk chat ini berhenti tanpa alasan. Prosesnya dihentikan.</string>
+    <string name="hub_helper_killed">Android menghentikan pembantu Ski untuk mengosongkan memori. Untuk menjalankan lebih banyak sekaligus, kosongkan sebagian ruang atau tutup aplikasi lain.</string>
     <string name="chat_incognito">Penyamaran</string>
     <string name="chat_incognito_info">Chat ini dihapus saat Ski dimulai ulang, bersama apa yang disimpan agennya dari chat ini.</string>
     <string name="api_keys_remove_title">Hapus %1$s?</string>

@@ -36,4 +36,18 @@
     <string name="schedule_remove">Eliminar</string>
     <string name="update_action">Actualizar</string>
     <string name="update_later">Más tarde</string>
+    <string name="setup_mirror_china">China</string>
+    <string name="setup_mirror_russia">Rusia</string>
+    <string name="setup_mirror_iran">Irán</string>
+    <string name="first_app_question">El agente va a actuar en %1$s, para el que no has puesto un modo. ¿Cómo debe trabajar ahí? (Cámbialo después en %2$s.)</string>
+    <string name="first_app_trust">“%1$s”: actúa por su cuenta, sin preguntar</string>
+    <string name="first_app_hard">“%1$s”: pregunta antes de cada acción</string>
+    <string name="work_title">Ski está trabajando</string>
+    <string name="hub_agent_switched">Este chat ahora es con %1$s. Empieza de cero: dile qué estabas haciendo o qué necesitas después.</string>
+    <string name="hub_helper_gone">El ayudante de Ski para este chat terminó sin decir por qué. La ejecución se detuvo.</string>
+    <string name="hub_helper_killed">Android finalizó los ayudantes de Ski para liberar memoria. Para ejecutar más a la vez, libera algo de espacio o cierra otras aplicaciones.</string>
+    <string name="background_title">Modo en segundo plano</string>
+    <string name="chat_bg_setup">Configurar el modo en segundo plano (unos un minuto) →</string>
+    <string name="chat_background">Trabajar en segundo plano</string>
+    <string name="chat_background_info">El agente usa una pantalla propia y tú sigues usando tu teléfono. Un paso que te necesita, como iniciar sesión, llega a tu pantalla.</string>
 </resources>

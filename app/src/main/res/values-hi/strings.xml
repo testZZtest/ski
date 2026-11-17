@@ -190,6 +190,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. खोलने के लिए टैप करें, कार्रवाइयों के लिए दबाकर रखें</string>
     <string name="bubble_show_actions">कार्रवाइयां दिखाएं</string>
+    <string name="background_title">बैकग्राउंड मोड</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
     <string name="bubble_pill_waiting_answer">आपके जवाब का इंतज़ार है</string>
@@ -276,6 +277,7 @@
     <string name="bubble_agent_default">डिफ़ॉल्ट</string>
     <string name="bubble_agent_not_signed_in">साइन इन नहीं है · सेट अप करने के लिए टैप करें</string>
     <string name="bubble_agent_not_installed">इंस्टॉल नहीं है · सेट अप करने के लिए टैप करें</string>
+    <string name="chat_bg_setup">बैकग्राउंड मोड सेट अप करें (करीब एक मिनट) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">सिर्फ़ इस चैट के लिए. बातचीत जारी रहती है; अगले मैसेज से नया विकल्प इस्तेमाल होगा.</string>
@@ -295,6 +297,8 @@
     <string name="card_type_own_answer">अपना जवाब लिखें…</string>
     <string name="card_change_hint">क्या बदलना है?</string>
     <string name="card_answer_hint">आपका जवाब…</string>
+    <string name="chat_background">बैकग्राउंड में काम करें</string>
+    <string name="chat_background_info">एजेंट अपनी अलग स्क्रीन इस्तेमाल करता है और आप अपने फ़ोन का इस्तेमाल करते रहते हैं। जिस चरण में आपकी ज़रूरत होती है, जैसे साइन-इन, वह आपकी स्क्रीन पर आता है।</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ जवाब दिया: %1$s</string>
@@ -1397,6 +1401,16 @@
     <string name="backup_restored_no_linux">आपकी चैट और सेटिंग रीस्टोर हो गईं। इसके Linux वाले हिस्से (स्किल, प्रोजेक्ट, एजेंट के रिकॉर्ड) के लिए Ski का Linux चाहिए: कोई एजेंट सेट अप करें, फिर दोबारा रीस्टोर करें। Ski अब रीस्टार्ट हो रहा है।</string>
     <string name="backup_failed">नहीं हो सका: %1$s</string>
     <string name="backup_not_one">यह फ़ाइल Ski का बैकअप नहीं है।</string>
+    <string name="setup_mirror_china">चीन</string>
+    <string name="setup_mirror_russia">रूस</string>
+    <string name="setup_mirror_iran">ईरान</string>
+    <string name="first_app_question">एजेंट %1$s में काम करने जा रहा है, जिसके लिए आपने कोई मोड नहीं सेट किया है। वह वहाँ कैसे काम करे? (बाद में %2$s में बदलें।)</string>
+    <string name="first_app_trust">“%1$s”: बिना पूछे खुद से काम करे</string>
+    <string name="first_app_hard">“%1$s”: हर काम से पहले मुझसे पूछे</string>
+    <string name="work_title">Ski काम कर रहा है</string>
+    <string name="hub_agent_switched">यह चैट अब %1$s के साथ है। वह नए सिरे से शुरू होता है: उसे बताएं कि आप क्या कर रहे थे, या आगे क्या चाहिए।</string>
+    <string name="hub_helper_gone">इस चैट के लिए Ski का हेल्पर बिना कारण बताए बंद हो गया। रन रुक गया।</string>
+    <string name="hub_helper_killed">मेमोरी खाली करने के लिए Android ने Ski के हेल्पर बंद कर दिए। एक साथ ज़्यादा चलाने के लिए कुछ जगह खाली करें या दूसरे ऐप बंद करें।</string>
     <string name="chat_incognito">इनकॉग्निटो</string>
     <string name="chat_incognito_info">Ski के रीस्टार्ट होने पर यह चैट हट जाती है, उसके एजेंट ने इसका जो हिस्सा रखा था उसके साथ।</string>
     <string name="api_keys_remove_title">%1$s हटाएँ?</string>

@@ -192,6 +192,7 @@
 
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. Tippen zum Öffnen, gedrückt halten für Aktionen</string>
+    <string name="background_title">Hintergrundmodus</string>
     <string name="bubble_show_actions">Aktionen anzeigen</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
@@ -261,6 +262,8 @@
     <!-- Composer at the bottom of the chat panel. -->
     <string name="bubble_attach">Foto oder Datei anhängen</string>
     <string name="bubble_input_hint">Frag %1$s…</string>
+    <string name="chat_background">Im Hintergrund arbeiten</string>
+    <string name="chat_background_info">Der Agent nutzt einen eigenen Bildschirm und du benutzt dein Smartphone weiter. Ein Schritt, der dich braucht, etwa eine Anmeldung, kommt auf deinen Bildschirm.</string>
     <string name="bubble_paste">Einfügen</string>
     <string name="bubble_send">Senden</string>
     <string name="bubble_empty_chat">Neuer Chat mit %1$s. Bitte mich, etwas auf deinem Smartphone zu erledigen.</string>
@@ -274,6 +277,7 @@
     <string name="bubble_chat_row_you">Du: %1$s</string>
     <string name="bubble_delete_chat">Diesen Chat löschen?</string>
     <string name="bubble_delete">Löschen</string>
+    <string name="chat_bg_setup">Hintergrundmodus einrichten (dauert etwa eine Minute) →</string>
 
     <!-- Agent picker for a new chat (its title is bubble_new_chat). -->
     <string name="bubble_agent_default">Standard</string>
@@ -1404,6 +1408,16 @@
     <string name="backup_restored_no_linux">Deine Chats und Einstellungen sind wiederhergestellt. Der Linux-Teil (Skills, Projekte, die Aufzeichnungen der Agenten) braucht Skis Linux: Richte einen Agenten ein und stell dann noch mal wieder her. Ski startet jetzt neu.</string>
     <string name="backup_failed">Hat nicht geklappt: %1$s</string>
     <string name="backup_not_one">Diese Datei ist keine Ski-Sicherung.</string>
+    <string name="setup_mirror_china">China</string>
+    <string name="setup_mirror_russia">Russland</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">Der Agent wird gleich in %1$s aktiv, für das du keinen Modus festgelegt hast. Wie soll es dort arbeiten? (Später änderbar in %2$s.)</string>
+    <string name="first_app_trust">„%1$s“: handelt von selbst, ohne zu fragen</string>
+    <string name="first_app_hard">„%1$s“: fragt vor jeder Aktion</string>
+    <string name="work_title">Ski arbeitet</string>
+    <string name="hub_agent_switched">Dieser Chat ist jetzt mit %1$s. Er fängt neu an: sag ihm, was du gerade gemacht hast, oder was du als Nächstes brauchst.</string>
+    <string name="hub_helper_gone">Skis Helfer für diesen Chat hat sich ohne Grund beendet. Der Lauf wurde gestoppt.</string>
+    <string name="hub_helper_killed">Android hat Skis Helfer beendet, um Speicher freizumachen. Um mehr gleichzeitig laufen zu lassen, schaffe Platz oder schließe andere Apps.</string>
     <string name="chat_incognito">Inkognito</string>
     <string name="chat_incognito_info">Dieser Chat wird gelöscht, wenn Ski neu startet, zusammen mit dem, was sein Agent davon behalten hat.</string>
     <string name="api_keys_remove_title">%1$s entfernen?</string>

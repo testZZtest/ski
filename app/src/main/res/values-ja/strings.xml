@@ -189,6 +189,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski。タップで開く、長押しでメニューを表示</string>
     <string name="bubble_show_actions">メニューを表示</string>
+    <string name="background_title">バックグラウンドモード</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…". -->
     <string name="bubble_pill_waiting_answer">回答を待っています</string>
@@ -274,6 +275,7 @@
     <string name="bubble_agent_default">デフォルト</string>
     <string name="bubble_agent_not_signed_in">未ログイン · タップして設定</string>
     <string name="bubble_agent_not_installed">未インストール · タップして設定</string>
+    <string name="chat_bg_setup">バックグラウンドモードを設定（約1分）→</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">このチャットのみに適用されます。会話はそのまま続き、次のメッセージから新しい設定が使われます。</string>
@@ -293,6 +295,8 @@
     <string name="card_type_own_answer">自分で回答を入力…</string>
     <string name="card_change_hint">何を変更しますか？</string>
     <string name="card_answer_hint">回答を入力…</string>
+    <string name="chat_background">バックグラウンドで動かす</string>
+    <string name="chat_background_info">エージェントは専用の画面を使い、あなたはその間もスマートフォンを使えます。サインインなど、あなたが必要なステップはあなたの画面に届きます。</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ 回答済み：%1$s</string>
@@ -1389,6 +1393,16 @@
     <string name="backup_restored_no_linux">チャットと設定を復元しました。Linux 部分（スキル、プロジェクト、エージェントの記録）には Ski の Linux が必要です。エージェントを設定してから、もう一度復元してください。Ski を再起動します。</string>
     <string name="backup_failed">うまくいきませんでした: %1$s</string>
     <string name="backup_not_one">このファイルは Ski のバックアップではありません。</string>
+    <string name="setup_mirror_china">中国</string>
+    <string name="setup_mirror_russia">ロシア</string>
+    <string name="setup_mirror_iran">イラン</string>
+    <string name="first_app_question">エージェントはまもなく %1$s で動きます。ここにはまだモードを設定していません。どう動かしますか？ （後から %2$s で変更できます。）</string>
+    <string name="first_app_trust">“%1$s”: 何も聞かずに自分で行う</string>
+    <string name="first_app_hard">“%1$s”: 操作のたびに確認する</string>
+    <string name="work_title">Ski が動作中</string>
+    <string name="hub_agent_switched">このチャットは %1$s と継続します。相手は最初からです。今までの作業や次に必要なことを伝えてください。</string>
+    <string name="hub_helper_gone">このチャットの Ski のヘルパーが理由を告げずに終了しました。実行は停止されました。</string>
+    <string name="hub_helper_killed">メモリを確保するため、Android が Ski のヘルパーを終了しました。同時に多く動かすには、空き容量を増やすか他のアプリを閉じてください。</string>
     <string name="chat_incognito">シークレット</string>
     <string name="chat_incognito_info">このチャットは、エージェントが残した内容とともに、Ski の再起動時に削除されます。</string>
     <string name="api_keys_remove_title">%1$s を削除しますか?</string>

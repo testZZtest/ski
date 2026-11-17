@@ -189,6 +189,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. 탭하면 열리고, 길게 누르면 메뉴가 나와요</string>
     <string name="bubble_show_actions">메뉴 표시</string>
+    <string name="background_title">백그라운드 모드</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…". -->
     <string name="bubble_pill_waiting_answer">답변을 기다리고 있어요</string>
@@ -274,6 +275,7 @@
     <string name="bubble_agent_default">기본</string>
     <string name="bubble_agent_not_signed_in">로그인 안 됨 · 탭하여 설정</string>
     <string name="bubble_agent_not_installed">설치 안 됨 · 탭하여 설정</string>
+    <string name="chat_bg_setup">백그라운드 모드 설정(1분 정도) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">이 채팅에만 적용돼요. 대화는 그대로 이어지고, 다음 메시지부터 새 선택이 적용돼요.</string>
@@ -293,6 +295,8 @@
     <string name="card_type_own_answer">직접 답변 입력…</string>
     <string name="card_change_hint">무엇을 바꿀까요?</string>
     <string name="card_answer_hint">답변 입력…</string>
+    <string name="chat_background">백그라운드에서 작업</string>
+    <string name="chat_background_info">에이전트는 자체 화면을 쓰고, 사용자는 계속 휴대전화를 쓸 수 있어요. 로그인처럼 사용자가 필요한 단계는 화면으로 넘어와요.</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ 답변 완료: %1$s</string>
@@ -1388,6 +1392,16 @@
     <string name="backup_restored_no_linux">채팅과 설정을 복원했어요. Linux 부분(스킬, 프로젝트, 에이전트의 기록)은 Ski의 Linux가 필요해요. 에이전트를 설정한 뒤 다시 복원하세요. Ski가 지금 다시 시작돼요.</string>
     <string name="backup_failed">안 됐어요: %1$s</string>
     <string name="backup_not_one">이 파일은 Ski 백업이 아니에요.</string>
+    <string name="setup_mirror_china">중국</string>
+    <string name="setup_mirror_russia">러시아</string>
+    <string name="setup_mirror_iran">이란</string>
+    <string name="first_app_question">에이전트가 %1$s에서 작업을 시작하려 하는데, 아직 모드를 정하지 않았어요. 거기서는 어떻게 일할까요? (나중에 %2$s에서 바꿀 수 있어요.)</string>
+    <string name="first_app_trust">“%1$s”: 묻지 않고 스스로 행동</string>
+    <string name="first_app_hard">“%1$s”: 동작마다 물어보기</string>
+    <string name="work_title">Ski 작업 중</string>
+    <string name="hub_agent_switched">이 채팅은 이제 %1$s와(과) 이어져요. 처음부터 시작하는 상태라서, 하던 작업이나 다음에 필요한 것을 말해 주세요.</string>
+    <string name="hub_helper_gone">이 채팅의 Ski 도우미가 이유 없이 끝났어요. 실행이 중지됐어요.</string>
+    <string name="hub_helper_killed">Android가 메모리를 확보하려고 Ski 도우미를 종료했어요. 더 많이 동시에 실행하려면 공간을 비우거나 다른 앱을 닫아 보세요.</string>
     <string name="chat_incognito">시크릿</string>
     <string name="chat_incognito_info">이 채팅은 Ski가 다시 시작될 때 에이전트가 기억한 내용과 함께 삭제돼요.</string>
     <string name="api_keys_remove_title">%1$s을(를) 삭제할까요?</string>

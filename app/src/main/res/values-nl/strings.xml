@@ -193,6 +193,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. Tik om te openen, houd ingedrukt voor acties</string>
     <string name="bubble_show_actions">acties tonen</string>
+    <string name="background_title">Achtergrondmodus</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
     <string name="bubble_pill_waiting_answer">Wacht op je antwoord</string>
@@ -279,6 +280,7 @@
     <string name="bubble_agent_default">standaard</string>
     <string name="bubble_agent_not_signed_in">Niet ingelogd · tik om in te stellen</string>
     <string name="bubble_agent_not_installed">Niet geïnstalleerd · tik om in te stellen</string>
+    <string name="chat_bg_setup">Achtergrondmodus instellen (ongeveer een minuut) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Voor deze chat. Het gesprek gaat door; het volgende bericht gebruikt de nieuwe keuze.</string>
@@ -298,6 +300,8 @@
     <string name="card_type_own_answer">Zelf antwoorden…</string>
     <string name="card_change_hint">Wat moet er anders?</string>
     <string name="card_answer_hint">Je antwoord…</string>
+    <string name="chat_background">Werken op de achtergrond</string>
+    <string name="chat_background_info">De agent gebruikt een eigen scherm en jij blijft je telefoon gebruiken. Een stap die jou nodig heeft, zoals inloggen, komt naar jouw scherm.</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ Beantwoord: %1$s</string>
@@ -1403,6 +1407,16 @@
     <string name="backup_restored_no_linux">Je chats en instellingen zijn teruggezet. Het Linux-deel (skills, projecten, wat de agents bijhouden) heeft Ski\'s Linux nodig: stel een agent in en zet daarna opnieuw terug. Ski herstart nu.</string>
     <string name="backup_failed">Dat lukte niet: %1$s</string>
     <string name="backup_not_one">Dat bestand is geen Ski-back-up.</string>
+    <string name="setup_mirror_china">China</string>
+    <string name="setup_mirror_russia">Rusland</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">De agent gaat binnenkort aan het werk in %1$s, waarvoor je geen modus hebt ingesteld. Hoe moet het daar werken? (Later te wijzigen in %2$s.)</string>
+    <string name="first_app_trust">“%1$s”: handelt zelfstandig, zonder te vragen</string>
+    <string name="first_app_hard">“%1$s”: vraagt voor elke actie</string>
+    <string name="work_title">Ski is aan het werk</string>
+    <string name="hub_agent_switched">Deze chat is nu met %1$s. Die begint opnieuw: vertel wat je aan het doen was of wat je hierna nodig hebt.</string>
+    <string name="hub_helper_gone">Skis hulpje voor deze chat is zonder uitleg geëindigd. De run is gestopt.</string>
+    <string name="hub_helper_killed">Android heeft Skis hulpjes gestopt om geheugen vrij te maken. Om meer tegelijk te laten draaien, maak wat ruimte vrij of sluit andere apps.</string>
     <string name="chat_incognito">Incognito</string>
     <string name="chat_incognito_info">Deze chat wordt verwijderd als Ski herstart, samen met wat de agent ervan heeft bewaard.</string>
     <string name="api_keys_remove_title">%1$s verwijderen?</string>

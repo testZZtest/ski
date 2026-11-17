@@ -196,6 +196,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. Açmak için dokunun, işlemler için uzun basın</string>
     <string name="bubble_show_actions">işlemleri göstermek</string>
+    <string name="background_title">Arka plan modu</string>
 
     <!-- Status pill beside the bubble: at most two lines. -->
     <string name="bubble_pill_waiting_answer">Yanıtınız bekleniyor</string>
@@ -282,6 +283,7 @@
     <string name="bubble_agent_default">varsayılan</string>
     <string name="bubble_agent_not_signed_in">Giriş yapılmadı · kurmak için dokunun</string>
     <string name="bubble_agent_not_installed">Yüklü değil · kurmak için dokunun</string>
+    <string name="chat_bg_setup">Arka plan modunu kur (yaklaşık bir dakika) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Bu sohbet için. Konuşma devam eder; sonraki mesaj yeni seçimi kullanır.</string>
@@ -301,6 +303,8 @@
     <string name="card_type_own_answer">Yanıtı kendim yazayım…</string>
     <string name="card_change_hint">Ne değişmeli?</string>
     <string name="card_answer_hint">Yanıtınız…</string>
+    <string name="chat_background">Arka planda çalış</string>
+    <string name="chat_background_info">Ajan kendi ekranını kullanır, siz telefonunuzu kullanmaya devam edersiniz. Sizinle ilgili bir adım, örneğin oturum açma, ekranınıza gelir.</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ Yanıtlandı: %1$s</string>
@@ -1405,6 +1409,16 @@
     <string name="backup_restored_no_linux">Sohbetlerin ve ayarların geri yüklendi. Linux kısmı (beceriler, projeler, ajanların kayıtları) Ski\'nin Linux\'unu gerektirir: bir ajan kur, sonra yeniden geri yükle. Ski şimdi yeniden başlıyor.</string>
     <string name="backup_failed">Olmadı: %1$s</string>
     <string name="backup_not_one">Bu dosya bir Ski yedeği değil.</string>
+    <string name="setup_mirror_china">Çin</string>
+    <string name="setup_mirror_russia">Rusya</string>
+    <string name="setup_mirror_iran">İran</string>
+    <string name="first_app_question">Ajan %1$s içinde işlem yapacak; buraya henüz bir mod ayarlamadınız. Orada nasıl çalışsın? (Sonra %2$s içinden değiştirebilirsiniz.)</string>
+    <string name="first_app_trust">“%1$s”: sormadan kendi başına hareket eder</string>
+    <string name="first_app_hard">“%1$s”: her işlemden önce bana sorar</string>
+    <string name="work_title">Ski çalışıyor</string>
+    <string name="hub_agent_switched">Bu sohbet artık %1$s ile. Yeni başlıyor: ne yaptığınızı ya da bundan sonra neye ihtiyacınız olduğunu söyleyin.</string>
+    <string name="hub_helper_gone">Bu sohbet için Ski'nin yardımcısı neden söylemeden sonlandı. Çalışma durduruldu.</string>
+    <string name="hub_helper_killed">Android, bellek açmak için Ski'nin yardımcılarını sonlandırdı. Aynı anda daha fazlasını çalıştırmak için biraz yer açın ya da diğer uygulamaları kapatın.</string>
     <string name="chat_incognito">Gizli</string>
     <string name="chat_incognito_info">Bu sohbet, ajanının ondan sakladıklarıyla birlikte Ski yeniden başladığında silinir.</string>
     <string name="api_keys_remove_title">%1$s kaldırılsın mı?</string>

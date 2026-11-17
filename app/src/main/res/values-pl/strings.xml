@@ -202,6 +202,7 @@
     <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. Kliknij, by otworzyć, przytrzymaj, by zobaczyć opcje</string>
     <string name="bubble_show_actions">pokazać opcje</string>
+    <string name="background_title">Tryb w tle</string>
 
     <!-- Status pill beside the bubble: at most two lines. -->
     <string name="bubble_pill_waiting_answer">Czekam na twoją odpowiedź</string>
@@ -290,6 +291,7 @@
     <string name="bubble_agent_default">domyślny</string>
     <string name="bubble_agent_not_signed_in">Niezalogowany · kliknij, by skonfigurować</string>
     <string name="bubble_agent_not_installed">Niezainstalowany · kliknij, by skonfigurować</string>
+    <string name="chat_bg_setup">Skonfiguruj tryb w tle (około minuty) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Dla tego czatu. Rozmowa trwa dalej, a kolejna wiadomość użyje nowego wyboru.</string>
@@ -309,6 +311,8 @@
     <string name="card_type_own_answer">Wpisz własną odpowiedź…</string>
     <string name="card_change_hint">Co zmienić?</string>
     <string name="card_answer_hint">Twoja odpowiedź…</string>
+    <string name="chat_background">Pracuj w tle</string>
+    <string name="chat_background_info">Agent używa własnego ekranu, a ty dalej korzystasz z telefonu. Krok, który wymaga ciebie, np. logowanie, pojawi się na twoim ekranie.</string>
 
     <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ Odpowiedziano: %1$s</string>
@@ -1431,6 +1435,16 @@
     <string name="backup_restored_no_linux">Przywrócono twoje czaty i ustawienia. Część linuksowa (skille, projekty, zapisy agentów) wymaga Linuksa Ski: skonfiguruj agenta i przywróć jeszcze raz. Ski uruchamia się ponownie.</string>
     <string name="backup_failed">Nie udało się: %1$s</string>
     <string name="backup_not_one">Ten plik nie jest kopią Ski.</string>
+    <string name="setup_mirror_china">Chiny</string>
+    <string name="setup_mirror_russia">Rosja</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">Agent za chwilę zacznie działać w %1$s, dla którego nie ustawiłeś trybu. Jak ma tam pracować? (Zmienisz to później w %2$s.)</string>
+    <string name="first_app_trust">„%1$s“: działa sam, nie pytając</string>
+    <string name="first_app_hard">„%1$s“: pyta przed każdą czynnością</string>
+    <string name="work_title">Ski pracuje</string>
+    <string name="hub_agent_switched">Ten czat jest teraz z %1$s. Zaczyna od nowa: powiedz mu, co robiłeś, albo czego potrzebujesz dalej.</string>
+    <string name="hub_helper_gone">Pomocnik Ski dla tego czatu zakończył się bez wyjaśnienia. Działanie zostało zatrzymane.</string>
+    <string name="hub_helper_killed">Android zakończył pomocników Ski, żeby zwolnić pamięć. Żeby uruchomić więcej naraz, zwolnij trochę miejsca albo zamknij inne aplikacje.</string>
     <string name="chat_incognito">Incognito</string>
     <string name="chat_incognito_info">Ten czat zostanie usunięty po ponownym uruchomieniu Ski, razem z tym, co zachował z niego agent.</string>
     <string name="api_keys_remove_title">Usunąć %1$s?</string>

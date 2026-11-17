@@ -264,6 +264,7 @@
     <string name="bubble_face_description">Ski. Nhấn để mở, nhấn giữ để xem thao tác</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">hiện thao tác</string>
+    <string name="background_title">Chế độ nền</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…".
          "hold" = long-press the bubble, which opens the hold menu. -->
@@ -384,6 +385,7 @@
     <string name="bubble_agent_default">mặc định</string>
     <string name="bubble_agent_not_signed_in">Chưa đăng nhập · nhấn để thiết lập</string>
     <string name="bubble_agent_not_installed">Chưa cài · nhấn để thiết lập</string>
+    <string name="chat_bg_setup">Thiết lập chế độ nền (khoảng một phút) →</string>
 
     <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Cho cuộc trò chuyện này. Cuộc trò chuyện vẫn tiếp tục; tin nhắn tiếp theo sẽ dùng lựa chọn mới.</string>
@@ -417,6 +419,8 @@
     <string name="card_change_hint">Cần thay đổi gì?</string>
     <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">Câu trả lời của bạn…</string>
+    <string name="chat_background">Làm việc ở chế độ nền</string>
+    <string name="chat_background_info">Agent dùng màn hình riêng của nó và bạn vẫn tiếp tục dùng điện thoại. Bước nào cần bạn, ví dụ đăng nhập, sẽ hiện lên màn hình của bạn.</string>
 
     <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
          after it. %1$s: the answer, the requested change or what was approved (shortened). -->
@@ -2013,6 +2017,16 @@
     <string name="backup_restored_no_linux">Đã khôi phục các cuộc trò chuyện và cài đặt. Phần Linux (kỹ năng, dự án, dữ liệu của agent) cần Linux của Ski: hãy thiết lập một agent, rồi khôi phục lại. Ski khởi động lại ngay bây giờ.</string>
     <string name="backup_failed">Không thành công: %1$s</string>
     <string name="backup_not_one">Tệp đó không phải bản sao lưu Ski.</string>
+    <string name="setup_mirror_china">Trung Quốc</string>
+    <string name="setup_mirror_russia">Nga</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">Agent sắp hoạt động trong %1$s, nơi bạn chưa đặt chế độ. Nó nên làm việc ở đó thế nào? (Đổi lại sau trong %2$s.)</string>
+    <string name="first_app_trust">“%1$s”: tự hành động, không hỏi</string>
+    <string name="first_app_hard">“%1$s”: hỏi tôi trước mỗi hành động</string>
+    <string name="work_title">Ski đang làm việc</string>
+    <string name="hub_agent_switched">Cuộc trò chuyện này hiện với %1$s. Nó bắt đầu lại từ đầu: hãy nói nó đang làm gì, hoặc bạn cần gì tiếp theo.</string>
+    <string name="hub_helper_gone">Trình hỗ trợ của Ski cho cuộc trò chuyện này đã kết thúc mà không nói lý do. Phiên chạy đã dừng.</string>
+    <string name="hub_helper_killed">Android đã dừng các trình hỗ trợ của Ski để giải phóng bộ nhớ. Để chạy nhiều hơn cùng lúc, hãy giải phóng bớt dung lượng hoặc đóng các ứng dụng khác.</string>
     <string name="chat_incognito">Ẩn danh</string>
     <string name="chat_incognito_info">Cuộc trò chuyện này, cùng những gì agent lưu về nó, sẽ bị xóa khi Ski khởi động lại.</string>
     <string name="models_context">ngữ cảnh %1$s</string>
