@@ -400,6 +400,30 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
         super.onPause();
     }
 
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        // the user left while this chat's agent works: shrink to a picture-in-picture card with the
+        // run's status (from OneBox's robot-in-PiP; no permission needed). They can tap back into the
+        // chat, or dismiss the card — the WorkNotice notification then says how it ended
+        if (ses != null && ses.running && !isInPictureInPictureMode()
+                && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            try {
+                android.app.PictureInPictureParams p = new android.app.PictureInPictureParams.Builder()
+                        .setAspectRatio(new android.util.Rational(16, 9)).build();
+                enterPictureInPictureMode(p);
+            } catch (Exception ignored) { // no PiP here (some launches): the bubble and WorkNotice still say it
+            }
+        }
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPip, android.content.res.Configuration newConfig) {
+        super.onPictureInPictureModeChanged(isInPip, newConfig);
+        // the running strip is what the card shows: what the agent is doing right now (kept visible)
+        if (strip != null) strip.setVisibility(ses != null && ses.running ? View.VISIBLE : View.GONE);
+    }
+
     private View divider() {
         View v = new View(this);
         v.setBackgroundColor(LINE);

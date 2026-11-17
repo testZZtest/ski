@@ -71,6 +71,8 @@
         <activity
             android:name=".ChatActivity"
             android:exported="false"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- "Share to Ski": photos, files, links and text from any app, into a new or recent chat -->
