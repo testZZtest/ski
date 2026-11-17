@@ -13,6 +13,7 @@ permissions:
 jobs:
   # ski-run's translation of each agent's output, on recorded runs (linux/test/run.sh); jq comes with the runner
   helper-tests:
+    name: Helper tests (ski-run fixtures)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -20,6 +21,7 @@ jobs:
         run: bash linux/test/run.sh
 
   apk:
+    name: APK (ski.apk)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -32,7 +34,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v6
 
       # proot, talloc, libandroid-shmem and the pty helper, from source with a fixed NDK
-      - name: Build native libraries
+      - name: Build native libraries (proot, pty)
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;$NDK_VERSION" >/dev/null
           ANDROID_NDK_HOME="$ANDROID_HOME/ndk/$NDK_VERSION" native/build.sh
@@ -49,34 +51,56 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
           echo "SKI_KEYSTORE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
 
-      - name: Build release APK (GitHub) and bundle (Google Play)
+      - name: Build release APK
         env:
           SKI_KEYSTORE_PASSWORD: ${{ secrets.SKI_KEYSTORE_PASSWORD }}
           SKI_KEY_ALIAS: ${{ secrets.SKI_KEY_ALIAS }}
           SKI_KEY_PASSWORD: ${{ secrets.SKI_KEY_PASSWORD }}
-        run: ./gradlew --no-daemon assembleGithubRelease bundlePlayRelease
+        run: ./gradlew --no-daemon assembleGithubRelease
 
       - name: Collect APK
         run: |
           mkdir -p dist
           apk=$(find app/build/outputs/apk/github/release -name '*.apk' | head -1)
-          cp "$apk" "dist/ski-${GITHUB_REF_NAME//\//-}.apk"
-          # fixed name too, so releases/latest/download/ski.apk always gets the newest version
-          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/ski.apk; fi
+          cp "$apk" dist/ski.apk
+          echo "## Build result" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **APK:** \`ski.apk\` ($(du -h dist/ski.apk | cut -f1))" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Signed:** $([ -n "$SKI_KEYSTORE" ] && echo yes || echo no — artifact only)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Version:** $(grep -oE 'VERSION = "[^"]+"' app/src/main/java/ski/agent/BuildInfo.java | cut -d'"' -f2)" >> "$GITHUB_STEP_SUMMARY"
           ls -l dist
 
-      - uses: actions/upload-artifact@v7
+      # On main (and manual runs): the APK goes, as a plain file, to the dist branch —
+      # https://github.com/testZZtest/ski/raw/dist/ski.apk always downloads the newest build,
+      # no zip around it. Signed or not: an unsigned APK still installs from "unknown sources".
+      - name: Publish APK to the dist branch
+        if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          clone=$(mktemp -d)
+          if gh repo view --json defaultBranchRef -q .defaultBranchRef >/dev/null 2>&1 && git ls-remote --heads origin dist | grep -q dist; then
+            git clone --depth 1 --branch dist origin "$clone/dist"
+          else
+            git clone --depth 1 origin "$clone/dist"
+            git -C "$clone/dist" checkout --orphan dist
+          fi
+          cp dist/ski.apk "$clone/dist/ski.apk"
+          git -C "$clone/dist" add ski.apk
+          git -C "$clone/dist" -c user.name="ski-ci" -c user.email="actions@noreply.github.com" \
+            commit -m "ski.apk from $GITHUB_SHA" --quiet || true
+          git -C "$clone/dist" push origin dist --force
+          echo "APK published: https://github.com/$GITHUB_REPOSITORY/raw/dist/ski.apk" >> "$GITHUB_STEP_SUMMARY"
+          rm -rf "$clone"
+
+      - name: Upload APK artifact (kept 30 days)
+        uses: actions/upload-artifact@v7
         with:
           name: ski-apk
-          path: dist/*.apk
+          path: dist/ski.apk
+          retention-days: 30
 
-      # The Play bundle is never attached to the GitHub release (see below).
-      - uses: actions/upload-artifact@v7
-        with:
-          name: ski-play-aab
-          path: app/build/outputs/bundle/playRelease/*.aab
-
-      # An unsigned APK cannot be installed, so a tag only publishes a release when the key is configured.
+      # An unsigned APK cannot be installed over a signed one, so a tag only publishes a release when the key is set.
       - name: Check signing
         id: signing
         env:
@@ -89,17 +113,16 @@ jobs:
             echo "::warning::No SKI_KEYSTORE_BASE64 secret: the APK is unsigned, so no release is published. Add SKI_KEYSTORE_BASE64 and SKI_KEYSTORE_PASSWORD (see README) and re-run this tag's workflow."
           fi
 
-      # No automatic upload to Google Play: Play turned Ski down (its accessibility policy), so releases are on
-      # GitHub only. The bundle above is still built and kept as an artifact, for a manual upload if that changes.
-
+      # A tag attaches the APK to a GitHub release: ski.apk (fixed name, what the in-app updater
+      # and Obtainium use) and ski-<tag>.apk.
       - name: Publish GitHub release
         if: startsWith(github.ref, 'refs/tags/v') && steps.signing.outputs.signed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        # a release made by hand first (with its own notes) just gets the CI-built APKs attached
         run: |
+          cp dist/ski.apk "dist/ski-${GITHUB_REF_NAME}.apk"
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" dist/*.apk --clobber
           else
-            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Ski $GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Ski $GITHUB_REF_NAME" --generate-notes --latest
           fi
