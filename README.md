@@ -19,7 +19,7 @@ Type or say what you want — *"reply to Sam that I'm running late"*, *"add a Sw
 
 Ski runs on your own plan: [CC], Codex, OpenCode, Antigravity or Grok, installed inside the app. No root, no adb, no PC.
 
-Ski began as a fork of [Ski](https://github.com/ghorbelhamdi/ski-android) (Apache-2.0) with its own package identity (`ski.agent`), so it installs side by side with the original app and updates only from this repository. The original design and most of the code are Hamdi Ghorbel's; this fork adds the features listed below.
+Ski began as a fork of [Buddy](https://github.com/ghorbelhamdi/buddy-android) (Apache-2.0) with its own package identity (`ski.agent`), so it installs side by side with Buddy and updates only from this repository. The original design and most of the code are Hamdi Ghorbel's; this fork adds the features listed below.
 
 ## Highlights
 
@@ -138,6 +138,6 @@ docs/                          user guide and privacy policy
 
 ## Credits and license
 
-Ski is a fork of [Ski](https://github.com/ghorbelhamdi/ski-android) by Hamdi Ghorbel. The original design, the Linux integration and most of the code are his; this fork changes the app identity and adds the improvements listed above.
+Ski is a fork of [Buddy](https://github.com/ghorbelhamdi/buddy-android) by Hamdi Ghorbel. The original design, the Linux integration and most of the code are his; this fork changes the app identity and adds the improvements listed above.
 
 [Apache-2.0](LICENSE). Geist fonts: SIL Open Font License. Icons: Material Symbols (Apache-2.0). Bundled proot (GPL-2.0), talloc (LGPL-3.0) and libandroid-shmem (BSD-3-Clause): see [third_party](third_party/README.md) for licences and source.
