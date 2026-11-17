@@ -157,9 +157,8 @@ Análises em `docs/REPOS-ANALISE.md` (26 repos de referência; upstream Buddy 2.
 
 ### Novo no Ski (ideias dos repos de referência)
 - Modo de fundo completo (Background/Shell/BackgroundActivity/BackgroundPanel, do Buddy 2.3.11): o agente trabalha num display invisível por chat via Wireless debugging; UI em Chat options e Settings; `phone_shell` com aprovação e blocklist.
-- Diff pós-ação compacto (agent-ddp): o que o toque mudou em 1 linha (gone/new), economizando read_screen.
 - PiP para tarefa longa (OneBox): sair do app com o agente rodando encolhe o chat num card de progresso.
-- Skill `app-api` (SimoneAvogadro/android-reverse-engineering-skill): decompila o APK de um app que bloqueia automação (bancário), extrai endpoints Retrofit/OkHttp/Ktor e usa a API HTTP via curl — com confirmação em qualquer escrita e token sempre nas mãos do usuário.
+- Modo Banco (BankMode): remove o serviço de acessibilidade do Ski da lista do sistema via Shizuku, para os apps bancários rodarem sem pedir desinstalação; um toque na notificação traz o Ski de volta. Apps bancários ficam FORA do escopo do agente (decisão do usuário: ele nunca usa o Ski no banco) — a skill app-api foi removida.
 - Otimização: afterAction compara hash da tela em vez de reconstruir o dump completo a cada 150 ms (CPU/bateria em cada ação).
 
 ### Versão

@@ -32,8 +32,6 @@ final class Helper {
             {"linux/android-app/SKILL.md", "/root/.ski/work/.claude/skills/android-app/SKILL.md", "600"},
             {"linux/android-app/build-apk.sh", "/root/.ski/work/.claude/skills/android-app/build-apk.sh", "700"},
             {"linux/android-app/setup-toolchain.sh", "/root/.ski/work/.claude/skills/android-app/setup-toolchain.sh", "700"},
-            {"linux/app-api/SKILL.md", "/root/.ski/work/.claude/skills/app-api/SKILL.md", "600"},
-            {"linux/app-api/setup-tools.sh", "/root/.ski/work/.claude/skills/app-api/setup-tools.sh", "700"},
     };
     private static final ExecutorService pool = Executors.newCachedThreadPool();
     private static int syncedFor = -1;

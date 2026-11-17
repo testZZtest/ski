@@ -6,6 +6,5 @@ To create, build, install or update an Android app, read and follow
 `.claude/skills/android-app/SKILL.md` in this folder. It has the on-phone toolchain, the
 project layout, `build-apk.sh`, and the install steps using the phone tools.
 
-When an app's screen can't be automated (a banking app that blocks accessibility), read and
-follow `.claude/skills/app-api/SKILL.md`: it finds the app's own HTTP interface and uses that
-instead, with the user's OK on anything that matters.
+Banking apps are out of scope for the agent: the user never uses Ski in a bank app, and Ski
+never touches one. If a user asks about a bank app, say that and stop.

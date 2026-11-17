@@ -42,7 +42,7 @@ Levantamento feito via GitHub API + READMEs. Destino: escolher o que implementar
 5. **Semantic safety gate + audit log** (mobile-agent + FoneClaw + openclaw) — níveis de risco por ferramenta (leitura → livre; escrita externa → confirmar; pagamento → bloquear); auditoria on-device; "sempre permitir/só desta vez" com memória.
 6. **Recipes: 1 execução → template → replay sem LLM** (mobile-agent + agent-ddp) — serializar ações bem-sucedidas com seletores semânticos; replay determinístico com fallback para o agente.
 7. **Robot em Picture-in-Picture** (OneBox) — tarefa longa + usuário saiu → PiP nativo (zero permissões) com progresso e retorno em 1 toque. Complementa a bolha.
-8. **APIs nativas via engenharia reversa** (android-reverse-engineering-skill + rea) — skill que decompila APK (jadx), extrai endpoints Retrofit/Ktor + auth, e oferece chamada HTTP direta (curl no Linux do Ski) quando a GUI é bloqueada. **Resposta concreta à restrição dos apps bancários.**
+8. ~~**APIs nativas via engenharia reversa**~~ — **DESCARTADA por decisão do usuário**: ele nunca usa o Ski em apps bancários, e a solução escolhida para o bloqueio dos bancos é o Modo Banco (desligar o serviço de acessibilidade de verdade via Shizuku), não contornar a detecção pela API do app.
 9. **Personal context via Providers do sistema + read-back** (Eta) — ferramentas somente-leitura: notificações 7d, usage stats, SMS/código (com gate); toda escrita relê o estado real e reporta sucesso/falha.
 10. **Memória criptografada + busca semântica** (Nido + AIPass) — vault com chave no Keystore; embedding local leve além de tag/id; Live Updates (Android 16) para status na lockscreen.
 
