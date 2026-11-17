@@ -77,23 +77,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh auth setup-git
-          clone=$(mktemp -d)
-          git clone --depth 1 --branch dist "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" "$clone/dist" 2>/dev/null \
-            || git clone --depth 1 "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" "$clone/dist"
-          if git -C "$clone/dist" rev-parse -q --verify HEAD >/dev/null; then
-            git -C "$clone/dist" checkout -q dist 2>/dev/null || true
+          if gh api "repos/$GITHUB_REPOSITORY/contents/ski.apk?ref=dist" --jq .sha > /tmp/sha.txt 2>/dev/null; then
+            SHA=$(cat /tmp/sha.txt)
+            gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ski.apk" \
+              -f message="ski.apk from $GITHUB_SHA" -f sha="$SHA" \
+              -f content="$(base64 -w0 dist/ski.apk)" -f branch=dist --jq .commit.sha
           else
-            git -C "$clone/dist" checkout -q --orphan dist
-            git -C "$clone/dist" rm -rqf . 2>/dev/null || true
+            gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ski.apk" \
+              -f message="ski.apk from $GITHUB_SHA" \
+              -f content="$(base64 -w0 dist/ski.apk)" -f branch=dist --jq .commit.sha
           fi
-          cp dist/ski.apk "$clone/dist/ski.apk"
-          git -C "$clone/dist" add ski.apk
-          git -C "$clone/dist" -c user.name="ski-ci" -c user.email="actions@noreply.github.com" \
-            commit -m "ski.apk from $GITHUB_SHA" --quiet || true
-          git -C "$clone/dist" push origin dist --force
           echo "APK published: https://github.com/$GITHUB_REPOSITORY/raw/dist/ski.apk" >> "$GITHUB_STEP_SUMMARY"
-          rm -rf "$clone"
 
       - name: Upload APK artifact (kept 30 days)
         uses: actions/upload-artifact@v7
