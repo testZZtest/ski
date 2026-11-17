@@ -81,9 +81,7 @@ jobs:
           # jq builds the JSON (proper escaping) into a file for --input
           EXISTING=$(gh api "repos/$GITHUB_REPOSITORY/contents/ski.apk?ref=dist" --jq .sha 2>/dev/null || true)
           B64=$(base64 -w0 dist/ski.apk)
-          jq -n --arg sha "$GITHUB_SHA" --arg existing "$EXISTING" --rawfile content <(base64 -w0 dist/ski.apk) \
-            '{message: ("ski.apk from " + $sha), content: $content, branch: "dist"} \
-            + (if $existing != "" then {sha: $existing} else {} end)' > /tmp/payload.json
+          jq -n --arg sha "$GITHUB_SHA" --arg existing "$EXISTING" --rawfile content <(base64 -w0 dist/ski.apk) '{message: ("ski.apk from " + $sha), content: $content, branch: "dist"} + (if $existing != "" then {sha: $existing} else {} end)' > /tmp/payload.json
           gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ski.apk" --input /tmp/payload.json --jq .commit.sha
           echo "APK published: https://github.com/$GITHUB_REPOSITORY/raw/dist/ski.apk" >> "$GITHUB_STEP_SUMMARY"
 
