@@ -46,6 +46,25 @@ final class Helper {
 
     /** Runs `ski-run <token> args…` in the background. Throws with a readable message if Linux isn't set up. */
     static void run(Context c, String... args) {
+        run(c, (java.util.function.IntConsumer) null, args);
+    }
+
+    /** ski-run's exit status when the chat's earlier run is still going (it then leaves that run alone). */
+    static final int BUSY = 75;
+
+    /**
+     * gone: called (on the helper's thread) once that helper process has ended, with its exit status, or -1 if it
+     * could not be started; may be null.
+     */
+    static void run(Context c, final java.util.function.IntConsumer gone, String... args) {
+        runFor(c, null, gone, args);
+    }
+
+    /**
+     * As run, for a chat's own run: the helper (and through it the agent) gets a token of its own that stands for
+     * that chat and ends with the helper, not Ski's token (see McpServer.grant).
+     */
+    static void runFor(Context c, String chat, final java.util.function.IntConsumer gone, String... args) {
         final Context app = c.getApplicationContext();
         if (!Linux.installed(app)) {
             throw new IllegalStateException(app.getString(R.string.helper_linux_missing)); // shown to the user
@@ -53,24 +72,35 @@ final class Helper {
         final String[] cmd = new String[args.length + 3];
         cmd[0] = "/bin/bash";
         cmd[1] = "/root/bin/ski-run";
-        cmd[2] = Prefs.token(app);
+        final String runToken = chat == null ? null : McpServer.grant(chat);
+        cmd[2] = runToken != null ? runToken : Prefs.token(app);
         System.arraycopy(args, 0, cmd, 3, args.length);
         pool.execute(() -> {
+            Process p = null;
             try {
                 sync(app);
                 writePermissions(app);
-                Process p = Linux.builder(app, cmd).start();
+                p = Linux.builder(app, cmd).start();
                 p.getOutputStream().close();
                 // the helper reports through the local server; its own output is only kept for debugging
                 File log = new File(app.getCacheDir(), "helper.log");
-                try (InputStream in = p.getInputStream(); OutputStream out = new FileOutputStream(log, log.length() < 200_000)) {
-                    byte[] buf = new byte[8192];
-                    int n;
-                    while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+                byte[] buf = new byte[8192];
+                try (InputStream in = p.getInputStream()) {
+                    try (OutputStream out = new FileOutputStream(log, log.length() < 200_000)) {
+                        int n;
+                        while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+                    } catch (IOException e) { // the log can't be written (no room): the helper works on, its output is dropped
+                        android.util.Log.w("Ski", "helper log", e);
+                        while (in.read(buf) > 0) continue;
+                    }
                 }
                 p.waitFor();
             } catch (Exception e) {
                 android.util.Log.w("Ski", "helper failed", e);
+            } finally {
+                // only a helper that has really ended (or never started) is reported as gone
+                if (p == null || !p.isAlive()) McpServer.revoke(runToken);
+                if (gone != null && (p == null || !p.isAlive())) gone.accept(p == null ? -1 : p.exitValue());
             }
         });
     }
@@ -131,6 +161,7 @@ final class Helper {
 
     /** Copies the helper files from the APK into Linux once per app version. */
     static synchronized void sync(Context c) throws IOException {
+        Mirrors.apply(c); // each time: the download server may have been changed, and the phone's DNS with the network
         if (syncedFor == BuildInfo.VERSION_CODE && new File(Linux.root(c), "root/bin/ski-run").exists()) return;
         File root = Linux.root(c);
         for (String[] f : FILES) {

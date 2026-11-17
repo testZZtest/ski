@@ -43,7 +43,20 @@ final class Sessions {
 
     static final class Session {
         final String id;
-        final String backend;
+        /** The agent that runs this chat; the user can switch it (see ChatHub.switchAgent). */
+        volatile String backend;
+        /**
+         * Set when the chat was switched to another agent that hasn't answered yet: the agent that had the chat
+         * ("claude", "codex"…). Until the new one answers, each run starts its conversation fresh and carries the
+         * chat so far as text.
+         */
+        String handover;
+        /** With handover: the model and effort the chat had with that agent, for a switch straight back to it. */
+        String handoverModel = "", handoverEffort = "";
+        /** And what the chat showed of that agent's conversation (not kept over a restart: the next run says it anew). */
+        String handoverActual = "";
+        long handoverCtxUsed, handoverCtxWindow;
+        boolean handoverCut;
         String title = "";
         /** Model for this chat ("" = the agent's default), e.g. claude-opus-5-5. */
         String model = "";
@@ -85,6 +98,18 @@ final class Sessions {
          * them between runs (and saved) for its scheduled runs, until the schedule is removed.
          */
         final java.util.Set<String> allowed = java.util.Collections.synchronizedSet(new java.util.LinkedHashSet<>());
+        /**
+         * How this chat asks before its agent's actions, until the user changes it (the line under the chat's header):
+         * "" as App permissions say; "routine": routine approvals go ahead in every app (what "Allowed without asking"
+         * does for chosen apps, see Guard.runRule); "strict": apps on Trust ask like the others (see Tools.mode).
+         */
+        volatile String approvals = "";
+        /**
+         * The apps this chat's agent has tapped or sent in, in the order it first came to them: shown on the chat's
+         * Approvals sheet with each one's setting in App permissions, so the user sees where it acted and can change
+         * what applies there.
+         */
+        final java.util.Set<String> apps = java.util.Collections.synchronizedSet(new java.util.LinkedHashSet<>());
         /** The current run is a scheduled task's: its end is a notification, as in long-task mode. */
         boolean scheduledRun;
         /** How the current run ended so far: null (fine), "stopped" or "failed". */
@@ -210,7 +235,12 @@ final class Sessions {
                     msgs.put(mo);
                 }
                 arr.put(new JSONObject().put("id", s.id).put("backend", s.backend).put("title", s.title).put("model", s.model).put("effort", s.effort).put("actual_model", s.actualModel).put("ctx_used", s.ctxUsed).put("ctx_window", s.ctxWindow).put("interrupted", s.interrupted).put("incognito", s.incognito)
-                        .put("dev", s.dev).put("awake", s.awake).put("updated", s.updated).put("messages", msgs));
+                        .put("dev", s.dev).put("awake", s.awake).put("approvals", s.approvals).put("handover", s.handover == null ? "" : s.handover)
+                        .put("handover_model", s.handoverModel).put("handover_effort", s.handoverEffort)
+                        .put("updated", s.updated).put("messages", msgs));
+                synchronized (s.apps) {
+                    if (!s.apps.isEmpty()) arr.getJSONObject(arr.length() - 1).put("apps", new JSONArray(s.apps));
+                }
                 if (s.schedule != null) {
                     JSONArray ok;
                     synchronized (s.allowed) {
@@ -249,6 +279,12 @@ final class Sessions {
                 older |= !o.has("dev");
                 s.dev = o.optBoolean("dev", Prefs.devMode(app));
                 s.awake = o.optBoolean("awake");
+                s.approvals = o.optString("approvals", "");
+                s.handover = o.optString("handover", "").isEmpty() ? null : o.optString("handover");
+                s.handoverModel = o.optString("handover_model", "");
+                s.handoverEffort = o.optString("handover_effort", "");
+                JSONArray apps = o.optJSONArray("apps");
+                for (int j = 0; apps != null && j < apps.length(); j++) s.apps.add(apps.optString(j));
                 s.schedule = Schedules.Plan.of(o.optJSONObject("schedule"));
                 JSONArray ok = s.schedule == null ? null : o.optJSONArray("allowed"); // kept for its scheduled runs
                 if (ok != null) for (int j = 0; j < ok.length(); j++) s.allowed.add(ok.getString(j));

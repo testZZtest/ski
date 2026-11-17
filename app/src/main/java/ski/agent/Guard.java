@@ -80,6 +80,9 @@ final class Guard {
     private static final Pattern RISKY_ID = Pattern.compile("(?i)[:/_](send|send_button|sendbutton|btn_send|delete|pay|buy|post|submit|add-to-cart|add_to_cart|addtocart)\\b");
     // long enough for a slow multi-step task between the plan's approval and its risky tap
     private static final long APPROVAL_VALID_MS = 600_000;
+    private static boolean approvedSendOnly;
+    /** How long an approval waits for its action: the agent asks just before it acts, so minutes later it is stale. */
+    private static final long APPROVAL_USE_MS = 300_000;
 
     private static long approvedAt, planAt;
     /** The pending approval came from a rule's countdown, not from the user: it covers sending only. */
@@ -281,6 +284,8 @@ final class Guard {
         String set = Prefs.appSafety(c, pkg);
         if (set != null) return new String[]{set, c.getString(R.string.guard_why_choice)};
         if (HARD_BY_DEFAULT.contains(pkg)) return new String[]{"hard", c.getString(R.string.guard_why_category)};
+        // Settings, permission screens, installers and stores never start on Trust, whatever the first-setup choice
+        if (NEVER_ALLOWED.matcher(pkg).find()) return new String[]{"hard", c.getString(R.string.guard_why_category)};
         java.util.regex.Matcher m = HARD_NAME.matcher(pkg);
         if (m.find()) return new String[]{"hard", c.getString(R.string.guard_why_name, m.group(1))};
         if (label != null && (m = HARD_NAME.matcher(label)).find()) return new String[]{"hard", c.getString(R.string.guard_why_name, m.group(1))};
@@ -301,6 +306,81 @@ final class Guard {
     private Guard() {
     }
 
+    /** "Search" at the start of a field's hint or name, in Ski's languages (CJK puts it at either end). */
+    private static final java.util.regex.Pattern SEARCH_WORD = java.util.regex.Pattern.compile(
+            "^(search|suche|suchen|recherche|rechercher|buscar|pesquisar|cerca|zoeken|szukaj|поиск|найти|пошук|"
+                    + "arama|telusuri|tìm kiếm|खोजें|بحث)\\b|^(検索|搜索|搜尋|검색)|(検索|搜索|搜尋|검색)$",
+            java.util.regex.Pattern.CASE_INSENSITIVE | java.util.regex.Pattern.UNICODE_CASE);
+    /** "search" as a word of a view id: search_box, rs_search_src_text, searchBar; not research_note. */
+    private static final java.util.regex.Pattern SEARCH_ID = java.util.regex.Pattern.compile("(^|[^a-z])search");
+
+    /**
+     * A field that searches, so Enter in it looks something up and sends nothing to anyone: no password, and it says
+     * so itself, by its class (a search view's field), by "search" as a word of its id, or, for a one-line field, by
+     * a hint or name that begins with the word ("Search Amazon", not "Message #job-search"). Only what an app says of
+     * its own field counts: the caller leaves out web pages, whose ids and hints are the page's to write, and
+     * browsers, whose address bar says "search" and goes anywhere (see Tools.typeText). Kept narrow: a field wrongly
+     * taken for a search box loses the card before a message goes out.
+     */
+    static boolean searchField(android.view.accessibility.AccessibilityNodeInfo n) {
+        if (n == null || n.isPassword()) return false;
+        String cls = String.valueOf(n.getClassName());
+        String raw = n.getViewIdResourceName();
+        raw = raw == null ? "" : raw.substring(raw.indexOf('/') + 1);
+        String id = raw.replaceAll("([a-z0-9])([A-Z])", "$1_$2").toLowerCase(java.util.Locale.ROOT); // searchBar: search_bar
+        if (id.contains("url") || id.contains("address")) return false; // an address bar, whatever else it says
+        CharSequence hint = n.getHintText(), desc = n.getContentDescription();
+        boolean word = !n.isMultiLine() && (SEARCH_WORD.matcher(hint == null ? "" : hint.toString().trim()).find()
+                || SEARCH_WORD.matcher(desc == null ? "" : desc.toString().trim()).find());
+        boolean search = cls.contains("Search") || SEARCH_ID.matcher(id).find() || word || (!n.isMultiLine() && searchInside(n));
+        // off unless the phone's owner turns it on (adb shell setprop log.tag.SkiField DEBUG): how a field describes
+        // itself, to see why one was or wasn't taken for a search. Never its text, hint or name
+        if (android.util.Log.isLoggable("SkiField", android.util.Log.DEBUG)) {
+            android.util.Log.d("SkiField", "search=" + search + " class=" + cls + " id=" + id + " multiline="
+                    + n.isMultiLine() + " word=" + word + " pkg=" + n.getPackageName());
+        }
+        return search;
+    }
+
+    /**
+     * A Compose search bar: the field has no id and, once it holds text, no hint; what it is sits on a node inside
+     * it that covers the field and is named "Search" (F-Droid's). An icon in a corner of a message box
+     * ("Search GIFs") doesn't cover the field, so it doesn't count.
+     */
+    private static boolean searchInside(android.view.accessibility.AccessibilityNodeInfo n) {
+        android.graphics.Rect field = new android.graphics.Rect(), part = new android.graphics.Rect();
+        n.getBoundsInScreen(field);
+        boolean log = android.util.Log.isLoggable("SkiField", android.util.Log.DEBUG);
+        for (int i = 0; i < n.getChildCount() && i < 8; i++) {
+            android.view.accessibility.AccessibilityNodeInfo c = n.getChild(i);
+            if (c == null) continue;
+            CharSequence d = c.getContentDescription();
+            c.getBoundsInScreen(part);
+            // "covers": over the field's middle and most of its width (the field's own padding and its clear button
+            // take the rest)
+            boolean covers = part.contains(field.centerX(), field.centerY()) && part.width() * 2 >= field.width();
+            boolean named = d != null && SEARCH_WORD.matcher(d.toString().trim()).find();
+            if (log) android.util.Log.d("SkiField", "inside " + i + ": named=" + named + " covers=" + covers
+                    + " part=" + part.toShortString() + " field=" + field.toShortString());
+            if (named && covers) return true;
+        }
+        if (log) android.util.Log.d("SkiField", "inside: none of " + n.getChildCount());
+        return false;
+    }
+
+    /** An app that opens any web link (a browser): what its fields say of themselves is no guide to where Enter goes. */
+    static boolean browser(android.content.Context c, CharSequence pkg) {
+        if (pkg == null) return true;
+        try {
+            android.content.Intent i = new android.content.Intent(android.content.Intent.ACTION_VIEW,
+                    android.net.Uri.parse("https://example.com/")).addCategory(android.content.Intent.CATEGORY_BROWSABLE)
+                    .setPackage(pkg.toString());
+            return !c.getPackageManager().queryIntentActivities(i, 0).isEmpty();
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
     /** The agent's confirm was approved: that covers the next risky action. */
     static synchronized void approved(String summary) {
         approved(summary, false);
@@ -313,12 +393,26 @@ final class Guard {
     static synchronized void approved(String summary, boolean auto) {
         approvedAt = System.currentTimeMillis();
         approvedAuto = auto;
+        // what the user approved says what it covers: an OK for sending a message (its text says send, and nothing
+        // in it pays, buys, deletes or installs) isn't spent on a Pay, Buy or Delete button or a Settings switch that
+        // comes after (see takeApproval). An OK for anything else ("Turn on Bluetooth") covers the tap it was for
+        approvedSendOnly = routineText(summary) && saysSend(summary);
         approvedFor = McpServer.CALLER_CHAT.get();
         approvedText = summary;
         if (auto) return;
         planAt = approvedAt;
         plan = summary;
         planFor = approvedFor;
+    }
+
+    /**
+     * The agent pressed Enter in a search field, which went ahead without a card: an approval still pending for the
+     * chat was not given for that, so from here it covers only what a countdown's would, a send (of the approved
+     * text, see takeApproval). The message the user approved before the agent looked up the contact still goes; a
+     * Buy or Delete button after an approved search asks.
+     */
+    static synchronized void afterSearch() {
+        if (approvedAt != 0 && java.util.Objects.equals(approvedFor, McpServer.CALLER_CHAT.get())) approvedAuto = true;
     }
 
     /**
@@ -354,8 +448,17 @@ final class Guard {
      * the approved confirm named exactly that, so an OK for one message never sends another. Used up either way.
      */
     static synchronized boolean takeApproval(boolean send, String content) {
+        return takeApproval(send, content, false);
+    }
+
+    /**
+     * As above; otherRisk: the action is a risky button that doesn't send (Pay, Buy, Delete, a switch in Settings).
+     * An approval whose text was only about sending doesn't cover it, and stays for the send it was given for.
+     */
+    static synchronized boolean takeApproval(boolean send, String content, boolean otherRisk) {
+        if (otherRisk && approvedSendOnly && approvedAt != 0) return false;
         if (approvedAt == 0 || !java.util.Objects.equals(approvedFor, McpServer.CALLER_CHAT.get())) return false;
-        boolean ok = System.currentTimeMillis() - approvedAt < APPROVAL_VALID_MS && (send || !approvedAuto)
+        boolean ok = System.currentTimeMillis() - approvedAt < APPROVAL_USE_MS && (send || !approvedAuto)
                 && (content == null || approvedText != null && plain(approvedText).contains(plain(content)));
         approvedAt = 0;
         return ok;
@@ -377,6 +480,15 @@ final class Guard {
         return SEND.matcher(l.trim()).find() || SEND_ID.matcher(l.trim()).find();
     }
 
+    /**
+     * A button whose own word does something other than send (pay, buy, delete…): what an approval given only for
+     * sending never covers. The app doesn't matter here: "Send" in a banking app is still the send the user's OK named.
+     */
+    static boolean otherRisk(AccessibilityNodeInfo n) {
+        String l = n == null ? null : riskyLabel(n);
+        return l != null && !SEND.matcher(l.trim()).find() && !SEND_ID.matcher(l.trim()).find();
+    }
+
     /** A payment, banking or crypto app by its name (or one Ski can't tell). */
     static boolean moneyApp(android.content.Context c, CharSequence pkg) {
         if (pkg == null) return true;
@@ -395,7 +507,41 @@ final class Guard {
 
     /** Apps a run rule never covers, whatever the user picks: settings, permissions, app stores and installers. */
     private static final Pattern NEVER_ALLOWED = Pattern.compile(
-            "(?i)(settings|permission|security|installer|vending|store|market|^com\\.google\\.android\\.gms$)");
+            "(?i)(settings|permission|security|installer|vending|store|market|fdroid|droidify|obtainium|aptoide|apkpure"
+                    + "|uptodown|^com\\.google\\.android\\.gms$)");
+    private static final Pattern DECISION_APP = Pattern.compile("(?i)(permission|installer)");
+    private static final Pattern SETTINGS_APP = Pattern.compile("(?i)(settings|security)");
+
+    /**
+     * A tap that asks whatever its label says, in an app that isn't on Trust: anything in a permission dialog or an
+     * installer (their buttons are the decision: Allow, Install), and a switch or checkbox in Settings (accessibility
+     * services, unknown sources, a lock). The built-in words don't know "Allow" or "Install" in every language, and a
+     * switch has no word at all. Moving around in Settings stays free: headings, plain rows.
+     */
+    static boolean floor(String pkg, AccessibilityNodeInfo n) {
+        if (pkg == null || n == null) return false;
+        if (DECISION_APP.matcher(pkg).find()) return true;
+        if (!SETTINGS_APP.matcher(pkg).find()) return false;
+        // the row this tap is in: the tapped node or the nearest clickable thing around it (not the list itself)
+        AccessibilityNodeInfo row = n;
+        for (int i = 0; row != null && i < 8; i++, row = row.getParent()) {
+            if (row.isCheckable()) return true; // the switch itself, or a row that is one
+            if (row.isClickable()) break;
+            if (row.isScrollable()) return false; // reached the list: a heading, plain text
+        }
+        // a row with a switch inside. That also asks for a row that opens a page and has its switch beside it
+        // (Wi-Fi): Ski can't tell from outside which of the two a tap on the row does, and asking is the safe side
+        return row != null && row.isClickable() && hasCheckable(row, 4);
+    }
+
+    private static boolean hasCheckable(AccessibilityNodeInfo n, int depth) {
+        if (n == null) return false;
+        if (n.isCheckable()) return true;
+        if (depth == 0) return false;
+        for (int i = 0; i < n.getChildCount() && i < 12; i++) if (hasCheckable(n.getChild(i), depth - 1)) return true;
+        return false;
+    }
+
     /** Words in a confirm's text that a run rule never approves (the rest of RISKY is checked too). */
     private static final Pattern NEVER_WORDS = Pattern.compile(
             "(?iu)(?<![\\p{L}])(install\\w*|passwords?|passcode|pin|otp|codes?|security|permissions?|bank\\w*|cards?|iban|money)(?![\\p{L}])|[€$£¥₹]");
@@ -415,9 +561,20 @@ final class Guard {
      * "ask" on a tap that isn't a risky button; Tools decides which an action is. Never in a notification rule's run.
      */
     static boolean runRule(android.content.Context c, String pkg) {
+        return runRule(c, pkg, false);
+    }
+
+    /**
+     * As above; listedOnly: only an app the user put on the chat's own list counts, not "Routine allowed". For Enter
+     * on a web page or in a browser, where Ski can't tell a message box from a checkout form.
+     */
+    static boolean runRule(android.content.Context c, String pkg, boolean listedOnly) {
         String chat = McpServer.CALLER_CHAT.get();
         if (chat == null || Triggers.ruleRun(chat) || !allowable(c, pkg)) return false;
-        return ChatHub.get(c).allowedFor(chat).contains(pkg);
+        ChatHub hub = ChatHub.get(c);
+        String choice = hub.approvalsFor(chat);
+        if ("strict".equals(choice)) return false; // "Always ask" is over the chat's own list of allowed apps too
+        return (!listedOnly && "routine".equals(choice)) || hub.allowedFor(chat).contains(pkg);
     }
 
     /**
@@ -437,6 +594,18 @@ final class Guard {
             if (RISKY.matcher(from).find() && !SEND.matcher(from).find()) return false;
         }
         return true;
+    }
+
+    /** Does this text (a confirm's) speak of sending: a send word at the start of one of its words? */
+    static boolean saysSend(String s) {
+        if (s == null) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (!Character.isLetter(s.codePointAt(i))) continue;
+            if (i > 0 && Character.isLetter(s.codePointBefore(i))
+                    && Character.UnicodeScript.of(s.codePointAt(i)) == Character.UnicodeScript.LATIN) continue;
+            if (SEND.matcher(s.substring(i)).find()) return true;
+        }
+        return false;
     }
 
     /** What a tap at (x, y) would hit: the topmost app window's deepest node there. */

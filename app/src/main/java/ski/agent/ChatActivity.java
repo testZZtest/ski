@@ -1769,6 +1769,13 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
                 v = r;
                 break;
             }
+            case NOTE: { // something that changed in the chat itself (its agent), not a step of a run
+                TextView tv = text(this, text, 12, MUTED);
+                tv.setGravity(Gravity.CENTER);
+                p.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                v = tv;
+                break;
+            }
             default: { // ERROR
                 LinearLayout r = row(this);
                 r.setGravity(Gravity.TOP);

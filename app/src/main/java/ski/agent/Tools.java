@@ -480,7 +480,21 @@ final class Tools {
         if (STEPPED.contains(name)) {
             JSONArray content = r.optJSONArray("content");
             JSONObject first = content == null ? null : content.optJSONObject(0);
-            StepLog.record(svc, McpServer.CALLER_CHAT.get(), name, a, first == null ? "" : first.optString("text"));
+            String said = first == null ? "" : first.optString("text");
+            // (text meant for a password field wasn't typed, and isn't kept either)
+            JSONObject kept = a;
+            if (said.contains("Not typed: this is a password")) { // on its own, or as a step of do_steps
+                kept = new JSONObject(a.toString());
+                if (kept.has("text")) kept.put("text", "…");
+                org.json.JSONArray steps = kept.optJSONArray("steps");
+                for (int i = 0; steps != null && i < steps.length(); i++) {
+                    JSONObject st = steps.optJSONObject(i);
+                    if (st != null && st.has("text")) st.put("text", "…");
+                    JSONObject args = st == null ? null : st.optJSONObject("args");
+                    if (args != null && args.has("text")) args.put("text", "…");
+                }
+            }
+            StepLog.record(svc, McpServer.CALLER_CHAT.get(), name, kept, said);
         }
         if ("confirm".equals(name) || "ask".equals(name)) return r;
         String notes = ChatHub.get(svc).takeNotes();
@@ -559,19 +573,22 @@ final class Tools {
                 return text("Waited " + ms + " ms.");
             }
             case "confirm": {
-                if (!ruleRun() && Guard.autonomous(svc, svc.foregroundPkg())) {
+                final String front = svc.foregroundPkg(); // (asked once: it can change, or be unknown for a moment)
+                if (front != null && "trust".equals(mode(front))) { // (never in a rule's run, see mode)
                     // no card in an app the user trusts; not counted as approval for a tap in another app
                     return text("APPROVED automatically: the user trusts " + svc.foregroundAppName() + ", so work on "
                             + "your own there without calling confirm. Apps on Hard or Smart still ask the user.");
                 }
                 String summary = a.getString("summary");
-                if (!ruleRun() && Guard.routineText(summary) && Guard.runRule(svc, svc.foregroundPkg())) {
-                    // the user allowed this app until the run ends: as after a countdown, it covers sending, nothing more
-                    Guard.approved(summary, true);
-                    noteInChat(McpServer.CALLER_CHAT.get(), svc.getString(R.string.run_rule_approved, summary));
+                if (!ruleRun() && front != null && Guard.routineText(summary) && Guard.runRule(svc, front)) {
+                    // the user allowed this app until the run ends: no card for the agent's question. Nothing is kept
+                    // as an approval: the action itself is judged when it comes (see guard: is it a send, in an app
+                    // the rule covers, not a button the user listed as always asking), and noted in the chat then
                     return text("APPROVED by the user's rule for this run: they allowed routine steps in "
-                            + svc.foregroundAppName() + " without asking. Go ahead with this, and only this. Paying, "
-                            + "buying, deleting, installing, passwords and security settings still need their OK.");
+                            + svc.foregroundAppName() + " without asking. Go ahead with this, and only this, there. Ski still "
+                            + "asks the user itself where a step isn't routine (paying, buying, deleting, installing, "
+                            + "passwords, security settings), is in another app or the background browser, or is one "
+                            + "they set to always ask.");
                 }
                 String answer = svc.askConfirm(summary, true);
                 // covers the next risky tap (after a rule's countdown, only a send)
@@ -893,6 +910,9 @@ final class Tools {
                 + ". Don't try more actions; tell the user what's done and what's left. They can tell you to go on.";
     }
 
+    /** Whether a package has an icon to open (App permissions lists those): asked of the system once each. */
+    private static final java.util.Map<String, Boolean> LAUNCHABLE = new java.util.concurrent.ConcurrentHashMap<>();
+
     private static final java.util.Set<String> SCREEN = new java.util.HashSet<>(java.util.Arrays.asList(
             "read_screen", "tap", "long_press", "type_text", "scroll", "swipe", "press", "open_app", "open_url",
             "screenshot", "point_out", "wait_for", "do_steps", "collect", "find", "find_and_tap",
@@ -935,7 +955,78 @@ final class Tools {
     /** The app's mode for this call: a rule's run gets no Trust (it works for someone else's message). */
     private String mode(String pkg) {
         String m = Guard.mode(svc, pkg, null);
-        return "trust".equals(m) && ruleRun() ? "hard" : m;
+        // nor a chat set to "Always ask": nothing it does is waved through
+        String chat = McpServer.CALLER_CHAT.get();
+        return "trust".equals(m) && (ruleRun() || "strict".equals(ChatHub.get(svc).approvalsFor(chat))) ? "hard" : m;
+    }
+
+    /** The chat and app of the last used() call that got through: the next tap in the same app has nothing to add. */
+    private static volatile String lastUsed;
+
+    /**
+     * The calling chat's agent acted in this app (a tap went through, a text was sent with Enter): kept for the chat's
+     * Approvals sheet, which shows each with its setting in App permissions. Only apps App permissions lists (those
+     * with an icon to open: not the launcher or the system's bars), and not a notification rule's run, which has no say.
+     */
+    private void used(CharSequence app) {
+        String chat = McpServer.CALLER_CHAT.get(), pkg = str(app);
+        if (chat == null || pkg == null) return;
+        String key = chat + "|" + pkg;
+        if (key.equals(lastUsed)) return;
+        if (ruleRun() || pkg.equals(svc.getPackageName())) return;
+        if (launchable(pkg)) ChatHub.get(svc).appUsed(chat, pkg);
+        lastUsed = key;
+    }
+
+    /** An app with an icon to open, as App permissions lists them (asked of the system once each). */
+    private boolean launchable(String pkg) {
+        Boolean opens = LAUNCHABLE.get(pkg);
+        if (opens == null) {
+            try {
+                opens = svc.getPackageManager().getLaunchIntentForPackage(pkg) != null;
+            } catch (Exception e) {
+                opens = false;
+            }
+            LAUNCHABLE.put(pkg, opens);
+        }
+        return opens;
+    }
+
+    /** Apps the first-use question was put for since Ski started: skipped or unanswered, it isn't put again. */
+    private static final java.util.Set<String> FIRST_ASKED = java.util.concurrent.ConcurrentHashMap.newKeySet();
+
+    /**
+     * The agent is about to tap or type in an app the user has set no mode for: Ski asks, once, whether it works
+     * there on its own (Trust) or asks first (Hard), and keeps the answer as the app's setting in App permissions.
+     * Only where the choice is the user's to make and they are there to make it: a chat on "Ask" (the other two
+     * choices already say how the chat asks), not a notification rule's or a scheduled task's run, not
+     * with the phone locked, and never for money apps, Settings and stores, which stay on asking (Guard.allowable).
+     * Unanswered, the app keeps its default mode.
+     */
+    private void firstUse(String pkg) throws InterruptedException {
+        if (pkg == null || !Prefs.askNewApps(svc) || Prefs.appSafety(svc, pkg) != null || FIRST_ASKED.contains(pkg)) return;
+        String chat = McpServer.CALLER_CHAT.get();
+        if (ruleRun() || !ChatHub.get(svc).approvalsFor(chat).isEmpty()) return;
+        if (!Guard.allowable(svc, pkg) || !launchable(pkg) || Triggers.locked(svc)) return;
+        Sessions.Session ses = chat == null ? null : ChatHub.get(svc).sessions.find(chat);
+        if (ses != null && ses.scheduledRun) return;
+        if (!FIRST_ASKED.add(pkg)) return; // another chat is asking about it right now
+        String name = pkg;
+        try {
+            android.content.pm.PackageManager pm = svc.getPackageManager();
+            name = String.valueOf(pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)));
+        } catch (Exception ignored) {
+        }
+        String trust = svc.getString(R.string.first_app_trust, svc.getString(R.string.perms_mode_trust));
+        String hard = svc.getString(R.string.first_app_hard, svc.getString(R.string.perms_mode_hard));
+        // what the app would get anyway comes first
+        boolean trusted = "trust".equals(Guard.mode(svc, pkg, name));
+        CARD_SHOWN.set(true);
+        String answer = svc.askQuestion(svc.getString(R.string.first_app_question, name, svc.getString(R.string.perms_title)),
+                java.util.Arrays.asList(trusted ? trust : hard, trusted ? hard : trust), false, null);
+        if (!answer.startsWith("ANSWER: ")) return; // skipped, typed or timed out: nothing is set
+        if (answer.contains("\u201c" + trust + "\u201d")) Prefs.setAppSafety(svc, pkg, "trust");
+        else if (answer.contains("\u201c" + hard + "\u201d")) Prefs.setAppSafety(svc, pkg, "hard");
     }
 
     private static JSONObject text(String s) throws JSONException {
@@ -1742,7 +1833,19 @@ final class Tools {
     }
 
 // ------------------------------------------------------------- actions
-    // ------------------------------------------------------------- actions
+
+    /**
+     * What a button is, for telling whether it is still the same one after a wait: its app and its label, without
+     * the digits (a "Skip in 5" counts down on its own).
+     */
+    private static String sameButton(AccessibilityNodeInfo n) {
+        if (n == null) return null;
+        String label = Guard.buttonLabel(n);
+        return str(n.getPackageName()) + "|" + (label == null ? "" : label.replaceAll("\\p{Nd}+", "#"));
+    }
+
+    /** This thread's tap put a card (or a first-use question) in front of the user: the screen may have moved on. */
+    private static final ThreadLocal<Boolean> CARD_SHOWN = ThreadLocal.withInitial(() -> false);
 
     /** Also used by ChatApps, which taps the search box, its result and the Send button. */
     String tap(JSONObject a, boolean longPress) throws Exception {
@@ -1756,6 +1859,7 @@ final class Tools {
             if (!n.isVisibleToUser() || r.isEmpty()) {
                 String blocked = guard(n, n);
                 if (blocked != null) return blocked;
+                used(n.getPackageName());
                 // Off-screen or stale: fall back to an accessibility click.
                 AccessibilityNodeInfo target = clickableAncestor(n, longPress);
                 boolean ok = target != null && target.performAction(longPress
@@ -1774,8 +1878,31 @@ final class Tools {
                     + "there on purpose, give x and y.";
         }
         AccessibilityNodeInfo hit = Guard.nodeAt(svc.getWindows(), x, y);
+        CARD_SHOWN.set(false);
         String blocked = guard(n, hit);
         if (blocked != null) return blocked;
+        // the user answered a card: what was approved must still be what's under the finger. An app that
+        // moved on meanwhile would get the tap on something else
+        if (CARD_SHOWN.get()) { // (not after a reviewer's look, which shows nothing and takes its seconds every time)
+            Thread.sleep(300); // the card's panel closes first
+            String changed = "Not tapped: the screen changed while Ski was asking, so this tap would land on something "
+                    + "else. Call read_screen and do the step again (Ski asks again if it needs to).";
+            if (n != null) { // aimed at an element: it may have moved (the keyboard closed), the tap follows it
+                String was = sameButton(n);
+                Rect r = new Rect();
+                if (!n.refresh() || !n.isVisibleToUser() || !java.util.Objects.equals(was, sameButton(n))) return changed;
+                n.getBoundsInScreen(r);
+                if (r.isEmpty()) return changed;
+                x = r.centerX();
+                y = r.centerY();
+                if (coveredBy(n, x, y) != null) return changed;
+            } else {
+                AccessibilityNodeInfo now = Guard.nodeAt(svc.getWindows(), x, y);
+                if (now != null && Guard.offLimits(svc, now)) now = hit; // Ski's own panel still in the way: no verdict
+                if (!java.util.Objects.equals(sameButton(hit), sameButton(now))) return changed;
+            }
+        }
+        if (n != null || hit != null) used((n != null ? n : hit).getPackageName());
         String label = Guard.buttonLabel(n != null ? n : hit);
         svc.showActivity(label == null ? svc.getString(R.string.activity_tapping_plain)
                 : svc.getString(R.string.activity_tapping, label), null);
@@ -1877,6 +2004,7 @@ final class Tools {
         AccessibilityNodeInfo target = element != null ? element : hit;
         if (target == null) return null;
         String pkg = str(target.getPackageName());
+        firstUse(pkg);
         String mode = mode(pkg);
         if ("trust".equals(mode)) return null;
         String label = Guard.buttonLabel(target);
@@ -1888,15 +2016,22 @@ final class Tools {
         String what = "Tap “" + (label == null ? "this" : label) + "”"; // for the agent and the reviewer
         java.util.function.Function<String, String> card = in -> tapCard(label, in); // the same, on the user's card
         boolean userAsks = Guard.listed(svc, "ask", label, pkg);
-        boolean ask = userAsks
+        boolean ask = userAsks || Guard.floor(pkg, target) || (hit != null && Guard.floor(str(hit.getPackageName()), hit))
                 || (Prefs.guardBuiltin(svc) && (Guard.riskyLabel(target) != null || (hit != null && Guard.riskyLabel(hit) != null)));
         // the run rule covers a button that only sends, and not one the user listed as always asking
         boolean byRule = !userAsks && Guard.sends(svc, target)
                 && (hit == null || Guard.riskyLabel(hit) == null || Guard.sends(svc, hit)) && Guard.runRule(svc, pkg);
-        if (ask) return guardAction(what, card, draft == null ? null : draft.toString(),
-                Guard.sends(svc, target) || (hit != null && Guard.sends(svc, hit)), byRule);
+        if (ask) {
+            boolean send = Guard.sends(svc, target) || (hit != null && Guard.sends(svc, hit));
+            // what an OK given only for sending isn't spent on: a button whose own word pays, buys, deletes… Not a
+            // "Send" in a money app (no send for a rule, but what the user's "Send 50 to Anna" was for), nor a
+            // switch or a button on the user's list, which have no such word
+            boolean other = !send && (Guard.otherRisk(target) || Guard.otherRisk(hit));
+            return guardAction(what, card, draft == null ? null : draft.toString(), send, byRule, other);
+        }
         if (!"smart".equals(mode)) return null;
-        return review(what, card, target, draft == null ? null : draft.toString());
+        return review(what, card, target, draft == null ? null : draft.toString(),
+                () -> Guard.runRule(svc, str(target.getPackageName())));
     }
 
     /**
@@ -1904,7 +2039,7 @@ final class Tools {
      * otherwise the card's answer. draft: text about to be sent, shown on the card (may be null).
      */
     private String review(String what, java.util.function.Function<String, String> card, AccessibilityNodeInfo target,
-                          String draft) throws InterruptedException {
+                          String draft, java.util.function.BooleanSupplier rule) throws InterruptedException {
         String app = svc.foregroundAppName();
         final String[][] ctx = new String[1][];
         final CountDownLatch got = new CountDownLatch(1);
@@ -1924,7 +2059,7 @@ final class Tools {
         if ("allow".equals(d.decision)) return null;
         // the run rule covers the reviewer's "ask" on a routine step: not a risky button, not a password field
         boolean byRule = "ask".equals(d.decision) && target != null && Guard.riskyLabel(target) == null && !target.isPassword()
-                && Guard.runRule(svc, str(target.getPackageName()));
+                && rule.getAsBoolean();
         String why = svc.getString("block".equals(d.decision) ? R.string.tools_card_reviewer_block : R.string.tools_card_reviewer_ask,
                 d.by, d.reason);
         return guardAction(what, card, (draft == null || draft.isEmpty() ? "" : svc.getString(R.string.tools_card_quote, draft) + "\n") + why,
@@ -1945,8 +2080,14 @@ final class Tools {
      */
     private String guardAction(String what, java.util.function.Function<String, String> card, String detail, boolean send,
                                boolean byRule) throws InterruptedException {
+        return guardAction(what, card, detail, send, byRule, false);
+    }
+
+    /** otherRisk: a risky button that doesn't send, which an approval given only for sending doesn't cover. */
+    private String guardAction(String what, java.util.function.Function<String, String> card, String detail, boolean send,
+                               boolean byRule, boolean otherRisk) throws InterruptedException {
         // a send's detail is the message itself: an approval for another text doesn't cover it (a card asks instead)
-        if (Guard.takeApproval(send, send ? detail : null)) return null;
+        if (Guard.takeApproval(send, send ? detail : null, otherRisk)) return null;
         String app = svc.foregroundAppName();
         if (byRule) {
             noteInChat(McpServer.CALLER_CHAT.get(), svc.getString(R.string.run_rule_approved, card.apply(app)));
@@ -1955,6 +2096,7 @@ final class Tools {
         String summary = detail == null || detail.trim().isEmpty() ? card.apply(app)
                 : svc.getString(R.string.tools_card_detail, card.apply(app), detail.contains("\n") || detail.startsWith("“")
                 ? detail.trim() : svc.getString(R.string.tools_card_quote, detail.trim()));
+        CARD_SHOWN.set(true);
         String answer = svc.askConfirm(summary, send);
         if (answer.startsWith("APPROVED")) return null;
         if (answer.startsWith("CHANGES")) return "Not tapped: the user wants changes first. " + answer;
@@ -1983,6 +2125,13 @@ final class Tools {
         if (target == null)
             throw new IllegalStateException("No text field is focused. Tap the text field first, then type.");
         if (Guard.offLimits(svc, target)) return "BLOCKED: that's Ski's own screen. Only the user types there.";
+        // passwords, PINs and codes are the user's to type: Ski doesn't put one in for an agent, and so none ends up
+        // in the steps kept of a run
+        if (target.isPassword()) {
+            return "Not typed: this is a password field. Passwords, PINs and codes are the user's to type: call ask "
+                    + "with this field in highlight so they enter it themselves, then go on.";
+        }
+        firstUse(str(target.getPackageName()));
         if (!target.isFocused()) target.performAction(AccessibilityNodeInfo.ACTION_FOCUS);
         String value = text;
         CharSequence cur = target.isShowingHintText() ? null : target.getText();
@@ -2017,14 +2166,30 @@ final class Tools {
             String mode = mode(str(target.getPackageName()));
             java.util.function.Function<String, String> card = in -> in == null ? svc.getString(R.string.tools_card_enter)
                     : svc.getString(R.string.tools_card_enter_in, in);
-            // Hard always asks; Smart lets the reviewer decide, as for a tap the rules don't catch
+            // Hard always asks; Smart lets the reviewer decide, as for a tap the rules don't catch. Not for a search
+            // field: Enter there looks something up, it sends nothing (in a money app it asks all the same)
             boolean send = !Guard.moneyApp(svc, target.getPackageName());
-            String blocked = "hard".equals(mode) ? guardAction("Press Enter to send", card, text, send,
-                    send && !target.isPassword() && Guard.runRule(svc, str(target.getPackageName())))
-                    : "smart".equals(mode) ? review("Press Enter to send", card, target, text) : null;
+            // only an app's own field in the user's own run: a web page writes its fields' ids and hints itself, a
+            // browser's address bar goes anywhere, and a notification rule's run asks before every Enter
+            // (asked only where Enter would otherwise ask: an app on Trust needs neither the test nor the approval)
+            boolean web = inWeb(target);
+            boolean search = send && ("hard".equals(mode) || "smart".equals(mode)) && !ruleRun() && !web
+                    && !"strict".equals(ChatHub.get(svc).approvalsFor(McpServer.CALLER_CHAT.get()))
+                    && Guard.searchField(target) && !Guard.browser(svc, target.getPackageName());
+            // (an approval the agent got earlier wasn't for this Enter: it stays, for a send only)
+            if (search) Guard.afterSearch();
+            // "Routine allowed" doesn't cover Enter on a web page or in a browser: there Ski can't tell a message
+            // box from a checkout form. An app the user put on the chat's own list keeps its rule
+            final AccessibilityNodeInfo field = target;
+            java.util.function.BooleanSupplier byRule = () -> send && !field.isPassword() && Guard.runRule(svc,
+                    str(field.getPackageName()), web || Guard.browser(svc, field.getPackageName()));
+            String blocked = search ? null
+                    : "hard".equals(mode) ? guardAction("Press Enter to send", card, text, send, byRule.getAsBoolean())
+                    : "smart".equals(mode) ? review("Press Enter to send", card, target, text, byRule) : null;
             if (blocked != null) return result + " Not sent: " + blocked;
             Thread.sleep(150);
             boolean sent = target.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.getId());
+            if (sent) used(target.getPackageName());
             result += sent ? " Pressed enter." : " Enter action not supported here; tap the send button instead.";
         }
         return result;

@@ -2064,4 +2064,13 @@
     <string name="signin_api_key_on">%1$s runs on your API keys: pick a model in a chat\'s model sheet, or its default under API keys.</string>
     <string name="signin_api_key_on_plan">Chats can also use your API keys\' models (pick one in a chat\'s model sheet). Voice and the other plan features use your plan.</string>
     <string name="memory_cant_create">Ski couldn\'t create its memory folder.</string>
+    <string name="setup_mirror_china">China</string>
+    <string name="setup_mirror_russia">Russia</string>
+    <string name="setup_mirror_iran">Iran</string>
+    <string name="first_app_question">The agent is about to act in %1$s, which you haven\'t set a mode for. How should it work there? (Change it later in %2$s.)</string>
+    <string name="first_app_trust">“%1$s”: act on its own, without asking</string>
+    <string name="first_app_hard">“%1$s”: ask me before each action</string>
+    <string name="hub_agent_switched">This chat is with %1$s now. It starts fresh: tell it what you were doing, or what you need next.</string>
+    <string name="hub_helper_gone">Ski\'s helper for this chat ended without saying why. The run stopped.</string>
+    <string name="hub_helper_killed">Android ended Ski\'s helpers to free memory. To run more at once, free some space or close other apps.</string>
 </resources>

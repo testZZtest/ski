@@ -65,6 +65,18 @@ final class Prefs {
         sp(c).edit().putBoolean("agents_tap_ski", on).apply();
     }
 
+    /**
+     * The first time an agent acts in an app the user has set no mode for, Ski asks which it gets: Trust or Hard
+     * (see Tools.firstUse). On for a new install, off for one set up before that existed, until the user turns it on.
+     */
+    static boolean askNewApps(Context c) {
+        return sp(c).getBoolean("ask_new_apps", false);
+    }
+
+    static void setAskNewApps(Context c, boolean on) {
+        sp(c).edit().putBoolean("ask_new_apps", on).apply();
+    }
+
     /** Notify when a new Ski release is out (checked about once a day). */
     static boolean updateNotices(Context c) {
         return !Flavor.PLAY && sp(c).getBoolean("update_notices", true);
@@ -241,11 +253,59 @@ final class Prefs {
 
     /** Accent colour (opaque ARGB). */
     static int accent(Context c) {
+        if (android.os.Build.VERSION.SDK_INT >= 31 && accentFromWallpaper(c)) { // (the check here too: for lint)
+            return c.getColor(android.R.color.system_accent1_500) | 0xFF000000;
+        }
         return sp(c).getInt("accent", 0xFFD97757);
     }
 
     static void setAccent(Context c, int color) {
-        sp(c).edit().putInt("accent", color | 0xFF000000).apply();
+        sp(c).edit().putInt("accent", color | 0xFF000000).putBoolean("accent_wallpaper", false).apply();
+    }
+
+    /** The accent is the phone's own, taken from the wallpaper (Android 12+), and changes with it. */
+    static boolean accentFromWallpaper(Context c) {
+        return android.os.Build.VERSION.SDK_INT >= 31 && sp(c).getBoolean("accent_wallpaper", false);
+    }
+
+    static void setAccentFromWallpaper(Context c) {
+        sp(c).edit().putBoolean("accent_wallpaper", true).apply();
+    }
+
+    /** The download server for Ski's Linux (see Mirrors): "" is Alpine's and npm's own. */
+    static String mirror(Context c) {
+        return sp(c).getString("mirror", "");
+    }
+
+    static void setMirror(Context c, String id) {
+        sp(c).edit().putString("mirror", id).apply();
+    }
+
+    /** The user's own download server (Mirrors.CUSTOM): its Alpine address, or (npm) its npm registry; "" if none. */
+    static String mirrorCustom(Context c, boolean npm) {
+        return sp(c).getString(npm ? "mirror_custom_npm" : "mirror_custom", "");
+    }
+
+    static void setMirrorCustom(Context c, String alpine, String npm) {
+        sp(c).edit().putString("mirror_custom", alpine).putString("mirror_custom_npm", npm).apply();
+    }
+
+    /** The registry line Mirrors last wrote into Ski's Linux (~/.npmrc), to take just that one out again. */
+    static String mirrorNpm(Context c) {
+        return sp(c).getString("mirror_npm", "");
+    }
+
+    static void setMirrorNpm(Context c, String line) {
+        sp(c).edit().putString("mirror_npm", line).apply();
+    }
+
+    /** The DNS list Mirrors last wrote into Ski's Linux, to know it as its own later. */
+    static String mirrorDns(Context c) {
+        return sp(c).getString("mirror_dns", "");
+    }
+
+    static void setMirrorDns(Context c, String list) {
+        sp(c).edit().putString("mirror_dns", list).apply();
     }
 
     /** Surface style: "warm", "neutral" or "black" (black applies in dark mode only). */
@@ -302,12 +362,26 @@ final class Prefs {
         sp(c).edit().putString("grok_models", json).apply();
     }
 
+    /**
+     * The first-run guide's "Local model" choice: OpenCode with a model server of the user's own. The guide then asks
+     * for the server too, and the server becomes what OpenCode's chats use by default.
+     */
+    static boolean localSetup(Context c) {
+        return sp(c).getBoolean("local_setup", false);
+    }
+
+    static void setLocalSetup(Context c, boolean on) {
+        sp(c).edit().putBoolean("local_setup", on).apply();
+    }
+
     /** First-run guide finished (or skipped). */
     static boolean onboarded(Context c) {
         return sp(c).getBoolean("onboarded", false);
     }
 
     static void setOnboarded(Context c, boolean on) {
+        // a new install asks about each new app (see askNewApps); one set up before that existed keeps working as it did
+        if (on && !onboarded(c) && !sp(c).contains("ask_new_apps")) setAskNewApps(c, true);
         sp(c).edit().putBoolean("onboarded", on).apply();
     }
 

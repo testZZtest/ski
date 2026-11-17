@@ -31,6 +31,8 @@ final class ChatHub {
     private final List<Listener> listeners = new ArrayList<>();
     private final List<Sessions.Session> viewing = new ArrayList<>();
     private String flash;
+    /** The chat whose reply the flash shows. */
+    private Sessions.Session flashChat;
     /** Receives ski_procs / ski_recent / ski_transcript replies for the monitor screens. */
     interface MonitorListener {
         void onMonitor(JSONObject ev);
@@ -116,6 +118,22 @@ final class ChatHub {
         changed();
     }
 
+    /** The chat whose own screen (ChatActivity) is in front, or null. */
+    private Sessions.Session onScreen;
+
+    void setOnScreen(Sessions.Session ses, boolean on) {
+        if (on) onScreen = ses;
+        else if (onScreen == ses) onScreen = null;
+    }
+
+    /**
+     * This chat's own screen is in front with nothing over it (a sheet or dialog takes its window's focus, and the
+     * card under it would not be seen): a card for it shows there, so the bubble's panel need not open over it.
+     */
+    boolean onScreen(Sessions.Session ses) {
+        return ses != null && ses == onScreen;
+    }
+
     Sessions.Session create(String backend) {
         return create(backend, true);
     }
@@ -196,13 +214,18 @@ final class ChatHub {
         boolean hasFiles = files != null && !files.isEmpty();
         if (text.isEmpty() && !hasFiles) return null;
         String forAgent = prompt != null ? prompt : text.isEmpty() && hasFiles ? "Have a look at what I attached." : text;
+        // the chat was switched to this agent: it begins anew, with the chat so far (before this message is added)
+        final boolean fresh = ses.handover != null;
+        if (fresh) forAgent = handover(ses) + forAgent;
         SkiService svc = SkiService.get();
         // only the user's own message lifts a Stop: a queued rule run must not undo it
         if (svc != null && prompt == null) svc.allowControl();
+        final int[] run = {-1}; // this run's id, once it has started
         try {
             // a rule's run works for someone else's message: no shell, files or web, even with Linux tools on
-            Helper.run(app, "ask", ses.id, ses.backend, rule ? "rule" : devArg(ses), forAgent,
-                    model(ses), hasFiles ? android.text.TextUtils.join(",", files) : "", ses.effort);
+            Helper.runFor(app, ses.id, code -> main.postDelayed(() -> helperGone(ses, run[0], code), HELPER_GONE_MS),
+                    "ask", ses.id, ses.backend, rule ? "rule" : devArg(ses), forAgent,
+                    model(ses), hasFiles ? android.text.TextUtils.join(",", files) : "", ses.effort, fresh ? "fresh" : "");
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -219,6 +242,7 @@ final class ChatHub {
         ses.status = app.getString(R.string.hub_thinking);
         changed();
         final int id = ses.runId;
+        run[0] = id;
         // the agent is running but its model can be slow (free models especially): say so, keep waiting
         main.postDelayed(() -> {
             if (ses.running && id == ses.runId && SystemClock.elapsedRealtime() - ses.lastEventAt >= NO_RESPONSE_MS - 100) {
@@ -228,17 +252,42 @@ final class ChatHub {
         }, NO_RESPONSE_MS);
         main.postDelayed(() -> {
             if (ses.running && id == ses.runId && SystemClock.elapsedRealtime() - ses.lastEventAt >= GIVE_UP_MS - 100) {
-                ses.running = false;
-                String err = lastError(ses);
-                add(ses, Bubble.Kind.ERROR, app.getString(R.string.hub_no_answer) + (err.isEmpty() ? "" : "\n\n"
-                        + ses.brainName()
-                        + ": " + err));
-                ses.outcome = "failed";
-                runEnded(ses);
-                changed();
+                failRun(ses, app.getString(R.string.hub_no_answer));
             }
         }, GIVE_UP_MS);
         return null;
+    }
+
+    /** After the helper process of a run ended, its last events get this long to arrive. */
+    private static final long HELPER_GONE_MS = 5000;
+
+    /**
+     * The helper that ran this chat's agent is gone. It says ski_done however it ends, except when it is killed
+     * outright (Android freeing memory, Ski's Linux crashing): then the chat stayed "working" for good, and a chat
+     * waiting for it as its sub-agent with it. The run ends here, as failed.
+     */
+    private void helperGone(Sessions.Session ses, int runId, int code) {
+        if (!ses.running || ses.runId != runId) return;
+        // the chat's earlier run is still going (this helper only said so): that run's own end ends the chat's work,
+        // and until then Stop must still reach it
+        if (code == Helper.BUSY) return;
+        // with how it ended, for a report: 137 is a kill from outside (Android ending an app's child processes)
+        // 137: killed from outside, which on a phone is Android ending an app's child processes when there are too
+        // many (confirmed on a Pixel 10 Pro with sub-agents): say what lets them run
+        failRun(ses, app.getString(R.string.hub_helper_gone) + (code > 0 ? " (exit " + code + ")" : "")
+                + (code == 137 ? "\n\n" + app.getString(R.string.hub_helper_killed) : ""));
+    }
+
+    /** The run is over without the helper's ski_done: ended here as failed, with why and the agent's last error. */
+    private void failRun(Sessions.Session ses, String why) {
+        ses.running = false;
+        ses.status = "";
+        if (!sessions.all.contains(ses)) return; // deleted meanwhile: a message would bring the chat back
+        String err = lastError(ses);
+        add(ses, Bubble.Kind.ERROR, why + (err.isEmpty() ? "" : "\n\n" + ses.brainName() + ": " + err));
+        if (ses.outcome == null) ses.outcome = "failed";
+        runEnded(ses);
+        changed();
     }
 
     private static long read(JSONObject modelUsage) {
@@ -264,6 +313,90 @@ final class ChatHub {
         ses.model = model == null ? "" : model.trim();
         add(ses, Bubble.Kind.STEP, app.getString(R.string.hub_model_set, Models.label(ses.backend, ses.model)));
         changed();
+    }
+
+    /**
+     * Another agent takes this chat over from the next message on. It has no part in what the first one did, so it
+     * starts a conversation of its own and is given the chat so far as text (see handover): what was said, not the
+     * steps, files and tool results the other agent had in mind. The model and effort go back to the new agent's
+     * defaults, as their names differ per agent.
+     */
+    void switchAgent(Sessions.Session ses, String backend) {
+        if (ses.running || backend == null || backend.equals(ses.backend)) return;
+        if (backend.equals(ses.handover)) { // straight back, before the other agent answered: as if never switched
+            ses.backend = backend; // its own conversation is still there, with its steps and files
+            ses.model = ses.handoverModel;
+            ses.effort = ses.handoverEffort;
+            ses.actualModel = ses.handoverActual;
+            ses.ctxUsed = ses.handoverCtxUsed;
+            ses.ctxWindow = ses.handoverCtxWindow;
+            ses.handover = null;
+            for (int i = ses.messages.size() - 1; i >= 0 && ses.messages.get(i).kind == Bubble.Kind.NOTE; i--) {
+                ses.messages.remove(i); // the lines that said it was switched
+            }
+            sessions.save();
+            changed();
+            return;
+        }
+        if (ses.handover == null) {
+            ses.handover = ses.backend;
+            ses.handoverModel = ses.model;
+            ses.handoverEffort = ses.effort;
+            ses.handoverActual = ses.actualModel;
+            ses.handoverCtxUsed = ses.ctxUsed;
+            ses.handoverCtxWindow = ses.ctxWindow;
+        }
+        ses.backend = backend;
+        ses.model = "";
+        ses.effort = "";
+        ses.actualModel = "";
+        ses.ctxUsed = 0;
+        ses.ctxWindow = 0;
+        ses.interrupted = false;
+        add(ses, Bubble.Kind.NOTE, app.getString(R.string.hub_agent_switched, Account.nameOf(backend)));
+        sessions.save();
+        changed();
+    }
+
+    /**
+     * The most of a chat's text a new agent is handed, in UTF-8 bytes: the end of it, where the work stands. The
+     * message goes to the agent as one argument, which Linux caps at 128 KB, and it shares that with the user's
+     * own message and, for some agents, Ski's instructions.
+     */
+    private static final int HANDOVER_MAX = 60_000;
+
+    /** The end of s that fits in max UTF-8 bytes, cut between characters. */
+    private static String tail(String s, int max) {
+        int bytes = 0, i = s.length();
+        while (i > 0) {
+            int cp = s.codePointBefore(i);
+            int n = cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
+            if (bytes + n > max) break;
+            bytes += n;
+            i -= Character.charCount(cp);
+        }
+        return s.substring(i);
+    }
+
+    /** The chat so far, for the agent that takes it over: who said what, oldest first, marked as context. */
+    private static String handover(Sessions.Session ses) {
+        StringBuilder b = new StringBuilder();
+        for (Sessions.Msg m : new ArrayList<>(ses.messages)) {
+            if (m.kind != Bubble.Kind.USER && m.kind != Bubble.Kind.SKI) continue;
+            if (m.text == null || m.text.trim().isEmpty()) continue;
+            b.append(m.kind == Bubble.Kind.USER ? "User: " : "Assistant: ").append(m.text.trim()).append("\n\n");
+        }
+        if (b.length() == 0) return "";
+        String all = b.toString();
+        String end = tail(all, HANDOVER_MAX);
+        boolean cutOff = end.length() < all.length();
+        all = end;
+        return "[This chat was with another agent (" + Account.nameOf(ses.handover) + ") until now, and the user switched it to you. "
+                + "Below is the conversation so far" + (cutOff ? " (its earlier part is left out)" : "") + ", oldest "
+                + "first. It is context: what was asked and answered. You don't have that agent's steps, files or tool "
+                + "results, so look again at anything you need (read the screen, open the file) rather than assuming. "
+                + "Don't redo actions it reports as done.]\n\n" + all + "[End of the earlier conversation. The user's "
+                + "message to you now:]\n\n";
     }
 
     /** Change a chat's effort ("" = the agent's default); the next message uses it. */
@@ -317,16 +450,49 @@ final class ChatHub {
         changed();
     }
 
+    /** The calling chat's approvals choice (any thread, see Session.approvals): "", "routine" or "strict". Always ""
+     *  for a session outside Ski's chats and for a sub-agent, which only looks things up. */
+    String approvalsFor(String chat) {
+        Sessions.Session s = byId(chat);
+        return s != null ? s.approvals : "";
+    }
+
+    /** The chat with this id, for a tool's thread (a copy of the list: it changes on the main thread); or null. */
+    private Sessions.Session byId(String chat) {
+        if (chat == null) return null;
+        for (Sessions.Session s : new ArrayList<>(sessions.all)) if (s.id.equals(chat)) return s;
+        return null;
+    }
+
+    /** The calling chat's agent acted in this app (any thread): kept with the chat (see Session.apps), saved when new. */
+    void appUsed(String chat, String pkg) {
+        final Sessions.Session s = byId(chat);
+        if (s == null || pkg == null || !s.apps.add(pkg)) return;
+        main.post(() -> {
+            if (sessions.all.contains(s)) sessions.save();
+        });
+    }
+
+    /** The line under a chat's header applies to it: not a sub-agent's chat, nor a notification rule's. */
+    boolean approvalsEditable(Sessions.Session ses) {
+        return ses != null && !Triggers.ruleChat(app, ses.id);
+    }
+
+    void setApprovals(Sessions.Session ses, String choice) {
+        // what the old choice approved and the agent hasn't used yet doesn't carry over into the new one
+        if (!choice.equals(ses.approvals)) Guard.forget(ses.id);
+        ses.approvals = choice;
+        sessions.save();
+        changed();
+    }
+
     /** The calling chat's "Allowed without asking" apps (any thread); empty for a session outside Ski's chats. */
     java.util.Set<String> allowedFor(String chat) {
-        if (chat == null) return java.util.Collections.emptySet();
-        for (Sessions.Session s : new ArrayList<>(sessions.all)) {
-            if (!s.id.equals(chat)) continue;
-            synchronized (s.allowed) {
-                return new java.util.HashSet<>(s.allowed);
-            }
+        Sessions.Session s = byId(chat);
+        if (s == null) return java.util.Collections.emptySet();
+        synchronized (s.allowed) {
+            return new java.util.HashSet<>(s.allowed);
         }
-        return java.util.Collections.emptySet();
     }
 
     /**
@@ -477,6 +643,8 @@ final class ChatHub {
                 break;
             }
             case "ski_error": {
+                // the helper's own word on a run whose agent said nothing: not after the run said why itself
+                if (ev.optBoolean("quiet") && ses.outcome != null) break;
                 if (ses.outcome == null) ses.outcome = "failed";
                 String text = ev.optString("text", app.getString(R.string.hub_something_wrong));
                 add(ses, Bubble.Kind.ERROR, text);
@@ -507,7 +675,7 @@ final class ChatHub {
                     runEnded(ses);
                     if (!ses.lastReply.isEmpty()) {
                         Prefs.setHadReply(app);
-                        flash(ses.lastReply);
+                        flash(ses, ses.lastReply);
                     }
                     // what the user added but the agent never got (it made no phone action since): send it now
                     String left;
@@ -599,14 +767,17 @@ final class ChatHub {
 
     /** A note that arrived too late for the run: becomes the next message (already shown in the chat). */
     private void sendNoteAsMessage(Sessions.Session ses, String text) {
+        final int[] run = {-1}; // this run's id, once it has started (as in send)
         try {
-            Helper.run(app, "ask", ses.id, ses.backend, devArg(ses),
-                    "(Added while you were working:) " + text, model(ses), "", ses.effort);
+            Helper.runFor(app, ses.id, code -> main.postDelayed(() -> helperGone(ses, run[0], code), HELPER_GONE_MS),
+                    "ask", ses.id, ses.backend, devArg(ses),
+                    "(Added while you were working; if it asks something, answer it:) " + text, model(ses), "", ses.effort);
         } catch (Exception e) {
             add(ses, Bubble.Kind.ERROR, e.getMessage());
             return;
         }
         startRun(ses);
+        run[0] = ses.runId;
         ses.status = app.getString(R.string.hub_thinking);
         changed();
     }
@@ -659,26 +830,44 @@ final class ChatHub {
     String pillText() {
         int n = runningCount();
         if (n > 0) {
-            Sessions.Session latest = null;
-            for (Sessions.Session s : sessions.all)
-                if (s.running && (latest == null || s.lastEventAt > latest.lastEventAt)) latest = s;
+            Sessions.Session latest = latestWorking();
             String st = latest == null || latest.status.isEmpty() ? app.getString(R.string.chat_working) : latest.status;
             return n > 1 ? app.getResources().getQuantityString(R.plurals.hub_pill_chats, n, n, st) : st;
         }
         return flash;
     }
 
+    /**
+     * The chat the pill's text is about (see pillText), or null: the working chat with the latest step (a sub-agent's
+     * step: the chat it works for), else the one whose reply shows.
+     */
+    Sessions.Session pillChat() {
+        Sessions.Session latest = latestWorking();
+        if (latest == null) return flash != null && sessions.all.contains(flashChat) ? flashChat : null;
+        return latest;
+    }
+
+    /** The working chat or sub-agent with the latest step: the one whose status the pill shows. */
+    private Sessions.Session latestWorking() {
+        Sessions.Session latest = null;
+        for (Sessions.Session s : sessions.all)
+            if (s.running && (latest == null || s.lastEventAt > latest.lastEventAt)) latest = s;
+        return latest;
+    }
+
     boolean anyUnread() {
         return sessions.anyUnread();
     }
 
-    private void flash(String reply) {
+    private void flash(Sessions.Session ses, String reply) {
+        flashChat = ses;
         final String text = Ui.linkText(reply).replace('\n', ' ');
         flash = text.length() > 60 ? text.substring(0, 59) + "…" : text;
         final String mine = flash;
         main.postDelayed(() -> {
             if (mine.equals(flash)) {
                 flash = null;
+                flashChat = null;
                 changed();
             }
         }, 8000);
@@ -719,6 +908,8 @@ final class ChatHub {
 
     private void add(Sessions.Session ses, Bubble.Kind kind, String text, List<String> files) {
         if (text == null) return;
+        // the agent a chat was switched to has answered: the conversation is its own from here on
+        if (kind == Bubble.Kind.SKI && ses.handover != null) ses.handover = null;
         sessions.add(ses, kind, text, files);
         if (kind == Bubble.Kind.SKI && !viewing.contains(ses)) ses.unread = true;
         // not during a live voice call: the voice tells the user itself
@@ -883,7 +1074,9 @@ final class ChatHub {
                 return SkiApp.str(R.string.hub_tool_do_steps, st == null ? 0 : st.length());
             }
             case "collect": return SkiApp.str(R.string.hub_tool_collect);
-            case "find": return SkiApp.str(R.string.hub_tool_find, clip(in.optString("text"), 40));
+            case "find": // (its text can come a moment after the call itself: no “” meanwhile)
+                return in.optString("text").trim().isEmpty() ? SkiApp.str(R.string.hub_tool_read_screen)
+                        : SkiApp.str(R.string.hub_tool_find, clip(in.optString("text"), 40));
             case "WebSearch": return SkiApp.str(R.string.hub_tool_web_search, clip(in.optString("query"), 40));
             case "WebFetch": return SkiApp.str(R.string.hub_tool_web_fetch, clip(in.optString("url"), 40));
             case "Bash": return in.has("command") ? SkiApp.str(R.string.hub_tool_command, clip(in.optString("command"), 40))

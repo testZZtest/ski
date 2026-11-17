@@ -98,6 +98,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
         bubble = new Bubble(this);
         control = new ControlIndicator(this);
         bubble.show();
+        McpServer.load(this); // run tokens kept over a restart reach their chats again (see McpServer.load)
         server = new McpServer(Prefs.token(this), this);
         server.start();
 

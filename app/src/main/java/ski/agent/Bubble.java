@@ -2455,7 +2455,7 @@ final class Bubble implements ChatHub.Listener {
 
     // --------------------------------------------------------------- views
 
-    enum Kind { USER, SKI, STEP, ERROR }
+    enum Kind { USER, SKI, STEP, ERROR, NOTE }
 
     /** What a tool is doing right now (see setActivity), shown in the pill for a few seconds. */
     private String activity;
@@ -2773,6 +2773,13 @@ final class Bubble implements ChatHub.Listener {
                 r.addView(tv);
                 p.setMarginEnd(dp(24));
                 v = r;
+                break;
+            }
+            case NOTE: { // something that changed in the chat itself (its agent), not a step of a run
+                TextView tv = Ui.text(svc, text, 12, Ui.MUTED);
+                tv.setGravity(Gravity.CENTER);
+                p.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                v = tv;
                 break;
             }
             default: { // ERROR
