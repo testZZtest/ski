@@ -8,7 +8,7 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 
 - **Repositório GitHub:** `https://github.com/testZZtest/ski.git`
 - **Branch principal:** `main` (tudo enviado e sincronizado)
-- **Versão Atual:** `BuildInfo.java` → `VERSION = "2.5.0"`, `VERSION_CODE = 203`
+- **Versão Atual:** `BuildInfo.java` → `VERSION = "2.6.0"`, `VERSION_CODE = 260`
 - **Requisitos de Sistema:** Android 11+ (API 30+), 64-bit ARM/x86. Compilável via `./gradlew assembleDebug` ou `./build.sh` no Termux.
 
 ### Estrutura e Componentes Principais (`app/src/main/java/ski/agent/`)
@@ -135,3 +135,32 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 
 ---
 *Última atualização: novembro 2026*
+
+---
+
+## Registro de trabalho — 2026-11-17 (sessão de melhoria contínua)
+
+Análises em `docs/REPOS-ANALISE.md` (26 repos de referência; upstream Buddy 2.3.7–2.3.11).
+
+### Portado do upstream Buddy (99de877 → origin/main)
+- Aprovações por chat ("Routine allowed" / "Always ask"), expiração de aprovação (5 min), OK-só-de-envio não cobre Pay/Buy/Delete.
+- Proteção pós-card: re-checagem do botão antes do tap após aprovação (sameButton, 300 ms).
+- Campos de senha nunca digitados pelo agente; texto de senha mascarado no StepLog.
+- Pergunta na 1ª ação em app novo (Trust/Hard, askNewApps).
+- Troca de agente por chat (switchAgent + handover de até 60 KB).
+- helperGone/failRun: helper morto não deixa mais o chat "trabalhando" para sempre.
+- Tokens por run no McpServer (grant/revoke, sobrevivem a restart), hardening (limites de linha/header, deadline de cliente lento, teto de conexões desconhecidas).
+- Mirrors de download (Alpine/npm; China, Rússia, Irã) + DNS do celular.
+- WorkNotice: notificação silenciosa enquanto o agente trabalha sem tela, com Stop.
+- linux/ski-run v25: AGENT_END (run travado resolvido), traps EXIT/TERM, quiet_end, exit 75 (BUSY), FRESH para troca de agente.
+- Backup: chaves de segurança nunca saem/entram (OWN/SAFETY), extração do tar verificada (staging, links, path traversal).
+
+### Novo no Ski (ideias dos repos de referência)
+- Modo de fundo completo (Background/Shell/BackgroundActivity/BackgroundPanel, do Buddy 2.3.11): o agente trabalha num display invisível por chat via Wireless debugging; UI em Chat options e Settings; `phone_shell` com aprovação e blocklist.
+- Diff pós-ação compacto (agent-ddp): o que o toque mudou em 1 linha (gone/new), economizando read_screen.
+- PiP para tarefa longa (OneBox): sair do app com o agente rodando encolhe o chat num card de progresso.
+- Skill `app-api` (SimoneAvogadro/android-reverse-engineering-skill): decompila o APK de um app que bloqueia automação (bancário), extrai endpoints Retrofit/OkHttp/Ktor e usa a API HTTP via curl — com confirmação em qualquer escrita e token sempre nas mãos do usuário.
+- Otimização: afterAction compara hash da tela em vez de reconstruir o dump completo a cada 150 ms (CPU/bateria em cada ação).
+
+### Versão
+`VERSION = "2.6.0"`, `VERSION_CODE = 260` (antes 2.5.0/203).
