@@ -1363,6 +1363,13 @@
     <string name="shizuku_requesting">Asking Shizuku for permission…</string>
     <string name="shizuku_granting">Granting permissions…</string>
     <string name="shizuku_grant_done">Permissions granted.</string>
+        <string name="setup_tab_general">General</string>
+    <string name="setup_tab_agents">Agents</string>
+    <string name="setup_tab_tools">Tools</string>
+<string name="setup_language">Language</string>
+    <string name="setup_language_info">The language of the whole app. On Android 13+ this applies to Ski only.</string>
+    <string name="setup_language_system">System</string>
+    <string name="setup_language_old_android">On this Android version the language applies to Ski after it restarts. For everything at once, change the system language.</string>
 <string name="setup_app_permissions_info">Choose per app: Trust lets the agent work there without popups; Hard means Ski itself asks you before Send, Pay, Delete…</string>
     <!-- Settings row that opens the notification rules: when a notification from an app arrives, an agent acts on it. -->
     <string name="setup_rules">Notification rules</string>

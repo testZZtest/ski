@@ -145,6 +145,15 @@ final class Prefs {
         sp(c).edit().putBoolean("bank_mode", on).apply();
     }
 
+    /** In-app language choice: "sys" (follow the phone) or a locale tag like "pt", "zh-rCN". */
+    static String appLanguage(Context c) {
+        return sp(c).getString("app_language", "sys");
+    }
+
+    static void setAppLanguage(Context c, String tag) {
+        sp(c).edit().putString("app_language", tag).apply();
+    }
+
     /** Notify when a new Ski release is out (checked about once a day). */
     static boolean updateNotices(Context c) {
         return !Flavor.PLAY && sp(c).getBoolean("update_notices", true);

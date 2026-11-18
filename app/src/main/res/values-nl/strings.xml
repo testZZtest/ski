@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Every text Ski shows, in Dutch (je). Source and translator notes: res/values/strings.xml. -->
 <resources>
     <string name="service_label">Ski-assistent</string>
     <string name="service_description">Toont de chatbubbel van Ski en laat de door jou gekozen agent (Claude Code, Codex, OpenCode, Antigravity of Grok), die binnen Ski op deze telefoon draait, het scherm lezen en voor je tikken, typen en scrollen. Niets verlaat de telefoon, behalve wat de agent zelf naar zijn AI-dienst stuurt (Anthropic, OpenAI, Google, xAI of de aanbieder van je OpenCode-model).</string>
-
-    <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
-
-    <!-- First-run setup guide: top bar and buttons shared by several steps. -->
     <string name="onboarding_skip_setup">Overslaan</string>
     <string name="onboarding_skip_title">Instellen overslaan?</string>
     <string name="onboarding_skip_text">Je kunt het instellen altijd later afronden in Instellingen. Chats werken pas als het klaar is.</string>
@@ -14,8 +9,6 @@
     <string name="onboarding_progress">stap %1$d van %2$d</string>
     <string name="onboarding_continue">Doorgaan</string>
     <string name="onboarding_stuck">Vastgelopen?</string>
-
-    <!-- Guide, welcome screen. -->
     <string name="onboarding_welcome_title">Maak kennis met Ski</string>
     <string name="onboarding_welcome_text">Een chatbubbel die je telefoon voor je kan bedienen.</string>
     <string name="onboarding_welcome_ask_title">Vraag het in gewone taal</string>
@@ -26,8 +19,6 @@
     <string name="onboarding_welcome_control_text">Voor verzenden, plaatsen, kopen en verwijderen wordt altijd eerst gevraagd.</string>
     <string name="onboarding_welcome_time">instellen duurt ongeveer 5 minuten</string>
     <string name="onboarding_get_started">Aan de slag</string>
-
-    <!-- Guide, step: choose the agent. -->
     <string name="onboarding_brain_title">Kies je agent</string>
     <string name="onboarding_brain_text">Wie je chats beantwoordt. Je kunt er later meer toevoegen in Instellingen.</string>
     <string name="onboarding_brain_claude">Gebruikt je Claude-abonnement (Pro of Max).</string>
@@ -37,8 +28,6 @@
     <string name="onboarding_brain_grok">Gebruikt je Grok-account (inloggen met Google of X).</string>
     <string name="onboarding_brain_both">Installeer beide en kies per chat. Claude Code blijft de standaard.</string>
     <string name="onboarding_recommended">aanbevolen</string>
-
-    <!-- Guide, step: turn on Ski's accessibility service. -->
     <string name="onboarding_access_title">Laat Ski zien en tikken</string>
     <string name="onboarding_access_done">Toegankelijkheid staat aan.</string>
     <string name="onboarding_access_text">De toegankelijkheidsservice van Ski toont de bubbel en laat de agent het scherm lezen, tikken en typen, alleen als je hem vraagt iets te doen.</string>
@@ -51,15 +40,12 @@
     <string name="onboarding_access_greyed_text">Android blokkeert dit voor apps die vanuit een bestand zijn geïnstalleerd. Tik op App-info (hieronder), dan rechtsboven op ⋮ → Beperkte instellingen toestaan, en probeer het opnieuw.</string>
     <string name="onboarding_access_restricted_steps">1. Tik hieronder op App-info.\n2. Tik rechtsboven op ⋮ → Beperkte instellingen toestaan.\n3. Kom terug en open de toegankelijkheidsinstellingen opnieuw.</string>
     <string name="onboarding_app_info">App-info</string>
-
-    <!-- Guide, step: install the agent inside Ski and sign in. -->
     <string name="onboarding_agents_title">Installeren en inloggen</string>
     <string name="onboarding_agents_done_title">Klaar</string>
     <string name="onboarding_agents_done">%1$s is geïnstalleerd en ingelogd.</string>
     <string name="onboarding_agents_done_both">Claude Code en Codex zijn geïnstalleerd en ingelogd.</string>
     <string name="onboarding_agents_text">Ski installeert %1$s in de app, daarna log je één keer in. Termux is niet nodig.</string>
     <string name="onboarding_agent_names_both">Claude Code en Codex</string>
-    <!-- Agent card status lines: small lowercase mono text, one line. -->
     <string name="onboarding_agent_ready">klaar · %1$s</string>
     <string name="onboarding_agent_free_models">gratis modellen</string>
     <string name="onboarding_agent_signed_in">ingelogd</string>
@@ -87,15 +73,11 @@
     <string name="onboarding_stuck_sign_in_a">Claude: tik op de Claude-pagina op “Code kopiëren” en ga dan terug naar Ski; Ski haalt de code van het klembord.</string>
     <string name="onboarding_stuck_install_q">Installatie mislukt?</string>
     <string name="onboarding_stuck_install_a">Controleer je verbinding en installeer opnieuw; het gaat verder waar het gestopt is.</string>
-
-    <!-- Guide, step: let Ski run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Actief houden</string>
     <string name="onboarding_background_done">Ski kan op de achtergrond draaien.</string>
     <string name="onboarding_background_text">Zodat je telefoon Ski niet stopt om batterij te sparen terwijl de agent bezig is.</string>
     <string name="onboarding_allow">Toestaan</string>
     <string name="onboarding_skip_for_now">Nu overslaan</string>
-
-    <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">Hoe vaak moet de agent het vragen?</string>
     <string name="onboarding_safety_text">Apps voor berichten, sociale media, winkelen, betalen en bankieren hebben altijd je akkoord nodig voordat Ski iets verzendt, plaatst, koopt of verwijdert. Voor je andere apps:</string>
     <string name="onboarding_safety_ask_title">Vraag het me eerst</string>
@@ -103,8 +85,6 @@
     <string name="onboarding_safety_auto_title">Zelfstandig werken</string>
     <string name="onboarding_safety_auto_text">Geen pop-ups: de agent doet gewoon wat je vroeg, zoals een camera of een lamp aanzetten.</string>
     <string name="onboarding_safety_note">Je kunt dit altijd per app wijzigen: Instellingen → App-rechten. Zet een app op Vrij om de agent daar zonder pop-ups te laten werken, of op Streng zodat Ski het je zelf vraagt.</string>
-
-    <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">Alles staat klaar</string>
     <string name="onboarding_try_text">Probeer een eerste taak. Ski opent Instellingen en zoekt het voor je op.</string>
     <string name="onboarding_try_prompt">Open Instellingen en vertel me mijn Android-versie</string>
@@ -112,8 +92,6 @@
     <string name="onboarding_try_tip">Tip: de bubbel zweeft boven andere apps. Sleep hem naar het ✕ om hem te verbergen.</string>
     <string name="onboarding_try_now">Nu proberen</string>
     <string name="onboarding_go_to_chats">Naar mijn chats</string>
-
-    <!-- Home screen: the chat list. -->
     <string name="main_new_chat">Nieuwe chat</string>
     <string name="main_status_ready">klaar · %1$s</string>
     <string name="main_status_setup">instellen %1$d/%2$d</string>
@@ -133,28 +111,11 @@
     <string name="main_new_chat_default">standaard</string>
     <string name="main_new_chat_not_signed_in">Niet ingelogd · tik om in te stellen</string>
     <string name="main_new_chat_not_installed">Niet geïnstalleerd · tik om in te stellen</string>
-    <!-- How long ago a chat changed: very little room. -->
     <string name="main_ago_now">nu</string>
-    <plurals name="main_ago_minutes">
-        <item quantity="one">%1$d min</item>
-        <item quantity="other">%1$d min</item>
-    </plurals>
-    <plurals name="main_ago_hours">
-        <item quantity="one">%1$d u</item>
-        <item quantity="other">%1$d u</item>
-    </plurals>
-    <plurals name="main_ago_days">
-        <item quantity="one">%1$d d</item>
-        <item quantity="other">%1$d d</item>
-    </plurals>
-
-    <!-- Notification shown after the bubble is dragged away to hide it. -->
     <string name="notice_channel_name">Verborgen bubbel</string>
     <string name="notice_hidden_title">Ski is verborgen</string>
     <string name="notice_hidden_text">Tik om de bubbel weer te tonen.</string>
     <string name="notice_open_chats">Chats openen</string>
-
-    <!-- Ski's own updates (GitHub version): notification, update sheet and messages. -->
     <string name="update_channel_name">Ski-updates</string>
     <string name="update_available_title">Ski %1$s is beschikbaar</string>
     <string name="update_notification_text">Je hebt %1$s. Tik om te zien wat er nieuw is en te updaten; je chats blijven bewaard.</string>
@@ -172,30 +133,21 @@
     <string name="update_error_download">Het downloaden is mislukt (%1$s).</string>
     <string name="update_error_not_newer">Het gedownloade bestand is geen nieuwere versie van Ski en is daarom niet geopend.</string>
     <string name="update_failed_manual">%1$s Je kunt de update ook downloaden via %2$s (ski.apk), of Obtainium gebruiken voor automatische updates (zie %3$s).</string>
-
-    <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">Systeem</string>
     <string name="prefs_theme_light">Licht</string>
     <string name="prefs_theme_dark">Donker</string>
     <string name="prefs_surface_warm">Warm</string>
     <string name="prefs_surface_neutral">Neutraal</string>
     <string name="prefs_surface_black">Zwart</string>
-    <!-- Accent colour names, read aloud by TalkBack for the colour swatches. -->
     <string name="prefs_accent_coral">Koraal</string>
     <string name="prefs_accent_ocean">Oceaan</string>
     <string name="prefs_accent_mint">Mint</string>
     <string name="prefs_accent_violet">Violet</string>
     <string name="prefs_accent_rose">Roze</string>
     <string name="prefs_accent_amber">Amber</string>
-
-    <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
-
-    <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. Tik om te openen, houd ingedrukt voor acties</string>
     <string name="bubble_show_actions">acties tonen</string>
     <string name="background_title">Achtergrondmodus</string>
-
-    <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
     <string name="bubble_pill_waiting_answer">Wacht op je antwoord</string>
     <string name="bubble_pill_waiting_approval">Wacht op je goedkeuring</string>
     <string name="bubble_pill_paused">Gepauzeerd · tik hier om te hervatten</string>
@@ -215,8 +167,6 @@
     <string name="activity_browser_reading">Leest de pagina</string>
     <string name="bubble_pill_hold_hint">houd de bubbel ingedrukt voor Stoppen en meer</string>
     <string name="bubble_pill_status_hold_hint">%1$s · houd de bubbel ingedrukt voor Stoppen en meer</string>
-
-    <!-- Hold menu: actions fanned out around the bubble while it is held. One line, about 12 characters. -->
     <string name="menu_stop_task">Stoppen</string>
     <string name="menu_resume">Hervatten</string>
     <string name="menu_pause">Pauzeren</string>
@@ -225,14 +175,10 @@
     <string name="bubble_talk">Spreken</string>
     <string name="menu_open_chat">Chat openen</string>
     <string name="menu_hide">Verbergen</string>
-
-    <!-- Hold-menu preview: short forms of Stop task, Add instruction and Stop voice. -->
     <string name="menu_peek_stop">Stop</string>
     <string name="menu_peek_add">Aanvullen</string>
     <string name="menu_peek_voice">Stem</string>
     <string name="menu_peek_hint">Houd me ingedrukt</string>
-
-    <!-- Toasts from the bubble. -->
     <string name="bubble_tip_stop_voice">Tip: houd de bubbel ingedrukt om de stem te stoppen</string>
     <string name="bubble_tip_hold_menu">Tip: houd de bubbel ingedrukt om te pauzeren, te stoppen of iets aan te vullen</string>
     <string name="bubble_stopping">Stoppen…</string>
@@ -242,53 +188,33 @@
     <string name="bubble_allow_mic_tap_bubble">Geef Ski toegang tot de microfoon en tik daarna opnieuw op de bubbel.</string>
     <string name="bubble_note_added">Begrepen: %1$s houdt er rekening mee</string>
     <string name="bubble_copied">Gekopieerd</string>
-
-    <!-- Voice input, shown in the status pill beside the bubble. -->
     <string name="bubble_listening">Luisteren…</string>
     <string name="bubble_listening_tap_done">Luisteren… tik op de bubbel als je klaar bent</string>
     <string name="bubble_heard">“%1$s”</string>
-
-    <!-- Chat panel opened from the bubble: header buttons (read by TalkBack) and titles. -->
     <string name="bubble_new_chat">Nieuwe chat</string>
     <string name="bubble_open_in_app">Openen in de app</string>
     <string name="bubble_close">Sluiten</string>
     <string name="bubble_chats_title">Chats</string>
     <string name="bubble_model_effort_title">Model &amp; inspanning</string>
-
-    <!-- Strip at the top of the chat panel while the agent works. -->
     <string name="bubble_working">Bezig…</string>
     <string name="bubble_stop">Stoppen</string>
-
-    <!-- Composer at the bottom of the chat panel. -->
     <string name="bubble_attach">Foto of bestand bijvoegen</string>
     <string name="bubble_input_hint">Vraag %1$s…</string>
     <string name="bubble_paste">Plakken</string>
     <string name="bubble_send">Verzenden</string>
     <string name="bubble_empty_chat">Nieuwe chat met %1$s. Vraag me om iets op je telefoon te doen.</string>
-    <plurals name="bubble_tool_calls">
-        <item quantity="one">%1$d toolaanroep</item>
-        <item quantity="other">%1$d toolaanroepen</item>
-    </plurals>
-
-    <!-- List of chats in the panel. -->
     <string name="bubble_chat_row_working">bezig…</string>
     <string name="bubble_chat_row_you">Jij: %1$s</string>
     <string name="bubble_delete_chat">Deze chat verwijderen?</string>
     <string name="bubble_delete">Verwijderen</string>
-
-    <!-- Agent picker for a new chat (its title is bubble_new_chat). -->
     <string name="bubble_agent_default">standaard</string>
     <string name="bubble_agent_not_signed_in">Niet ingelogd · tik om in te stellen</string>
     <string name="bubble_agent_not_installed">Niet geïnstalleerd · tik om in te stellen</string>
     <string name="chat_bg_setup">Achtergrondmodus instellen (ongeveer een minuut) →</string>
-
-    <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Voor deze chat. Het gesprek gaat door; het volgende bericht gebruikt de nieuwe keuze.</string>
     <string name="bubble_effort">Inspanning</string>
     <string name="bubble_effort_note">Met Auto beslist de agent zelf. Hogere niveaus denken langer na en verbruiken meer van je abonnement.</string>
     <string name="bubble_model">Model</string>
-
-    <!-- Card in the chat panel when the agent asks for approval or asks a question. -->
     <string name="card_label_approval">AKKOORD NODIG</string>
     <string name="card_label_question">VRAAG</string>
     <string name="card_label_other_session">%1$s · UIT EEN ANDERE SESSIE</string>
@@ -302,15 +228,11 @@
     <string name="card_answer_hint">Je antwoord…</string>
     <string name="chat_background">Werken op de achtergrond</string>
     <string name="chat_background_info">De agent gebruikt een eigen scherm en jij blijft je telefoon gebruiken. Een stap die jou nodig heeft, zoals inloggen, komt naar jouw scherm.</string>
-
-    <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ Beantwoord: %1$s</string>
     <string name="card_note_change_requested">✎ Wijziging gevraagd: %1$s</string>
     <string name="card_note_approved">✓ Toegestaan: %1$s</string>
     <string name="card_note_denied">✗ Afgewezen</string>
     <string name="card_note_skipped">Vraag overgeslagen</string>
-
-    <!-- Notification while an agent operates the phone; on Android 16 also a chip in the status bar. -->
     <string name="control_channel_name">Ski bedient je telefoon</string>
     <string name="control_channel_description">Wordt in de statusbalk getoond terwijl een agent de telefoon bedient.</string>
     <string name="control_title">Ski bedient je telefoon</string>
@@ -318,16 +240,10 @@
     <string name="control_stop">Stoppen</string>
     <string name="pause_call_ended_title">Gesprek beëindigd · Ski is gepauzeerd</string>
     <string name="pause_call_ended_text">Tik om de taak te hervatten</string>
-
-    <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, SkiService, Voice) ===== -->
-
-    <!-- Chat screen: app bar -->
     <string name="chat_back">Terug</string>
     <string name="chat_read_aloud">Antwoorden voorlezen</string>
     <string name="chat_read_aloud_on">Antwoorden worden voorgelezen</string>
     <string name="chat_read_aloud_off">Antwoorden worden niet voorgelezen</string>
-
-    <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
     <string name="chat_linux_tools">Linux-tools</string>
     <string name="chat_linux_tools_info">Opdrachten, bestanden en apps bouwen in Ski\'s Linux</string>
     <string name="chat_linux_tools_title">Linux-tools aanzetten?</string>
@@ -335,7 +251,6 @@
     <string name="chat_linux_tools_when">Alleen in deze chat, vanaf je volgende bericht.</string>
     <string name="chat_linux_tools_risk">Een kwaadwillend bericht of een kwaadwillende webpagina op het scherm kan proberen hem te misleiden zodat hij opdrachten uitvoert. Goedkeuringskaarten bewaken nog steeds verzenden, plaatsen, kopen en verwijderen.</string>
     <string name="chat_linux_tools_turn_on">Aanzetten</string>
-
     <string name="chat_options">Chatopties</string>
     <string name="chat_keep_awake">Scherm aan laten terwijl het werkt</string>
     <string name="chat_keep_awake_info">Voor lange taken: de telefoon blijft wakker zolang deze chat werkt, en een melding vertelt je hoe het ging. Als je de telefoon vergrendelt, gaat het scherm gewoon uit.</string>
@@ -380,12 +295,8 @@
     <string name="schedule_skip_busy">Ski was een uur bezig (een andere taak, een pauze of geen internet).</string>
     <string name="schedule_skip_screen">De telefoon bleef een uur vergrendeld.</string>
     <string name="schedule_marker">Gepland</string>
-
-    <!-- Chat screen: the strip shown while the agent works -->
     <string name="chat_stop">Stoppen</string>
     <string name="chat_working">Bezig…</string>
-
-    <!-- Chat screen: composer and empty chat -->
     <string name="chat_attach_description">Foto of bestand bijvoegen</string>
     <string name="chat_input_hint">Vraag %1$s…</string>
     <string name="chat_input_hint_running">Voeg een instructie toe terwijl hij bezig is…</string>
@@ -393,8 +304,6 @@
     <string name="chat_send">Verzenden</string>
     <string name="chat_empty_hint">Nieuwe chat met %1$s. Vraag hem om iets op je telefoon te doen.</string>
     <string name="chat_empty_hint_dev">Nieuwe chat met %1$s en Linux-tools. Vraag hem om iets op je telefoon te doen of om een app te bouwen.</string>
-
-    <!-- Model sheet (tap the model chip under the chat title) -->
     <string name="chat_model_title">Model voor %1$s</string>
     <string name="chat_model_subtitle">Voor deze chat. Het gesprek gaat verder met het nieuwe model.</string>
     <string name="chat_effort">Inspanning</string>
@@ -402,8 +311,6 @@
     <string name="chat_model">Model</string>
     <string name="chat_model_other_hint">ander… bijv. %1$s</string>
     <string name="chat_model_use">Gebruiken</string>
-
-    <!-- Language sheet (long-press the mic) -->
     <string name="chat_speak_in">Spreken in</string>
     <string name="chat_speak_in_help">Kies je talen in Instellingen → Spraak.</string>
     <string name="live_option">Live stem</string>
@@ -425,8 +332,6 @@
     <string name="live_status_working">Bezig…</string>
     <string name="live_status_speaking">Spreekt…</string>
     <string name="chat_phone_voice">via telefoon</string>
-
-    <!-- Approval card above the composer, when the agent asks for an OK or asks a question -->
     <string name="chat_card_question">VRAAG</string>
     <string name="chat_card_needs_ok">AKKOORD NODIG</string>
     <string name="chat_deny">Afwijzen</string>
@@ -438,8 +343,6 @@
     <string name="chat_change_hint">Wat moet er anders?</string>
     <string name="chat_send_answer">Antwoord verzenden</string>
     <string name="chat_send_change">Wijziging verzenden</string>
-
-    <!-- Attachments -->
     <string name="chat_attach">Bijvoegen</string>
     <string name="chat_attach_camera">Foto maken</string>
     <string name="chat_attach_camera_sub">De camera gebruiken</string>
@@ -449,21 +352,9 @@
     <string name="chat_attach_files_sub">PDF\'s, documenten, alles tot 25 MB</string>
     <string name="chat_no_app_for_action">Er is geen app op deze telefoon die dat kan.</string>
     <string name="chat_adding">Toevoegen…</string>
-    <plurals name="chat_adding_files">
-        <item quantity="one">%1$d bestand toevoegen…</item>
-        <item quantity="other">%1$d bestanden toevoegen…</item>
-    </plurals>
     <string name="chat_attachment_remove">Verwijderen</string>
     <string name="chat_no_app_for_file">Er is geen app die %1$s kan openen.</string>
-
-    <!-- Chat messages -->
     <string name="chat_copied">Gekopieerd</string>
-    <plurals name="chat_tool_calls">
-        <item quantity="one">%1$d toolaanroep</item>
-        <item quantity="other">%1$d toolaanroepen</item>
-    </plurals>
-
-    <!-- Notes Ski posts into a chat, and the chat's status line -->
     <string name="hub_continuing">Een eerdere sessie van %1$s wordt voortgezet. Als die nog open is in een terminal, sluit die daar dan eerst.</string>
     <string name="hub_still_working_attachments">Deze chat is nog bezig. Stuur bijlagen als hij klaar is.</string>
     <string name="hub_thinking">Denkt na…</string>
@@ -484,12 +375,6 @@
     <string name="hub_note_added">Toegevoegd tijdens het werk: %1$s krijgt het bij de volgende stap</string>
     <string name="hub_note_not_sent">Je hebt gestopt, dus je notitie is niet verstuurd: hij staat weer in het berichtvak</string>
     <string name="hub_note_passed">Je aanvulling is doorgegeven</string>
-    <plurals name="hub_pill_chats">
-        <item quantity="one">%1$d chat · %2$s</item>
-        <item quantity="other">%1$d chats · %2$s</item>
-    </plurals>
-
-    <!-- The agent's steps, one line each, shown in the chat and the bubble while it works. -->
     <string name="hub_tool_read_screen">Leest het scherm</string>
     <string name="hub_tool_screenshot">Maakt een screenshot</string>
     <string name="hub_tool_tap_element">Tikt op element %1$d</string>
@@ -575,20 +460,10 @@
     <string name="hub_tool_edit_any">Bewerkt bestanden</string>
     <string name="hub_tool_read_file">Leest %1$s</string>
     <string name="hub_tool_other">Gebruikt %1$s</string>
-
-    <!-- Transcript of an earlier agent session that isn't a Ski chat (read-only) -->
     <string name="transcript_loading">Laden…</string>
     <string name="transcript_continue">Doorgaan in Ski</string>
     <string name="transcript_empty">Geen leesbare berichten in deze sessie.</string>
-    <plurals name="transcript_last_messages">
-        <item quantity="one">laatste bericht · alleen-lezen</item>
-        <item quantity="other">laatste %1$d berichten · alleen-lezen</item>
-    </plurals>
-
-    <!-- Shared screens: links -->
     <string name="ui_no_app_for_link">Er is geen app die deze link kan openen</string>
-
-    <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
     <string name="ui_a11y_title">Hoe Ski toegankelijkheid gebruikt</string>
     <string name="ui_a11y_what">Ski gebruikt de toegankelijkheidsservice van Android om in andere apps te doen wat je vraagt: Ski leest wat er op het scherm staat en tikt, typt en scrolt voor je. Ski toont ook de zwevende bubbel.</string>
     <string name="ui_a11y_data">Terwijl een taak loopt, wordt de scherminhoud, die persoonlijke gegevens kan bevatten zoals berichten, namen of adressen, naar de AI-dienst van de door jou gekozen agent gestuurd (Anthropic voor Claude Code, OpenAI voor Codex, Google voor Antigravity, xAI voor Grok of de aanbieder van je OpenCode-model), uitsluitend om je verzoek uit te voeren.</string>
@@ -597,13 +472,9 @@
     <string name="ui_privacy_policy">Privacybeleid</string>
     <string name="ui_no_thanks">Nee, bedankt</string>
     <string name="ui_agree_continue">Akkoord en doorgaan</string>
-
-    <!-- Bottom navigation of the main screens. Keep very short (about 10 characters). -->
     <string name="ui_nav_chats">Chats</string>
     <string name="ui_nav_sessions">Sessies</string>
     <string name="ui_nav_settings">Instellingen</string>
-
-    <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
     <string name="service_pause_expired">Na 5 minuten pauze heeft Ski de taak gestopt.</string>
     <string name="service_stopped_toast">Gestopt. Je telefoon is weer van jou.</string>
     <string name="service_paused_note">Gepauzeerd: de telefoon is van jou tot je hervat</string>
@@ -611,8 +482,6 @@
     <string name="service_resumed_note">Hervat</string>
     <string name="service_autopaused_touch">Gepauzeerd omdat je het scherm aanraakte. Tik op ‘Gepauzeerd’ naast de bubbel om te hervatten.</string>
     <string name="service_autopaused_call">Gepauzeerd vanwege een oproep. Tik op ‘Gepauzeerd’ naast de bubbel om te hervatten.</string>
-
-    <!-- Voice input and output -->
     <string name="voice_mic_needed">Ski heeft de microfoon nodig. Open de Ski-app en tik één keer op 🎙 om toegang te geven.</string>
     <string name="voice_no_recognizer">Deze telefoon heeft geen spraakherkenningsservice.</string>
     <string name="voice_starting">Starten…</string>
@@ -622,14 +491,8 @@
     <string name="voice_code_omitted">code weggelaten.</string>
     <string name="voice_link">link</string>
     <string name="voice_stop_and_send">Stoppen en verzenden</string>
-
-    <!-- ===== Sign-in, agents and models (SignInActivity, Account, Models, Sessions, RemoteSession, Attachments) ===== -->
-
-    <!-- Sign-in screen (one per agent: Claude Code, Codex or OpenCode). -->
     <string name="signin_back">Terug</string>
     <string name="signin_checking">Controleren…</string>
-
-    <!-- Sign-in screen: the agent isn't installed yet. -->
     <string name="signin_install">%1$s installeren</string>
     <string name="signin_install_sub_claude">Draait Claude Code binnen Ski met je Claude-abonnement.</string>
     <string name="signin_install_sub_opencode">Draait OpenCode binnen Ski. De gratis modellen werken meteen, zonder account; koppel je eigen aanbieders (Anthropic, OpenAI, GitHub Copilot…) wanneer je wilt.</string>
@@ -641,13 +504,9 @@
     <string name="signin_install_size_codex">Downloadt eenmalig ongeveer 150 MB: Ski\'s Linux, Node.js en Codex van OpenAI. Gebruik wifi als dat kan.</string>
     <string name="signin_install_size_agy">Downloadt eenmalig ongeveer 200 MB: Ski\'s Linux en de Antigravity CLI van Google. Gebruik wifi als dat kan.</string>
     <string name="signin_install_size_grok">Downloadt eenmalig ongeveer 170 MB: Ski\'s Linux en Grok Build van xAI. Gebruik wifi als dat kan.</string>
-
-    <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">Installeren</string>
     <string name="signin_updating">Updaten</string>
     <string name="signin_install_wait">Dit duurt een paar minuten. Je kunt dit scherm verlaten; het gaat gewoon door.</string>
-
-    <!-- Sign-in screen: installed, not signed in. -->
     <string name="signin_title_claude">Inloggen bij Claude</string>
     <string name="signin_title_chatgpt">Inloggen bij ChatGPT</string>
     <string name="signin_title_google">Inloggen bij Google</string>
@@ -662,8 +521,6 @@
     <string name="signin_with_grok">Inloggen met Grok</string>
     <string name="signin_other_device">Inloggen op een ander apparaat</string>
     <string name="signin_with_code">Inloggen met een code</string>
-
-    <!-- Sign-in screen: sign-in in progress. -->
     <string name="signin_sign_in">Inloggen</string>
     <string name="signin_starting">Inloggen wordt gestart…</string>
     <string name="signin_approve_title">Goedkeuren in je browser</string>
@@ -675,8 +532,6 @@
     <string name="signin_signing_in">Bezig met inloggen</string>
     <string name="signin_finishing">Inloggen afronden…</string>
     <string name="signin_not_finished">Inloggen is niet voltooid. %1$s</string>
-
-    <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">Open deze link op een willekeurig apparaat en keur het goed. Kopieer daarna de code die de pagina toont en plak die hieronder.</string>
     <string name="signin_enter_code">Voer deze code in</string>
     <string name="signin_remote_codex">Open op een willekeurig apparaat de link hieronder, log in bij ChatGPT en voer de code in. Ski rondt het vanzelf af.</string>
@@ -692,16 +547,12 @@
     <string name="signin_no_browser">Geen browser gevonden.</string>
     <string name="signin_no_browser_page">Geen browser gevonden om de inlogpagina te openen.</string>
     <string name="signin_clip_label">Inloggen</string>
-
-    <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Code handmatig plakken</string>
     <string name="signin_paste_help">Komt Ski niet vanzelf terug? Tik op de Claude-pagina op “Code kopiëren” en plak de code hier.</string>
     <string name="signin_paste_help_agy">Komt Ski niet vanzelf terug? Tik op de Antigravity-pagina op “Copy to Clipboard” en plak de code hier.</string>
     <string name="signin_code_hint">code</string>
     <string name="signin_use_code">Gebruiken</string>
     <string name="signin_start_again">Start eerst het inloggen opnieuw.</string>
-
-    <!-- Sign-in screen: signed in, or OpenCode installed (it needs no sign-in). -->
     <string name="signin_signed_in">Ingelogd</string>
     <string name="signin_agent_ready">%1$s is klaar voor gebruik.</string>
     <string name="signin_done">Klaar</string>
@@ -717,12 +568,8 @@
     <string name="signin_version_old_opencode">OpenCode %1$s. OpenCode 2 is uit: update om nieuwe versies te blijven krijgen. Je gekoppelde aanbieders blijven behouden.</string>
     <string name="signin_update_opencode2">Updaten naar OpenCode 2</string>
     <string name="signin_check_updates">Controleren op updates</string>
-
-    <!-- Sign-in screen: error. -->
     <string name="signin_error_title">Er is iets misgegaan</string>
     <string name="signin_try_again">Opnieuw proberen</string>
-
-    <!-- Agent status shown on the sign-in, setup and onboarding screens. -->
     <string name="account_tagline_claude">Gebruikt je Claude-abonnement</string>
     <string name="account_tagline_opencode">Zonder account of met je eigen aanbieders</string>
     <string name="account_tagline_codex">Gebruikt je ChatGPT-abonnement</string>
@@ -746,8 +593,6 @@
     <string name="account_updated_from">Bijgewerkt naar %1$s (was %2$s).</string>
     <string name="account_update_opencode2_failed">Updaten naar OpenCode 2 is mislukt; je hebt nog steeds %1$s. Probeer het opnieuw via wifi.</string>
     <string name="account_update_failed">Update mislukt: %1$s</string>
-
-    <!-- Model and effort pickers of a chat, and the chat's chip ("agent · model · effort"). -->
     <string name="models_default">Standaard</string>
     <string name="models_name_default">%1$s (standaard)</string>
     <string name="models_default_model">standaardmodel</string>
@@ -757,7 +602,6 @@
     <string name="models_default_opencode">Standaardmodel van OpenCode</string>
     <string name="models_default_agy">Standaardmodel van Antigravity</string>
     <string name="models_default_grok">Standaardmodel van Grok</string>
-    <!-- Effort levels in a row of up to 6 segments: about 5 characters each. -->
     <string name="models_effort_auto">Auto</string>
     <string name="models_effort_low">Laag</string>
     <string name="models_effort_medium">Matig</string>
@@ -765,19 +609,9 @@
     <string name="models_effort_xhigh">Extra</string>
     <string name="models_effort_max">Max</string>
     <string name="models_chip_effort">inspanning %1$s</string>
-
-    <!-- Chats. -->
     <string name="session_new_chat">Nieuwe chat met %1$s</string>
-    <plurals name="attach_count">
-        <item quantity="one">📎 %1$d bijlage</item>
-        <item quantity="other">📎 %1$d bijlagen</item>
-    </plurals>
-
-    <!-- Attaching a photo or file to a chat message (toasts). -->
     <string name="attach_cant_open">Kan %1$s niet openen</string>
     <string name="attach_too_large">%1$s is groter dan 25 MB.</string>
-
-    <!-- Remote Control session in Settings: a Claude Code session that can be continued from the Claude app. -->
     <string name="remote_sign_in_first">Log eerst in bij Claude Code.</string>
     <string name="remote_starting">Starten…</string>
     <string name="remote_restarting">Opnieuw starten…</string>
@@ -790,14 +624,8 @@
     <string name="ssh_keeps_stopping">De SSH-server stopt steeds: %1$s</string>
     <string name="ssh_key_added">Klaar. Typ ssh ski om Ski\'s Linux vanuit Termux te openen.</string>
     <string name="ssh_code_expired">Deze opdracht is al gebruikt of is ouder dan 10 minuten. Kopieer hem opnieuw in de Instellingen van Ski.</string>
-
-    <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
-
-    <!-- Settings screen: header. -->
     <string name="setup_settings_title">Instellingen</string>
     <string name="setup_settings_subtitle">Ski draait Claude Code, Codex, OpenCode, Antigravity of Grok in de app, met je eigen abonnement (of de gratis modellen van OpenCode en het gratis abonnement van Antigravity).</string>
-
-    <!-- Settings screen: the setup checklist card (5 steps). -->
     <string name="setup_card_title">Instellen</string>
     <string name="setup_open_guide">Stapsgewijze uitleg openen</string>
     <string name="setup_all_set">Alles is ingesteld. Ski is klaar voor gebruik.</string>
@@ -831,12 +659,9 @@
     <string name="setup_step_try_done">Ski heeft je geantwoord. Tik wanneer je wilt op de bubbel om meer te vragen.</string>
     <string name="setup_step_try_body">Tik op de bubbel aan de rand van je scherm en vraag bijvoorbeeld “open Messenger”, of start hier een chat.</string>
     <string name="setup_step_try_wait">Rond eerst de stappen hierboven af.</string>
-    <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
     <string name="setup_step_name_a11y">Toegankelijkheidsservice aanzetten</string>
     <string name="setup_step_name_install">Je agent installeren</string>
     <string name="setup_step_name_background">Achtergrondgebruik toestaan</string>
-
-    <!-- Settings screen: Appearance. Section labels are shown in ALL CAPS. -->
     <string name="setup_appearance">Uiterlijk</string>
     <string name="setup_theme_mode">Modus</string>
     <string name="setup_accent">Accentkleur</string>
@@ -852,14 +677,11 @@
     <string name="setup_custom_accent_title">Eigen accentkleur</string>
     <string name="setup_custom_accent_hint">Elke kleur als hexcode, bijvoorbeeld #4F8BFF.</string>
     <string name="setup_apply">Toepassen</string>
-
-    <!-- Settings screen: Agent. -->
     <string name="setup_agent">Agent</string>
     <string name="setup_default_brain">Standaardagent</string>
     <string name="setup_default_brain_info">Wie nieuwe chats beantwoordt die je via de bubbel of de knop “Nieuwe chat” start. Claude Code gebruikt je Claude-abonnement, Codex je ChatGPT-abonnement, Antigravity je Google-account, Grok je Grok-account en OpenCode zijn gratis modellen of je eigen aanbieders. Je kunt alleen agents kiezen die zijn ingesteld.</string>
     <string name="setup_default_brain_set">Nieuwe chats gebruiken %1$s. Met de knop “Nieuwe chat” kun je per chat kiezen.</string>
     <string name="setup_set_up_first">Stel eerst %1$s in.</string>
-    <!-- Agent status under each agent's name: lowercase, monospace, keep short. -->
     <string name="setup_agent_installing">installeren…</string>
     <string name="setup_agent_not_installed">niet geïnstalleerd</string>
     <string name="setup_agent_ready">klaar</string>
@@ -869,14 +691,10 @@
     <string name="setup_agent_not_signed_in">niet ingelogd</string>
     <string name="setup_agent_api_key">niet ingelogd · API-sleutel</string>
     <string name="signin_key_only">Gebruikt een API-sleutel</string>
-
-    <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Telefoontools in je eigen sessies</string>
     <string name="setup_phone_tools_info">De telefoontools van Ski zijn een gewone MCP-server op deze telefoon. Voer deze opdracht één keer uit in een terminal op de telefoon (bijvoorbeeld in Termux), dan krijgt de agent daar de telefoontools in elke sessie, ook zonder de bubbel.</string>
     <string name="setup_copy_command">Opdracht kopiëren</string>
     <string name="setup_command_copied">Gekopieerd. Plak het in je terminal.</string>
-
-    <!-- Settings screen: Voice. -->
     <string name="setup_voice">Spraak</string>
     <string name="setup_voice_input">Spraakinvoer</string>
     <string name="setup_voice_phone">Telefoon</string>
@@ -893,8 +711,6 @@
     <string name="setup_needs_claude">De dicteerfunctie van Claude werkt via %1$s met je Claude-abonnement.</string>
     <string name="setup_needs_chatgpt">De stem van ChatGPT werkt via %1$s met je ChatGPT-abonnement.</string>
     <string name="setup_set_up_agent">%1$s instellen</string>
-
-    <!-- Settings screen: Remote Control (a Claude Code session you continue from the Claude app). -->
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Claude Code-sessie</string>
     <string name="setup_remote_session_info">Een Claude Code-sessie die binnen Ski draait, met de telefoontools. Ga ermee verder vanuit de Claude-app (Code) op deze telefoon of waar dan ook.</string>
@@ -912,22 +728,10 @@
     <string name="setup_ssh_info">Gebruik Ski\'s Linux vanuit Termux, via SSH. Alleen apps op deze telefoon kunnen verbinden, en alleen met een sleutel.</string>
     <string name="setup_ssh_active">actief · poort %1$d</string>
     <string name="setup_ssh_how">Kopieer deze opdracht en voer hem binnen 10 minuten één keer uit in Termux. Typ daarna ssh ski in Termux om Ski\'s Linux te openen.</string>
-
-    <!-- Settings screen: chats left over from when Ski ran its agents in Termux. -->
     <string name="setup_old_chats_title">Oude Termux-chats verwijderen</string>
-    <plurals name="setup_old_chats_body">
-        <item quantity="one">%1$d chat van voordat Ski een eigen Linux had. Agents kunnen die niet voortzetten.</item>
-        <item quantity="other">%1$d chats van voordat Ski een eigen Linux had. Agents kunnen ze niet voortzetten.</item>
-    </plurals>
-    <plurals name="setup_old_chats_remove">
-        <item quantity="one">%1$d oude chat verwijderen?</item>
-        <item quantity="other">%1$d oude chats verwijderen?</item>
-    </plurals>
     <string name="setup_old_chats_remove_body">Hiermee verdwijnen ze uit de chatlijst van Ski. Dit kan niet ongedaan worden gemaakt.</string>
     <string name="setup_remove">Verwijderen</string>
     <string name="setup_removed">Verwijderd.</string>
-
-    <!-- Settings screen: Experience. -->
     <string name="setup_experience">Gebruik</string>
     <string name="setup_chat_bubble">Chatbubbel</string>
     <string name="setup_chat_bubble_info">Zweeft boven andere apps. Sleep hem naar het ✕ om hem te verbergen; goedkeuringskaarten verschijnen nog steeds als een agent je akkoord nodig heeft.</string>
@@ -955,28 +759,18 @@
     <string name="setup_agents_tap">Agents laten tikken op Ski\'s schermen</string>
     <string name="setup_agents_tap_info">Om Ski te testen met een agent (bijvoorbeeld Claude Code in Termux met de telefoontools). De bubbel, goedkeuringskaarten, App-rechten en deze schakelaars blijven verboden terrein.</string>
     <string name="setup_dev_mode_warning">Laat dit liever uit en zet Linux-tools alleen aan in de chats die ze nodig hebben. Als ze aanstaan, kan een kwaadwillend bericht of een kwaadwillende webpagina op het scherm proberen de agent te misleiden zodat hij opdrachten uitvoert. Goedkeuringskaarten bewaken nog steeds verzenden, plaatsen, kopen en verwijderen.</string>
-
-    <!-- Settings screen: footer links. -->
     <string name="setup_licences">Open-sourcelicenties</string>
     <string name="setup_privacy_policy">Privacybeleid</string>
-
-    <!-- Errors while installing Ski's built-in Linux (Alpine). Shown after "Install failed:". -->
     <string name="linux_download_corrupt">Alpine-download is beschadigd (sha256 %1$s)</string>
     <string name="linux_move_failed">Kan Alpine niet op zijn plaats zetten</string>
     <string name="linux_download_failed_http">Downloaden mislukt: HTTP %1$d</string>
     <string name="linux_unsafe_path">Onveilig pad in archief: %1$s</string>
     <string name="linux_symlink_failed">symlink %1$s: %2$s</string>
     <string name="linux_truncated_archive">Archief is onvolledig</string>
-
-    <!-- Terminal screen (a shell in Ski's Linux, in tabs). -->
     <string name="terminal_title">Terminal</string>
     <string name="terminal_back">Terug</string>
     <string name="terminal_hide_keyboard">Toetsenbord verbergen</string>
     <string name="terminal_menu">Menu</string>
-    <plurals name="terminal_sessions_count">
-        <item quantity="one">%1$d sessie · ski linux</item>
-        <item quantity="other">%1$d sessies · ski linux</item>
-    </plurals>
     <string name="terminal_listening">luistert · microfoon aan</string>
     <string name="terminal_session_ended">Sessie beëindigd</string>
     <string name="terminal_session_ended_code">Sessie beëindigd · exitcode %1$d</string>
@@ -996,13 +790,9 @@
     <string name="terminal_keep_screen_on">Scherm aan laten</string>
     <string name="terminal_close_session">Deze sessie sluiten</string>
     <string name="terminal_tips">Houd ingedrukt om tekst of een link te selecteren. Knijp om te zoomen, sleep om terug te scrollen. Houd een tabblad ingedrukt om het te sluiten.</string>
-
-    <!-- Terminal: floating toolbar over selected text. Keep short. -->
     <string name="terminal_copy">Kopiëren</string>
     <string name="terminal_open_link">Link openen</string>
     <string name="terminal_share">Delen</string>
-
-    <!-- Sessions screen: every agent session running on the phone, and recent history. -->
     <string name="monitor_title">Sessies</string>
     <string name="monitor_subtitle">Alle sessies van Claude Code, Codex, OpenCode, Antigravity en Grok op deze telefoon.</string>
     <string name="monitor_terminal_running">Er draait een shell · tik om terug te gaan</string>
@@ -1031,11 +821,6 @@
     <string name="monitor_service_meta">pid %1$d · looptijd %2$s · voor achtergrondsessies</string>
     <string name="monitor_no_history">Geen geschiedenis gevonden.</string>
     <string name="monitor_no_messages">(geen berichten)</string>
-
-    <!-- ===== Approvals and app permissions, tool cards, dictation (AppPermissionsActivity, Guard, Tools, Reviewer, dictation) ===== -->
-
-    <!-- App permissions screen (Settings → App permissions): how much the agent may do on its own in each app.
-         The three approval modes are Trust, Hard and Smart (perms_mode_*): Vrij, Streng and Slim here. -->
     <string name="perms_title">App-rechten</string>
     <string name="perms_back">Terug</string>
     <string name="perms_mode_trust">Vrij</string>
@@ -1054,8 +839,6 @@
     <string name="perms_apps">Apps</string>
     <string name="perms_all_apps">Alle apps</string>
     <string name="perms_reset_suggested">Voorgestelde modi herstellen</string>
-
-    <!-- Button rules screen: buttons that always or never need the user's OK. -->
     <string name="perms_rules_intro">Voor apps op Streng of Slim. Een regel uit de suggesties geldt voor die app; getypte tekst geldt voor alle apps. Tik op een regel om hem te verwijderen.</string>
     <string name="perms_builtin_title">Ingebouwde risicowoorden</string>
     <string name="perms_builtin_sub">Bij knoppen als Verzenden, Plaatsen, Betalen, Kopen, Bestellen, Verwijderen, Bellen, Uitloggen… wordt altijd eerst gevraagd, in elke taal van Ski.</string>
@@ -1066,8 +849,6 @@
     <string name="perms_add">Toevoegen</string>
     <string name="perms_seen_title">Recent geziene knoppen</string>
     <string name="perms_seen_empty">Knoppen waarop de agent tikt in apps op Streng en Slim, verschijnen hier.</string>
-
-    <!-- Button rules and modes, as App permissions shows them. -->
     <string name="guard_rule_all_apps">%1$s · alle apps</string>
     <string name="guard_why_choice">Jouw keuze</string>
     <string name="guard_why_category">Voorgesteld: berichten, sociaal, bellen of geld</string>
@@ -1075,8 +856,6 @@
     <string name="guard_why_social">Voorgesteld: een sociale app</string>
     <string name="guard_why_suggested">Voorgesteld</string>
     <string name="guard_why_setup">Je keuze bij het instellen: eerst vragen</string>
-
-    <!-- Approval card, shown before the agent taps a risky button: the user approves or denies it. -->
     <string name="tools_card_tap">Op “%1$s” tikken</string>
     <string name="tools_card_tap_in">In %2$s op “%1$s” tikken</string>
     <string name="tools_card_tap_this">Op “dit” tikken</string>
@@ -1088,23 +867,15 @@
     <string name="tools_card_no_reviewer">Er is geen beoordelaar ingelogd, dus Ski vraagt het jou.</string>
     <string name="tools_card_reviewer_block">%1$s raadt het af: %2$s</string>
     <string name="tools_card_reviewer_ask">%1$s raadt aan het jou te vragen: %2$s</string>
-
-    <!-- Status line in the bubble while the agent works. -->
     <string name="tools_status_checking_tap">Controleert deze tik…</string>
     <string name="tools_status_tap_install">Tik op Installeren en bevestig daarna</string>
     <string name="tools_status_tap_update">Tik op Updaten en bevestig daarna</string>
     <string name="tools_status_installed">Geïnstalleerd</string>
     <string name="tools_status_downloading">Ski %1$s downloaden…</string>
-
-    <!-- Smart reviewer: its reason when it fails, shown on the approval card after "Claude says ask you:", so lowercase. -->
     <string name="reviewer_failed">de beoordelaar kon niet antwoorden (%1$s)</string>
     <string name="reviewer_no_answer">geen antwoord</string>
     <string name="reviewer_timed_out">time-out</string>
-
-    <!-- Error when a chat can't start because Ski's built-in Linux isn't set up yet. -->
     <string name="helper_linux_missing">Ski\'s Linux is nog niet geïnstalleerd. Open Instellingen om het in te stellen.</string>
-
-    <!-- Voice input (dictation): "Claude voice" and "ChatGPT voice" are the two voice input options. -->
     <string name="dictation_claude_sign_in">Log via Instellingen in bij Claude Code om Claude-spraak te gebruiken.</string>
     <string name="dictation_codex_sign_in">Log via Instellingen in bij Codex om ChatGPT-spraak te gebruiken.</string>
     <string name="dictation_starting">Starten…</string>
@@ -1128,8 +899,6 @@
     <string name="dictation_request_timed_out">time-out bij %1$s</string>
     <string name="dictation_codex_stopped">Codex is gestopt: %1$s</string>
     <string name="dictation_no_details">geen details</string>
-
-    <!-- Notification rules -->
     <string name="card_label_countdown">WORDT ZO VANZELF TOEGESTAAN</string>
     <string name="card_countdown">Wordt over %1$d s vanzelf toegestaan · Tik om te stoppen</string>
     <string name="card_note_auto_approved">✓ Toegestaan na het aftellen: %1$s</string>
@@ -1241,7 +1010,6 @@
     <string name="rules_approval_title">Akkoord nodig: %1$s · %2$s</string>
     <string name="card_locked_title">Akkoord nodig: %1$s</string>
     <string name="rules_approval_auto">Wordt over %1$s vanzelf toegestaan, tenzij je het stopt.\n%2$s</string>
-    <!-- Background browser -->
     <string name="browser_section">Achtergrondbrowser</string>
     <string name="browser_switch">Achtergrondbrowser</string>
     <string name="browser_switch_info">Een browser in Ski waarmee agents webpagina\'s gebruiken zonder je telefoon over te nemen. Je kunt hem in de chat bekijken en gebruiken. De eerste keer downloadt Ski Chromium (ongeveer 300 MB).</string>
@@ -1340,10 +1108,6 @@
     <string name="check_report_title">Wat er naar GitHub gaat</string>
     <string name="check_report_text">Dit opent een nieuwe GitHub-issue met deze gegevens ingevuld. Er wordt niets verstuurd tot je het daar indient, en je kunt het eerst aanpassen. Chats, schermtekst en meldingen zitten er nooit bij.</string>
     <string name="check_report_open">GitHub openen</string>
-    <plurals name="check_failed">
-        <item quantity="one">%1$d controle mislukt</item>
-        <item quantity="other">%1$d controles mislukt</item>
-    </plurals>
     <string name="tools_step_cap">Gestopt na %1$d acties achter elkaar, zodat een op hol geslagen taak je abonnement niet opmaakt. Zeg dat hij verder mag als dat moet.</string>
     <string name="tools_step_loop">Gestopt: het deed %1$d keer achter elkaar hetzelfde, dat lijkt op een lus.</string>
     <string name="setup_help">Hulp</string>
@@ -1474,4 +1238,114 @@
     <string name="setup_switch_default_title">Standaardbrein</string>
     <string name="signin_api_key_on">%1$s draait op je API-sleutels: kies een model in het modelmenu van een chat, of de standaard onder API-sleutels.</string>
     <string name="signin_api_key_on_plan">Chats kunnen ook de modellen van je API-sleutels gebruiken (kies er een in het modelmenu van een chat). Spraak en de andere abonnementsfuncties gebruiken je abonnement.</string>
+
+    <!-- added 2026-11-18 (missing translations) -->
+    <string name="activity_shell">Een telefoonopdracht uitvoeren</string>
+    <string name="app_name" translatable="false">Ski</string>
+    <string name="background_asleep">Zijn hulpje draait niet. Het start met de eerste achtergrondtaak, of nu. Tik na een herstart van de telefoon op Nu starten: Ski zet Wireless debugging ervoor aan (Wi-Fi moet verbonden zijn).</string>
+    <string name="background_brought">Verplaatst naar jouw scherm: deze stap heeft jou nodig. De achtergrondmodus staat voor deze chat nu uit.</string>
+    <string name="background_default">Nieuwe chats werken op de achtergrond</string>
+    <string name="background_default_info">Elke chat heeft nog steeds een eigen schakelaar in de chatopties.</string>
+    <string name="background_failed">Het werkte niet: %1$s</string>
+    <string name="background_how">Android staat alleen Wireless debugging toe zo\'n scherm te maken, dus Ski koppelt er één keer mee, hier op deze telefoon. Geen computer nodig.</string>
+    <string name="background_installing">adb voor Ski\'s Linux wordt opgehaald…</string>
+    <string name="background_intro">In de achtergrondmodus werkt een agent op een eigen scherm dat jij niet ziet. Je houdt je scherm, je toetsenbord en je terugknop, en het gaat door terwijl de telefoon vergrendeld is.</string>
+    <string name="background_needs_dev">Zet eerst Ontwikkelaarsopties aan: Instellingen → Over het apparaat → tik 7 keer op Buildnummer.</string>
+    <string name="background_needs_linux">De achtergrondmodus heeft Ski\'s Linux nodig. Installeer eerst een agent.</string>
+    <string name="background_needs_service">Zet eerst Ski\'s toegankelijkheidsdienst aan.</string>
+    <string name="background_no_dialog">Ski zag het koppelingsvenster niet op tijd. Probeer het opnieuw.</string>
+    <string name="background_open_options">Ontwikkelaarsopties openen</string>
+    <string name="background_paired">Gekoppeld</string>
+    <string name="background_pairing">Koppelen…</string>
+    <string name="background_preview">Achtergrondscherm</string>
+    <string name="background_ready">Klaar</string>
+    <string name="background_ready_info">Zet het per chat aan: Chatopties → Op de achtergrond werken.</string>
+    <string name="background_remove">Verwijderen</string>
+    <string name="background_remove_text">Ski vergeet de koppeling en stopt zijn hulpje. Chats werken weer op het echte scherm.</string>
+    <string name="background_row">Agenten werken op een eigen scherm terwijl jij je telefoon gebruikt</string>
+    <string name="background_security">Met Wireless debugging kunnen gekoppelde apparaten deze telefoon besturen. Ski koppelt alleen zichzelf, op deze telefoon, en zijn hulpje luistert alleen hier.</string>
+    <string name="background_setup">Instellen</string>
+    <string name="background_shell">Telefoonopdrachten</string>
+    <string name="background_shell_ask">Vragen vóór elke opdracht</string>
+    <string name="background_shell_ask_info">Een goedkeuringskaart toont eerst de opdracht. Zonder die kaart staat niets tussen een misleide agent en je telefoon: een opdracht kan zelfs op een goedkeuringskaart tikken.</string>
+    <string name="background_shell_info">In chats met Linux-hulpmiddelen kan de agent opdrachten op de telefoon zelf uitvoeren, zoals “adb shell” doet: apps installeren en starten, instellingen wijzigen, logbestanden en bestanden lezen. Een bericht of webpagina die het leest kan proberen het te misleiden om er een uit te voeren.</string>
+    <string name="background_shell_switch">Agenten mogen opdrachten op de telefoon uitvoeren</string>
+    <string name="background_show">Op mijn scherm tonen</string>
+    <string name="background_starting">Het hulpje wordt gestart…</string>
+    <string name="background_start_now">Nu starten</string>
+    <string name="background_step1">1. Tik op Instellen. Ski opent de Ontwikkelaarsopties en vindt Wireless debugging voor je.</string>
+    <string name="background_step2">2. Het zet Wireless debugging aan (Wi-Fi moet verbonden zijn) en opent “Apparaat koppelen met koppelingscode”.</string>
+    <string name="background_step3">3. Het leest de code, koppelt en brengt je hier terug. Als het ergens stopt, doe die stap zelf en Ski gaat verder.</string>
+    <string name="background_usb_note">Ski zet ook USB-foutopsporing aan. Daarmee blijft het hulpje draaien wanneer de Wi-Fi wegvalt en Android Wireless debugging uitschakelt. Laat het aan staan.</string>
+    <string name="background_waiting">Wachten op “Apparaat koppelen met koppelingscode” in Wireless debugging…</string>
+    <string name="chat_bg_checking">Controleren…</string>
+    <string name="chat_bg_connected">Verbonden</string>
+    <string name="chat_bg_connected_info">Agenten in achtergrondchats kunnen op een eigen scherm werken.</string>
+    <string name="chat_bg_disconnected">Niet verbonden</string>
+    <string name="chat_bg_more">Meer instellingen</string>
+    <string name="chat_bg_not_set_up">Niet ingesteld</string>
+    <string name="chat_bg_pair_again">Opnieuw koppelen</string>
+    <string name="chat_bg_setup_info">Laat een agent in je apps werken op een eigen scherm terwijl jij je telefoon gebruikt. Het instellen duurt ongeveer een minuut en heeft Wi-Fi nodig.</string>
+    <string name="hub_tool_phone_shell">Telefoonopdracht: %1$s</string>
+    <string name="later_item" translatable="false">%1$s · %2$s</string>
+    <string name="memory_cant_create">Ski kon zijn geheugenmap niet aanmaken.</string>
+    <string name="prefs_reasoning_mode">Redeneermodus</string>
+    <string name="prefs_reasoning_mode_info">Vóór elke telefoonactie beschrijft de agent wat het ziet, wat het van plan is en waarom. Standaard uit.</string>
+    <string name="prefs_remote_control">Afstandsbediening (HTTP)</string>
+    <string name="prefs_remote_control_info">Stelt Ski\'s telefoonhulpmiddelen via HTTP beschikbaar op 127.0.0.1:8766, zodat een desktop of andere app read_screen, tap, type_text en de rest kan aanroepen. Standaard uit; alleen deze telefoon kan verbinden.</string>
+    <string name="tools_card_chat_send">Dit bericht naar %1$s in %2$s sturen?\n\n“%3$s”</string>
+    <string name="tools_card_shell">Uitvoeren op de telefoon:\n%1$s</string>
+    <string name="tools_ocr_screen">Leest alle zichtbare tekst op het scherm als gewone regels met posities.</string>
+    <string name="tools_read_screen_with_numbers">Leest het scherm met een genummerde legenda (1, 2, 3…) naast elk element.</string>
+    <string name="tools_tap_by_number">Tikt op element nummer N uit read_screen_with_numbers.</string>
+    <!-- added 2026-11-18 (missing plurals + strings) -->
+<plurals name="main_ago_minutes">
+        <item quantity="one">%d minuut geleden</item>
+        <item quantity="other">%d minuten geleden</item>
+    </plurals>
+    <plurals name="main_ago_hours">
+        <item quantity="one">%d uur geleden</item>
+        <item quantity="other">%d uur geleden</item>
+    </plurals>
+    <plurals name="main_ago_days">
+        <item quantity="one">%d dag geleden</item>
+        <item quantity="other">%d dagen geleden</item>
+    </plurals>
+    <plurals name="bubble_tool_calls">
+        <item quantity="one">%d tool-aanroep</item>
+        <item quantity="other">%d tool-aanroepen</item>
+    </plurals>
+    <string name="chat_adding_files">Bestanden toevoegen…</string>
+    <plurals name="chat_tool_calls">
+        <item quantity="one">Eén tool-aanroep</item>
+        <item quantity="other">%d tool-aanroepen</item>
+    </plurals>
+    <plurals name="hub_pill_chats">
+        <item quantity="one">%d chat actief</item>
+        <item quantity="other">%d chats actief</item>
+    </plurals>
+    <string name="transcript_last_messages">laatste berichten</string>
+    <plurals name="attach_count">
+        <item quantity="one">%d bestand bijgevoegd</item>
+        <item quantity="other">%d bestanden bijgevoegd</item>
+    </plurals>
+    <string name="setup_old_chats_body">Chats van een oudere Ski-installatie zijn gevonden. Wil je ze verwijderen?</string>
+    <string name="setup_old_chats_remove">Oude chats verwijderen</string>
+    <string name="setup_shizuku_perms">Machtigingen met één tik</string>
+    <string name="setup_shizuku_perms_info">Verleen alle machtigingen die Ski nodig heeft met één tik, met Shizuku (adb-rechten, geen root).</string>
+    <string name="shizuku_state_ready">gereed</string>
+    <string name="shizuku_state_needs_permission">tik om toe te staan</string>
+    <string name="shizuku_state_off">Shizuku starten</string>
+    <string name="shizuku_need_server">Shizuku draait niet. Open de Shizuku-app en start de server (draadloze foutopsporing of adb) en kom dan hier terug.</string>
+    <string name="shizuku_requesting">Machtiging aan Shizuku vragen…</string>
+    <string name="shizuku_granting">Machtigingen verlenen…</string>
+    <string name="shizuku_grant_done">Machtigingen verleend.</string>
+    <plurals name="terminal_sessions_count">
+        <item quantity="one">%d sessie</item>
+        <item quantity="other">%d sessies</item>
+    </plurals>
+    <plurals name="check_failed">
+        <item quantity="one">Controle mislukt voor %d account</item>
+        <item quantity="other">Controle mislukt voor %d accounts</item>
+    </plurals>
 </resources>

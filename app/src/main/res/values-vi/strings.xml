@@ -1,282 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Every text Ski shows, in Vietnamese (bạn). English source: res/values/strings.xml. -->
 <resources>
     <string name="service_label">Trợ lý Ski</string>
     <string name="service_description">Hiển thị bong bóng trò chuyện của Ski và cho phép agent bạn chọn (Claude Code, Codex, OpenCode, Antigravity hoặc Grok), chạy bên trong Ski trên điện thoại này, đọc màn hình, nhấn, gõ và cuộn thay bạn. Không có gì rời khỏi điện thoại, ngoại trừ những gì chính agent gửi tới dịch vụ AI của nó (Anthropic, OpenAI, Google, xAI hoặc nhà cung cấp mô hình OpenCode của bạn).</string>
-
-    <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
-
-    <!-- First-run setup guide: top bar and buttons shared by several steps. -->
-    <!-- Button at the top right of every step. Keep short. -->
     <string name="onboarding_skip_setup">Bỏ qua</string>
     <string name="onboarding_skip_title">Bỏ qua hướng dẫn thiết lập?</string>
-    <!-- "Settings" = Ski's own Settings tab. -->
     <string name="onboarding_skip_text">Bạn có thể hoàn tất thiết lập bất cứ lúc nào trong Cài đặt. Các cuộc trò chuyện chỉ chạy khi đã thiết lập xong.</string>
-    <!-- Verb. Confirm button of the "Skip the setup guide?" sheet. -->
     <string name="onboarding_skip_action">Bỏ qua</string>
-    <!-- Progress at the top of the guide, small lowercase mono text. %1$d = this step, %2$d = number of steps. -->
     <string name="onboarding_progress">bước %1$d/%2$d</string>
-    <!-- Button: go to the next step. -->
     <string name="onboarding_continue">Tiếp tục</string>
-    <!-- Title of the expandable help section at the bottom of a step. -->
     <string name="onboarding_stuck">Gặp khó khăn?</string>
-
-    <!-- Guide, welcome screen. -->
     <string name="onboarding_welcome_title">Làm quen với Ski</string>
     <string name="onboarding_welcome_text">Một bong bóng trò chuyện có thể dùng điện thoại thay bạn.</string>
     <string name="onboarding_welcome_ask_title">Cứ nói bằng lời bình thường</string>
-    <!-- Two example requests a user could type. Translate them naturally and use your language's quotation marks. -->
     <string name="onboarding_welcome_ask_text">“Nhắn Sam là mình đến muộn”, “thêm sữa vào giỏ hàng”.</string>
     <string name="onboarding_welcome_plan_title">Dùng gói của bạn, không cần khóa API</string>
     <string name="onboarding_welcome_plan_text">Chạy Claude Code bằng gói Claude của bạn. Codex với gói ChatGPT, Antigravity với tài khoản Google, Grok với tài khoản Google hoặc X, và các mô hình miễn phí của OpenCode cũng dùng được.</string>
     <string name="onboarding_welcome_control_title">Bạn luôn nắm quyền</string>
     <string name="onboarding_welcome_control_text">Gửi, đăng, mua và xóa luôn hỏi bạn trước.</string>
-    <!-- Small lowercase mono line under the list. -->
     <string name="onboarding_welcome_time">thiết lập mất khoảng 5 phút</string>
     <string name="onboarding_get_started">Bắt đầu</string>
-
-    <!-- Guide, step: choose the agent. Agent names next to each option stay in English. -->
     <string name="onboarding_brain_title">Chọn agent của bạn</string>
-    <!-- "Settings" = Ski's own Settings tab. -->
     <string name="onboarding_brain_text">Agent sẽ trả lời các cuộc trò chuyện của bạn. Bạn có thể thêm agent khác sau trong Cài đặt.</string>
     <string name="onboarding_brain_claude">Dùng gói Claude của bạn (Pro hoặc Max).</string>
     <string name="onboarding_brain_codex">Dùng gói ChatGPT của bạn.</string>
     <string name="onboarding_brain_opencode">Không cần tài khoản. Kết nối nhà cung cấp riêng của bạn sau.</string>
-    <!-- Under "Antigravity" (Google's agent) in the agent choice. Google AI Pro and Ultra are Google's paid plans (names stay as they are). -->
     <string name="onboarding_brain_agy">Dùng tài khoản Google của bạn, kể cả với Google AI Pro hoặc Ultra.</string>
-    <!-- Under "Grok" (xAI's agent) in the agent choice. Grok, xAI and X stay as they are; "X" is the social network. -->
     <string name="onboarding_brain_grok">Dùng tài khoản Grok của bạn (đăng nhập bằng Google hoặc X).</string>
-    <!-- The option that installs both Claude Code and Codex. -->
     <string name="onboarding_brain_both">Cài cả hai; chọn cho từng cuộc trò chuyện. Claude Code vẫn là mặc định.</string>
-    <!-- Small lowercase tag next to "Claude Code". Keep very short. -->
     <string name="onboarding_recommended">đề xuất</string>
-
-    <!-- Guide, step: turn on Ski's accessibility service. -->
     <string name="onboarding_access_title">Cho Ski nhìn và nhấn</string>
     <string name="onboarding_access_done">Hỗ trợ tiếp cận đã bật.</string>
     <string name="onboarding_access_text">Dịch vụ hỗ trợ tiếp cận của Ski hiển thị bong bóng và cho agent đọc màn hình, nhấn và gõ, chỉ khi bạn nhờ nó làm việc gì đó.</string>
-    <!-- %1$s = the agent's name (Claude Code or Codex); %2$s = the company it sends to (Anthropic or OpenAI). -->
     <string name="onboarding_access_privacy">Không có gì rời khỏi điện thoại, ngoại trừ những gì %1$s gửi tới %2$s để trả lời bạn. Gửi, đăng, mua và xóa luôn cần bạn đồng ý trước.</string>
-    <!-- Same as onboarding_access_privacy, when both Claude Code and Codex are set up. -->
     <string name="onboarding_access_privacy_both">Không có gì rời khỏi điện thoại, ngoại trừ những gì Claude Code và Codex gửi tới Anthropic và OpenAI để trả lời bạn. Gửi, đăng, mua và xóa luôn cần bạn đồng ý trước.</string>
-    <!-- Same as onboarding_access_privacy, for OpenCode. %1$s = OpenCode. The model's provider = whichever AI company runs the chosen model. -->
     <string name="onboarding_access_privacy_opencode">Không có gì rời khỏi điện thoại, ngoại trừ những gì %1$s gửi tới nhà cung cấp mô hình để trả lời bạn. Gửi, đăng, mua và xóa luôn cần bạn đồng ý trước.</string>
-    <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Ski assistant" = Ski's service name (service_label). -->
     <string name="onboarding_access_list_hint">Trong danh sách: Ứng dụng đã tải xuống → Trợ lý Ski → bật lên.</string>
     <string name="onboarding_access_open">Mở cài đặt hỗ trợ tiếp cận</string>
-    <!-- Android 13+ greys out the switch for apps installed from a file. Title of a help box and a help question. -->
     <string name="onboarding_access_greyed_title">Công tắc bị mờ?</string>
-    <!-- "App info" = the button below (onboarding_app_info). "Allow restricted settings" = Android's own menu item; ⋮ = the three-dot menu. -->
     <string name="onboarding_access_greyed_text">Android chặn mục này với ứng dụng cài từ tệp. Nhấn Thông tin ứng dụng (bên dưới), rồi ⋮ ở góc trên bên phải → Cho phép cài đặt bị hạn chế, và thử lại.</string>
-    <!-- Numbered steps, one per line. Same names as in onboarding_access_greyed_text. -->
     <string name="onboarding_access_restricted_steps">1. Nhấn Thông tin ứng dụng bên dưới.\n2. Nhấn ⋮ ở góc trên bên phải → Cho phép cài đặt bị hạn chế.\n3. Quay lại và mở lại cài đặt hỗ trợ tiếp cận.</string>
-    <!-- Button: opens Android's App info page for Ski. Use Android's name for that page. -->
     <string name="onboarding_app_info">Thông tin ứng dụng</string>
-
-    <!-- Guide, step: install the agent inside Ski and sign in. -->
     <string name="onboarding_agents_title">Cài và đăng nhập</string>
-    <!-- Title once every chosen agent is installed and signed in. -->
     <string name="onboarding_agents_done_title">Sẵn sàng</string>
-    <!-- %1$s = the agent's name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="onboarding_agents_done">%1$s đã được cài và đăng nhập.</string>
-    <!-- Same as onboarding_agents_done, when both Claude Code and Codex are set up. -->
     <string name="onboarding_agents_done_both">Claude Code và Codex đã được cài và đăng nhập.</string>
-    <!-- %1$s = the agent's name (Claude Code, Codex, OpenCode, Antigravity, Grok) or onboarding_agent_names_both. -->
     <string name="onboarding_agents_text">Ski cài %1$s ngay trong ứng dụng, rồi bạn đăng nhập một lần. Không cần Termux.</string>
-    <!-- Both agents together, inserted as %1$s into onboarding_agents_text. -->
     <string name="onboarding_agent_names_both">Claude Code và Codex</string>
-    <!-- Agent card status lines: small lowercase mono text, one line. -->
-    <!-- OpenCode is ready. %1$s = its model providers, or onboarding_agent_free_models. -->
     <string name="onboarding_agent_ready">sẵn sàng · %1$s</string>
     <string name="onboarding_agent_free_models">mô hình miễn phí</string>
     <string name="onboarding_agent_signed_in">đã đăng nhập</string>
-    <!-- %1$s = the account's email address. -->
     <string name="onboarding_agent_signed_in_as">đã đăng nhập · %1$s</string>
     <string name="onboarding_agent_installing">đang cài…</string>
     <string name="onboarding_agent_installed">đã cài · chưa đăng nhập</string>
     <string name="onboarding_agent_not_installed">chưa cài</string>
-    <!-- Agent card help text. "Authorize" = the button on Claude's sign-in web page (the page may be in English). -->
     <string name="onboarding_agent_sign_in_claude">Đăng nhập bằng tài khoản Claude. Trình duyệt sẽ mở; nhấn Authorize và Ski tự quay lại.</string>
     <string name="onboarding_agent_checking_opencode">Đang kiểm tra OpenCode…</string>
     <string name="onboarding_agent_sign_in_codex">Đăng nhập tài khoản ChatGPT trong trình duyệt, rồi quay lại.</string>
-    <!-- Antigravity: the sign-in page shows a code that Ski reads by itself. -->
     <string name="onboarding_agent_sign_in_agy">Đăng nhập bằng tài khoản Google. Trình duyệt sẽ mở; đăng nhập ở đó và Ski tự lấy mã.</string>
-    <!-- Grok: the browser opens with a one-time code that the user confirms on the page. -->
     <string name="onboarding_agent_sign_in_grok">Đăng nhập bằng tài khoản Grok. Trình duyệt sẽ mở; xác nhận mã ở đó và Ski tự quay lại.</string>
-    <!-- "Ski's Linux" = the small Linux system built into Ski. -->
     <string name="onboarding_agent_download_claude">Tải về khoảng 235 MB một lần (Linux của Ski và Claude Code từ Anthropic).</string>
     <string name="onboarding_agent_download_opencode">Tải về khoảng 230 MB một lần (Linux của Ski, Node.js và OpenCode). Không cần tài khoản.</string>
     <string name="onboarding_agent_download_codex">Tải về khoảng 150 MB một lần (Linux của Ski, Node.js và Codex từ OpenAI).</string>
     <string name="onboarding_agent_download_agy">Tải về khoảng 200 MB một lần (Linux của Ski và Antigravity CLI từ Google).</string>
     <string name="onboarding_agent_download_grok">Tải về khoảng 170 MB một lần (Linux của Ski và Grok Build từ xAI).</string>
-    <!-- Buttons on the agent card. -->
     <string name="onboarding_sign_in_claude">Đăng nhập bằng Claude</string>
     <string name="onboarding_sign_in_chatgpt">Đăng nhập bằng ChatGPT</string>
     <string name="onboarding_sign_in_google">Đăng nhập bằng Google</string>
     <string name="onboarding_sign_in_grok">Đăng nhập bằng Grok</string>
-    <!-- %1$s = the agent's name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="onboarding_install_agent">Cài %1$s</string>
     <string name="onboarding_agents_wifi">Hãy dùng Wi-Fi nếu được. Bạn có thể rời màn hình này trong lúc cài.</string>
-    <!-- Help questions and answers under "Stuck?". "Copy Code" = a button on Claude's web page. -->
     <string name="onboarding_stuck_sign_in_q">Đăng nhập xong mà không quay lại?</string>
     <string name="onboarding_stuck_sign_in_a">Claude: trên trang Claude, nhấn Copy Code rồi quay lại Ski; Ski sẽ lấy mã từ bộ nhớ tạm.</string>
     <string name="onboarding_stuck_install_q">Cài không được?</string>
-    <!-- "Install" = the Install button on the agent card (onboarding_install_agent). -->
     <string name="onboarding_stuck_install_a">Kiểm tra kết nối và nhấn Cài lại; quá trình sẽ tiếp tục từ chỗ đã dừng.</string>
-
-    <!-- Guide, step: let Ski run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Giữ Ski chạy</string>
     <string name="onboarding_background_done">Ski có thể chạy ở chế độ nền.</string>
     <string name="onboarding_background_text">Để điện thoại không dừng Ski nhằm tiết kiệm pin trong lúc agent đang làm việc.</string>
-    <!-- Button: opens Android's dialog to let Ski run in the background. -->
     <string name="onboarding_allow">Cho phép</string>
     <string name="onboarding_skip_for_now">Để sau</string>
-
-    <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">Agent nên hỏi bạn đến mức nào?</string>
-    <!-- Ends with a colon: the two options follow. -->
     <string name="onboarding_safety_text">Ứng dụng nhắn tin, mạng xã hội, mua sắm, thanh toán và ngân hàng luôn cần bạn đồng ý trước khi Ski gửi, đăng, mua hoặc xóa. Với các ứng dụng khác:</string>
     <string name="onboarding_safety_ask_title">Hỏi tôi trước</string>
     <string name="onboarding_safety_ask_text">Agent hỏi trước mọi việc có rủi ro, như thay đổi một cài đặt. An toàn hơn, nhưng nhiều popup hơn.</string>
     <string name="onboarding_safety_auto_title">Tự làm</string>
     <string name="onboarding_safety_auto_text">Không popup: agent cứ làm điều bạn nhờ, như bật camera hay bật đèn.</string>
-    <!-- "Settings → App permissions" = Ski's own screens. "Trust" and "Hard" = names of approval modes; use the same translations as those mode labels. -->
     <string name="onboarding_safety_note">Bạn có thể đổi điều này cho từng ứng dụng bất cứ lúc nào: Cài đặt → Quyền ứng dụng. Đặt một ứng dụng là Tin cậy để agent làm việc ở đó không cần popup, hoặc Chặt để chính Ski hỏi bạn.</string>
-
-    <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">Xong rồi!</string>
-    <!-- "Settings" = Android's Settings app. -->
     <string name="onboarding_try_text">Thử một việc đầu tiên. Ski sẽ mở Cài đặt và đọc giúp bạn.</string>
-    <!-- Example request: shown on this screen and put in the chat's input box, ready to send to the agent. "Settings" = Android's Settings app. -->
     <string name="onboarding_try_prompt">Mở Cài đặt và cho tôi biết phiên bản Android của tôi</string>
-    <!-- onboarding_try_prompt in quotation marks (%1$s). Use your language's quotation marks. -->
     <string name="onboarding_try_prompt_quoted">“%1$s”</string>
-    <!-- ✕ = the close target that appears while dragging the bubble. -->
     <string name="onboarding_try_tip">Mẹo: bong bóng nổi trên các ứng dụng khác. Kéo nó vào dấu ✕ để ẩn.</string>
     <string name="onboarding_try_now">Thử ngay</string>
     <string name="onboarding_go_to_chats">Đến các cuộc trò chuyện</string>
-
-    <!-- Home screen: the chat list. -->
-    <!-- Floating button that starts a chat, and the title of the sheet that picks its agent. Keep short. -->
     <string name="main_new_chat">Trò chuyện mới</string>
-    <!-- Small lowercase mono status under the app name when Ski is ready. %1$s = Ski's local server address (127.0.0.1:8765). -->
     <string name="main_status_ready">sẵn sàng · %1$s</string>
-    <!-- Small lowercase mono status while setup isn't finished: %1$d steps done out of %2$d. -->
     <string name="main_status_setup">thiết lập %1$d/%2$d</string>
     <string name="main_setup_title">Hoàn tất thiết lập để chạy trò chuyện</string>
-    <!-- %1$s = the name of the next setup step, e.g. Turn on the accessibility service. -->
     <string name="main_setup_next">Tiếp theo: %1$s</string>
     <string name="main_setup_next_accessibility">Tiếp theo: mở dịch vụ hỗ trợ tiếp cận của Ski</string>
-    <!-- Section header, shown in capitals: chats whose task is running now. The count follows it. -->
     <string name="main_section_working">Đang chạy</string>
-    <!-- Section header, shown in capitals. -->
     <string name="main_section_recent">Gần đây</string>
     <string name="main_empty_title">Chưa có cuộc trò chuyện nào</string>
-    <!-- "New chat" = the button (main_new_chat). -->
     <string name="main_empty_text">Nhấn Trò chuyện mới để bắt đầu với Claude Code, Codex, OpenCode, Antigravity hoặc Grok. Nhấn giữ một cuộc trò chuyện để xóa.</string>
-    <!-- Status of a chat with a running task, until the agent reports what it's doing. Small lowercase mono text. -->
     <string name="main_chat_working">đang làm…</string>
     <string name="main_chat_waiting">đang chờ bạn…</string>
     <string name="main_card_other_session">Phiên khác</string>
-    <!-- Preview of a chat's last message when the user wrote it. %1$s = the message. -->
     <string name="main_chat_last_you">Bạn: %1$s</string>
     <string name="main_delete_title">Xóa cuộc trò chuyện này?</string>
-    <!-- Verb. Confirm button. -->
     <string name="main_delete_action">Xóa</string>
-    <!-- New chat sheet: small lowercase tag next to the default agent's name. Keep very short. -->
     <string name="main_new_chat_default">mặc định</string>
-    <!-- New chat sheet: shown under an agent that isn't ready yet. -->
     <string name="main_new_chat_not_signed_in">Chưa đăng nhập · nhấn để thiết lập</string>
     <string name="main_new_chat_not_installed">Chưa cài · nhấn để thiết lập</string>
-    <!-- How long ago a chat changed, next to it in the chat lists. Very little room: keep as short as the English (m = minutes, h = hours, d = days). -->
     <string name="main_ago_now">vừa xong</string>
-    <plurals name="main_ago_minutes">
-        <item quantity="other">%1$d phút</item>
-    </plurals>
-    <plurals name="main_ago_hours">
-        <item quantity="other">%1$d giờ</item>
-    </plurals>
-    <plurals name="main_ago_days">
-        <item quantity="other">%1$d ngày</item>
-    </plurals>
-
-    <!-- Notification shown after the bubble is dragged away to hide it. -->
-    <!-- Notification category name in Android's notification settings for Ski. -->
     <string name="notice_channel_name">Bong bóng đã ẩn</string>
     <string name="notice_hidden_title">Ski đang ẩn</string>
     <string name="notice_hidden_text">Nhấn để hiện lại bong bóng.</string>
-    <!-- Notification button: opens Ski's chat list. Keep short. -->
     <string name="notice_open_chats">Mở trò chuyện</string>
-
-    <!-- Ski's own updates (GitHub version): notification, update sheet and messages. -->
-    <!-- Notification category name in Android's notification settings for Ski. -->
     <string name="update_channel_name">Cập nhật Ski</string>
-    <!-- Notification and sheet title. %1$s = the new version number, e.g. 2.1.14. -->
     <string name="update_available_title">Đã có Ski %1$s</string>
-    <!-- %1$s = the installed version number. -->
     <string name="update_notification_text">Bạn đang dùng %1$s. Nhấn để xem có gì mới và cập nhật; các cuộc trò chuyện vẫn được giữ.</string>
-    <!-- Verb: download and install the new version. Notification button and sheet button (half width). Keep short. -->
     <string name="update_action">Cập nhật</string>
-    <!-- Notification button: stop update notifications. Keep short. -->
     <string name="update_mute">Đừng báo nữa</string>
-    <!-- "Settings" = Ski's own Settings tab (its Update notices switch). -->
     <string name="update_muted">Sẽ không báo cập nhật nữa. Bật lại trong Cài đặt.</string>
     <string name="update_checking">Đang kiểm tra cập nhật…</string>
     <string name="update_check_failed">Không kết nối được GitHub. Thử lại sau.</string>
-    <!-- %1$s = the installed version number. -->
     <string name="update_up_to_date">Ski %1$s là bản mới nhất.</string>
-    <!-- Under the sheet title. %1$s = the installed version number. -->
     <string name="update_sheet_text">Bạn đang dùng %1$s. Cập nhật vẫn giữ các cuộc trò chuyện, cài đặt và đăng nhập của bạn.</string>
-    <!-- Sheet button (half width): close without updating. -->
     <string name="update_later">Để sau</string>
-    <!-- On the Update button while the new version downloads. -->
     <string name="update_downloading">Đang tải về…</string>
-    <!-- "Update" = the button (update_action). -->
     <string name="update_needs_permission">Cho phép Ski cài ứng dụng, rồi nhấn Cập nhật lần nữa.</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). ski.apk is a file name. -->
     <string name="update_error_no_apk">Bản phát hành này chưa có ski.apk.</string>
-    <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">Tải về thất bại (%1$s).</string>
     <string name="update_error_not_newer">Tệp đã tải không phải bản Ski mới hơn, nên không được mở.</string>
-    <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
     <string name="update_failed_manual">%1$s Bạn cũng có thể tải tại %2$s (ski.apk), hoặc dùng Obtainium để tự động cập nhật (xem %3$s).</string>
-
-    <!-- Settings, Appearance: option names. -->
-    <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->
     <string name="prefs_theme_system">Hệ thống</string>
     <string name="prefs_theme_light">Sáng</string>
     <string name="prefs_theme_dark">Tối</string>
-    <!-- Surface (background) tone, segmented control: keep short. Warm = Ski's original warm greys; Black = true black, in dark mode only. -->
     <string name="prefs_surface_warm">Ấm</string>
     <string name="prefs_surface_neutral">Trung tính</string>
     <string name="prefs_surface_black">Đen</string>
-    <!-- Accent colour names, read aloud by TalkBack for the colour swatches. -->
     <string name="prefs_accent_coral">San hô</string>
     <string name="prefs_accent_ocean">Đại dương</string>
     <string name="prefs_accent_mint">Bạc hà</string>
     <string name="prefs_accent_violet">Tím</string>
     <string name="prefs_accent_rose">Hồng</string>
     <string name="prefs_accent_amber">Hổ phách</string>
-
-    <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
-
-    <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. Nhấn để mở, nhấn giữ để xem thao tác</string>
-    <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">hiện thao tác</string>
     <string name="background_title">Chế độ nền</string>
-
-    <!-- Status pill beside the bubble: at most two lines, about 250dp wide; longer text is cut off with "…".
-         "hold" = long-press the bubble, which opens the hold menu. -->
     <string name="bubble_pill_waiting_answer">Đang chờ bạn trả lời</string>
     <string name="bubble_pill_waiting_approval">Đang chờ bạn đồng ý</string>
     <string name="bubble_pill_paused">Đã tạm dừng · nhấn vào đây để tiếp tục</string>
     <string name="bubble_pill_hands_on">%1$s · nhấn vào đây để trả lời</string>
-    <!-- The agent is operating the phone. Also the chat panel's running strip. -->
     <string name="bubble_using_phone">Đang dùng điện thoại của bạn</string>
-    <!-- %1$s: what the agent is doing right now (its own status text). -->
     <string name="bubble_using_phone_status">Đang dùng điện thoại · %1$s</string>
-    <!-- First line of the pill while the agent works without using the screen (background browser, Linux tools, thinking): the phone is free. -->
     <string name="bubble_pill_background">Đang chạy nền · bạn vẫn dùng được điện thoại</string>
     <string name="activity_reading">Đang đọc màn hình</string>
     <string name="activity_typing">Đang gõ</string>
@@ -288,39 +165,20 @@
     <string name="activity_browsing">Đang duyệt %1$s · %2$s</string>
     <string name="activity_browser_opening">Đang mở trang</string>
     <string name="activity_browser_reading">Đang đọc trang</string>
-    <!-- Shown until the user has opened the hold menu once; this one when there is no status text, otherwise the
-         next string. "Stop" is the hold menu's Stop task action. -->
     <string name="bubble_pill_hold_hint">giữ bong bóng để Dừng và tùy chọn khác</string>
-    <!-- %1$s: the current status text. -->
     <string name="bubble_pill_status_hold_hint">%1$s · giữ bong bóng để Dừng và tùy chọn khác</string>
-
-    <!-- Hold menu: actions fanned out around the bubble while it is held. Very little room: one line, 72dp wide
-         (about 12 characters); longer labels are cut off. -->
     <string name="menu_stop_task">Dừng việc</string>
     <string name="menu_resume">Tiếp tục</string>
     <string name="menu_pause">Tạm dừng</string>
-    <!-- Dictate an extra instruction for the agent while it works. -->
     <string name="menu_add_instruction">Thêm lời dặn</string>
-    <!-- Stops Ski reading a reply aloud. -->
     <string name="menu_stop_voice">Tắt giọng</string>
-    <!-- Verb: starts voice input to the agent. A hold-menu label (keep under ~12 characters) and the chat panel's
-         mic button (read by TalkBack). -->
     <string name="bubble_talk">Nói</string>
     <string name="menu_open_chat">Mở chat</string>
-    <!-- Hides the bubble; a notification brings it back. -->
     <string name="menu_hide">Ẩn</string>
-
-    <!-- Hold-menu preview: the first few times a task starts, three actions peek out of the bubble for a moment.
-         Short forms of Stop task, Add instruction and Stop voice; keep them very short. -->
     <string name="menu_peek_stop">Dừng</string>
-    <!-- Verb. -->
     <string name="menu_peek_add">Thêm</string>
-    <!-- Noun: Ski's spoken voice (the action silences it). -->
     <string name="menu_peek_voice">Giọng</string>
-    <!-- Badge under the preview: long-press the bubble; "me" is the bubble. -->
     <string name="menu_peek_hint">Giữ tôi</string>
-
-    <!-- Toasts from the bubble. "hold" = long-press. -->
     <string name="bubble_tip_stop_voice">Mẹo: giữ bong bóng để tắt giọng nói</string>
     <string name="bubble_tip_hold_menu">Mẹo: giữ bong bóng để tạm dừng, dừng hoặc thêm lời dặn</string>
     <string name="bubble_stopping">Đang dừng…</string>
@@ -328,281 +186,137 @@
     <string name="bubble_nothing_running_chat">Không có gì đang chạy trong cuộc trò chuyện này.</string>
     <string name="bubble_allow_mic_tap_mic">Cho phép micrô trong Ski, rồi nhấn lại nút micrô.</string>
     <string name="bubble_allow_mic_tap_bubble">Cho phép micrô trong Ski, rồi nhấn lại bong bóng.</string>
-    <!-- After dictating an instruction while the agent works. %1$s: the agent's name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="bubble_note_added">Đã nhận: %1$s sẽ lưu ý điều này</string>
-    <!-- A message was copied to the clipboard. -->
     <string name="bubble_copied">Đã sao chép</string>
-
-    <!-- Voice input, shown in the status pill beside the bubble. -->
     <string name="bubble_listening">Đang nghe…</string>
     <string name="bubble_listening_tap_done">Đang nghe… nói xong thì nhấn bong bóng</string>
-    <!-- The words heard so far. %1$s: the words. Use your language's quotation marks. -->
     <string name="bubble_heard">“%1$s”</string>
-
-    <!-- Chat panel opened from the bubble: header buttons (read by TalkBack) and titles. -->
-    <!-- Starts a new chat: the + button, and the title of the agent picker it opens. -->
     <string name="bubble_new_chat">Trò chuyện mới</string>
     <string name="bubble_open_in_app">Mở trong ứng dụng</string>
-    <!-- Closes the chat panel. -->
     <string name="bubble_close">Đóng</string>
-    <!-- Panel title while the list of chats shows. -->
     <string name="bubble_chats_title">Trò chuyện</string>
-    <!-- Panel title while picking this chat's model and effort (how hard the agent thinks). -->
     <string name="bubble_model_effort_title">Mô hình &amp; mức suy nghĩ</string>
-
-    <!-- Strip at the top of the chat panel while the agent works. -->
     <string name="bubble_working">Đang làm…</string>
-    <!-- Verb: stops this chat's task. -->
     <string name="bubble_stop">Dừng</string>
-
-    <!-- Composer at the bottom of the chat panel. -->
     <string name="bubble_attach">Đính kèm ảnh hoặc tệp</string>
-    <!-- Hint in the empty text field. %1$s: the agent's name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="bubble_input_hint">Hỏi %1$s…</string>
-    <!-- Verb: pastes copied text into the field. -->
     <string name="bubble_paste">Dán</string>
-    <!-- Verb: sends the message (read by TalkBack). -->
     <string name="bubble_send">Gửi</string>
-    <!-- A chat with no messages yet. %1$s: the agent's name (Claude Code, Codex, OpenCode, Antigravity or Grok); "me" is Ski. -->
     <string name="bubble_empty_chat">Cuộc trò chuyện %1$s mới. Hãy nhờ tôi làm gì đó trên điện thoại của bạn.</string>
-    <!-- Header of a collapsible group of the agent's steps in the chat. -->
-    <plurals name="bubble_tool_calls">
-        <item quantity="other">%1$d lần gọi công cụ</item>
-    </plurals>
-
-    <!-- List of chats in the panel. -->
-    <!-- Status of a running chat, under its title. Lowercase. -->
     <string name="bubble_chat_row_working">đang làm…</string>
-    <!-- Preview of the last message when the user wrote it. %1$s: the message. -->
     <string name="bubble_chat_row_you">Bạn: %1$s</string>
-    <!-- Asked in the chat's row after a long press, next to Cancel and Delete buttons. -->
     <string name="bubble_delete_chat">Xóa cuộc trò chuyện này?</string>
-    <!-- Button: deletes the chat. -->
     <string name="bubble_delete">Xóa</string>
-
-    <!-- Agent picker for a new chat (its title is bubble_new_chat). -->
-    <!-- Small tag next to the agent that new chats use by default. Lowercase. -->
     <string name="bubble_agent_default">mặc định</string>
     <string name="bubble_agent_not_signed_in">Chưa đăng nhập · nhấn để thiết lập</string>
     <string name="bubble_agent_not_installed">Chưa cài · nhấn để thiết lập</string>
     <string name="chat_bg_setup">Thiết lập chế độ nền (khoảng một phút) →</string>
-
-    <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">Cho cuộc trò chuyện này. Cuộc trò chuyện vẫn tiếp tục; tin nhắn tiếp theo sẽ dùng lựa chọn mới.</string>
-    <!-- Section heading, shown in capitals: how hard the agent thinks. -->
     <string name="bubble_effort">Mức suy nghĩ</string>
-    <!-- "Auto" is the name of the first effort choice below it; "Higher" = the higher effort levels; "plan" = the
-         user's subscription plan. -->
     <string name="bubble_effort_note">Tự động để agent tự quyết. Mức cao hơn suy nghĩ lâu hơn và dùng nhiều hạn mức gói của bạn hơn.</string>
-    <!-- Section heading, shown in capitals: the AI model. -->
     <string name="bubble_model">Mô hình</string>
-
-    <!-- Card in the chat panel when the agent asks for approval or asks a question. -->
-    <!-- Small all-caps label at the top of an approval card. -->
     <string name="card_label_approval">CẦN BẠN ĐỒNG Ý</string>
-    <!-- Small all-caps label at the top of a question card. -->
     <string name="card_label_question">CÂU HỎI</string>
-    <!-- The card's label when the request comes from an agent session outside Ski's chats (e.g. a terminal).
-         %1$s: card_label_approval or card_label_question. All caps. -->
     <string name="card_label_other_session">%1$s · TỪ PHIÊN KHÁC</string>
     <string name="card_label_queue">%1$s · 1 TRONG %2$d</string>
-    <!-- Buttons side by side at the bottom of the card: keep them short. -->
     <string name="card_deny">Từ chối</string>
-    <!-- Verb: the user says what the agent should change instead of approving. -->
     <string name="card_change">Sửa</string>
     <string name="card_approve">Đồng ý</string>
-    <!-- Verb: skips the question without answering. -->
     <string name="card_skip">Bỏ qua</string>
-    <!-- Last button under a question's answers: type an answer instead of picking one. -->
     <string name="card_type_own_answer">Tự gõ câu trả lời…</string>
-    <!-- Hint in the text field after tapping Change. -->
     <string name="card_change_hint">Cần thay đổi gì?</string>
-    <!-- Hint in the text field when typing an answer to a question. -->
     <string name="card_answer_hint">Câu trả lời của bạn…</string>
     <string name="chat_background">Làm việc ở chế độ nền</string>
     <string name="chat_background_info">Agent dùng màn hình riêng của nó và bạn vẫn tiếp tục dùng điện thoại. Bước nào cần bạn, ví dụ đăng nhập, sẽ hiện lên màn hình của bạn.</string>
-
-    <!-- Notes posted into the chat after the user answers a card. Keep the mark at the start (✓ ✎ ✗) and the space
-         after it. %1$s: the answer, the requested change or what was approved (shortened). -->
     <string name="card_note_answered">✓ Đã trả lời: %1$s</string>
     <string name="card_note_change_requested">✎ Đã yêu cầu sửa: %1$s</string>
     <string name="card_note_approved">✓ Đã đồng ý: %1$s</string>
     <string name="card_note_denied">✗ Đã từ chối</string>
     <string name="card_note_skipped">Đã bỏ qua câu hỏi</string>
-    <!-- A notification rule can let approval cards approve themselves after a countdown (Settings → Notification
-         rules). Small all-caps label at the top of such a card, instead of card_label_approval. -->
     <string name="card_label_countdown">SẮP TỰ ĐỒNG Ý</string>
-    <!-- Under the countdown bar on the card; tapping it stops the countdown. %1$d = seconds left. -->
     <string name="card_countdown">Tự đồng ý sau %1$d giây · Nhấn để dừng</string>
-    <!-- Note in the chat when the countdown ran out. Keep the mark ✓ and the space after it. %1$s = what was approved (shortened). -->
     <string name="card_note_auto_approved">✓ Đã đồng ý sau khi đếm ngược: %1$s</string>
-    <!-- Note in the chat after the user tapped the countdown to stop it: the card now waits for them. -->
     <string name="card_note_countdown_stopped">Đã dừng đếm ngược: đang chờ bạn đồng ý</string>
-
-    <!-- Notification while an agent operates the phone; on Android 16 also a chip in the status bar. -->
-    <!-- Name of this notification category in Android's notification settings. -->
     <string name="control_channel_name">Ski đang dùng điện thoại của bạn</string>
     <string name="control_channel_description">Hiện trên thanh trạng thái khi agent đang điều khiển điện thoại.</string>
     <string name="control_title">Ski đang dùng điện thoại của bạn</string>
-    <!-- "Stop" is the notification's button (control_stop): use the same word. -->
     <string name="control_text">Đừng chạm vào màn hình cho đến khi xong, hoặc nhấn Dừng để tự làm.</string>
-    <!-- Notification button, verb: stops the agent and gives the phone back to the user. -->
     <string name="control_stop">Dừng</string>
     <string name="pause_call_ended_title">Cuộc gọi đã kết thúc · Ski đang tạm dừng</string>
     <string name="pause_call_ended_text">Nhấn để tiếp tục việc đang làm</string>
-
-    <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, SkiService, Voice) ===== -->
-
-    <!-- Chat screen: app bar -->
-    <!-- Verb, go back. Read by TalkBack for the back arrow at the top of the chat and transcript screens; also a
-         button on the approval card that leaves the text box. Keep short. -->
     <string name="chat_back">Quay lại</string>
-    <!-- Read by TalkBack for the speaker button at the top of the chat (turns reading replies aloud on or off). -->
     <string name="chat_read_aloud">Đọc to câu trả lời</string>
     <string name="chat_read_aloud_on">Câu trả lời sẽ được đọc to</string>
     <string name="chat_read_aloud_off">Câu trả lời sẽ không được đọc to</string>
-
-    <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
-    <!-- A chat's own switch that lets its agent work in Ski's Linux: run commands, install packages, edit files,
-         build and install apps. The name on the small chip under the chat's title, and of the switch in the New chat
-         sheets. Keep short. -->
     <string name="chat_linux_tools">Công cụ Linux</string>
-    <!-- Under the Linux tools switch in the New chat sheets. "Ski's Linux" = the Linux system inside the app. -->
     <string name="chat_linux_tools_info">Lệnh, tệp và dựng ứng dụng trong Linux của Ski</string>
-    <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Bật công cụ Linux?</string>
-    <!-- ~/.ski/work is a folder: keep it as is. -->
     <string name="chat_linux_tools_what">Khi đó agent có thể chạy lệnh, cài gói và sửa tệp trong ~/.ski/work, nên nó có thể dựng ứng dụng.</string>
-    <!-- When the change applies: a task already running goes on as it was. -->
     <string name="chat_linux_tools_when">Chỉ trong cuộc trò chuyện này, từ tin nhắn tiếp theo của bạn.</string>
-    <!-- "it" = the agent. -->
     <string name="chat_linux_tools_risk">Một tin nhắn hoặc trang web độc hại trên màn hình có thể tìm cách lừa nó chạy lệnh. Thẻ duyệt vẫn bảo vệ việc gửi, đăng, mua và xóa.</string>
-    <!-- Button, verb: turns Linux tools on for this chat. Keep short. -->
     <string name="chat_linux_tools_turn_on">Bật</string>
-
-    <!-- Chat screen: Chat options (long-task mode, apps allowed without asking until the task ends) -->
-    <!-- Chat screen: the options button at the top (tune icon) and the title of its sheet. Keep short. -->
     <string name="chat_options">Tùy chọn trò chuyện</string>
-    <!-- Switch in Chat options: long-task mode. "it" = the chat's agent. -->
     <string name="chat_keep_awake">Giữ màn hình sáng khi agent làm việc</string>
-    <!-- Under that switch. -->
     <string name="chat_keep_awake_info">Cho việc dài: điện thoại luôn thức khi cuộc trò chuyện này đang chạy, và một thông báo cho biết kết quả. Khóa điện thoại vẫn tắt màn hình.</string>
-    <!-- Section title in Chat options: apps where this chat's routine approvals need no card until its task ends. -->
     <string name="chat_allowed">Cho phép không cần hỏi</string>
-    <!-- Under that title. "The reviewer" = Ski's smart reviewer (App permissions). -->
     <string name="chat_allowed_info">Cho đến khi việc của cuộc trò chuyện này kết thúc, các lần duyệt thông thường trong những ứng dụng này sẽ tự được thông qua: gửi tin nhắn, hoặc một bước mà trình kiểm duyệt sẽ hỏi. Mỗi lần đều hiện trong cuộc trò chuyện. Thanh toán, mua, xóa, cài ứng dụng, mật khẩu và cài đặt bảo mật vẫn hỏi bạn.</string>
-    <!-- Under that, when the chat has a schedule: the list isn't cleared when a run ends. -->
     <string name="chat_allowed_kept">Được giữ cho lịch của cuộc trò chuyện này: các ứng dụng này vẫn được cho phép trong những lần chạy theo lịch, cho đến khi bạn gỡ chúng hoặc gỡ lịch.</string>
-    <!-- Row that opens the app picker. -->
     <string name="chat_allowed_add">Thêm ứng dụng</string>
-    <!-- Read by TalkBack for the X beside an allowed app; %1$s = the app's name. -->
     <string name="chat_allowed_remove">Gỡ %1$s</string>
-    <!-- A line in the chat for an action that went ahead because of "Allowed without asking"; %1$s = the action, e.g. Tap “Complete Task” in Testers Community. -->
     <string name="run_rule_approved">Được duyệt theo quy tắc lần chạy của bạn: %1$s</string>
-    <!-- Notification title when a long-task chat's run ends; %1$s = the agent's name (Claude Code, Codex…). -->
     <string name="run_end_done">%1$s đã xong</string>
-    <!-- As above, when the user stopped it. -->
     <string name="run_end_stopped">%1$s đã dừng</string>
-    <!-- As above, when it ended with an error. -->
     <string name="run_end_failed">%1$s gặp sự cố</string>
-
-    <!-- Chat options: Schedule (the chat's scheduled task: Ski sends its message at set times) -->
-    <!-- Chat options: section title and the title of its sheet: the chat's scheduled task. Keep short. -->
     <string name="schedule_title">Lịch</string>
-    <!-- Row in Chat options when the chat has no schedule; opens the Schedule sheet. -->
     <string name="schedule_set">Đặt lịch</string>
-    <!-- Under that row. -->
     <string name="schedule_set_info">Tự gửi một tin nhắn vào cuộc trò chuyện này vào giờ đã đặt, ví dụ mỗi ngày lúc 14:00.</string>
-    <!-- At the top of the Schedule sheet. -->
     <string name="schedule_info">Đến giờ đã đặt, Ski gửi tin nhắn này vào cuộc trò chuyện như thể bạn tự gõ, với agent và tùy chọn của cuộc trò chuyện này. Thẻ duyệt vẫn chờ bạn. Nếu cần màn hình khi điện thoại đang khóa, Ski sẽ nhờ bạn mở khóa.</string>
-    <!-- Schedule sheet: section titles, the day choices and the message field. -->
     <string name="schedule_time">Giờ</string>
     <string name="schedule_days">Ngày</string>
     <string name="schedule_daily">Mỗi ngày</string>
     <string name="schedule_weekdays">Ngày thường</string>
     <string name="schedule_pick_days">Chọn ngày</string>
     <string name="schedule_message">Tin nhắn</string>
-    <!-- Hint in the message field: a generic example. -->
     <string name="schedule_message_hint">Nội dung cần gửi, ví dụ: Mở ứng dụng và điểm danh hôm nay</string>
-    <!-- Switch in the Schedule sheet, off by default. -->
     <string name="schedule_wake">Đánh thức điện thoại cho việc này</string>
-    <!-- Under that switch. -->
     <string name="schedule_wake_info">Khi cần màn hình, màn hình sẽ bật (và màn hình khóa không có mã PIN, hình mẫu hay vân tay sẽ mở). Trong lúc chạy, người ở gần có thể nhìn thấy màn hình.</string>
-    <!-- Schedule sheet, when Android doesn't let Ski set exact alarms; then a button that opens that setting. -->
     <string name="schedule_inexact">Báo thức chính xác đang tắt với Ski, nên việc có thể bắt đầu trễ vài phút.</string>
     <string name="schedule_allow_exact">Cho phép báo thức chính xác</string>
-    <!-- Schedule sheet buttons. -->
     <string name="schedule_save">Lưu</string>
     <string name="schedule_remove">Gỡ</string>
-    <!-- What's set; %1$s = a time of day (14:00). -->
     <string name="schedule_summary_daily">Mỗi ngày lúc %1$s</string>
     <string name="schedule_summary_weekdays">Ngày thường lúc %1$s</string>
-    <!-- %1$s = short day names (Mon, Thu), %2$s = a time of day. -->
     <string name="schedule_summary_days">%1$s lúc %2$s</string>
-    <!-- When it next runs; %1$s = weekday and time (Tue 14:00). -->
     <string name="schedule_next">Lần tới: %1$s</string>
-    <!-- Toasts when Save can't save yet. -->
     <string name="schedule_no_days">Chọn ít nhất một ngày</string>
     <string name="schedule_no_message">Hãy viết tin nhắn cần gửi</string>
-    <!-- Notification channel name. -->
     <string name="schedule_channel">Việc theo lịch</string>
-    <!-- Notification (and the screen Ski turns on) when a scheduled task needs the screen while the phone is locked. -->
     <string name="schedule_screen_title">Việc theo lịch cần màn hình: mở khóa để tiếp tục</string>
-    <!-- Its text; %1$s = the chat's title, %2$s = the time it gives up waiting. -->
     <string name="schedule_screen_text">%1$s: việc sẽ tiếp tục khi bạn mở khóa điện thoại, cho đến %2$s.</string>
-    <!-- Notification titles; %1$s = the chat's title. The text says why (the lines below). -->
     <string name="schedule_skipped_title">Đã bỏ qua việc theo lịch: %1$s</string>
     <string name="schedule_stopped_title">Đã dừng việc theo lịch: %1$s</string>
-    <!-- Why a scheduled task was skipped or stopped. -->
     <string name="schedule_skip_running">Cuộc trò chuyện này vẫn đang làm việc trước đó.</string>
     <string name="schedule_skip_busy">Ski bận suốt một giờ (việc khác, đang tạm dừng hoặc không có mạng).</string>
     <string name="schedule_skip_screen">Điện thoại bị khóa suốt một giờ.</string>
-    <!-- Small label over a message Ski sent at its scheduled time; also read by TalkBack for the clock icon in the chat list. -->
     <string name="schedule_marker">Theo lịch</string>
-
-    <!-- Chat screen: the strip shown while the agent works -->
-    <!-- Button, verb: stops the agent's task. Keep short. -->
     <string name="chat_stop">Dừng</string>
-    <!-- Status while an agent works and has no step to show yet (chat strip, the bubble's status pill). -->
     <string name="chat_working">Đang làm…</string>
-
-    <!-- Chat screen: composer and empty chat -->
-    <!-- Read by TalkBack for the paperclip button. -->
     <string name="chat_attach_description">Đính kèm ảnh hoặc tệp</string>
-    <!-- Hint in the message box. %1$s = agent name (Claude Code, Codex, OpenCode, Antigravity, Grok). -->
     <string name="chat_input_hint">Hỏi %1$s…</string>
-    <!-- Hint in the message box while the agent works: what you type now reaches it at its next step. -->
     <string name="chat_input_hint_running">Thêm lời dặn trong lúc agent làm…</string>
-    <!-- Read by TalkBack for the mic button. Verb: starts voice input. -->
     <string name="chat_talk">Nói</string>
-    <!-- Read by TalkBack for the send button. Verb. -->
     <string name="chat_send">Gửi</string>
-    <!-- Shown in a chat with no messages yet. %1$s = agent name (Claude Code, Codex, OpenCode, Antigravity, Grok). -->
     <string name="chat_empty_hint">Cuộc trò chuyện %1$s mới. Hãy nhờ nó làm gì đó trên điện thoại của bạn.</string>
-    <!-- Same, when the chat has Linux tools on. %1$s = agent name. -->
     <string name="chat_empty_hint_dev">Cuộc trò chuyện %1$s mới có công cụ Linux. Hãy nhờ nó làm gì đó trên điện thoại, hoặc dựng một ứng dụng.</string>
-
-    <!-- Model sheet (tap the model chip under the chat title) -->
-    <!-- %1$s = agent name, e.g. "Claude Code model". -->
     <string name="chat_model_title">Mô hình %1$s</string>
     <string name="chat_model_subtitle">Cho cuộc trò chuyện này. Cuộc trò chuyện tiếp tục với mô hình mới.</string>
-    <!-- Section label, shown in capitals: how hard the model thinks (reasoning effort). -->
     <string name="chat_effort">Mức suy nghĩ</string>
-    <!-- "Auto" is the first effort option below it; "Higher" means the higher options. -->
     <string name="chat_effort_help">Tự động để agent tự quyết. Mức cao hơn suy nghĩ lâu hơn và dùng nhiều hạn mức gói của bạn hơn.</string>
-    <!-- Section label, shown in capitals, above the list of models. -->
     <string name="chat_model">Mô hình</string>
-    <!-- Hint of the box for typing any model id. %1$s = an example model id (not translated). -->
     <string name="chat_model_other_hint">khác… ví dụ %1$s</string>
-    <!-- Button, verb: use the model typed in the box. Keep short. -->
     <string name="chat_model_use">Dùng</string>
-
-    <!-- Language sheet (long-press the mic) -->
-    <!-- Title, followed by a list of languages to speak in. -->
     <string name="chat_speak_in">Nói bằng</string>
-    <!-- "Settings → Voice" = the Voice section of Ski's Settings tab; use the same names as there. -->
     <string name="chat_speak_in_help">Chọn ngôn ngữ của bạn trong Cài đặt → Giọng nói.</string>
-    <!-- Live voice (CodexLive): a two-way ChatGPT voice call (through Codex) in any agent's chat; %1$s is the chat's agent (Claude, Codex…). live_label is the bar's short tag. -->
     <string name="live_option">Giọng nói trực tiếp</string>
     <string name="live_option_sub">Nói chuyện thành tiếng với %1$s. Nó trả lời bằng giọng của ChatGPT và làm việc trên điện thoại trong cuộc trò chuyện này.</string>
     <string name="live_label">Trực tiếp</string>
@@ -621,29 +335,18 @@
     <string name="live_status_thinking">Đang suy nghĩ…</string>
     <string name="live_status_working">Đang làm…</string>
     <string name="live_status_speaking">Đang nói…</string>
-    <!-- Small tag next to a language Claude's dictation doesn't support: the phone's own speech recognition is used. -->
     <string name="chat_phone_voice">giọng của điện thoại</string>
-
-    <!-- Approval card above the composer, when the agent asks for an OK or asks a question -->
-    <!-- Small label in capitals at the top of the card. -->
     <string name="chat_card_question">CÂU HỎI</string>
-    <!-- Small label in capitals at the top of the card. -->
     <string name="chat_card_needs_ok">CẦN BẠN ĐỒNG Ý</string>
-    <!-- Buttons, verbs. Deny, Change and Approve sit three in a row: keep short. -->
     <string name="chat_deny">Từ chối</string>
-    <!-- Verb: ask the agent to change what it wants to do. -->
     <string name="chat_change">Sửa</string>
     <string name="chat_approve">Đồng ý</string>
-    <!-- Verb: skip the agent's question without answering. -->
     <string name="chat_skip">Bỏ qua</string>
     <string name="chat_type_own_answer">Tự gõ câu trả lời</string>
     <string name="chat_answer_hint">Câu trả lời của bạn</string>
     <string name="chat_change_hint">Cần thay đổi gì?</string>
     <string name="chat_send_answer">Gửi câu trả lời</string>
     <string name="chat_send_change">Gửi yêu cầu sửa</string>
-
-    <!-- Attachments -->
-    <!-- Title of the sheet behind the paperclip button. Verb. -->
     <string name="chat_attach">Đính kèm</string>
     <string name="chat_attach_camera">Chụp ảnh</string>
     <string name="chat_attach_camera_sub">Dùng camera</string>
@@ -652,96 +355,49 @@
     <string name="chat_attach_files">Tệp</string>
     <string name="chat_attach_files_sub">PDF, tài liệu, mọi thứ tối đa 25 MB</string>
     <string name="chat_no_app_for_action">Không có ứng dụng nào trên điện thoại này làm được việc đó.</string>
-    <!-- Toast while one picked photo or file is added. -->
     <string name="chat_adding">Đang thêm…</string>
-    <!-- Toast while several picked photos or files are added (always 2 or more). -->
-    <plurals name="chat_adding_files">
-        <item quantity="other">Đang thêm %1$d tệp…</item>
-    </plurals>
-    <!-- Read by TalkBack for the × on an attachment waiting to be sent. Verb. -->
     <string name="chat_attachment_remove">Gỡ</string>
-    <!-- %1$s = file name. -->
     <string name="chat_no_app_for_file">Không có ứng dụng nào mở được %1$s.</string>
-
-    <!-- Chat messages -->
-    <!-- Toast after a long press copies a message. -->
     <string name="chat_copied">Đã sao chép</string>
-    <!-- Header of a collapsible group of the agent's steps in the chat. -->
-    <plurals name="chat_tool_calls">
-        <item quantity="other">%1$d lần gọi công cụ</item>
-    </plurals>
-
-    <!-- Notes Ski posts into a chat, and the chat's status line -->
-    <!-- After "Continue in Ski" on an earlier session. %1$s = agent name. -->
     <string name="hub_continuing">Đang tiếp tục một phiên %1$s trước đó. Nếu phiên đó vẫn mở trong terminal, hãy đóng nó ở đó trước.</string>
     <string name="hub_still_working_attachments">Cuộc trò chuyện này vẫn đang làm việc. Hãy gửi tệp đính kèm khi nó xong.</string>
-    <!-- Status right after a message is sent, until the agent's first step. -->
     <string name="hub_thinking">Đang suy nghĩ…</string>
     <string name="hub_still_waiting">Vẫn đang chờ mô hình trả lời…</string>
-    <!-- "the top of the chat" = the model chip under the chat title. -->
     <string name="hub_no_answer">Mô hình không trả lời. Có thể nó đang bận: hãy thử lại, hoặc chọn mô hình khác ở đầu cuộc trò chuyện.</string>
-    <!-- After picking a model for the chat. %1$s = model name. -->
     <string name="hub_model_set">Mô hình: %1$s</string>
-    <!-- After picking an effort level. %1$s = the level as the agent names it, not translated (low, medium, high…). -->
     <string name="hub_effort_set">Mức suy nghĩ: %1$s</string>
-    <!-- After picking Auto effort: the agent's default effort. -->
     <string name="hub_effort_default">Mức suy nghĩ: mặc định</string>
-    <!-- Status after the user taps Stop. -->
     <string name="hub_stopping">Đang dừng…</string>
-    <!-- Note after the task was stopped. -->
     <string name="hub_stopped">Đã dừng.</string>
     <string name="hub_interrupted">Android đã đóng Ski trong lúc agent đang làm việc, nên việc đã dừng.</string>
     <string name="hub_resume_message">Tiếp tục từ chỗ bạn đã dừng</string>
     <string name="chat_interrupted">Android đã đóng Ski trong lúc %1$s đang làm việc này. Tiếp tục sẽ kiểm tra những gì đã xong và làm tiếp từ đó.</string>
     <string name="chat_interrupted_continue">Tiếp tục</string>
     <string name="chat_interrupted_dismiss">Bỏ qua</string>
-    <!-- The agent ended with an error and gave no message. %1$s = agent name. -->
     <string name="hub_agent_stopped">%1$s đã dừng.</string>
     <string name="hub_something_wrong">Đã xảy ra lỗi.</string>
-    <!-- After the user adds something while the agent works. %1$s = agent name. -->
     <string name="hub_note_added">Đã thêm trong lúc làm: %1$s sẽ nhận ở bước tiếp theo</string>
     <string name="hub_note_not_sent">Bạn đã dừng nó, nên ghi chú của bạn chưa được gửi: nó đã trở lại ô tin nhắn</string>
-    <!-- The agent received what the user added while it worked. -->
     <string name="hub_note_passed">Đã chuyển phần bạn thêm vào</string>
-    <!-- The bubble's status pill when several chats work at once. %1$d = number of chats (always 2 or more),
-         %2$s = the newest chat's status. -->
-    <plurals name="hub_pill_chats">
-        <item quantity="other">%1$d cuộc trò chuyện · %2$s</item>
-    </plurals>
-
-    <!-- The agent's steps, one line each, shown in the chat and the bubble while it works. Arguments come from
-         the agent and are not translated. -->
     <string name="hub_tool_read_screen">Đang đọc màn hình</string>
     <string name="hub_tool_screenshot">Đang chụp màn hình</string>
-    <!-- %1$d = number of an element on the screen. -->
     <string name="hub_tool_tap_element">Đang nhấn phần tử %1$d</string>
-    <!-- %1$d,%2$d = x,y position on the screen. -->
     <string name="hub_tool_tap_point">Đang nhấn %1$d,%2$d</string>
     <string name="hub_tool_long_press">Đang nhấn giữ</string>
-    <!-- %1$s = the text being typed. -->
     <string name="hub_tool_type">Đang gõ “%1$s”</string>
     <string name="hub_tool_scroll_up">Đang cuộn lên</string>
     <string name="hub_tool_scroll_down">Đang cuộn xuống</string>
     <string name="hub_tool_scroll_left">Đang cuộn sang trái</string>
     <string name="hub_tool_scroll_right">Đang cuộn sang phải</string>
-    <!-- Any other direction. %1$s = the direction as the agent wrote it, not translated. -->
     <string name="hub_tool_scroll">Đang cuộn %1$s</string>
     <string name="hub_tool_swipe">Đang vuốt</string>
-    <!-- Pressing the phone's Back button. -->
     <string name="hub_tool_press_back">Đang nhấn Quay lại</string>
-    <!-- Pressing the phone's Home button. -->
     <string name="hub_tool_press_home">Đang nhấn Màn hình chính</string>
-    <!-- Pressing the phone's Recents button (recent apps). -->
     <string name="hub_tool_press_recents">Đang mở ứng dụng gần đây</string>
-    <!-- Opening the notification shade. -->
     <string name="hub_tool_press_notifications">Đang mở thông báo</string>
-    <!-- Opening Quick Settings ("quick_settings" is how the agent names it). -->
     <string name="hub_tool_press_quick_settings">Đang mở cài đặt nhanh</string>
-    <!-- Any other button. %1$s = the button as the agent named it, not translated. -->
     <string name="hub_tool_press">Đang nhấn %1$s</string>
-    <!-- %1$s = app name. -->
     <string name="hub_tool_open_app">Đang mở %1$s</string>
-    <!-- %1$s = web address. -->
     <string name="hub_tool_open_url">Đang mở %1$s</string>
     <string name="hub_tool_clipboard_read">Đang đọc bộ nhớ tạm</string>
     <string name="hub_tool_clipboard_write">Đang sao chép vào bộ nhớ tạm</string>
@@ -787,138 +443,75 @@
     <string name="steps_failed">thất bại</string>
     <string name="steps_stopped">đã dừng</string>
     <string name="hub_tool_list_apps">Đang liệt kê ứng dụng</string>
-    <!-- The user's answer to an approval request. Keep the mark (✓ ✎ ✗) and the space after it at the start.
-         %1$s = what was approved. -->
     <string name="hub_tool_approved">✓ Đã đồng ý: %1$s</string>
     <string name="hub_tool_change_requested">✎ Đã yêu cầu sửa</string>
-    <!-- %1$s = the change the user asked for. -->
     <string name="hub_tool_change_requested_text">✎ Đã yêu cầu sửa: %1$s</string>
     <string name="hub_tool_denied">✗ Đã từ chối</string>
     <string name="hub_tool_asking_approval">Đang xin bạn đồng ý</string>
-    <!-- The user answered the agent's question. Keep the ✓ and the space after it at the start. -->
     <string name="hub_tool_answered">✓ Đã trả lời</string>
-    <!-- %1$s = the user's answer. -->
     <string name="hub_tool_answered_text">✓ Đã trả lời: %1$s</string>
     <string name="hub_tool_question_skipped">Đã bỏ qua câu hỏi</string>
-    <!-- %1$s = the agent's question. -->
     <string name="hub_tool_asking">Đang hỏi: %1$s</string>
     <string name="hub_tool_point_out">Đang chỉ ra: %1$s</string>
     <string name="hub_tool_point_out_any">Đang chỉ ra một chỗ trên màn hình</string>
-    <!-- Step in the chat: the agent answers a notification through its reply field. %1$s = the reply (shortened). -->
     <string name="hub_tool_reply_notification">Đang trả lời: %1$s</string>
     <string name="hub_tool_update_download">Đang tải bản cập nhật Ski</string>
     <string name="hub_tool_update_check">Đang kiểm tra cập nhật Ski</string>
-    <!-- %1$s = what is searched for. -->
     <string name="hub_tool_web_search">Đang tìm trên web: %1$s</string>
-    <!-- Reading a web page. %1$s = web address. -->
     <string name="hub_tool_web_fetch">Đang đọc %1$s</string>
-    <!-- %1$s = a shell command. -->
     <string name="hub_tool_command">Đang chạy: %1$s</string>
     <string name="hub_tool_command_any">Đang chạy một lệnh</string>
-    <!-- %1$s = file name. -->
     <string name="hub_tool_edit">Đang sửa %1$s</string>
     <string name="hub_tool_edit_any">Đang sửa tệp</string>
-    <!-- Reading a file. %1$s = file name. -->
     <string name="hub_tool_read_file">Đang đọc %1$s</string>
-    <!-- Any other tool. %1$s = the tool's name, not translated. -->
     <string name="hub_tool_other">Đang dùng %1$s</string>
-
-    <!-- Transcript of an earlier agent session that isn't a Ski chat (read-only) -->
     <string name="transcript_loading">Đang tải…</string>
-    <!-- Button: continue this earlier session as a Ski chat. -->
     <string name="transcript_continue">Tiếp tục trong Ski</string>
     <string name="transcript_empty">Phiên này không có tin nhắn nào đọc được.</string>
-    <!-- Above the messages. %1$d = how many of the session's last messages are shown. -->
-    <plurals name="transcript_last_messages">
-        <item quantity="other">%1$d tin nhắn cuối · chỉ đọc</item>
-    </plurals>
-
-    <!-- Shared screens: links -->
-    <!-- Toast when a tapped link can't be opened. -->
     <string name="ui_no_app_for_link">Không có ứng dụng nào mở được liên kết này</string>
-
-    <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
     <string name="ui_a11y_title">Cách Ski dùng hỗ trợ tiếp cận</string>
     <string name="ui_a11y_what">Ski dùng dịch vụ hỗ trợ tiếp cận của Android để làm điều bạn nhờ trong các ứng dụng khác: nó đọc nội dung trên màn hình rồi nhấn, gõ và cuộn thay bạn. Nó cũng hiển thị bong bóng nổi.</string>
     <string name="ui_a11y_data">Trong lúc một việc đang chạy, nội dung màn hình, có thể gồm thông tin cá nhân như tin nhắn, tên hay địa chỉ, được gửi tới dịch vụ AI của agent bạn chọn (Anthropic cho Claude Code, OpenAI cho Codex, Google cho Antigravity, xAI cho Grok, hoặc nhà cung cấp mô hình OpenCode của bạn), chỉ để thực hiện yêu cầu của bạn.</string>
     <string name="ui_a11y_no_servers">Ski không có máy chủ riêng. Ski không thu thập, bán hay chia sẻ dữ liệu này, và không dùng nó cho quảng cáo.</string>
     <string name="ui_a11y_asks">Trước mọi việc gửi, đăng, mua hoặc xóa, Ski đều hỏi bạn đồng ý. Bạn có thể tắt dịch vụ này bất cứ lúc nào trong cài đặt hỗ trợ tiếp cận của Android.</string>
     <string name="ui_privacy_policy">Chính sách quyền riêng tư</string>
-    <!-- Button: close the disclosure without opening the settings. -->
     <string name="ui_no_thanks">Không, cảm ơn</string>
-    <!-- Button: agree to the disclosure and open Android's accessibility settings. -->
     <string name="ui_agree_continue">Đồng ý và tiếp tục</string>
-
-    <!-- Bottom navigation of the main screens. Keep very short (about 10 characters). -->
-    <!-- Tab: the list of Ski chats. -->
     <string name="ui_nav_chats">Trò chuyện</string>
-    <!-- Tab: every agent session on the phone (running and recent). -->
     <string name="ui_nav_sessions">Phiên</string>
-    <!-- Tab: Ski's settings. -->
     <string name="ui_nav_settings">Cài đặt</string>
-
-    <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
-    <!-- Toast when a pause runs out after 5 minutes. -->
     <string name="service_pause_expired">Đã tạm dừng 5 phút, nên Ski đã dừng việc.</string>
-    <!-- Toast after the user stops the task to use the phone. -->
     <string name="service_stopped_toast">Đã dừng. Điện thoại lại là của bạn.</string>
-    <!-- Note in the chat when the user pauses the agent. -->
     <string name="service_paused_note">Đã tạm dừng: bạn dùng điện thoại cho đến khi tiếp tục</string>
     <string name="service_paused_toast">Đã tạm dừng. Hãy dùng điện thoại, rồi nhấn Đã tạm dừng cạnh bong bóng để tiếp tục.</string>
-    <!-- Note in the chat when the user resumes the agent. -->
     <string name="service_resumed_note">Đã tiếp tục</string>
     <string name="service_autopaused_touch">Đã tạm dừng vì bạn chạm vào màn hình. Nhấn Đã tạm dừng cạnh bong bóng để tiếp tục.</string>
     <string name="service_autopaused_call">Đã tạm dừng vì có cuộc gọi. Nhấn Đã tạm dừng cạnh bong bóng để tiếp tục.</string>
-
-    <!-- Voice input and output -->
-    <!-- 🎙 = the mic button. -->
     <string name="voice_mic_needed">Ski cần micrô. Mở ứng dụng Ski và nhấn 🎙 một lần để cho phép.</string>
     <string name="voice_no_recognizer">Điện thoại này không có dịch vụ nhận dạng giọng nói.</string>
-    <!-- Status in the recording bar while speech recognition starts. Keep short. -->
     <string name="voice_starting">Đang bắt đầu…</string>
-    <!-- Status in the recording bar after the user stopped talking. Keep short. -->
     <string name="voice_finishing">Đang hoàn tất…</string>
-    <!-- Nothing was understood. -->
     <string name="voice_didnt_catch">Chưa nghe rõ.</string>
-    <!-- %1$d = Android's error number. -->
     <string name="voice_error">Lỗi nhận dạng giọng nói %1$d.</string>
-    <!-- Spoken aloud by text-to-speech in place of a block of code in a reply. -->
     <string name="voice_code_omitted">đã bỏ qua đoạn mã.</string>
-    <!-- Spoken aloud by text-to-speech in place of a web address in a reply. Noun. -->
     <string name="voice_link">liên kết</string>
-    <!-- Read by TalkBack for the send button of the recording bar: stops recording and sends. -->
     <string name="voice_stop_and_send">Dừng và gửi</string>
-
-    <!-- ===== Sign-in, agents and models (SignInActivity, Account, Models, Sessions, RemoteSession, Attachments) ===== -->
-
-    <!-- Sign-in screen (one per agent: Claude Code, Codex, OpenCode, Antigravity or Grok). Product and plan names
-         (Claude, ChatGPT, Codex, OpenCode, Grok, Anthropic, OpenAI, xAI, X, Pro, Max, Plus, Business) stay as they are. -->
-    <!-- Content description of the back arrow in the top bar (read by TalkBack). -->
     <string name="signin_back">Quay lại</string>
-    <!-- Subtitle while Ski checks whether the agent is installed and signed in. -->
     <string name="signin_checking">Đang kiểm tra…</string>
-
-    <!-- Sign-in screen: the agent isn't installed yet. -->
-    <!-- Screen title and the button that starts the install. %1$s = agent name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="signin_install">Cài %1$s</string>
     <string name="signin_install_sub_claude">Chạy Claude Code bên trong Ski bằng gói Claude của bạn.</string>
     <string name="signin_install_sub_opencode">Chạy OpenCode bên trong Ski. Các mô hình miễn phí dùng được ngay, không cần tài khoản; kết nối nhà cung cấp riêng của bạn (Anthropic, OpenAI, GitHub Copilot…) bất cứ lúc nào.</string>
     <string name="signin_install_sub_codex">Chạy Codex bên trong Ski bằng gói ChatGPT của bạn.</string>
     <string name="signin_install_sub_agy">Chạy Antigravity CLI của Google bên trong Ski bằng tài khoản Google của bạn: gói miễn phí, hoặc Google AI Pro hay Ultra.</string>
     <string name="signin_install_sub_grok">Chạy Grok Build của xAI bên trong Ski bằng tài khoản Grok của bạn (đăng nhập bằng Google hoặc X đều được).</string>
-    <!-- "Ski's Linux" = the small Linux system Ski installs inside the app. -->
     <string name="signin_install_size_claude">Tải về khoảng 235 MB một lần: Linux của Ski và Claude Code từ Anthropic. Hãy dùng Wi-Fi nếu được.</string>
     <string name="signin_install_size_opencode">Tải về khoảng 230 MB một lần: Linux của Ski, Node.js và OpenCode. Hãy dùng Wi-Fi nếu được.</string>
     <string name="signin_install_size_codex">Tải về khoảng 150 MB một lần: Linux của Ski, Node.js và Codex từ OpenAI. Hãy dùng Wi-Fi nếu được.</string>
     <string name="signin_install_size_agy">Tải về khoảng 200 MB một lần: Linux của Ski và Antigravity CLI từ Google. Hãy dùng Wi-Fi nếu được.</string>
     <string name="signin_install_size_grok">Tải về khoảng 170 MB một lần: Linux của Ski và Grok Build từ xAI. Hãy dùng Wi-Fi nếu được.</string>
-
-    <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">Đang cài</string>
     <string name="signin_updating">Đang cập nhật</string>
     <string name="signin_install_wait">Việc này mất vài phút. Bạn có thể rời màn hình này; quá trình vẫn tiếp tục.</string>
-
-    <!-- Sign-in screen: installed, not signed in. -->
     <string name="signin_title_claude">Đăng nhập Claude</string>
     <string name="signin_title_chatgpt">Đăng nhập ChatGPT</string>
     <string name="signin_title_google">Đăng nhập Google</string>
@@ -927,326 +520,188 @@
     <string name="signin_sub_chatgpt">Dùng tài khoản ChatGPT của bạn (Plus, Pro hoặc Business). Trình duyệt sẽ mở; hãy chấp thuận ở đó và Ski tự quay lại.</string>
     <string name="signin_sub_agy">Dùng tài khoản Google của bạn. Trình duyệt sẽ mở; đăng nhập ở đó và Ski tự lấy mã. Antigravity chờ khoảng một phút.</string>
     <string name="signin_sub_grok">Dùng tài khoản Grok của bạn; đăng nhập bằng Google hoặc X cũng được. Trình duyệt sẽ mở kèm một mã; xác nhận ở đó và Ski tự quay lại.</string>
-    <!-- Main button. -->
     <string name="signin_with_claude">Đăng nhập bằng Claude</string>
     <string name="signin_with_chatgpt">Đăng nhập bằng ChatGPT</string>
     <string name="signin_with_google">Đăng nhập bằng Google</string>
     <string name="signin_with_grok">Đăng nhập bằng Grok</string>
-    <!-- Button (Claude) and the title of the screen it opens: get a link to sign in from another phone or computer. -->
     <string name="signin_other_device">Đăng nhập trên thiết bị khác</string>
-    <!-- Button (ChatGPT): sign in by entering a one-time code on another device. -->
     <string name="signin_with_code">Đăng nhập bằng mã</string>
-
-    <!-- Sign-in screen: sign-in in progress. -->
-    <!-- Screen title while the sign-in starts. -->
     <string name="signin_sign_in">Đăng nhập</string>
-    <!-- Also shown as status text elsewhere while the sign-in starts. -->
     <string name="signin_starting">Đang bắt đầu đăng nhập…</string>
     <string name="signin_approve_title">Chấp thuận trong trình duyệt</string>
-    <!-- "Authorize" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
     <string name="signin_approve_claude">Nhấn Authorize trên trang Claude. Ski sẽ tự lấy mã và quay lại.</string>
     <string name="signin_approve_codex">Đăng nhập và cho phép Codex. Rồi quay lại Ski; Ski sẽ tự hoàn tất.</string>
     <string name="signin_approve_agy">Đăng nhập và cho phép Antigravity. Ski sẽ tự lấy mã trang hiển thị và quay lại. Nếu mất hơn một phút, hãy bắt đầu lại.</string>
-    <!-- %1$s = the one-time code shown on Grok's sign-in page, e.g. "ABCD-1234". -->
     <string name="signin_approve_grok">Kiểm tra trang có hiện %1$s không, rồi xác nhận và đăng nhập. Ski sẽ tự quay lại.</string>
-    <!-- Button. -->
     <string name="signin_open_again">Mở lại trang đăng nhập</string>
-    <!-- Screen title after the code was handed over. -->
     <string name="signin_signing_in">Đang đăng nhập</string>
-    <!-- Also shown as status text elsewhere after the code was handed over. -->
     <string name="signin_finishing">Đang hoàn tất đăng nhập…</string>
-    <!-- Error status. %1$s = the agent's last output (English, technical); may be empty. -->
     <string name="signin_not_finished">Đăng nhập chưa xong. %1$s</string>
-
-    <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">Mở liên kết này trên bất kỳ thiết bị nào và chấp thuận. Rồi sao chép mã trang hiển thị và dán vào bên dưới.</string>
-    <!-- Screen title (ChatGPT): a one-time code is shown below it. -->
     <string name="signin_enter_code">Nhập mã này</string>
     <string name="signin_remote_codex">Trên bất kỳ thiết bị nào, mở liên kết bên dưới, đăng nhập ChatGPT và nhập mã. Ski sẽ tự hoàn tất.</string>
     <string name="signin_remote_agy">Mở liên kết này trên bất kỳ thiết bị nào và đăng nhập. Rồi sao chép mã trang hiển thị và dán vào bên dưới, trong khoảng một phút.</string>
     <string name="signin_remote_grok">Trên bất kỳ thiết bị nào, mở liên kết bên dưới, đăng nhập Grok và xác nhận mã. Ski sẽ tự hoàn tất.</string>
-    <!-- Buttons and the toasts after them. -->
     <string name="signin_copy_code">Sao chép mã</string>
     <string name="signin_code_copied">Đã sao chép mã</string>
     <string name="signin_code_expiry">Mã có hiệu lực trong 15 phút.</string>
     <string name="signin_copy_link">Sao chép liên kết</string>
     <string name="signin_link_copied">Đã sao chép liên kết</string>
-    <!-- Button: share the sign-in link with another app. Verb. -->
     <string name="signin_share">Chia sẻ</string>
-    <!-- Button: open the sign-in link on this phone. -->
     <string name="signin_open_here">Mở tại đây</string>
-    <!-- Toasts. -->
     <string name="signin_no_browser">Không tìm thấy trình duyệt.</string>
     <string name="signin_no_browser_page">Không tìm thấy trình duyệt để mở trang đăng nhập.</string>
-    <!-- Label of the copied code or link on the clipboard (rarely shown). -->
     <string name="signin_clip_label">Đăng nhập</string>
-
-    <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Dán mã thay vào đó</string>
-    <!-- "Copy Code" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
     <string name="signin_paste_help">Nếu Ski không tự quay lại: nhấn Copy Code trên trang Claude, rồi dán vào đây.</string>
     <string name="signin_paste_help_agy">Nếu Ski không tự quay lại: nhấn Copy to Clipboard trên trang Antigravity, rồi dán vào đây.</string>
-    <!-- Hint inside the empty text box for the code. Lowercase in English. -->
     <string name="signin_code_hint">mã</string>
-    <!-- Short button next to the text box: use the pasted code. Verb. -->
     <string name="signin_use_code">Dùng</string>
-    <!-- Toast when there is no sign-in waiting for a code. -->
     <string name="signin_start_again">Hãy bắt đầu đăng nhập lại trước.</string>
-
-    <!-- Sign-in screen: signed in, or OpenCode installed (it needs no sign-in). -->
     <string name="signin_signed_in">Đã đăng nhập</string>
-    <!-- %1$s = agent name (Claude Code or Codex). -->
     <string name="signin_agent_ready">%1$s đã sẵn sàng.</string>
-    <!-- Button that closes the screen. -->
     <string name="signin_done">Xong</string>
-    <!-- Button, and the button of the confirmation sheet. -->
     <string name="signin_sign_out">Đăng xuất</string>
-    <!-- Confirmation sheet. %1$s = agent name. -->
     <string name="signin_sign_out_title">Đăng xuất khỏi %1$s?</string>
     <string name="signin_sign_out_text">%1$s trong Ski sẽ ngừng hoạt động cho đến khi bạn đăng nhập lại.</string>
     <string name="signin_opencode_ready">OpenCode đã sẵn sàng</string>
-    <!-- "model chip" = the button at the top of a chat that shows the agent and model. -->
     <string name="signin_opencode_free">Đang dùng các mô hình miễn phí của OpenCode. Chọn một mô hình cho từng cuộc trò chuyện bằng nút mô hình, hoặc kết nối nhà cung cấp riêng của bạn.</string>
-    <!-- %1$s = connected providers, comma-separated (e.g. "anthropic, openai"). -->
     <string name="signin_opencode_connected">Đã kết nối: %1$s. Các mô hình miễn phí của OpenCode vẫn dùng được.</string>
-    <!-- %1$s = the command "opencode auth login", %2$s = the command "opencode auth logout" (both stay as they are). -->
     <string name="signin_opencode_connect_note">Kết nối nhà cung cấp sẽ mở terminal của Ski với %1$s: chọn một nhà cung cấp và làm theo các bước. Để gỡ sau này, hãy chạy %2$s ở đó.</string>
-    <!-- Button. -->
     <string name="signin_connect_provider">Kết nối nhà cung cấp</string>
-    <!-- Installed version. %1$s = agent name, %2$s = version number (e.g. "Claude Code 2.1.40."). -->
     <string name="signin_version">%1$s %2$s.</string>
-    <!-- %1$s = the installed OpenCode 1.x version number. -->
     <string name="signin_version_old_opencode">OpenCode %1$s. Đã có OpenCode 2: hãy cập nhật để tiếp tục nhận phiên bản mới. Các nhà cung cấp đã kết nối vẫn được giữ.</string>
-    <!-- Buttons. -->
     <string name="signin_update_opencode2">Cập nhật lên OpenCode 2</string>
     <string name="signin_check_updates">Kiểm tra cập nhật</string>
-
-    <!-- Sign-in screen: error. -->
     <string name="signin_error_title">Đã xảy ra lỗi</string>
-    <!-- Button. -->
     <string name="signin_try_again">Thử lại</string>
-
-    <!-- Agent status shown on the sign-in, setup and onboarding screens. -->
-    <!-- One line under the agent's name in the agent pickers. -->
     <string name="account_tagline_claude">Dùng gói Claude của bạn</string>
     <string name="account_tagline_opencode">Không cần tài khoản, hoặc dùng nhà cung cấp riêng</string>
     <string name="account_tagline_codex">Dùng gói ChatGPT của bạn</string>
     <string name="account_tagline_agy">Dùng tài khoản Google của bạn</string>
     <string name="account_tagline_grok">Dùng tài khoản Grok của bạn</string>
-    <!-- Small tag beside an agent's name in the agent pickers (OpenCode, Antigravity, Grok): usable for free, within limits. -->
     <string name="agent_tag_free">miễn phí · có giới hạn</string>
-    <!-- Install progress. -->
     <string name="account_setting_up_linux">Đang thiết lập Linux của Ski…</string>
     <string name="account_installing_tools">Đang cài công cụ…</string>
     <string name="account_downloading_claude">Đang tải Claude Code (khoảng 230 MB)…</string>
-    <!-- %1$s = what is downloaded: an agent name (Codex, OpenCode) or "OpenCode 2". -->
     <string name="account_downloading">Đang tải %1$s…</string>
-    <!-- Error. %1$s = agent name, %2$s = technical detail in English. -->
     <string name="account_check_failed">Không kiểm tra được %1$s: %2$s</string>
-    <!-- Error. %1$s = technical detail in English. -->
     <string name="account_install_failed">Cài không thành công: %1$s</string>
     <string name="account_install_no_space">Điện thoại không đủ dung lượng trống. Hãy giải phóng khoảng 1 GB và thử lại.</string>
     <string name="account_install_network">Ski không kết nối được máy chủ tải về. Kiểm tra Wi-Fi hoặc dữ liệu di động (hoặc VPN hay DNS riêng tư đang chặn nó) và thử lại.</string>
     <string name="account_install_refused">Máy chủ tải về đã từ chối yêu cầu hoặc yêu cầu chậm lại. Thử lại sau vài phút.</string>
     <string name="account_install_space_needed">Chỉ còn trống %1$s. Cài một agent cần khoảng 1 GB: hãy giải phóng bớt dung lượng và thử lại.</string>
     <string name="signin_details">Chi tiết</string>
-    <!-- Update progress and result. %1$s = agent name: checking for a newer version of it. -->
     <string name="account_update_checking">Đang kiểm tra %1$s mới…</string>
-    <!-- %1$s = version number. -->
     <string name="account_update_latest">Bạn đang dùng phiên bản mới nhất (%1$s).</string>
-    <!-- %1$s = new version number. -->
     <string name="account_updated">Đã cập nhật lên %1$s.</string>
-    <!-- %1$s = new version number, %2$s = previous version number. -->
     <string name="account_updated_from">Đã cập nhật lên %1$s (trước là %2$s).</string>
-    <!-- %1$s = the OpenCode version that is still installed. -->
     <string name="account_update_opencode2_failed">Không cập nhật được lên OpenCode 2; bạn vẫn đang dùng %1$s. Hãy thử lại khi có Wi-Fi.</string>
     <string name="account_update_failed">Cập nhật không thành công: %1$s</string>
-
-    <!-- Model and effort pickers of a chat, and the chat's chip ("agent · model · effort").
-         Model names (Opus 5.5, GPT-6.1-Sol…) stay as they are. -->
-    <!-- Model picker row: the agent's own default model. Also shown in a chat note "Model: Default". -->
     <string name="models_default">Mặc định</string>
-    <!-- Chip: the agent's default model, now known. %1$s = model name (e.g. "Opus 5.5"). -->
     <string name="models_name_default">%1$s (mặc định)</string>
-    <!-- Chip: the default model, not known yet. Lowercase in English. -->
     <string name="models_default_model">mô hình mặc định</string>
-    <!-- Small grey line under "Default" in the model picker. Lowercase in English.
-         %1$s = the model the agent uses by default (e.g. "Opus 5.5"). -->
     <string name="models_default_now">hiện là %1$s</string>
     <string name="models_default_claude">Claude Code chọn theo gói của bạn; hiện ở đây sau tin nhắn đầu tiên</string>
     <string name="models_default_codex">Codex tự chọn; hiện ở đây sau câu trả lời tiếp theo</string>
     <string name="models_default_opencode">Mô hình mặc định của OpenCode</string>
     <string name="models_default_agy">Mô hình mặc định của Antigravity</string>
     <string name="models_default_grok">Mô hình mặc định của Grok</string>
-    <!-- Effort levels in a row of up to 6 segments: keep each very short (about 5 characters).
-         "Auto" = the agent decides how much to think. -->
     <string name="models_effort_auto">Tự động</string>
     <string name="models_effort_low">Thấp</string>
-    <!-- Short for "Medium". -->
     <string name="models_effort_medium">Vừa</string>
     <string name="models_effort_high">Cao</string>
-    <!-- Extra high. -->
     <string name="models_effort_xhigh">Rất cao</string>
-    <!-- Maximum. -->
     <string name="models_effort_max">Tối đa</string>
-    <!-- Chip, after the model. %1$s = effort level as the agent names it (low, medium, high, xhigh or max); not translated. -->
     <string name="models_chip_effort">mức %1$s</string>
-
-    <!-- Chats. -->
-    <!-- Title of a chat before its first message. %1$s = agent name (e.g. "New Claude Code chat"). -->
     <string name="session_new_chat">Trò chuyện %1$s mới</string>
-    <!-- Preview of a message with several photos or files (a single one shows its file name instead). -->
-    <plurals name="attach_count">
-        <item quantity="other">📎 %1$d tệp đính kèm</item>
-    </plurals>
-
-    <!-- Attaching a photo or file to a chat message (toasts). %1$s = file name. -->
     <string name="attach_cant_open">Không mở được %1$s</string>
     <string name="attach_too_large">%1$s lớn hơn 25 MB.</string>
-
-    <!-- Remote Control session in Settings: a Claude Code session that can be continued from the Claude app. -->
     <string name="remote_sign_in_first">Hãy đăng nhập Claude Code trước.</string>
     <string name="remote_starting">Đang bắt đầu…</string>
     <string name="remote_restarting">Đang khởi động lại…</string>
-    <!-- %1$s = technical detail in English. -->
     <string name="remote_start_failed">Không bắt đầu được: %1$s</string>
     <string name="remote_keeps_stopping">Phiên cứ bị dừng. Hãy tắt rồi bật lại, hoặc kiểm tra đăng nhập Claude Code.</string>
     <string name="codex_pair_getting">Đang lấy mã…</string>
-    <!-- %1$s = a time. Settings > Connections > Control other devices is the path in the ChatGPT desktop app. Keep "localhost" as is. -->
     <string name="codex_pair_text">Nhập mã này vào ChatGPT: trong Codex trên điện thoại, hoặc trong Settings → Connections → Control other devices trên máy tính. Mã chỉ dùng được một lần, đến %1$s. Ski sẽ hiện ở đó với tên “localhost”.</string>
-    <!-- %1$s = technical detail, in English. -->
     <string name="codex_pair_failed">Không lấy được mã ghép nối: %1$s</string>
-    <!-- %1$s = the last lines Codex printed, in English. -->
     <string name="codex_keeps_stopping">Phiên Codex cứ bị dừng: %1$s</string>
-    <!-- %1$s = the server's last message, in English. -->
     <string name="ssh_keeps_stopping">Máy chủ SSH cứ bị dừng: %1$s</string>
-    <!-- Shown in Termux after the copied command ran, and as a toast. "ssh ski" is a command: keep it as is. -->
     <string name="ssh_key_added">Xong. Để mở Linux của Ski từ Termux, hãy gõ ssh ski.</string>
-    <!-- Shown in Termux when the copied command was already used or is too old. -->
     <string name="ssh_code_expired">Lệnh này đã được dùng hoặc đã quá 10 phút. Hãy sao chép lại trong Cài đặt của Ski.</string>
-
-    <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
-
-    <!-- Settings screen: header. -->
     <string name="setup_settings_title">Cài đặt</string>
     <string name="setup_settings_subtitle">Ski chạy Claude Code, Codex, OpenCode, Antigravity hoặc Grok ngay trong ứng dụng, bằng gói của chính bạn (hoặc các mô hình miễn phí của OpenCode và gói miễn phí của Antigravity).</string>
-
-    <!-- Settings screen: the setup checklist card (5 steps). -->
-    <!-- Title of the setup checklist card (noun). -->
     <string name="setup_card_title">Thiết lập</string>
     <string name="setup_open_guide">Mở hướng dẫn từng bước</string>
     <string name="setup_all_set">Xong hết rồi. Ski đã sẵn sàng.</string>
-    <!-- %1$s = name of the next unfinished setup step, e.g. "Install Claude Code". -->
     <string name="setup_next_step">Tiếp theo: %1$s</string>
     <string name="setup_step_a11y_title">Bật dịch vụ hỗ trợ tiếp cận của Ski</string>
     <string name="setup_step_a11y_body">Dịch vụ này hiển thị bong bóng và cho Ski đọc màn hình, nhấn và gõ thay bạn.</string>
-    <!-- Second paragraph of the accessibility step on Android 13+. "Restricted setting", "App info" and "Allow restricted settings" are Android's own labels: use the wording Android uses in your language. ⋮ is the three-dot menu icon. -->
     <string name="setup_step_a11y_restricted">Công tắc bị mờ (“Cài đặt bị hạn chế”)? Android chặn mục này với ứng dụng cài từ tệp. Nhấn Thông tin ứng dụng, rồi ⋮ ở góc trên bên phải → Cho phép cài đặt bị hạn chế, và thử lại.</string>
-    <!-- Button: opens Android's accessibility settings. -->
     <string name="setup_open_settings">Mở cài đặt</string>
-    <!-- Button: opens Android's App info page for Ski (Android's own label). -->
     <string name="setup_app_info">Thông tin ứng dụng</string>
-    <!-- %1$s = agent name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="setup_step_install_title">Cài %1$s</string>
-    <!-- %1$s = agent name. -->
     <string name="setup_step_install_done">%1$s đã được cài trong Ski.</string>
-    <!-- %1$s = Claude Code. -->
     <string name="setup_step_install_claude">Ski tải về Linux nhỏ của riêng nó và %1$s từ Anthropic (khoảng 235 MB).</string>
-    <!-- %1$s = OpenCode. -->
     <string name="setup_step_install_opencode">Ski tải về Linux nhỏ của riêng nó và %1$s (khoảng 230 MB kèm Node.js).</string>
-    <!-- %1$s = Codex. -->
     <string name="setup_step_install_codex">Ski tải về Linux nhỏ của riêng nó và %1$s từ OpenAI (khoảng 150 MB).</string>
     <string name="setup_step_install_grok">Ski tải về Linux nhỏ của riêng nó và %1$s từ xAI (khoảng 170 MB).</string>
-    <!-- Button (verb). -->
     <string name="setup_install">Cài</string>
-    <!-- Name of the sign-in setup step. -->
     <string name="setup_step_signin_title">Đăng nhập</string>
     <string name="setup_step_signin_opencode_done">Không cần đăng nhập: các mô hình miễn phí của OpenCode dùng được ngay. Kết nối nhà cung cấp riêng của bạn bất cứ lúc nào.</string>
     <string name="setup_step_signin_opencode">Không cần đăng nhập để dùng các mô hình miễn phí của OpenCode.</string>
     <string name="setup_step_signin_done">Đã đăng nhập.</string>
-    <!-- %1$s = the account's email address. -->
     <string name="setup_step_signin_done_email">Đã đăng nhập bằng %1$s.</string>
     <string name="setup_step_signin_claude">Bằng tài khoản Claude của bạn (Pro hoặc Max). Trình duyệt sẽ mở; hãy chấp thuận ở đó và Ski tự quay lại.</string>
     <string name="setup_step_signin_codex">Bằng tài khoản ChatGPT của bạn. Trình duyệt sẽ mở; hãy chấp thuận ở đó và Ski tự quay lại.</string>
     <string name="setup_step_signin_grok">Bằng tài khoản Grok của bạn. Trình duyệt sẽ mở; xác nhận mã ở đó và Ski tự quay lại.</string>
-    <!-- Button (verb). -->
     <string name="setup_sign_in">Đăng nhập</string>
     <string name="setup_step_background_title">Cho Ski chạy nền</string>
     <string name="setup_step_background_done">Đã cho phép.</string>
     <string name="setup_step_background_body">Để điện thoại không dừng Ski nhằm tiết kiệm pin trong lúc agent đang làm việc.</string>
-    <!-- Button (verb): lets Ski ignore battery optimization. -->
     <string name="setup_allow">Cho phép</string>
-    <!-- Name of the last setup step: try Ski out. -->
     <string name="setup_step_try_title">Dùng thử</string>
     <string name="setup_step_try_done">Ski đã trả lời bạn. Nhấn bong bóng bất cứ lúc nào để nhờ thêm.</string>
-    <!-- "open Messenger" is an example of what to say to Ski: translate it. -->
     <string name="setup_step_try_body">Nhấn bong bóng ở cạnh màn hình và nói kiểu như “mở Messenger”, hoặc bắt đầu một cuộc trò chuyện tại đây.</string>
     <string name="setup_step_try_wait">Hãy hoàn tất các bước ở trên trước.</string>
-    <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
     <string name="setup_step_name_a11y">Bật dịch vụ hỗ trợ tiếp cận</string>
     <string name="setup_step_name_install">Cài agent của bạn</string>
     <string name="setup_step_name_background">Cho phép chạy nền</string>
-
-    <!-- Settings screen: Appearance. Section labels are shown in ALL CAPS. -->
     <string name="setup_appearance">Giao diện</string>
-    <!-- Label of the light / dark mode picker. -->
     <string name="setup_theme_mode">Chế độ</string>
-    <!-- Label of the accent colour picker. -->
     <string name="setup_accent">Màu nhấn</string>
-    <!-- Label of the background tone picker. -->
     <string name="setup_surface">Nền</string>
-    <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
     <string name="setup_surface_note">Ấm là tông màu gốc của Ski. Đen (đen tuyền) chỉ áp dụng ở chế độ tối.</string>
-    <!-- Setting: Ski's face on the floating bubble and next to its replies. Title above two short choices. -->
     <string name="setup_face">Diện mạo của Ski</string>
-    <!-- Choice: Ski's own drawn face. Keep it short. -->
     <string name="setup_face_ski">Gốc</string>
-    <!-- Choice: a picture the user picks from the phone. Keep it short. -->
     <string name="setup_face_picture">Ảnh của bạn</string>
     <string name="setup_face_note">Ảnh PNG hoặc WebP có nền trong suốt là đẹp nhất. Ảnh hiện trên bong bóng và cạnh câu trả lời của Ski.</string>
     <string name="setup_face_change">Chọn ảnh khác</string>
     <string name="setup_face_unreadable">Không đọc được ảnh đó. Hãy thử ảnh PNG hoặc WebP.</string>
-    <!-- Read by TalkBack: the swatch that opens the custom colour sheet. -->
     <string name="setup_custom_colour">Màu tùy chỉnh</string>
     <string name="setup_custom_accent_title">Màu nhấn tùy chỉnh</string>
     <string name="setup_custom_accent_hint">Bất kỳ màu nào dưới dạng mã hex, như #4F8BFF.</string>
-    <!-- Button (verb). -->
     <string name="setup_apply">Áp dụng</string>
-
-    <!-- Settings screen: Agent. -->
     <string name="setup_agent">Agent</string>
-    <!-- Which AI agent answers new chats. -->
     <string name="setup_default_brain">Agent mặc định</string>
-    <!-- "New chat" is the name of a button in Ski. -->
     <string name="setup_default_brain_info">Agent trả lời các cuộc trò chuyện mới từ bong bóng hoặc nút Trò chuyện mới. Claude Code dùng gói Claude của bạn, Codex dùng gói ChatGPT, Antigravity dùng tài khoản Google, Grok dùng tài khoản Grok, OpenCode dùng mô hình miễn phí hoặc nhà cung cấp riêng của bạn. Chỉ chọn được những agent đã thiết lập.</string>
-    <!-- Toast. %1$s = agent name. "New chat" is the name of a button in Ski. -->
     <string name="setup_default_brain_set">Các cuộc trò chuyện mới sẽ dùng %1$s. Bạn có thể chọn cho từng cuộc trò chuyện bằng nút Trò chuyện mới.</string>
-    <!-- Toast. %1$s = agent name. -->
     <string name="setup_set_up_first">Hãy thiết lập %1$s trước.</string>
-    <!-- Agent status under each agent's name: lowercase, monospace, keep short. -->
     <string name="setup_agent_installing">đang cài…</string>
     <string name="setup_agent_not_installed">chưa cài</string>
     <string name="setup_agent_ready">sẵn sàng</string>
-    <!-- %1$s = the agent's plan or models. -->
     <string name="setup_agent_ready_plan">sẵn sàng · %1$s</string>
     <string name="setup_agent_signed_in">đã đăng nhập</string>
-    <!-- %1$s = the account's email address. -->
     <string name="setup_agent_signed_in_email">đã đăng nhập · %1$s</string>
     <string name="setup_agent_not_signed_in">chưa đăng nhập</string>
     <string name="setup_agent_api_key">chưa đăng nhập · khóa API</string>
     <string name="signin_key_only">Đang dùng khóa API</string>
-
-    <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Công cụ điện thoại trong phiên của riêng bạn</string>
     <string name="setup_phone_tools_info">Công cụ điện thoại của Ski là một máy chủ MCP bình thường trên điện thoại này. Chạy lệnh này một lần trong terminal trên điện thoại (ví dụ Termux) và agent đó sẽ có công cụ điện thoại trong mọi phiên, kể cả khi không có bong bóng.</string>
-    <!-- Button. -->
     <string name="setup_copy_command">Sao chép lệnh</string>
     <string name="setup_command_copied">Đã sao chép. Hãy dán vào terminal của bạn.</string>
-
-    <!-- Settings screen: Voice. -->
     <string name="setup_voice">Giọng nói</string>
     <string name="setup_voice_input">Nhập bằng giọng nói</string>
-    <!-- Option next to Claude and ChatGPT: the phone's own speech engine. Keep short. -->
     <string name="setup_voice_phone">Điện thoại</string>
     <string name="setup_voice_input_claude">Tính năng đọc chính tả của Claude Code bằng gói Claude của bạn: rất chính xác. Hỗ trợ tiếng Anh, Pháp, Đức, Tây Ban Nha, Ý, Bồ Đào Nha, Hà Lan, Thổ Nhĩ Kỳ, Nga, Nhật và nhiều thứ tiếng khác, nhưng không có tiếng Ả Rập: với tiếng Ả Rập, Ski dùng trình nhận dạng của điện thoại. Chữ sẽ hiện khi bạn ngừng nói.</string>
     <string name="setup_voice_input_chatgpt">Giọng nói ChatGPT qua Codex, bằng gói ChatGPT của bạn. Hiểu mọi ngôn ngữ, kể cả khi trộn trong một câu. Chỉ lời bạn nói được dùng: câu trả lời bằng giọng của ChatGPT bị tắt tiếng và nó không chạy được gì.</string>
@@ -1254,163 +709,87 @@
     <string name="setup_voice_output">Đọc câu trả lời</string>
     <string name="setup_voice_output_chatgpt">Câu trả lời được đọc bằng giọng tự nhiên của ChatGPT (gói ChatGPT của bạn, qua Codex). Việc này tính vào hạn mức giọng nói ChatGPT của bạn; nếu không dùng được, giọng của điện thoại sẽ đọc thay.</string>
     <string name="setup_voice_output_phone">Giọng đọc văn bản của điện thoại, theo ngôn ngữ của câu trả lời.</string>
-    <!-- Spoken aloud to preview the chosen ChatGPT voice. Mixing two languages is on purpose (it shows the voice switches languages): keep a greeting in another language. -->
     <string name="setup_voice_sample">Bonjour ! Xin chào, mình là Ski. Giọng mình nghe thế này đây.</string>
     <string name="setup_languages">Ngôn ngữ</string>
     <string name="setup_languages_hint">Nhấn để chọn các ngôn ngữ bạn nói. Nhấn giữ một ngôn ngữ để đặt làm mặc định. Trong cuộc trò chuyện, nhấn giữ nút micrô để đổi ngôn ngữ.</string>
-    <!-- Sheet title. %1$s = agent name (Claude Code or Codex). -->
     <string name="setup_sign_in_first">Hãy đăng nhập %1$s trước</string>
-    <!-- %1$s = Claude Code. -->
     <string name="setup_needs_claude">Tính năng đọc chính tả của Claude chạy bằng gói Claude của bạn thông qua %1$s.</string>
-    <!-- %1$s = Codex. -->
     <string name="setup_needs_chatgpt">Giọng nói ChatGPT chạy bằng gói ChatGPT của bạn thông qua %1$s.</string>
-    <!-- Button. %1$s = agent name. -->
     <string name="setup_set_up_agent">Thiết lập %1$s</string>
-
-    <!-- Settings screen: Remote Control (a Claude Code session you continue from the Claude app). -->
-    <!-- Section label: Remote Control is the name of a Claude Code feature. -->
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Phiên Claude Code</string>
-    <!-- "Code" is the name of a section of the Claude app. -->
     <string name="setup_remote_session_info">Một phiên Claude Code chạy bên trong Ski, có công cụ điện thoại. Tiếp tục phiên này từ ứng dụng Claude (Code) trên điện thoại này hoặc ở bất cứ đâu.</string>
     <string name="setup_remote_sign_in_first">Hãy đăng nhập Claude Code trước.</string>
-    <!-- Status, lowercase. %1$s = the session's name as shown in the Claude app. -->
     <string name="setup_remote_active">đang chạy · “%1$s” trong ứng dụng Claude</string>
-    <!-- Status, lowercase. -->
     <string name="setup_remote_starting">đang bắt đầu…</string>
-    <!-- Status, lowercase. -->
     <string name="setup_remote_stopped">đã dừng</string>
     <string name="setup_remote_open">Mở trong ứng dụng Claude</string>
     <string name="setup_remote_open_failed">Không mở được.</string>
     <string name="setup_codex_session">Phiên Codex</string>
-    <!-- "Codex" is a section of the ChatGPT app; "Default permissions" is a permission choice in ChatGPT. -->
     <string name="setup_codex_session_info">Codex có công cụ điện thoại, chạy bên trong Ski. Dùng từ ứng dụng ChatGPT (Codex) trên điện thoại này hoặc trên máy tính. Sandbox của Codex không chạy được ở đây, nên với Default permissions, nó sẽ hỏi trước mỗi lệnh.</string>
-    <!-- Status, lowercase. "localhost" is the name ChatGPT shows for Ski: keep it as is. -->
     <string name="setup_codex_active">đang chạy · “localhost” trong ChatGPT</string>
     <string name="setup_codex_pair">Ghép nối thiết bị</string>
-    <!-- SSH: the standard way to sign in to a computer's terminal from another program. Termux is an Android terminal app. -->
     <string name="setup_ssh">SSH từ Termux</string>
     <string name="setup_ssh_info">Dùng Linux của Ski từ Termux, qua SSH. Chỉ ứng dụng trên điện thoại này mới kết nối được, và chỉ khi có khóa.</string>
-    <!-- Status, lowercase. %1$d = a port number. -->
     <string name="setup_ssh_active">đang chạy · cổng %1$d</string>
-    <!-- "ssh ski" is a command: keep it as is. -->
     <string name="setup_ssh_how">Sao chép lệnh này và chạy một lần trong Termux, trong vòng 10 phút. Sau đó, gõ ssh ski trong Termux để mở Linux của Ski.</string>
-
-    <!-- Settings screen: chats left over from when Ski ran its agents in Termux. -->
     <string name="setup_old_chats_title">Gỡ các cuộc trò chuyện Termux cũ</string>
-    <plurals name="setup_old_chats_body">
-        <item quantity="other">%1$d cuộc trò chuyện từ trước khi Ski có Linux riêng. Agent không thể tiếp tục chúng.</item>
-    </plurals>
-    <plurals name="setup_old_chats_remove">
-        <item quantity="other">Gỡ %1$d cuộc trò chuyện cũ?</item>
-    </plurals>
     <string name="setup_old_chats_remove_body">Gỡ chúng khỏi danh sách trò chuyện của Ski. Không thể hoàn tác.</string>
-    <!-- Button (verb). -->
     <string name="setup_remove">Gỡ</string>
     <string name="setup_removed">Đã gỡ.</string>
-
-    <!-- Settings screen: Experience. -->
     <string name="setup_experience">Trải nghiệm</string>
     <string name="setup_chat_bubble">Bong bóng trò chuyện</string>
-    <!-- ✕ is the close target that appears while dragging the bubble. -->
     <string name="setup_chat_bubble_info">Nổi trên các ứng dụng khác. Kéo nó vào dấu ✕ để ẩn; thẻ duyệt vẫn bật lên khi agent cần bạn đồng ý.</string>
-    <!-- Setting: what a tap on the floating bubble does. Title above three short choices. -->
     <string name="setup_tap_action">Khi nhấn bong bóng</string>
-    <!-- Choice: a tap opens the floating chat panel. Keep it short (it shares a row with two more). -->
     <string name="setup_tap_panel">Bảng chat</string>
-    <!-- Choice: a tap starts the microphone. Keep it short. -->
     <string name="setup_tap_talk">Nói</string>
-    <!-- Choice: a tap opens the chat full screen in the app. Keep it short. -->
     <string name="setup_tap_app">Mở ứng dụng</string>
-    <!-- Explains the "Chat panel" choice. -->
     <string name="setup_tap_panel_info">Mở khung trò chuyện nổi trên ứng dụng bạn đang dùng. Giữ bong bóng để xem thêm.</string>
-    <!-- Explains the "Full app" choice. -->
     <string name="setup_tap_app_info">Mở cuộc trò chuyện toàn màn hình trong Ski. Giữ bong bóng để xem thêm.</string>
-    <!-- Setting: the size of the floating chat panel. Title above two short choices. -->
     <string name="setup_panel_size">Kích thước bảng chat</string>
-    <!-- Choice: the panel fills the screen. Keep it short. -->
     <string name="setup_panel_full">Đầy đủ</string>
-    <!-- Choice: a smaller panel. Keep it short. -->
     <string name="setup_panel_compact">Gọn</string>
     <string name="setup_panel_size_info">Đầy đủ trải từ mép này sang mép kia. Gọn thì nhỏ hơn và chừa các mép màn hình, nên cử chỉ vuốt cạnh vẫn hoạt động.</string>
-    <!-- Explains the "Talk" choice of setup_tap_action. -->
     <string name="setup_tap_to_talk_info">Nhấn một lần là mở micrô: nói điều bạn muốn và tin nhắn sẽ được gửi khi bạn ngừng nói. Giữ bong bóng để mở trò chuyện và hơn nữa.</string>
     <string name="setup_read_aloud">Đọc to câu trả lời</string>
-    <!-- "Voice" = the Settings section of that name (setup_voice). -->
     <string name="setup_read_aloud_info">Ski đọc to câu trả lời của agent, bằng giọng bạn chọn trong mục Giọng nói.</string>
     <string name="setup_update_notices">Thông báo cập nhật</string>
     <string name="setup_update_notices_info">Ski kiểm tra GitHub mỗi ngày một lần và báo cho bạn khi có phiên bản mới.</string>
     <string name="setup_check_updates">Kiểm tra cập nhật</string>
-    <!-- %1$s = Ski's version number. "update yourself" is what you can say to an agent: translate it. -->
     <string name="setup_check_updates_info">Bạn đang dùng Ski %1$s. Hoặc nói với bất kỳ agent nào: “tự cập nhật đi”.</string>
-    <!-- Name of the App permissions screen. -->
     <string name="setup_app_permissions">Quyền ứng dụng</string>
-    <!-- "Trust" and "Hard" are names of approval modes on the App permissions screen: use the same words. Send, Pay, Delete are example buttons in other apps. -->
     <string name="setup_app_permissions_info">Chọn cho từng ứng dụng: Tin cậy cho agent làm việc ở đó không cần popup; Chặt nghĩa là chính Ski hỏi bạn trước khi Gửi, Thanh toán, Xóa…</string>
-    <!-- Settings row that opens the notification rules: when a notification from an app arrives, an agent acts on it. -->
     <string name="setup_rules">Quy tắc thông báo</string>
     <string name="setup_rules_info">Để agent hành động khi có thông báo đến: trả lời tin nhắn, thêm một đơn giao hàng vào lịch…</string>
-    <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Công cụ Linux trong trò chuyện mới</string>
     <string name="setup_dev_mode_info">Công cụ Linux cho agent chạy lệnh, cài gói và sửa tệp trong ~/.ski/work, nên nó có thể dựng ứng dụng. Các cuộc trò chuyện mới bắt đầu với cài đặt này; mỗi cuộc trò chuyện có thể đổi nó dưới tiêu đề.</string>
     <string name="setup_agents_tap">Cho agent nhấn vào màn hình của Ski</string>
-    <!-- "App permissions" is the name of a screen in Ski. -->
     <string name="setup_agents_tap_info">Để thử Ski bằng một agent (ví dụ Claude Code trong Termux có công cụ điện thoại). Bong bóng, thẻ duyệt, Quyền ứng dụng và các công tắc này vẫn bị cấm chạm.</string>
-    <!-- Warning shown while Linux tools in new chats (setup_dev_mode) is on. -->
     <string name="setup_dev_mode_warning">Tốt nhất nên tắt: chỉ bật công cụ Linux trong những cuộc trò chuyện cần đến. Khi bật, một tin nhắn hoặc trang web độc hại trên màn hình có thể tìm cách lừa agent chạy lệnh. Thẻ duyệt vẫn bảo vệ việc gửi, đăng, mua và xóa.</string>
-
-    <!-- Settings screen: footer links. -->
-    <!-- Link and sheet title. -->
     <string name="setup_licences">Giấy phép mã nguồn mở</string>
     <string name="setup_privacy_policy">Chính sách quyền riêng tư</string>
-
-    <!-- Errors while installing Ski's built-in Linux (Alpine). Shown after "Install failed:". -->
-    <!-- %1$s = SHA-256 checksum of the download. -->
     <string name="linux_download_corrupt">Tệp Alpine tải về bị hỏng (sha256 %1$s)</string>
     <string name="linux_move_failed">Không di chuyển được Alpine vào đúng chỗ</string>
-    <!-- %1$d = HTTP status code, e.g. 404. -->
     <string name="linux_download_failed_http">Tải về thất bại: HTTP %1$d</string>
-    <!-- %1$s = a file path inside the downloaded archive. -->
     <string name="linux_unsafe_path">Đường dẫn không an toàn trong tệp nén: %1$s</string>
-    <!-- Creating a symbolic link failed. %1$s = file path, %2$s = the system's error message. -->
     <string name="linux_symlink_failed">symlink %1$s: %2$s</string>
     <string name="linux_truncated_archive">Tệp nén bị thiếu dữ liệu</string>
-
-    <!-- Terminal screen (a shell in Ski's Linux, in tabs). -->
-    <!-- Name of Ski's built-in terminal: title of the Terminal screen and its menu, and of the Terminal card on the Sessions screen. -->
     <string name="terminal_title">Terminal</string>
-    <!-- Read by TalkBack: back button. -->
     <string name="terminal_back">Quay lại</string>
-    <!-- Read by TalkBack: button that hides the on-screen keyboard. -->
     <string name="terminal_hide_keyboard">Ẩn bàn phím</string>
-    <!-- Read by TalkBack: button that opens the terminal menu. -->
     <string name="terminal_menu">Menu</string>
-    <!-- Status line under the title, lowercase. "ski linux" is the name of Ski's Linux: keep it. Only shown for 2 or more. -->
-    <plurals name="terminal_sessions_count">
-        <item quantity="other">%1$d phiên · ski linux</item>
-    </plurals>
-    <!-- Status line under the title while the microphone is in use, lowercase. -->
     <string name="terminal_listening">đang nghe · micrô đang bật</string>
     <string name="terminal_session_ended">Phiên đã kết thúc</string>
-    <!-- %1$d = the shell's exit code. -->
     <string name="terminal_session_ended_code">Phiên đã kết thúc · mã thoát %1$d</string>
-    <!-- Button (verb): closes the terminal tab. -->
     <string name="terminal_close">Đóng</string>
-    <!-- Button (verb): starts a new shell. -->
     <string name="terminal_restart">Khởi động lại</string>
     <string name="terminal_needs_linux">Hãy cài Claude Code, Codex, OpenCode, Antigravity hoặc Grok trong Cài đặt trước: việc đó sẽ thiết lập Linux của Ski.</string>
-    <!-- %1$s = error message. -->
     <string name="terminal_start_failed">Không khởi động được terminal: %1$s</string>
-    <!-- Sheet title. %1$s = the tab's name, e.g. "shell 1". -->
     <string name="terminal_close_title">Đóng %1$s?</string>
     <string name="terminal_close_running">Nó vẫn đang chạy. Đóng sẽ dừng nó và mọi thứ nó đã khởi chạy.</string>
-    <!-- Default name of a terminal tab until the program in it sets a title. Lowercase. %1$d = tab number. -->
     <string name="terminal_shell_name">shell %1$d</string>
-    <!-- Menu item and "+" tab button: opens a new shell tab. -->
     <string name="terminal_new_session">Phiên mới</string>
-    <!-- Menu item, selection toolbar item and paste key: pastes the clipboard into the terminal. -->
     <string name="terminal_paste">Dán</string>
-    <!-- Menu item and selection toolbar item. -->
     <string name="terminal_select_all">Chọn tất cả</string>
     <string name="terminal_larger_text">Chữ to hơn</string>
     <string name="terminal_smaller_text">Chữ nhỏ hơn</string>
@@ -1418,271 +797,143 @@
     <string name="terminal_keep_screen_on">Giữ màn hình sáng</string>
     <string name="terminal_close_session">Đóng phiên này</string>
     <string name="terminal_tips">Nhấn giữ để chọn chữ hoặc liên kết. Chụm hai ngón để thu phóng, kéo để cuộn ngược lại. Nhấn giữ một thẻ để đóng.</string>
-
-    <!-- Terminal: floating toolbar over selected text. Keep short. -->
     <string name="terminal_copy">Sao chép</string>
     <string name="terminal_open_link">Mở liên kết</string>
     <string name="terminal_share">Chia sẻ</string>
-
-    <!-- Sessions screen: every agent session running on the phone, and recent history. -->
     <string name="monitor_title">Phiên</string>
     <string name="monitor_subtitle">Mọi phiên Claude Code, Codex, OpenCode, Antigravity và Grok trên điện thoại này.</string>
     <string name="monitor_terminal_running">Một shell đang chạy · nhấn để quay lại</string>
     <string name="monitor_terminal_idle">Một shell trong Linux của Ski</string>
     <string name="monitor_running_now">Đang chạy</string>
-    <!-- Next to "Running now": the list refreshes every 3 seconds. Lowercase, monospace, keep short. -->
     <string name="monitor_refresh">làm mới 3 giây</string>
     <string name="monitor_checking">Đang kiểm tra…</string>
     <string name="monitor_recent">Gần đây</string>
     <string name="monitor_loading">Đang tải…</string>
     <string name="monitor_service_off">Dịch vụ hỗ trợ tiếp cận của Ski đang tắt, nên không kiểm tra được các phiên. Hãy bật nó trong Cài đặt.</string>
     <string name="monitor_nothing_running">Không có gì đang chạy.</string>
-    <!-- Title of a running session whose Ski chat was deleted. -->
     <string name="monitor_deleted_chat">Cuộc trò chuyện Ski đã xóa</string>
     <string name="monitor_background_session">Phiên chạy nền</string>
     <string name="monitor_terminal_session">Phiên terminal</string>
-    <!-- Small lowercase tag on a running session: where it runs. Keep very short. -->
     <string name="monitor_tag_background">nền</string>
-    <!-- Small lowercase tag on a running session: where it runs. Keep very short. -->
     <string name="monitor_tag_terminal">terminal</string>
-    <!-- Monospace details line. %1$s = command name (claude-code, codex, opencode), %2$d = process id, %3$s = working folder. -->
     <string name="monitor_proc_meta">%1$s · pid %2$d · %3$s</string>
     <string name="monitor_background_hint">Chạy trong dịch vụ nền của Claude Code, ví dụ một cuộc trò chuyện bạn tiếp tục từ ứng dụng Claude.</string>
-    <!-- Button. -->
     <string name="monitor_open_chat">Mở trò chuyện</string>
-    <!-- Button (verb): stops the session. -->
     <string name="monitor_stop">Dừng</string>
-    <!-- Sheet title. %1$s = agent name (Claude Code, Codex, OpenCode, Antigravity or Grok). -->
     <string name="monitor_stop_title">Dừng phiên %1$s này?</string>
     <string name="monitor_stop_background_body">Phiên này chạy nền, ví dụ một cuộc trò chuyện bạn đang tiếp tục từ ứng dụng Claude. Thậm chí nó có thể là phiên đang điều khiển Ski. Dừng nó sẽ kết thúc việc đang làm của cuộc trò chuyện đó.</string>
     <string name="monitor_stop_terminal_body">Đây có thể là phiên bạn đang dùng trong terminal ngay lúc này. Thậm chí nó có thể là phiên đang điều khiển Ski. Dừng nó sẽ kết thúc việc đang làm của cuộc trò chuyện đó.</string>
     <string name="monitor_stopping">Đang dừng…</string>
     <string name="monitor_service_title">Dịch vụ nền của Claude Code</string>
-    <!-- Monospace details line. %1$d = process id, %2$s = how long it has been running (e.g. 1:02:03). -->
     <string name="monitor_service_meta">pid %1$d · chạy %2$s · chứa các phiên nền</string>
     <string name="monitor_no_history">Không tìm thấy lịch sử.</string>
-    <!-- Title of a past session that has no messages. -->
     <string name="monitor_no_messages">(không có tin nhắn)</string>
-
-    <!-- ===== Approvals and app permissions, tool cards, dictation (AppPermissionsActivity, Guard, Tools, Reviewer, dictation) ===== -->
-
-    <!-- App permissions screen (Settings → App permissions): how much the agent may do on its own in each app.
-         The three approval modes are named Trust, Hard and Smart (perms_mode_*): use the same names wherever they appear. -->
     <string name="perms_title">Quyền ứng dụng</string>
-    <!-- Content description of the back arrow at the top of the screen (read by TalkBack). -->
     <string name="perms_back">Quay lại</string>
-    <!-- Approval mode name, in a small one-line segmented control next to each app's name: keep it short (about 6 characters).
-         Trust = the agent works on its own in this app, without asking. -->
     <string name="perms_mode_trust">Tin cậy</string>
-    <!-- Approval mode name (see perms_mode_trust), keep it short. Hard = the button rules decide: risky buttons need the user's OK. -->
     <string name="perms_mode_hard">Chặt</string>
-    <!-- Approval mode name (see perms_mode_trust), keep it short. Smart = the button rules, then a reviewer AI checks every other tap. -->
     <string name="perms_mode_smart">Thông minh</string>
-    <!-- Explains the three modes, one per line. Trust, Hard and Smart are the mode names above; Send, Pay, Delete are example button labels. -->
     <string name="perms_modes_intro">Tin cậy: agent tự làm việc ở đây, không có popup xin duyệt.\nChặt: quy tắc nút của bạn quyết định. Gửi, Thanh toán, Xóa… cần bạn đồng ý trên thẻ.\nThông minh: áp dụng quy tắc, rồi một AI kiểm duyệt riêng kiểm tra mọi lần nhấn khác so với yêu cầu của bạn.\nAgent không bao giờ được nhấn vào bong bóng, thẻ hay cài đặt của chính Ski.</string>
-    <!-- Section title: which AI reviews the taps in apps set to Smart. -->
     <string name="perms_smart_reviewer">Trình kiểm duyệt thông minh</string>
-    <!-- Reviewer choice in a segmented control, next to “Claude Code” and “Codex”: the same agent as the chat. Keep it short. -->
     <string name="perms_reviewer_same">Như trò chuyện</string>
-    <!-- Toast when the user picks a reviewer that isn't signed in. %1$s = Claude Code or Codex. -->
     <string name="perms_reviewer_sign_in">Hãy đăng nhập %1$s trước (Cài đặt).</string>
-    <!-- Under the reviewer choice. “allow”, “ask you” and “advise against” are the reviewer's three possible answers. -->
     <string name="perms_reviewer_about">Một phiên tạm thời cho mỗi lần nhấn, không có công cụ: nó xem yêu cầu của bạn, ghi chú của agent và màn hình, rồi trả lời cho phép, hỏi bạn, hoặc khuyên không nên. Khoảng 3 giây mỗi lần nhấn. Các cuộc trò chuyện OpenCode, Antigravity và Grok được Claude Code (hoặc Codex) kiểm duyệt.</string>
-    <!-- Under the reviewer's description: it also does the check before a notification rule's countdown. -->
     <string name="perms_reviewer_rules">Nó cũng kiểm tra câu trả lời trước khi bộ đếm ngược của quy tắc thông báo gửi đi.</string>
-    <!-- In the reviewer's model picker, the first choice ("Default") described: for Claude Code it is Haiku. -->
     <string name="reviewer_default_claude">Haiku: nhanh và nhẹ. Đề xuất.</string>
-    <!-- In the reviewer's model picker, the first choice ("Default") described, for Codex. -->
     <string name="reviewer_default_codex">Một mô hình nhỏ, nhanh. Đề xuất.</string>
-    <!-- Title of the button rules screen, and of the row that opens it. -->
     <string name="perms_button_rules">Quy tắc nút</string>
-    <!-- Next to “Button rules”: how many buttons are on each list. %1$d = on the “Always ask” list, %2$d = on the “Never ask” list. -->
     <string name="perms_rules_summary">%1$d hỏi · %2$d không hỏi</string>
-    <!-- Section title above the list of installed apps. -->
     <string name="perms_apps">Ứng dụng</string>
-    <!-- Row that sets the mode of every app at once. -->
     <string name="perms_all_apps">Tất cả ứng dụng</string>
-    <!-- Link under “All apps”: puts every app back on the mode Ski suggests for it. -->
     <string name="perms_reset_suggested">Đặt lại theo đề xuất</string>
-
-    <!-- Button rules screen: buttons that always or never need the user's OK. Hard and Smart are approval mode names (perms_mode_*). -->
     <string name="perms_rules_intro">Cho các ứng dụng ở chế độ Chặt hoặc Thông minh. Quy tắc chọn từ gợi ý áp dụng cho ứng dụng đó; chữ bạn tự gõ áp dụng cho mọi ứng dụng. Nhấn vào một quy tắc để gỡ.</string>
-    <!-- Switch title: Ski's own list of risky button words. -->
     <string name="perms_builtin_title">Từ rủi ro có sẵn</string>
-    <!-- Switch description. The words are examples from the built-in list: use your language's usual button labels. -->
     <string name="perms_builtin_sub">Gửi, Đăng, Thanh toán, Mua, Đặt hàng, Xóa, Gọi, Đăng xuất… luôn hỏi, bằng mọi ngôn ngữ Ski được dịch sang.</string>
-    <!-- List title: buttons that always need the user's OK. -->
     <string name="perms_always_ask">Luôn hỏi</string>
-    <!-- List title, and an option in a small segmented control (keep it short): buttons the agent may tap without asking. -->
     <string name="perms_never_ask">Không hỏi</string>
-    <!-- Option in a small segmented control next to “Never ask” (keep it short): put this button on the “Always ask” list. Verb. -->
     <string name="perms_ask">Hỏi</string>
-    <!-- Hint in the field where the user types a button's label, as their apps show it. -->
     <string name="perms_add_hint">Thêm một nút, ví dụ Gửi</string>
-    <!-- Button: adds the typed button to the list. Verb. -->
     <string name="perms_add">Thêm</string>
-    <!-- Section title: buttons the agent tapped lately, to put them on a list with one tap. -->
     <string name="perms_seen_title">Nút đã thấy gần đây</string>
-    <!-- Shown while no buttons were seen yet. Hard and Smart are approval mode names. -->
     <string name="perms_seen_empty">Các nút agent nhấn trong ứng dụng Chặt và Thông minh sẽ hiện ở đây.</string>
-
-    <!-- Button rules and modes, as App permissions shows them. -->
-    <!-- A button rule that applies in every app, on a chip and in the suggestions. %1$s = the button's label, e.g. Send. -->
     <string name="guard_rule_all_apps">%1$s · mọi ứng dụng</string>
-    <!-- Why an app has its mode, in small text under the app's name. Here: the user picked it. -->
     <string name="guard_why_choice">Bạn đã chọn</string>
-    <!-- Ski suggests Hard for this app because of the kind of app it is. -->
     <string name="guard_why_category">Đề xuất: tin nhắn, mạng xã hội, cuộc gọi hoặc tiền bạc</string>
-    <!-- Ski suggests Hard because the app's name contains a word like bank or pay. %1$s = that word, as found (usually English). -->
     <string name="guard_why_name">Đề xuất: tên có “%1$s”</string>
-    <!-- Ski suggests Hard because Android lists the app as a social app. -->
     <string name="guard_why_social">Đề xuất: ứng dụng mạng xã hội</string>
-    <!-- The mode is Ski's suggestion. -->
     <string name="guard_why_suggested">Đề xuất</string>
-    <!-- The mode comes from the first setup, where the user chose that the agent asks first. -->
     <string name="guard_why_setup">Lựa chọn khi thiết lập: hỏi trước</string>
-
-    <!-- Approval card, shown before the agent taps a risky button: the user approves or denies it. -->
-    <!-- %1$s = the button's label, e.g. Send. -->
     <string name="tools_card_tap">Nhấn “%1$s”</string>
-    <!-- %1$s = the button's label, e.g. Send; %2$s = the app's name, e.g. WhatsApp. -->
     <string name="tools_card_tap_in">Nhấn “%1$s” trong %2$s</string>
-    <!-- For a button without a label: “this” stands for the button. -->
     <string name="tools_card_tap_this">Nhấn “nút này”</string>
-    <!-- For a button without a label: “this” stands for the button. %1$s = the app's name. -->
     <string name="tools_card_tap_this_in">Nhấn “nút này” trong %1$s</string>
-    <!-- The agent typed text and wants to press the keyboard's Enter key to send it. -->
     <string name="tools_card_enter">Nhấn Enter để gửi</string>
-    <!-- Same, %1$s = the app's name. -->
     <string name="tools_card_enter_in">Nhấn Enter để gửi trong %1$s</string>
-    <!-- The agent answers a notification through its reply field (a notification rule). %1$s = the person or
-         conversation, e.g. Sarah; %2$s = the app, e.g. WhatsApp; %3$s = the reply. Use your language's quotation marks. -->
     <string name="tools_card_reply">Trả lời %1$s trong %2$s:\n“%3$s”</string>
-    <!-- A notification rule's run wants to open a link (it always asks first). %1$s = the link. -->
     <string name="tools_card_open_url">Mở %1$s</string>
     <string name="tools_card_clipboard">Cho agent đọc nội dung bạn vừa sao chép?</string>
     <string name="tools_card_location">Chia sẻ vị trí của điện thoại này với agent?</string>
     <string name="tools_photo_why">Chụp ảnh: %1$s</string>
-    <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Ski asks. -->
     <string name="tools_card_detail">%1$s:\n%2$s</string>
-    <!-- Quotation marks around text on the card (a draft message, a reason). Use your language's quotation marks. -->
     <string name="tools_card_quote">“%1$s”</string>
-    <!-- In an app set to Smart, when neither Claude Code nor Codex is signed in to review the tap. -->
     <string name="tools_card_no_reviewer">Chưa có trình kiểm duyệt nào được đăng nhập, nên Ski hỏi bạn.</string>
-    <!-- The smart reviewer's answer. %1$s = Claude or Codex; %2$s = its short reason, in the reviewer's own words. -->
     <string name="tools_card_reviewer_block">%1$s khuyên không nên: %2$s</string>
-    <!-- The smart reviewer's answer. %1$s = Claude or Codex; %2$s = its short reason, in the reviewer's own words. -->
     <string name="tools_card_reviewer_ask">%1$s bảo hãy hỏi bạn: %2$s</string>
-
-    <!-- Status line in the bubble while the agent works. -->
-    <!-- The smart reviewer is checking a tap. -->
     <string name="tools_status_checking_tap">Đang kiểm tra lần nhấn này…</string>
-    <!-- Android's installer is open. Install is the installer's button: use the label Android shows in your language. -->
     <string name="tools_status_tap_install">Nhấn Cài đặt, rồi xác nhận</string>
-    <!-- Android's installer is open. Update is the installer's button: use the label Android shows in your language. -->
     <string name="tools_status_tap_update">Nhấn Cập nhật, rồi xác nhận</string>
-    <!-- An app the agent opened the installer for is now installed (adjective). -->
     <string name="tools_status_installed">Đã cài</string>
-    <!-- Downloading Ski's update. %1$s = version number, e.g. 2.1.13 -->
     <string name="tools_status_downloading">Đang tải Ski %1$s…</string>
-
-    <!-- Smart reviewer: its reason when it fails, shown on the approval card after “Claude says ask you:”, so it starts lowercase.
-         %1$s = the technical reason (reviewer_no_answer, reviewer_timed_out, or an error in English). -->
     <string name="reviewer_failed">trình kiểm duyệt không trả lời được (%1$s)</string>
-    <!-- In the parentheses of reviewer_failed: the reviewer's reply had no decision in it. -->
     <string name="reviewer_no_answer">không có câu trả lời</string>
-    <!-- In the parentheses of reviewer_failed: the reviewer took too long. -->
     <string name="reviewer_timed_out">hết thời gian chờ</string>
-
-    <!-- Error when a chat can't start because Ski's built-in Linux isn't set up yet. -->
     <string name="helper_linux_missing">Linux của Ski chưa được cài. Mở Cài đặt để thiết lập.</string>
-
-    <!-- Voice input (dictation). “Claude voice” and “ChatGPT voice” are the names of two voice input options: Claude Code's
-         speech-to-text and ChatGPT's voice (through Codex). Status lines show in the voice bar, errors as toasts. -->
     <string name="dictation_claude_sign_in">Đăng nhập Claude Code trong Cài đặt để dùng giọng nói Claude.</string>
     <string name="dictation_codex_sign_in">Đăng nhập Codex trong Cài đặt để dùng giọng nói ChatGPT.</string>
-    <!-- Status: voice input is starting. -->
     <string name="dictation_starting">Đang bắt đầu…</string>
-    <!-- Status: Claude Code, which does the voice input, is starting. -->
     <string name="dictation_starting_claude">Đang khởi động Claude…</string>
-    <!-- Status: the recorded speech is being turned into text. -->
     <string name="dictation_transcribing">Đang chuyển thành chữ…</string>
-    <!-- Voice input ended without any words recognized. -->
     <string name="dictation_no_speech">Chưa nghe rõ.</string>
     <string name="dictation_mic_failed">Không mở được micrô.</string>
-    <!-- %1$s = the reason, often a technical error in English. -->
     <string name="dictation_claude_start_failed">Giọng nói Claude không khởi động được: %1$s</string>
     <string name="dictation_claude_no_start">Giọng nói Claude chưa khởi động.</string>
-    <!-- A reason after “Claude voice couldn't start:”. -->
     <string name="dictation_claude_code_no_start">Claude Code không khởi động</string>
-    <!-- %1$s = the reason, often a technical error in English. -->
     <string name="dictation_chatgpt_start_failed">Giọng nói ChatGPT không khởi động được: %1$s</string>
-    <!-- %1$s = how far it got, one of dictation_stage_* below. -->
     <string name="dictation_chatgpt_no_connect">Giọng nói ChatGPT không kết nối được (%1$s).</string>
-    <!-- %1$s = what went wrong: dictation_connection_failed, or an error from ChatGPT (often in English). -->
     <string name="dictation_chatgpt_error">Giọng nói ChatGPT: %1$s</string>
-    <!-- After “ChatGPT voice:”, so it starts lowercase. -->
     <string name="dictation_connection_failed">kết nối thất bại</string>
-    <!-- How far ChatGPT voice got, in the parentheses of dictation_chatgpt_no_connect, so lowercase. -->
     <string name="dictation_stage_page">đang mở trang</string>
-    <!-- How far ChatGPT voice got (see dictation_stage_page). -->
     <string name="dictation_stage_codex">đang chờ Codex</string>
-    <!-- How far ChatGPT voice got (see dictation_stage_page). -->
     <string name="dictation_stage_call">đang gọi</string>
-    <!-- How far ChatGPT voice got (see dictation_stage_page). -->
     <string name="dictation_stage_answer">đang chờ ChatGPT trả lời</string>
-    <!-- How far ChatGPT voice got (see dictation_stage_page). -->
     <string name="dictation_stage_connecting">đang kết nối</string>
-    <!-- A reason after “ChatGPT voice couldn't start:”. -->
     <string name="dictation_codex_no_start">Codex không khởi động</string>
-    <!-- A reason after “ChatGPT voice couldn't start:” or in the smart reviewer's reason. %1$s = a technical request name, e.g. thread/start. -->
     <string name="dictation_request_timed_out">%1$s hết thời gian chờ</string>
-    <!-- A reason after “ChatGPT voice couldn't start:” or in the smart reviewer's reason. %1$s = the end of Codex's error log (technical, English), or dictation_no_details. -->
     <string name="dictation_codex_stopped">Codex đã dừng: %1$s</string>
-    <!-- After “Codex stopped:” when its log says nothing. -->
     <string name="dictation_no_details">không có chi tiết</string>
-
-    <!-- Notification rules (Settings → Notification rules): when a notification from an app the user picks arrives
-         (optionally from someone, or containing some words), Ski gives the user's instruction to an agent. -->
-    <!-- Name of Ski's entry in Android's notification access settings. -->
     <string name="rules_service_label">Quy tắc thông báo của Ski</string>
     <string name="rules_title">Quy tắc thông báo</string>
     <string name="rules_intro">Khi có thông báo bạn chọn, Ski chuyển lời dặn của bạn cho agent, như một tin nhắn bạn tự gõ. Thông báo không khớp quy tắc nào sẽ bị bỏ qua.</string>
     <string name="rules_access_off_title">Quyền truy cập thông báo đang tắt</string>
     <string name="rules_access_off_text">Ski cần quyền này để thấy các thông báo mà quy tắc của bạn theo dõi.</string>
-    <!-- Button: opens Android's notification access setting for Ski. -->
     <string name="rules_access_turn_on">Bật</string>
-    <!-- Switch: off pauses every rule. -->
     <string name="rules_run">Chạy quy tắc</string>
     <string name="rules_run_info">Tắt để tạm dừng mọi quy tắc.</string>
-    <!-- Heading above the list of rules. -->
     <string name="rules_section">Quy tắc</string>
     <string name="rules_empty">Chưa có quy tắc nào. Ví dụ: khi khách hàng nhắn cho bạn trên WhatsApp, trả lời bằng giờ mở cửa của bạn.</string>
     <string name="rules_add">Thêm quy tắc</string>
-    <!-- After the app's name in the list, for a rule without sender or word filters. -->
     <string name="rules_any">Mọi thông báo</string>
-    <!-- After the app's name in the list. %1$s = names, as the user typed them (comma-separated). -->
     <string name="rules_from_summary">Từ %1$s</string>
-    <!-- After the app's name in the list. %1$s = words, as the user typed them (comma-separated). -->
     <string name="rules_words_summary">Có “%1$s”</string>
-    <!-- Small tag on a rule in the list: its approval cards wait for the user. -->
     <string name="rules_tag_ask">Hỏi bạn trước</string>
-    <!-- Small tag on a rule in the list: its approval cards approve themselves. %1$s = the countdown, e.g. 30 s. -->
     <string name="rules_tag_countdown">Đếm ngược %1$s</string>
-    <!-- Small tag on a rule that is switched off. -->
     <string name="rules_tag_off">Tắt</string>
-    <!-- A countdown length. %1$d = seconds. Keep it short (it's on a small button). -->
     <string name="rules_seconds">%1$d giây</string>
-    <!-- A countdown length. %1$d = minutes. Keep it short (it's on a small button). -->
     <string name="rules_minutes">%1$d phút</string>
-    <!-- Heading above what the rules did lately. -->
     <string name="rules_activity">Hoạt động gần đây</string>
     <string name="rules_activity_empty">Chưa có gì.</string>
-    <!-- Link: empties the recent activity. -->
     <string name="rules_activity_clear">Xóa</string>
-    <!-- What a rule did. %1$s = the reply it sent. Use your language's quotation marks. -->
     <string name="rules_log_replied">Đã trả lời: “%1$s”</string>
-    <!-- What a rule did: the agent finished without saying anything. -->
     <string name="rules_log_done_empty">Xong, không trả lời.</string>
     <string name="rules_log_limit">Đã bỏ qua: quá nhiều trong giờ vừa qua.</string>
     <string name="rules_log_held">Đang chờ: quá nhiều trong giờ vừa qua. Các tin nhắn mới sẽ được xử lý chung một lần lúc %1$s.</string>
@@ -1713,154 +964,95 @@
     <string name="waiting_sent">Đã gửi tới %1$s</string>
     <string name="waiting_copied">Đã sao chép. Hãy dán vào %1$s.</string>
     <string name="waiting_note_sent">✓ Đã gửi từ danh sách Đang chờ: %1$s</string>
-    <!-- %1$s = why: rules_log_no_service, rules_log_not_signed_in, or a technical error (often English). -->
     <string name="rules_log_error">Không chạy: %1$s</string>
-    <!-- A reason after “Didn't run:”, so it starts lowercase. -->
     <string name="rules_log_no_service">dịch vụ hỗ trợ tiếp cận của Ski đang tắt</string>
-    <!-- A reason after “Didn't run:”. %1$s = the agent, e.g. Claude Code. -->
     <string name="rules_log_not_signed_in">%1$s chưa đăng nhập</string>
-
-    <!-- The rule editor. -->
     <string name="rules_new">Quy tắc mới</string>
     <string name="rules_edit">Sửa quy tắc</string>
-    <!-- Field label above the app picker. -->
     <string name="rules_app">Khi có thông báo từ</string>
     <string name="rules_pick_app">Chọn ứng dụng</string>
-    <!-- Hint in the search box of the app picker. -->
     <string name="rules_search_apps">Tìm ứng dụng</string>
     <string name="rules_from">Từ (không bắt buộc)</string>
     <string name="rules_from_hint">Bất kỳ ai, hoặc các tên cách nhau bằng dấu phẩy</string>
-    <!-- Field label: words the notification must contain. -->
     <string name="rules_words">Có chứa (không bắt buộc)</string>
     <string name="rules_words_hint">Bất kỳ gì, hoặc các từ cách nhau bằng dấu phẩy</string>
     <string name="rules_instruction">Ski nên làm gì?</string>
     <string name="rules_instruction_hint">Ví dụ: Trả lời theo kiểu của tôi. Chúng tôi mở cửa từ 8 giờ đến 18 giờ, nghỉ Chủ nhật.</string>
-    <!-- Example chips under the instruction box: a tap puts the matching *_text in it. Keep the chips short. -->
     <string name="rules_example_reply">Trả lời giúp tôi</string>
     <string name="rules_example_reply_text">Trả lời theo kiểu của tôi, ngắn gọn và thân thiện.</string>
     <string name="rules_example_summary">Tóm tắt</string>
     <string name="rules_example_summary_text">Cho tôi biết trong một dòng nội dung là gì và tôi có cần làm gì không.</string>
     <string name="rules_example_calendar">Thêm vào lịch</string>
     <string name="rules_example_calendar_text">Nếu là về một cuộc hẹn hoặc một đơn giao hàng, hãy thêm vào lịch của tôi.</string>
-    <!-- Field label above the choice of Claude Code, Codex or OpenCode. -->
     <string name="rules_agent">Agent</string>
-    <!-- Field label above "Ask me" / "Countdown". -->
     <string name="rules_approval">Trước khi làm</string>
-    <!-- Choice: the rule's approval cards wait for the user. Keep it short. -->
     <string name="rules_approval_ask">Hỏi tôi</string>
-    <!-- Choice: the rule's approval cards approve themselves after a countdown. Keep it short. -->
     <string name="rules_approval_countdown">Đếm ngược</string>
     <string name="rules_approval_ask_info">Thẻ duyệt sẽ chờ bạn, như trong mọi cuộc trò chuyện.</string>
     <string name="rules_approval_countdown_info">Khi đếm ngược kết thúc, thẻ sẽ tự đồng ý trừ khi bạn nhấn để dừng. Việc này chỉ áp dụng khi gửi tin nhắn, sau khi một AI thứ hai kiểm tra nó theo quy tắc của bạn. Thanh toán, mua, xóa và mở liên kết luôn chờ bạn.</string>
-    <!-- Under the countdown explanation, tappable (opens App permissions). %1$s = the reviewer, e.g. Claude Code · Haiku. -->
     <string name="rules_checker">AI thứ hai: %1$s. Nhấn để đổi trong Quyền ứng dụng.</string>
-    <!-- In the model picker of a rule, the first choice ("Default"), described. -->
     <string name="rules_model_default">Mặc định của agent</string>
-    <!-- Switch: the rule runs, or not. -->
     <string name="rules_on">Bật quy tắc</string>
     <string name="rules_save">Lưu</string>
     <string name="rules_delete">Xóa</string>
     <string name="rules_delete_title">Xóa quy tắc này?</string>
     <string name="rules_need_app">Hãy chọn một ứng dụng trước.</string>
     <string name="rules_need_instruction">Hãy viết điều Ski nên làm.</string>
-
-    <!-- Shown before Android's notification access setting (an explicit choice, as Google Play requires). -->
     <string name="rules_access_title">Cho phép truy cập thông báo?</string>
     <string name="rules_access_what">Ski đối chiếu từng thông báo với quy tắc của bạn. Thông báo không khớp quy tắc nào bị bỏ qua ngay: không lưu lại, không gửi đi đâu cả.</string>
     <string name="rules_access_data">Khi một thông báo khớp, ứng dụng, người gửi và nội dung của nó được gửi tới agent của quy tắc (Claude Code, Codex hoặc OpenCode) cùng với lời dặn của bạn.</string>
     <string name="rules_access_reply">Ski có thể trả lời qua nút Trả lời của thông báo. Ski hỏi bạn trước, trừ khi bạn đặt đếm ngược cho quy tắc.</string>
-
-    <!-- The chat a rule's run happens in shows this as the first line of each run. %1$s = the person or conversation,
-         e.g. Sarah; %2$s = the app; %3$s = the notification's text; %4$s = the rule's instruction. Keep 🔔 and ⚡. -->
     <string name="rules_chat_shown">🔔 %1$s · %2$s: %3$s\n⚡ %4$s</string>
-    <!-- Status in the bubble while a second AI checks an action against the rule, before its countdown starts. -->
     <string name="rules_status_checking">Đang đối chiếu với quy tắc của bạn…</string>
-    <!-- Names of Ski's notification categories in Android's settings (approvals_channel: cards waiting for the user). -->
     <string name="rules_channel_results">Quy tắc thông báo: kết quả</string>
     <string name="approvals_channel">Duyệt</string>
-    <!-- Title of the notification saying what a rule's run did. %1$s = the person or conversation; %2$s = the app. -->
     <string name="rules_result_title">%1$s · %2$s</string>
-    <!-- Title of the notification when a rule's run waits for the user's OK while the phone is locked.
-         %1$s = the person or conversation; %2$s = the app. -->
     <string name="rules_approval_title">Cần bạn đồng ý: %1$s · %2$s</string>
-    <!-- Title of the notification when any chat waits for the user's OK while the phone is locked (the card stays hidden until unlock). %1$s = the chat's name. -->
     <string name="card_locked_title">Cần bạn đồng ý: %1$s</string>
-    <!-- Its text, with a countdown. %1$s = the countdown length, e.g. 30 s; %2$s = what it would do. -->
     <string name="rules_approval_auto">Tự đồng ý sau %1$s nếu bạn không dừng.\n%2$s</string>
-
-    <!-- ===== The background browser: its live view in a chat, its cards and Settings (Browser, BrowserTools, BrowserPanel, BrowserActivity) ===== -->
-
-    <!-- Settings screen: the background browser, a separate browser inside Ski that agents use for web pages. Section label and switch. -->
     <string name="browser_section">Trình duyệt nền</string>
     <string name="browser_switch">Trình duyệt nền</string>
-    <!-- Chromium is the open-source browser Chrome is built on: keep the name. -->
     <string name="browser_switch_info">Một trình duyệt bên trong Ski mà agent dùng để mở trang web, không chiếm điện thoại của bạn. Bạn có thể xem và dùng nó trong cuộc trò chuyện. Lần đầu, Ski sẽ tải Chromium về (khoảng 300 MB).</string>
-    <!-- Status lines under the switch, lowercase. -->
     <string name="browser_state_installing">đang cài Chromium…</string>
     <string name="browser_state_starting">đang khởi động…</string>
     <string name="browser_state_running">đang chạy</string>
     <string name="browser_state_idle">sẵn sàng · khởi động khi agent cần</string>
     <string name="browser_state_not_installed">chưa cài</string>
     <string name="browser_install_failed">Không cài được Chromium. Kiểm tra kết nối và thử lại.</string>
-    <!-- “Continue with Google” is the button many sites show to sign in with a Google account: use the wording sites use in your language. -->
     <string name="browser_sign_in_help">Agent không bao giờ gõ mật khẩu. Để agent dùng một trang web bằng tài khoản của bạn, hãy mở trình duyệt và tự đăng nhập. “Tiếp tục với Google” thường không chạy trong trình duyệt tự động: hãy dùng email và mật khẩu thay vào đó.</string>
-    <!-- Button: opens the background browser full screen. -->
     <string name="browser_open">Mở trình duyệt</string>
     <string name="browser_wipe">Xóa dữ liệu trình duyệt</string>
     <string name="browser_wipe_title">Xóa dữ liệu trình duyệt?</string>
     <string name="browser_wipe_body">Xóa mọi đăng nhập, cookie và lịch sử của trình duyệt nền. Chromium vẫn được giữ lại.</string>
-    <!-- Verb. Confirm button of the sheet above. -->
     <string name="browser_wipe_action">Xóa</string>
     <string name="browser_wiped">Đã xóa dữ liệu trình duyệt</string>
-
-    <!-- The live view: the browser's page in the chat (or full screen), which the user can tap, scroll and type into. -->
-    <!-- Small label in capitals at the top of the view. -->
     <string name="browser_live_title">TRÌNH DUYỆT NỀN</string>
-    <!-- In place of the page's address when no page is open. -->
     <string name="browser_no_page">chưa mở trang nào</string>
-    <!-- Button shown while the agent is paused because the user uses the browser: the agent goes on. -->
     <string name="browser_continue">Tiếp tục</string>
-    <!-- Descriptions of icon buttons (for screen readers). -->
     <string name="browser_back">Trang trước</string>
     <string name="browser_keyboard">Gõ trên trang</string>
     <string name="browser_full_screen">Toàn màn hình</string>
     <string name="browser_fold">Hiện hoặc ẩn trang</string>
     <string name="browser_backspace">Xóa một ký tự</string>
-    <!-- The small live picture of the browser under the bubble's status while an agent browses (for screen readers), and the action that hides it (a sideways swipe does too). -->
     <string name="bubble_browser_thumb">Hình trực tiếp của trình duyệt nền. Nhấn để mở toàn màn hình.</string>
     <string name="bubble_browser_thumb_hide">Ẩn</string>
     <string name="bubble_pill_show_page">%1$s · nhấn để xem trang</string>
-    <!-- Hint of the text field under the page: what the user types goes into the page. -->
     <string name="browser_type_hint">Gõ vào trang</string>
-    <!-- Button: the keyboard's Enter key, for the page. -->
     <string name="browser_enter">Enter</string>
-    <!-- The page shows a dialog (e.g. "Leave this page?"). %1$s = its message. -->
     <string name="browser_dialog">Trang hỏi: %1$s</string>
-    <!-- Sheet to open another address in the browser. -->
     <string name="browser_go_title">Đi tới</string>
     <string name="browser_go">Đi</string>
     <string name="browser_address_hint">Tìm kiếm hoặc nhập địa chỉ web</string>
-    <!-- Shown in the view until the first picture of the page comes. -->
     <string name="browser_installing">Đang cài trình duyệt…</string>
     <string name="browser_starting">Đang khởi động trình duyệt…</string>
-    <!-- A line in the chat and a short message when the agent pauses because the user touched the live view. -->
     <string name="browser_paused_note">Đã tạm dừng trong lúc bạn dùng trình duyệt. Nhấn Tiếp tục khi bạn xong.</string>
     <string name="browser_paused_toast">Đã tạm dừng trong lúc bạn dùng trình duyệt</string>
-
-    <!-- Approval cards for the background browser. %1$s = the button's label, e.g. Post; %2$s = the site, e.g. reddit.com. -->
     <string name="browser_card_tap">Nhấn “%1$s” trên %2$s (trình duyệt nền)</string>
-    <!-- %1$s = the site. -->
     <string name="browser_card_enter">Nhấn Enter để gửi trên %1$s (trình duyệt nền)</string>
-    <!-- The page itself asks a question (e.g. "Delete this item?"); approving answers OK. %1$s = the site; %2$s = its question. -->
     <string name="browser_card_dialog">Trả lời OK trên %1$s:\n“%2$s”</string>
-
-    <!-- Progress lines in the chat for the background browser's tools. "Browser" names the background browser. -->
-    <!-- %1$s = web address. -->
     <string name="hub_tool_browser_open">Trình duyệt: đang mở %1$s</string>
     <string name="hub_tool_browser_read">Trình duyệt: đang đọc trang</string>
-    <!-- %1$d = the number of an item on the page. -->
     <string name="hub_tool_browser_click">Trình duyệt: đang nhấn mục %1$d</string>
-    <!-- %1$s = the text being typed. -->
     <string name="hub_tool_browser_type">Trình duyệt: đang gõ “%1$s”</string>
     <string name="hub_tool_browser_scroll">Trình duyệt: đang cuộn</string>
     <string name="hub_tool_browser_screenshot">Trình duyệt: đang xem trang</string>
@@ -1916,9 +1108,6 @@
     <string name="check_report_title">Những gì được gửi lên GitHub</string>
     <string name="check_report_text">Thao tác này mở một issue mới trên GitHub với các chi tiết này đã được điền sẵn. Không có gì được gửi cho đến khi bạn tự gửi ở đó, và bạn có thể sửa trước. Cuộc trò chuyện, chữ trên màn hình và thông báo không bao giờ được đưa vào.</string>
     <string name="check_report_open">Mở GitHub</string>
-    <plurals name="check_failed">
-        <item quantity="other">%1$d mục kiểm tra không đạt</item>
-    </plurals>
     <string name="tools_step_cap">Đã dừng sau %1$d thao tác trên điện thoại liền một lúc, để một việc chạy mất kiểm soát không dùng hết gói của bạn. Hãy bảo nó làm tiếp nếu cần.</string>
     <string name="tools_step_loop">Đã dừng: nó làm cùng một việc %1$d lần liên tiếp, có vẻ như bị lặp.</string>
     <string name="setup_help">Trợ giúp</string>
@@ -2049,4 +1238,105 @@
     <string name="setup_switch_default_title">Agent mặc định</string>
     <string name="signin_api_key_on">%1$s chạy bằng khóa API của bạn: chọn mô hình trong bảng mô hình của cuộc trò chuyện, hoặc mặc định của nó trong mục Khóa API.</string>
     <string name="signin_api_key_on_plan">Các cuộc trò chuyện cũng có thể dùng mô hình từ khóa API của bạn (chọn trong bảng mô hình của cuộc trò chuyện). Giọng nói và các tính năng khác của gói vẫn dùng gói của bạn.</string>
+
+    <!-- added 2026-11-18 (missing translations) -->
+    <string name="activity_shell">Đang chạy một lệnh điện thoại</string>
+    <string name="app_name" translatable="false">Ski</string>
+    <string name="background_asleep">Trình trợ giúp của nó chưa chạy. Nó khởi động cùng tác vụ nền đầu tiên, hoặc ngay bây giờ. Sau khi khởi động lại điện thoại, hãy nhấn Bắt đầu ngay: Ski sẽ bật Gỡ lỗi không dây cho nó (Wi-Fi phải được kết nối).</string>
+    <string name="background_brought">Đã chuyển sang màn hình của bạn: bước này cần bạn. Chế độ nền hiện đã tắt cho cuộc trò chuyện này.</string>
+    <string name="background_default">Các trò chuyện mới chạy ở nền</string>
+    <string name="background_default_info">Mỗi trò chuyện vẫn có công tắc riêng trong tùy chọn trò chuyện.</string>
+    <string name="background_failed">Không thành công: %1$s</string>
+    <string name="background_how">Android chỉ cho phép Gỡ lỗi không dây tạo loại màn hình như vậy, nên Ski ghép nối với nó một lần, ngay trên điện thoại này. Không cần máy tính.</string>
+    <string name="background_installing">Đang tải adb cho Linux của Ski…</string>
+    <string name="background_intro">Ở chế độ nền, một tác nhân làm việc trên màn hình riêng mà bạn không nhìn thấy. Bạn vẫn giữ màn hình, bàn phím và nút Quay lại của mình, và công việc tiếp tục cả khi điện thoại bị khóa.</string>
+    <string name="background_needs_dev">Trước tiên hãy bật Tùy chọn nhà phát triển: Cài đặt → Giới thiệu thiết bị → nhấn Số bản dựng 7 lần.</string>
+    <string name="background_needs_linux">Chế độ nền cần Linux của Ski. Hãy cài đặt một tác nhân trước.</string>
+    <string name="background_needs_service">Trước tiên hãy bật dịch vụ trợ năng của Ski.</string>
+    <string name="background_no_dialog">Ski không kịp thấy hộp thoại ghép nối. Hãy thử lại.</string>
+    <string name="background_open_options">Mở Tùy chọn nhà phát triển</string>
+    <string name="background_paired">Đã ghép nối</string>
+    <string name="background_pairing">Đang ghép nối…</string>
+    <string name="background_preview">Màn hình nền</string>
+    <string name="background_ready">Sẵn sàng</string>
+    <string name="background_ready_info">Bật theo từng trò chuyện: Tùy chọn trò chuyện → Làm việc ở nền.</string>
+    <string name="background_remove">Gỡ bỏ</string>
+    <string name="background_remove_text">Ski quên ghép nối và dừng trình trợ giúp của nó. Các trò chuyện lại hoạt động trên màn hình thật.</string>
+    <string name="background_row">Các tác nhân làm việc trên màn hình riêng trong khi bạn dùng điện thoại</string>
+    <string name="background_security">Gỡ lỗi không dây cho phép các thiết bị đã ghép nối điều khiển điện thoại này. Ski chỉ ghép nối với chính nó, trên điện thoại này, và trình trợ giúp của nó chỉ lắng nghe ở đây.</string>
+    <string name="background_setup">Thiết lập</string>
+    <string name="background_shell">Lệnh điện thoại</string>
+    <string name="background_shell_ask">Hỏi trước mỗi lệnh</string>
+    <string name="background_shell_ask_info">Thẻ phê duyệt hiển thị lệnh trước. Không có nó, không có gì đứng giữa một tác nhân bị lừa và điện thoại của bạn: một lệnh thậm chí có thể nhấn vào thẻ phê duyệt.</string>
+    <string name="background_shell_info">Trong các trò chuyện có công cụ Linux, tác nhân có thể chạy lệnh ngay trên điện thoại, như “adb shell” làm: cài đặt và khởi động ứng dụng, thay đổi cài đặt, đọc nhật ký và tệp. Một tin nhắn hoặc trang web nó đọc có thể cố lừa nó chạy một lệnh.</string>
+    <string name="background_shell_switch">Các tác nhân có thể chạy lệnh trên điện thoại</string>
+    <string name="background_show">Hiện trên màn hình của tôi</string>
+    <string name="background_starting">Đang khởi động trình trợ giúp…</string>
+    <string name="background_start_now">Bắt đầu ngay</string>
+    <string name="background_step1">1. Nhấn Thiết lập. Ski mở Tùy chọn nhà phát triển và tìm Gỡ lỗi không dây giúp bạn.</string>
+    <string name="background_step2">2. Nó bật Gỡ lỗi không dây (Wi-Fi phải được kết nối) và mở “Ghép nối thiết bị bằng mã ghép nối”.</string>
+    <string name="background_step3">3. Nó đọc mã, ghép nối và đưa bạn trở lại đây. Nếu nó dừng ở đâu, hãy tự làm bước đó và Ski sẽ tiếp tục.</string>
+    <string name="background_usb_note">Ski cũng bật gỡ lỗi USB. Với nó, trình trợ giúp vẫn chạy khi Wi-Fi ngắt và Android tắt Gỡ lỗi không dây. Hãy để nó bật.</string>
+    <string name="background_waiting">Đang chờ “Ghép nối thiết bị bằng mã ghép nối” trong Gỡ lỗi không dây…</string>
+    <string name="chat_bg_checking">Đang kiểm tra…</string>
+    <string name="chat_bg_connected">Đã kết nối</string>
+    <string name="chat_bg_connected_info">Các tác nhân trong trò chuyện nền có thể làm việc trên màn hình riêng.</string>
+    <string name="chat_bg_disconnected">Chưa kết nối</string>
+    <string name="chat_bg_more">Cài đặt khác</string>
+    <string name="chat_bg_not_set_up">Chưa thiết lập</string>
+    <string name="chat_bg_pair_again">Ghép nối lại</string>
+    <string name="chat_bg_setup_info">Cho phép một tác nhân làm việc trong ứng dụng của bạn trên màn hình riêng trong khi bạn dùng điện thoại. Việc thiết lập mất khoảng một phút và cần Wi-Fi.</string>
+    <string name="hub_tool_phone_shell">Lệnh điện thoại: %1$s</string>
+    <string name="later_item" translatable="false">%1$s · %2$s</string>
+    <string name="memory_cant_create">Ski không thể tạo thư mục bộ nhớ của nó.</string>
+    <string name="prefs_reasoning_mode">Chế độ suy luận</string>
+    <string name="prefs_reasoning_mode_info">Trước mỗi hành động trên điện thoại, tác nhân mô tả nó nhìn thấy gì, định làm gì và tại sao. Mặc định tắt.</string>
+    <string name="prefs_remote_control">Điều khiển từ xa (HTTP)</string>
+    <string name="prefs_remote_control_info">Công bố các công cụ điện thoại của Ski qua HTTP trên 127.0.0.1:8766, để máy tính hoặc ứng dụng khác có thể gọi read_screen, tap, type_text và phần còn lại. Mặc định tắt; chỉ điện thoại này có thể kết nối.</string>
+    <string name="tools_card_chat_send">Gửi tin nhắn này đến %1$s trong %2$s?\n\n“%3$s”</string>
+    <string name="tools_card_shell">Chạy trên điện thoại:\n%1$s</string>
+    <string name="tools_ocr_screen">Đọc toàn bộ văn bản hiển thị trên màn hình dưới dạng các dòng đơn giản kèm vị trí.</string>
+    <string name="tools_read_screen_with_numbers">Đọc màn hình với chú giải đánh số (1, 2, 3…) bên cạnh mỗi phần tử.</string>
+    <string name="tools_tap_by_number">Nhấn vào phần tử số N từ read_screen_with_numbers.</string>
+    <!-- added 2026-11-18 (missing plurals + strings) -->
+<plurals name="main_ago_minutes">
+        <item quantity="other">%d phút trước</item>
+    </plurals>
+    <plurals name="main_ago_hours">
+        <item quantity="other">%d giờ trước</item>
+    </plurals>
+    <plurals name="main_ago_days">
+        <item quantity="other">%d ngày trước</item>
+    </plurals>
+    <plurals name="bubble_tool_calls">
+        <item quantity="other">%d lượt gọi công cụ</item>
+    </plurals>
+    <string name="chat_adding_files">Đang thêm tệp…</string>
+    <plurals name="chat_tool_calls">
+        <item quantity="other">%d lượt gọi công cụ</item>
+    </plurals>
+    <plurals name="hub_pill_chats">
+        <item quantity="other">%d cuộc trò chuyện đang chạy</item>
+    </plurals>
+    <string name="transcript_last_messages">tin nhắn gần đây</string>
+    <plurals name="attach_count">
+        <item quantity="other">Đã đính kèm %d tệp</item>
+    </plurals>
+    <string name="setup_old_chats_body">Đã tìm thấy các cuộc trò chuyện từ bản cài đặt Ski cũ hơn. Xóa chúng?</string>
+    <string name="setup_old_chats_remove">Xóa các cuộc trò chuyện cũ</string>
+    <string name="setup_shizuku_perms">Cấp quyền bằng một lần chạm</string>
+    <string name="setup_shizuku_perms_info">Cấp tất cả các quyền Ski cần bằng một lần chạm duy nhất, sử dụng Shizuku (đặc quyền adb, không cần root).</string>
+    <string name="shizuku_state_ready">sẵn sàng</string>
+    <string name="shizuku_state_needs_permission">chạm để cho phép</string>
+    <string name="shizuku_state_off">khởi động Shizuku</string>
+    <string name="shizuku_need_server">Shizuku đang không chạy. Mở ứng dụng Shizuku và khởi động máy chủ (gỡ lỗi không dây hoặc adb), sau đó quay lại đây.</string>
+    <string name="shizuku_requesting">Đang yêu cầu quyền từ Shizuku…</string>
+    <string name="shizuku_granting">Đang cấp quyền…</string>
+    <string name="shizuku_grant_done">Đã cấp quyền.</string>
+    <plurals name="terminal_sessions_count">
+        <item quantity="other">%d phiên</item>
+    </plurals>
+    <plurals name="check_failed">
+        <item quantity="other">Kiểm tra thất bại cho %d tài khoản</item>
+    </plurals>
 </resources>

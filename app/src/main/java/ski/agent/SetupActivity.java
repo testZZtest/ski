@@ -142,6 +142,85 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         // the row refreshes on the next render(); nothing else to do here
     }
 
+    // ------------------------------------------------------------- language picker
+
+    /** The 18 languages Ski ships (tag → native name). "sys" = follow the phone. */
+    private static final String[][] LANGS = {
+            {"sys", "System"}, {"pt", "Português"}, {"en", "English"}, {"es", "Español"},
+            {"fr", "Français"}, {"de", "Deutsch"}, {"it", "Italiano"}, {"nl", "Nederlands"},
+            {"pl", "Polski"}, {"tr", "Türkçe"}, {"ru", "Русский"}, {"uk", "Українська"},
+            {"hi", "हिन्दी"}, {"in", "Bahasa Indonesia"}, {"vi", "Tiếng Việt"},
+            {"ja", "日本語"}, {"ko", "한국어"}, {"zh-rCN", "简体中文"}, {"ar", "العربية"},
+    };
+
+    /** One compact row: "Language — current value", tap opens a dialog list. */
+    private LinearLayout languageRow() {
+        LinearLayout row = listRow(this);
+        row.setGravity(Gravity.CENTER_VERTICAL);
+        LinearLayout t = column(this);
+        t.addView(title(this, getString(R.string.setup_language), 15));
+        t.addView(text(this, getString(R.string.setup_language_info), 13, MUTED), topGap(2));
+        row.addView(t, weight1());
+        TextView cur = monoText(this, currentLanguageName(), 13, ACCENT_TEXT);
+        cur.setPaddingRelative(dp(this, 12), 0, dp(this, 4), 0);
+        row.addView(cur);
+        row.addView(icon(this, R.drawable.ms_chevron_right, MUTED, 20));
+        row.setOnClickListener(v -> pickLanguage());
+        return row;
+    }
+
+    private String currentLanguageName() {
+        String tag = Prefs.appLanguage(this);
+        for (String[] l : LANGS) if (l[0].equals(tag)) return l[1];
+        return getString(R.string.setup_language_system);
+    }
+
+    private void pickLanguage() {
+        String[] names = new String[LANGS.length];
+        int checked = 0;
+        String cur = Prefs.appLanguage(this);
+        for (int i = 0; i < LANGS.length; i++) {
+            names[i] = LANGS[i][1];
+            if (LANGS[i][0].equals(cur)) checked = i;
+        }
+        new android.app.AlertDialog.Builder(this)
+                .setTitle(getString(R.string.setup_language))
+                .setSingleChoiceItems(names, checked, (d, which) -> {
+                    d.dismiss();
+                    String tag = LANGS[which][0];
+                    if (!tag.equals(Prefs.appLanguage(this))) {
+                        Prefs.setAppLanguage(this, tag);
+                        applyLanguage(tag);
+                        render();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    /** Apply the choice now (Android 13+ per-app locale) and persist for cold starts. */
+    static void applyLanguage(android.content.Context c, String tag) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            try {
+                android.app.LocaleManager lm = c.getSystemService(android.app.LocaleManager.class);
+                if ("sys".equals(tag)) {
+                    lm.setApplicationLocales(android.os.LocaleList.getEmptyLocaleList());
+                } else {
+                    String bcp = tag.replace("-r", "-"); // zh-rCN → zh-CN (BCP-47)
+                    lm.setApplicationLocales(android.os.LocaleList.forLanguageTags(bcp));
+                }
+            } catch (Exception e) { /* older builds of 13 can throw; system setting still works */ }
+        }
+        // Android 12 and below: Android itself has no per-app language; tell the user once.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && !"sys".equals(tag)) {
+            Toast.makeText(c, c.getString(R.string.setup_language_old_android), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void applyLanguage(String tag) {
+        applyLanguage(this, tag);
+    }
+
     @Override
     public void onBrowserChanged() {
         String now = Browser.state + Browser.detail;
@@ -218,6 +297,9 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         View.OnClickListener l, l2;
     }
 
+    /** The settings tab on screen: 0 general, 1 agents, 2 tools. */
+    private int tab = 0;
+
     private void render() {
         if (isFinishing() || isDestroyed()) return;
         list.removeAllViews();
@@ -228,9 +310,17 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         TextView sub = text(this, getString(R.string.setup_settings_subtitle), 14, MUTED);
         sub.setPaddingRelative(0, dp(this, 4), 0, 0);
         head.addView(sub);
+        // tabs instead of one long scroll: General (appearance+experience+about), Agents (setup+brains+keys), Tools (phone, voice, remote, browser)
+        head.addView(segmented(this, new String[][]{
+                        {"0", getString(R.string.setup_tab_general)},
+                        {"1", getString(R.string.setup_tab_agents)},
+                        {"2", getString(R.string.setup_tab_tools)}},
+                String.valueOf(tab), false, v -> { tab = Integer.parseInt(v); render(); }),
+                topGap(10));
         list.addView(head, full());
 
         // ---------------------------------------------------------------- setup
+        if (tab == 1) {
         boolean a11y = SetupState.accessibilityEnabled(this);
         String backend = Prefs.backend(this);
         Account acc = Account.of(backend);
@@ -397,8 +487,10 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
                 ? getString(R.string.github_row_none) : "@" + GitHub.login, GitHub.login != null && !GitHub.login.isEmpty(),
                 GitHubActivity.class), topGap(4));
         addCard(ag);
+        } // tab 1: agents
 
         // ---------------------------------------------------------- phone tools
+        if (tab == 2) {
         list.addView(sectionLabel(this, getString(R.string.setup_phone_tools)));
         LinearLayout mcp = card();
         mcp.setPaddingRelative(dp(this, 16), dp(this, 14), dp(this, 16), dp(this, 16));
@@ -449,8 +541,10 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         cpp.topMargin = dp(this, 12);
         mcp.addView(copy, cpp);
         addCard(mcp);
+        } // tab 2
 
         // ---------------------------------------------------------------- voice
+        if (tab == 2) {
         list.addView(sectionLabel(this, getString(R.string.setup_voice)));
         LinearLayout vc = card();
         vc.setPaddingRelative(dp(this, 16), dp(this, 14), dp(this, 16), dp(this, 16));
@@ -535,11 +629,13 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         }
         while (chipRow != null && inRow++ < 3) chipRow.addView(new View(this), new LinearLayout.LayoutParams(0, 1, 1));
         addCard(vc);
+        } // tab 2 (voice)
 
         // --------------------------------------------------- background browser
-        browserSection();
+        if (tab == 2) browserSection();
 
         // ------------------------------------------------------- remote control
+        if (tab == 2) {
         list.addView(sectionLabel(this, getString(R.string.setup_remote_control)));
         LinearLayout rcc = card();
         boolean claudeIn = SetupState.planSignedIn(this, "claude");
@@ -661,8 +757,10 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
             }
         }
         addCard(rcc);
+        } // tab 2 (remote control)
 
         // chats from the Termux days: their conversations stayed in Termux, so agents can't continue them
+        if (tab == 1) {
         final java.util.List<Sessions.Session> old = termuxChats();
         if (!old.isEmpty()) {
             LinearLayout oc = card();
@@ -686,10 +784,14 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
             oc.addView(r, full());
             addCard(oc);
         }
+        } // tab 1 (old chats cleanup lives with the agent setup)
 
         // ----------------------------------------------------------- experience
+        if (tab == 0) {
         list.addView(sectionLabel(this, getString(R.string.setup_experience)));
         LinearLayout ex = card();
+        ex.addView(languageRow(), full());
+        ex.addView(divider(), lineParams());
         ex.addView(switchRow(this, getString(R.string.setup_chat_bubble), getString(R.string.setup_chat_bubble_info),
                 Prefs.bubbleEnabled(this), on -> {
             Prefs.setBubbleEnabled(this, on);
@@ -872,7 +974,9 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         bk.setPaddingRelative(dp(this, 16), dp(this, 10), dp(this, 16), dp(this, 10));
         ex.addView(bk, full());
         addCard(ex);
+        } // tab 0
 
+        if (tab == 0) {
         TextView ver = monoText(this, "ski " + BuildInfo.VERSION + " · " + getPackageName(), 12, MUTED);
         ver.setGravity(Gravity.CENTER);
         ver.setPaddingRelative(0, dp(this, 24), 0, 0);
@@ -887,6 +991,7 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         priv.setPaddingRelative(0, dp(this, 4), 0, dp(this, 8));
         priv.setOnClickListener(v -> openUrl(Ui.PRIVACY_URL));
         list.addView(priv, full());
+        } // tab 0 about footer
     }
 
     // ------------------------------------------------------------- setup card

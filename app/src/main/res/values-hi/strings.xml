@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Ski's UI text in Hindi. English source: res/values/strings.xml. -->
 <resources>
     <string name="service_label">Ski असिस्टेंट</string>
     <string name="service_description">Ski चैट बबल दिखाता है और इस फ़ोन पर Ski के अंदर चल रहे आपके चुने गए एजेंट (Claude Code, Codex, OpenCode, Antigravity या Grok) को आपके लिए स्क्रीन पढ़ने, टैप करने, टाइप करने और स्क्रोल करने देता है. एजेंट खुद अपनी एआई सेवा (Anthropic, OpenAI, Google, xAI या आपके OpenCode मॉडल का प्रोवाइडर) को जो भेजता है, उसके अलावा कुछ भी फ़ोन से बाहर नहीं जाता.</string>
-
-    <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
-
-    <!-- First-run setup guide: top bar and buttons shared by several steps. -->
     <string name="onboarding_skip_setup">सेटअप छोड़ें</string>
     <string name="onboarding_skip_title">सेटअप गाइड छोड़ें?</string>
     <string name="onboarding_skip_text">आप किसी भी समय सेटिंग में जाकर सेटअप पूरा कर सकते हैं. सेटअप पूरा होने तक चैट काम नहीं करेंगी.</string>
@@ -14,8 +9,6 @@
     <string name="onboarding_progress">%2$d में से चरण %1$d</string>
     <string name="onboarding_continue">जारी रखें</string>
     <string name="onboarding_stuck">कहीं अटक गए?</string>
-
-    <!-- Guide, welcome screen. -->
     <string name="onboarding_welcome_title">Ski से मिलें</string>
     <string name="onboarding_welcome_text">एक चैट बबल, जो आपके लिए आपका फ़ोन चला सकता है.</string>
     <string name="onboarding_welcome_ask_title">आसान शब्दों में कहें</string>
@@ -26,8 +19,6 @@
     <string name="onboarding_welcome_control_text">कुछ भी भेजने, पोस्ट करने, खरीदने या मिटाने से पहले हमेशा आपसे पूछा जाता है.</string>
     <string name="onboarding_welcome_time">सेटअप में करीब 5 मिनट लगते हैं</string>
     <string name="onboarding_get_started">शुरू करें</string>
-
-    <!-- Guide, step: choose the agent. -->
     <string name="onboarding_brain_title">अपना एजेंट चुनें</string>
     <string name="onboarding_brain_text">यही आपकी चैट के जवाब देगा. आप बाद में सेटिंग में दूसरे एजेंट भी जोड़ सकते हैं.</string>
     <string name="onboarding_brain_claude">आपकी Claude सदस्यता (Pro या Max) इस्तेमाल करता है.</string>
@@ -37,8 +28,6 @@
     <string name="onboarding_brain_grok">आपका Grok खाता इस्तेमाल करता है (Google या X से साइन इन करें).</string>
     <string name="onboarding_brain_both">दोनों इंस्टॉल करें और हर चैट के लिए इनमें से एक चुनें. Claude Code डिफ़ॉल्ट रहेगा.</string>
     <string name="onboarding_recommended">सुझाया गया</string>
-
-    <!-- Guide, step: turn on Ski's accessibility service. -->
     <string name="onboarding_access_title">Ski को देखने और टैप करने दें</string>
     <string name="onboarding_access_done">सुलभता सेवा चालू है.</string>
     <string name="onboarding_access_text">Ski की सुलभता सेवा बबल दिखाती है और एजेंट को स्क्रीन पढ़ने, टैप करने और टाइप करने देती है. ऐसा सिर्फ़ तब होता है, जब आप उससे कुछ करने को कहते हैं.</string>
@@ -51,8 +40,6 @@
     <string name="onboarding_access_greyed_text">Android, फ़ाइल से इंस्टॉल किए गए ऐप के लिए इसे ब्लॉक करता है. “ऐप्लिकेशन की जानकारी” (नीचे) पर टैप करें. इसके बाद सबसे ऊपर दाईं ओर ⋮ → “पाबंदी वाली सेटिंग को अनुमति दें” पर टैप करें और फिर से कोशिश करें.</string>
     <string name="onboarding_access_restricted_steps">1. नीचे “ऐप्लिकेशन की जानकारी” पर टैप करें.\n2. सबसे ऊपर दाईं ओर ⋮ → “पाबंदी वाली सेटिंग को अनुमति दें” पर टैप करें.\n3. वापस आएं और सुलभता सेटिंग फिर से खोलें.</string>
     <string name="onboarding_app_info">ऐप्लिकेशन की जानकारी</string>
-
-    <!-- Guide, step: install the agent inside Ski and sign in. -->
     <string name="onboarding_agents_title">इंस्टॉल करें और साइन इन करें</string>
     <string name="onboarding_agents_done_title">तैयार है</string>
     <string name="onboarding_agents_done">%1$s इंस्टॉल है और उसमें साइन इन हो चुका है.</string>
@@ -86,15 +73,11 @@
     <string name="onboarding_stuck_sign_in_a">Claude के लिए: Claude पेज पर Copy Code पर टैप करें, फिर Ski पर वापस आएं; वह क्लिपबोर्ड से कोड ले लेगा.</string>
     <string name="onboarding_stuck_install_q">इंस्टॉल नहीं हुआ?</string>
     <string name="onboarding_stuck_install_a">अपना इंटरनेट कनेक्शन देखें और “इंस्टॉल करें” पर फिर से टैप करें; इंस्टॉल वहीं से आगे बढ़ेगा, जहां रुका था.</string>
-
-    <!-- Guide, step: let Ski run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Ski को चालू रखें</string>
     <string name="onboarding_background_done">Ski बैकग्राउंड में चल सकता है.</string>
     <string name="onboarding_background_text">ताकि एजेंट के काम करते समय, बैटरी बचाने के लिए आपका फ़ोन Ski को बंद न कर दे.</string>
     <string name="onboarding_allow">अनुमति दें</string>
     <string name="onboarding_skip_for_now">अभी के लिए छोड़ें</string>
-
-    <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">एजेंट आपसे कितना पूछे?</string>
     <string name="onboarding_safety_text">मैसेज, सोशल मीडिया, शॉपिंग, पेमेंट और बैंकिंग ऐप में, Ski के कुछ भेजने, पोस्ट करने, खरीदने या मिटाने से पहले हमेशा आपकी मंज़ूरी ज़रूरी होती है. आपके दूसरे ऐप के लिए:</string>
     <string name="onboarding_safety_ask_title">पहले मुझसे पूछें</string>
@@ -102,8 +85,6 @@
     <string name="onboarding_safety_auto_title">खुद काम करे</string>
     <string name="onboarding_safety_auto_text">कोई पॉप-अप नहीं: एजेंट बस वही करता है जो आपने कहा है, जैसे कैमरा या लाइट चालू करना.</string>
     <string name="onboarding_safety_note">आप इसे किसी भी समय हर ऐप के लिए बदल सकते हैं: सेटिंग → ऐप अनुमतियां. किसी ऐप को “भरोसा” पर सेट करें, ताकि एजेंट वहां बिना पॉप-अप के काम करे. या “सख़्त” पर सेट करें, ताकि Ski खुद आपसे पूछे.</string>
-
-    <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">आप पूरी तरह तैयार हैं</string>
     <string name="onboarding_try_text">पहला टास्क आज़माएं. Ski सेटिंग खोलेगा और आपके लिए उसे पढ़ेगा.</string>
     <string name="onboarding_try_prompt">सेटिंग खोलें और मुझे मेरा Android वर्शन बताएं</string>
@@ -111,8 +92,6 @@
     <string name="onboarding_try_tip">सलाह: बबल दूसरे ऐप के ऊपर तैरता रहता है. इसे छिपाने के लिए ✕ पर खींचें.</string>
     <string name="onboarding_try_now">अभी आज़माएं</string>
     <string name="onboarding_go_to_chats">मेरी चैट पर जाएं</string>
-
-    <!-- Home screen: the chat list. -->
     <string name="main_new_chat">नई चैट</string>
     <string name="main_status_ready">तैयार · %1$s</string>
     <string name="main_status_setup">सेटअप %1$d/%2$d</string>
@@ -133,26 +112,10 @@
     <string name="main_new_chat_not_signed_in">साइन इन नहीं है · सेट अप करने के लिए टैप करें</string>
     <string name="main_new_chat_not_installed">इंस्टॉल नहीं है · सेट अप करने के लिए टैप करें</string>
     <string name="main_ago_now">अभी</string>
-    <plurals name="main_ago_minutes">
-        <item quantity="one">%1$d मि॰</item>
-        <item quantity="other">%1$d मि॰</item>
-    </plurals>
-    <plurals name="main_ago_hours">
-        <item quantity="one">%1$d घं॰</item>
-        <item quantity="other">%1$d घं॰</item>
-    </plurals>
-    <plurals name="main_ago_days">
-        <item quantity="one">%1$d दिन</item>
-        <item quantity="other">%1$d दिन</item>
-    </plurals>
-
-    <!-- Notification shown after the bubble is dragged away to hide it. -->
     <string name="notice_channel_name">छिपा हुआ बबल</string>
     <string name="notice_hidden_title">Ski छिपा हुआ है</string>
     <string name="notice_hidden_text">बबल को फिर से दिखाने के लिए टैप करें.</string>
     <string name="notice_open_chats">चैट खोलें</string>
-
-    <!-- Ski's own updates (GitHub version): notification, update sheet and messages. -->
     <string name="update_channel_name">Ski के अपडेट</string>
     <string name="update_available_title">Ski %1$s उपलब्ध है</string>
     <string name="update_notification_text">आपके पास %1$s है. नया क्या है, यह देखने और अपडेट करने के लिए टैप करें; आपकी चैट बनी रहेंगी.</string>
@@ -170,8 +133,6 @@
     <string name="update_error_download">डाउनलोड नहीं हो सका (%1$s).</string>
     <string name="update_error_not_newer">डाउनलोड की गई फ़ाइल Ski का नया वर्शन नहीं है, इसलिए उसे नहीं खोला गया.</string>
     <string name="update_failed_manual">%1$s आप इसे %2$s (ski.apk) से भी पा सकते हैं या अपने-आप अपडेट पाने के लिए Obtainium का इस्तेमाल कर सकते हैं (%3$s देखें).</string>
-
-    <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">सिस्टम</string>
     <string name="prefs_theme_light">लाइट</string>
     <string name="prefs_theme_dark">डार्क</string>
@@ -184,15 +145,9 @@
     <string name="prefs_accent_violet">बैंगनी</string>
     <string name="prefs_accent_rose">गुलाबी</string>
     <string name="prefs_accent_amber">एम्बर</string>
-
-    <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
-
-    <!-- Floating bubble, read by TalkBack. -->
     <string name="bubble_face_description">Ski. खोलने के लिए टैप करें, कार्रवाइयों के लिए दबाकर रखें</string>
     <string name="bubble_show_actions">कार्रवाइयां दिखाएं</string>
     <string name="background_title">बैकग्राउंड मोड</string>
-
-    <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
     <string name="bubble_pill_waiting_answer">आपके जवाब का इंतज़ार है</string>
     <string name="bubble_pill_waiting_approval">आपकी मंज़ूरी का इंतज़ार है</string>
     <string name="bubble_pill_paused">पॉज़ है · फिर शुरू करने के लिए यहां टैप करें</string>
@@ -212,8 +167,6 @@
     <string name="activity_browser_reading">पेज पढ़ रहा है</string>
     <string name="bubble_pill_hold_hint">रोकने और दूसरे विकल्पों के लिए बबल को दबाकर रखें</string>
     <string name="bubble_pill_status_hold_hint">%1$s · रोकने और दूसरे विकल्पों के लिए बबल को दबाकर रखें</string>
-
-    <!-- Hold menu: actions fanned out around the bubble while it is held (about 12 characters). -->
     <string name="menu_stop_task">टास्क रोकें</string>
     <string name="menu_resume">फिर शुरू करें</string>
     <string name="menu_pause">पॉज़ करें</string>
@@ -222,14 +175,10 @@
     <string name="bubble_talk">बोलें</string>
     <string name="menu_open_chat">चैट खोलें</string>
     <string name="menu_hide">छिपाएं</string>
-
-    <!-- Hold-menu preview: the first few times a task starts, three actions peek out of the bubble for a moment. -->
     <string name="menu_peek_stop">रोकें</string>
     <string name="menu_peek_add">जोड़ें</string>
     <string name="menu_peek_voice">आवाज़</string>
     <string name="menu_peek_hint">दबाकर रखें</string>
-
-    <!-- Toasts from the bubble. -->
     <string name="bubble_tip_stop_voice">सलाह: आवाज़ रोकने के लिए बबल को दबाकर रखें</string>
     <string name="bubble_tip_hold_menu">सलाह: पॉज़ करने, रोकने या निर्देश जोड़ने के लिए बबल को दबाकर रखें</string>
     <string name="bubble_stopping">रोका जा रहा है…</string>
@@ -239,53 +188,33 @@
     <string name="bubble_allow_mic_tap_bubble">Ski में माइक्रोफ़ोन की अनुमति दें, फिर बबल पर दोबारा टैप करें.</string>
     <string name="bubble_note_added">समझ गया: %1$s इसका ध्यान रखेगा</string>
     <string name="bubble_copied">कॉपी किया गया</string>
-
-    <!-- Voice input, shown in the status pill beside the bubble. -->
     <string name="bubble_listening">सुन रहा है…</string>
     <string name="bubble_listening_tap_done">सुन रहा है… बोलने के बाद बबल पर टैप करें</string>
     <string name="bubble_heard">“%1$s”</string>
-
-    <!-- Chat panel opened from the bubble: header buttons (read by TalkBack) and titles. -->
     <string name="bubble_new_chat">नई चैट</string>
     <string name="bubble_open_in_app">ऐप में खोलें</string>
     <string name="bubble_close">बंद करें</string>
     <string name="bubble_chats_title">चैट</string>
     <string name="bubble_model_effort_title">मॉडल और प्रयास</string>
-
-    <!-- Strip at the top of the chat panel while the agent works. -->
     <string name="bubble_working">काम जारी है…</string>
     <string name="bubble_stop">रोकें</string>
-
-    <!-- Composer at the bottom of the chat panel. -->
     <string name="bubble_attach">फ़ोटो या फ़ाइल अटैच करें</string>
     <string name="bubble_input_hint">%1$s से पूछें…</string>
     <string name="bubble_paste">चिपकाएं</string>
     <string name="bubble_send">भेजें</string>
     <string name="bubble_empty_chat">नई %1$s चैट. अपने फ़ोन पर कोई भी काम करवाने के लिए मुझसे कहें.</string>
-    <plurals name="bubble_tool_calls">
-        <item quantity="one">%1$d टूल कॉल</item>
-        <item quantity="other">%1$d टूल कॉल</item>
-    </plurals>
-
-    <!-- List of chats in the panel. -->
     <string name="bubble_chat_row_working">काम जारी है…</string>
     <string name="bubble_chat_row_you">आप: %1$s</string>
     <string name="bubble_delete_chat">यह चैट मिटाएं?</string>
     <string name="bubble_delete">मिटाएं</string>
-
-    <!-- Agent picker for a new chat (its title is bubble_new_chat). -->
     <string name="bubble_agent_default">डिफ़ॉल्ट</string>
     <string name="bubble_agent_not_signed_in">साइन इन नहीं है · सेट अप करने के लिए टैप करें</string>
     <string name="bubble_agent_not_installed">इंस्टॉल नहीं है · सेट अप करने के लिए टैप करें</string>
     <string name="chat_bg_setup">बैकग्राउंड मोड सेट अप करें (करीब एक मिनट) →</string>
-
-    <!-- Model and effort picker for the current chat. -->
     <string name="bubble_model_note">सिर्फ़ इस चैट के लिए. बातचीत जारी रहती है; अगले मैसेज से नया विकल्प इस्तेमाल होगा.</string>
     <string name="bubble_effort">प्रयास का स्तर</string>
     <string name="bubble_effort_note">“ऑटो” में एजेंट खुद तय करता है. ऊंचे स्तर ज़्यादा देर सोचते हैं और आपके प्लान का ज़्यादा हिस्सा इस्तेमाल करते हैं.</string>
     <string name="bubble_model">मॉडल</string>
-
-    <!-- Card in the chat panel when the agent asks for approval or asks a question. -->
     <string name="card_label_approval">आपकी मंज़ूरी चाहिए</string>
     <string name="card_label_question">सवाल</string>
     <string name="card_label_other_session">%1$s · दूसरे सेशन से</string>
@@ -299,15 +228,11 @@
     <string name="card_answer_hint">आपका जवाब…</string>
     <string name="chat_background">बैकग्राउंड में काम करें</string>
     <string name="chat_background_info">एजेंट अपनी अलग स्क्रीन इस्तेमाल करता है और आप अपने फ़ोन का इस्तेमाल करते रहते हैं। जिस चरण में आपकी ज़रूरत होती है, जैसे साइन-इन, वह आपकी स्क्रीन पर आता है।</string>
-
-    <!-- Notes posted into the chat after the user answers a card. -->
     <string name="card_note_answered">✓ जवाब दिया: %1$s</string>
     <string name="card_note_change_requested">✎ बदलाव का अनुरोध: %1$s</string>
     <string name="card_note_approved">✓ मंज़ूर किया: %1$s</string>
     <string name="card_note_denied">✗ मना किया</string>
     <string name="card_note_skipped">सवाल छोड़ा गया</string>
-
-    <!-- Notification while an agent operates the phone; on Android 16 also a chip in the status bar. -->
     <string name="control_channel_name">Ski आपका फ़ोन इस्तेमाल कर रहा है</string>
     <string name="control_channel_description">जब कोई एजेंट फ़ोन चलाता है, तब स्टेटस बार में दिखती है.</string>
     <string name="control_title">Ski आपका फ़ोन इस्तेमाल कर रहा है</string>
@@ -315,16 +240,10 @@
     <string name="control_stop">रोकें</string>
     <string name="pause_call_ended_title">कॉल खत्म · Ski पॉज़ है</string>
     <string name="pause_call_ended_text">काम फिर शुरू करने के लिए टैप करें</string>
-
-    <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, SkiService, Voice) ===== -->
-
-    <!-- Chat screen: app bar -->
     <string name="chat_back">वापस जाएं</string>
     <string name="chat_read_aloud">जवाब पढ़कर सुनाएं</string>
     <string name="chat_read_aloud_on">जवाब पढ़कर सुनाए जाएंगे</string>
     <string name="chat_read_aloud_off">जवाब पढ़कर नहीं सुनाए जाएंगे</string>
-
-    <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
     <string name="chat_linux_tools">Linux टूल</string>
     <string name="chat_linux_tools_info">Ski के Linux में कमांड, फ़ाइलें और ऐप बिल्ड</string>
     <string name="chat_linux_tools_title">Linux टूल चालू करें?</string>
@@ -332,7 +251,6 @@
     <string name="chat_linux_tools_when">सिर्फ़ इस चैट में, आपके अगले मैसेज से.</string>
     <string name="chat_linux_tools_risk">स्क्रीन पर दिखने वाला कोई नुकसान पहुंचाने वाला मैसेज या वेब पेज, एजेंट को धोखे से कमांड चलाने के लिए उकसा सकता है. भेजने, पोस्ट करने, खरीदने और मिटाने से पहले मंज़ूरी कार्ड तब भी दिखते हैं.</string>
     <string name="chat_linux_tools_turn_on">चालू करें</string>
-
     <string name="chat_options">चैट के विकल्प</string>
     <string name="chat_keep_awake">काम करते समय स्क्रीन चालू रखें</string>
     <string name="chat_keep_awake_info">लंबे कामों के लिए: जब तक यह चैट काम करती है, फ़ोन जागा रहता है, और एक सूचना बताती है कि काम कैसा रहा. फ़ोन लॉक करने पर स्क्रीन फिर भी बंद हो जाती है.</string>
@@ -377,12 +295,8 @@
     <string name="schedule_skip_busy">Ski एक घंटे तक व्यस्त रहा (कोई और काम, विराम, या इंटरनेट नहीं).</string>
     <string name="schedule_skip_screen">फ़ोन एक घंटे तक लॉक रहा.</string>
     <string name="schedule_marker">शेड्यूल किया गया</string>
-
-    <!-- Chat screen: the strip shown while the agent works -->
     <string name="chat_stop">रोकें</string>
     <string name="chat_working">काम जारी है…</string>
-
-    <!-- Chat screen: composer and empty chat -->
     <string name="chat_attach_description">फ़ोटो या फ़ाइल अटैच करें</string>
     <string name="chat_input_hint">%1$s से पूछें…</string>
     <string name="chat_input_hint_running">काम के दौरान कोई निर्देश जोड़ें…</string>
@@ -390,8 +304,6 @@
     <string name="chat_send">भेजें</string>
     <string name="chat_empty_hint">नई %1$s चैट. अपने फ़ोन पर कोई भी काम करवाने के लिए इससे कहें.</string>
     <string name="chat_empty_hint_dev">Linux टूल के साथ नई %1$s चैट. अपने फ़ोन पर कोई काम करवाने या कोई ऐप बनवाने के लिए इससे कहें.</string>
-
-    <!-- Model sheet (tap the model chip under the chat title) -->
     <string name="chat_model_title">%1$s मॉडल</string>
     <string name="chat_model_subtitle">सिर्फ़ इस चैट के लिए. बातचीत नए मॉडल के साथ जारी रहती है.</string>
     <string name="chat_effort">प्रयास का स्तर</string>
@@ -399,8 +311,6 @@
     <string name="chat_model">मॉडल</string>
     <string name="chat_model_other_hint">कोई और… जैसे %1$s</string>
     <string name="chat_model_use">इस्तेमाल करें</string>
-
-    <!-- Language sheet (long-press the mic) -->
     <string name="chat_speak_in">बोलने की भाषा</string>
     <string name="chat_speak_in_help">सेटिंग → आवाज़ में अपनी भाषाएं चुनें.</string>
     <string name="live_option">लाइव आवाज़</string>
@@ -422,8 +332,6 @@
     <string name="live_status_working">काम चल रहा है…</string>
     <string name="live_status_speaking">बोल रहा है…</string>
     <string name="chat_phone_voice">फ़ोन की आवाज़</string>
-
-    <!-- Approval card above the composer, when the agent asks for an OK or asks a question -->
     <string name="chat_card_question">सवाल</string>
     <string name="chat_card_needs_ok">आपकी मंज़ूरी चाहिए</string>
     <string name="chat_deny">मना करें</string>
@@ -435,8 +343,6 @@
     <string name="chat_change_hint">क्या बदलना है?</string>
     <string name="chat_send_answer">जवाब भेजें</string>
     <string name="chat_send_change">बदलाव भेजें</string>
-
-    <!-- Attachments -->
     <string name="chat_attach">अटैच करें</string>
     <string name="chat_attach_camera">फ़ोटो लें</string>
     <string name="chat_attach_camera_sub">कैमरे का इस्तेमाल करें</string>
@@ -446,21 +352,9 @@
     <string name="chat_attach_files_sub">PDF, दस्तावेज़ या 25 एमबी तक की कोई भी फ़ाइल</string>
     <string name="chat_no_app_for_action">इस फ़ोन पर कोई भी ऐप यह काम नहीं कर सकता.</string>
     <string name="chat_adding">जोड़ा जा रहा है…</string>
-    <plurals name="chat_adding_files">
-        <item quantity="one">%1$d फ़ाइल जोड़ी जा रही है…</item>
-        <item quantity="other">%1$d फ़ाइलें जोड़ी जा रही हैं…</item>
-    </plurals>
     <string name="chat_attachment_remove">हटाएं</string>
     <string name="chat_no_app_for_file">कोई भी ऐप %1$s को नहीं खोल सकता.</string>
-
-    <!-- Chat messages -->
     <string name="chat_copied">कॉपी किया गया</string>
-    <plurals name="chat_tool_calls">
-        <item quantity="one">%1$d टूल कॉल</item>
-        <item quantity="other">%1$d टूल कॉल</item>
-    </plurals>
-
-    <!-- Notes Ski posts into a chat, and the chat's status line -->
     <string name="hub_continuing">पिछला %1$s सेशन जारी रखा जा रहा है. अगर यह अब भी किसी टर्मिनल में खुला है, तो पहले उसे वहां बंद करें.</string>
     <string name="hub_still_working_attachments">यह चैट अभी काम कर रही है. काम पूरा होने पर अटैचमेंट भेजें.</string>
     <string name="hub_thinking">सोच रहा है…</string>
@@ -481,12 +375,6 @@
     <string name="hub_note_added">काम के दौरान जोड़ा गया: %1$s को यह अगले चरण में मिलेगा</string>
     <string name="hub_note_not_sent">आपने रोक दिया, इसलिए आपका नोट नहीं भेजा गया: वह फिर से संदेश बॉक्स में है</string>
     <string name="hub_note_passed">आपने जो जोड़ा था, वह आगे भेज दिया गया</string>
-    <plurals name="hub_pill_chats">
-        <item quantity="one">%1$d चैट · %2$s</item>
-        <item quantity="other">%1$d चैट · %2$s</item>
-    </plurals>
-
-    <!-- The agent's steps, one line each, shown in the chat and the bubble while it works. -->
     <string name="hub_tool_read_screen">स्क्रीन पढ़ रहा है</string>
     <string name="hub_tool_screenshot">स्क्रीनशॉट ले रहा है</string>
     <string name="hub_tool_tap_element">एलिमेंट %1$d पर टैप कर रहा है</string>
@@ -572,20 +460,10 @@
     <string name="hub_tool_edit_any">फ़ाइलों में बदलाव कर रहा है</string>
     <string name="hub_tool_read_file">%1$s पढ़ रहा है</string>
     <string name="hub_tool_other">%1$s इस्तेमाल कर रहा है</string>
-
-    <!-- Transcript of an earlier agent session that isn't a Ski chat (read-only) -->
     <string name="transcript_loading">लोड हो रहा है…</string>
     <string name="transcript_continue">Ski में जारी रखें</string>
     <string name="transcript_empty">इस सेशन में पढ़ने लायक कोई मैसेज नहीं है.</string>
-    <plurals name="transcript_last_messages">
-        <item quantity="one">आखिरी %1$d मैसेज · सिर्फ़ पढ़ने के लिए</item>
-        <item quantity="other">आखिरी %1$d मैसेज · सिर्फ़ पढ़ने के लिए</item>
-    </plurals>
-
-    <!-- Shared screens: links -->
     <string name="ui_no_app_for_link">कोई भी ऐप यह लिंक नहीं खोल सकता</string>
-
-    <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
     <string name="ui_a11y_title">Ski सुलभता सेवा का इस्तेमाल कैसे करता है</string>
     <string name="ui_a11y_what">Ski, Android की सुलभता सेवा का इस्तेमाल करके दूसरे ऐप में वह काम करता है जो आप कहते हैं: यह स्क्रीन पर दिख रही चीज़ें पढ़ता है और आपके लिए टैप, टाइप और स्क्रोल करता है. यह तैरता हुआ बबल भी दिखाता है.</string>
     <string name="ui_a11y_data">टास्क चलने के दौरान, स्क्रीन का कॉन्टेंट आपके चुने गए एजेंट की एआई सेवा को भेजा जाता है (Claude Code के लिए Anthropic, Codex के लिए OpenAI, Antigravity के लिए Google, Grok के लिए xAI या आपके OpenCode मॉडल का प्रोवाइडर). इसमें मैसेज, नाम या पते जैसी निजी जानकारी हो सकती है. इसे सिर्फ़ आपका अनुरोध पूरा करने के लिए भेजा जाता है.</string>
@@ -594,13 +472,9 @@
     <string name="ui_privacy_policy">निजता नीति</string>
     <string name="ui_no_thanks">रहने दें</string>
     <string name="ui_agree_continue">सहमति दें और जारी रखें</string>
-
-    <!-- Bottom navigation of the main screens. Keep very short (about 10 characters). -->
     <string name="ui_nav_chats">चैट</string>
     <string name="ui_nav_sessions">सेशन</string>
     <string name="ui_nav_settings">सेटिंग</string>
-
-    <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
     <string name="service_pause_expired">5 मिनट तक पॉज़ रहने की वजह से Ski ने टास्क रोक दिया.</string>
     <string name="service_stopped_toast">रोक दिया गया. आपका फ़ोन अब फिर से आपके हाथ में है.</string>
     <string name="service_paused_note">पॉज़ किया गया: जब तक आप फिर से शुरू नहीं करते, फ़ोन आपके हाथ में है</string>
@@ -608,8 +482,6 @@
     <string name="service_resumed_note">फिर से शुरू किया गया</string>
     <string name="service_autopaused_touch">पॉज़ किया गया, क्योंकि आपने स्क्रीन छुई. फिर शुरू करने के लिए बबल के पास “पॉज़ है” पर टैप करें.</string>
     <string name="service_autopaused_call">कॉल की वजह से पॉज़ किया गया. फिर शुरू करने के लिए बबल के पास “पॉज़ है” पर टैप करें.</string>
-
-    <!-- Voice input and output -->
     <string name="voice_mic_needed">Ski को माइक्रोफ़ोन की ज़रूरत है. अनुमति देने के लिए Ski ऐप खोलें और एक बार 🎙 पर टैप करें.</string>
     <string name="voice_no_recognizer">इस फ़ोन पर बोली पहचानने की कोई सेवा नहीं है.</string>
     <string name="voice_starting">शुरू हो रहा है…</string>
@@ -619,14 +491,8 @@
     <string name="voice_code_omitted">कोड छोड़ दिया गया.</string>
     <string name="voice_link">लिंक</string>
     <string name="voice_stop_and_send">रोकें और भेजें</string>
-
-    <!-- ===== Sign-in, agents and models (SignInActivity, Account, Models, Sessions, RemoteSession, Attachments) ===== -->
-
-    <!-- Sign-in screen (one per agent: Claude Code, Codex or OpenCode). -->
     <string name="signin_back">वापस जाएं</string>
     <string name="signin_checking">जांच की जा रही है…</string>
-
-    <!-- Sign-in screen: the agent isn't installed yet. -->
     <string name="signin_install">%1$s इंस्टॉल करें</string>
     <string name="signin_install_sub_claude">आपकी Claude सदस्यता पर, Ski के अंदर Claude Code चलाता है.</string>
     <string name="signin_install_sub_opencode">Ski के अंदर OpenCode चलाता है. इसके मुफ़्त मॉडल तुरंत काम करते हैं, किसी खाते की ज़रूरत नहीं; अपने प्रोवाइडर (Anthropic, OpenAI, GitHub Copilot…) कभी भी जोड़ें.</string>
@@ -638,13 +504,9 @@
     <string name="signin_install_size_codex">एक बार करीब 150 एमबी डाउनलोड होगा: Ski का Linux, Node.js और OpenAI से Codex. हो सके तो वाई-फ़ाई इस्तेमाल करें.</string>
     <string name="signin_install_size_agy">एक बार करीब 200 एमबी डाउनलोड होगा: Ski का Linux और Google से Antigravity CLI. हो सके तो वाई-फ़ाई इस्तेमाल करें.</string>
     <string name="signin_install_size_grok">एक बार करीब 170 एमबी डाउनलोड होगा: Ski का Linux और xAI से Grok Build. हो सके तो वाई-फ़ाई इस्तेमाल करें.</string>
-
-    <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">इंस्टॉल हो रहा है</string>
     <string name="signin_updating">अपडेट हो रहा है</string>
     <string name="signin_install_wait">इसमें कुछ मिनट लगते हैं. आप यह स्क्रीन छोड़ सकते हैं; काम चलता रहेगा.</string>
-
-    <!-- Sign-in screen: installed, not signed in. -->
     <string name="signin_title_claude">Claude में साइन इन करें</string>
     <string name="signin_title_chatgpt">ChatGPT में साइन इन करें</string>
     <string name="signin_title_google">Google में साइन इन करें</string>
@@ -659,8 +521,6 @@
     <string name="signin_with_grok">Grok से साइन इन करें</string>
     <string name="signin_other_device">किसी दूसरे डिवाइस पर साइन इन करें</string>
     <string name="signin_with_code">कोड से साइन इन करें</string>
-
-    <!-- Sign-in screen: sign-in in progress. -->
     <string name="signin_sign_in">साइन इन करें</string>
     <string name="signin_starting">साइन इन शुरू हो रहा है…</string>
     <string name="signin_approve_title">अपने ब्राउज़र में मंज़ूरी दें</string>
@@ -672,8 +532,6 @@
     <string name="signin_signing_in">साइन इन हो रहा है</string>
     <string name="signin_finishing">साइन इन पूरा हो रहा है…</string>
     <string name="signin_not_finished">साइन इन पूरा नहीं हुआ. %1$s</string>
-
-    <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">यह लिंक किसी भी डिवाइस पर खोलें और मंज़ूरी दें. फिर पेज पर दिखने वाला कोड कॉपी करें और उसे नीचे चिपकाएं.</string>
     <string name="signin_enter_code">यह कोड डालें</string>
     <string name="signin_remote_codex">किसी भी डिवाइस पर नीचे दिया गया लिंक खोलें, ChatGPT में साइन इन करें और कोड डालें. बाकी काम Ski खुद पूरा कर लेगा.</string>
@@ -689,16 +547,12 @@
     <string name="signin_no_browser">कोई ब्राउज़र नहीं मिला.</string>
     <string name="signin_no_browser_page">साइन-इन पेज खोलने के लिए कोई ब्राउज़र नहीं मिला.</string>
     <string name="signin_clip_label">साइन-इन</string>
-
-    <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">इसके बजाय कोड चिपकाएं</string>
     <string name="signin_paste_help">अगर Ski अपने-आप वापस नहीं आता, तो Claude पेज पर Copy Code पर टैप करें और फिर उसे यहां चिपकाएं.</string>
     <string name="signin_paste_help_agy">अगर Ski अपने-आप वापस नहीं आता, तो Antigravity पेज पर “Copy to Clipboard” पर टैप करें और फिर कोड यहां चिपकाएं.</string>
     <string name="signin_code_hint">कोड</string>
     <string name="signin_use_code">इस्तेमाल करें</string>
     <string name="signin_start_again">पहले साइन इन फिर से शुरू करें.</string>
-
-    <!-- Sign-in screen: signed in, or OpenCode installed (it needs no sign-in). -->
     <string name="signin_signed_in">साइन इन हो गया</string>
     <string name="signin_agent_ready">%1$s तैयार है.</string>
     <string name="signin_done">हो गया</string>
@@ -714,12 +568,8 @@
     <string name="signin_version_old_opencode">OpenCode %1$s. OpenCode 2 आ गया है: नए वर्शन मिलते रहें, इसके लिए अपडेट करें. आपके जुड़े हुए प्रोवाइडर बने रहेंगे.</string>
     <string name="signin_update_opencode2">OpenCode 2 पर अपडेट करें</string>
     <string name="signin_check_updates">अपडेट की जांच करें</string>
-
-    <!-- Sign-in screen: error. -->
     <string name="signin_error_title">कोई गड़बड़ी हुई</string>
     <string name="signin_try_again">फिर से कोशिश करें</string>
-
-    <!-- Agent status shown on the sign-in, setup and onboarding screens. -->
     <string name="account_tagline_claude">आपका Claude प्लान इस्तेमाल करता है</string>
     <string name="account_tagline_opencode">बिना खाते के, या आपके अपने प्रोवाइडर के साथ</string>
     <string name="account_tagline_codex">आपका ChatGPT प्लान इस्तेमाल करता है</string>
@@ -743,8 +593,6 @@
     <string name="account_updated_from">%1$s पर अपडेट किया गया (पहले %2$s था).</string>
     <string name="account_update_opencode2_failed">OpenCode 2 पर अपडेट नहीं हो सका; आपके पास अब भी %1$s है. वाई-फ़ाई पर फिर से कोशिश करें.</string>
     <string name="account_update_failed">अपडेट नहीं हो सका: %1$s</string>
-
-    <!-- Model and effort pickers of a chat, and the chat's chip ("agent · model · effort"). -->
     <string name="models_default">डिफ़ॉल्ट</string>
     <string name="models_name_default">%1$s (डिफ़ॉल्ट)</string>
     <string name="models_default_model">डिफ़ॉल्ट मॉडल</string>
@@ -761,19 +609,9 @@
     <string name="models_effort_xhigh">अति उच्च</string>
     <string name="models_effort_max">अधिकतम</string>
     <string name="models_chip_effort">प्रयास: %1$s</string>
-
-    <!-- Chats. -->
     <string name="session_new_chat">नई %1$s चैट</string>
-    <plurals name="attach_count">
-        <item quantity="one">📎 %1$d अटैचमेंट</item>
-        <item quantity="other">📎 %1$d अटैचमेंट</item>
-    </plurals>
-
-    <!-- Attaching a photo or file to a chat message (toasts). -->
     <string name="attach_cant_open">%1$s को खोला नहीं जा सका</string>
     <string name="attach_too_large">%1$s का साइज़ 25 एमबी से ज़्यादा है.</string>
-
-    <!-- Remote Control session in Settings: a Claude Code session that can be continued from the Claude app. -->
     <string name="remote_sign_in_first">पहले Claude Code में साइन इन करें.</string>
     <string name="remote_starting">शुरू हो रहा है…</string>
     <string name="remote_restarting">फिर से शुरू हो रहा है…</string>
@@ -786,14 +624,8 @@
     <string name="ssh_keeps_stopping">SSH सर्वर बार-बार रुक रहा है: %1$s</string>
     <string name="ssh_key_added">हो गया. Termux से Ski का Linux खोलने के लिए ssh ski टाइप करें.</string>
     <string name="ssh_code_expired">यह कमांड पहले ही इस्तेमाल हो चुका है या 10 मिनट से पुराना है. इसे Ski की सेटिंग में फिर से कॉपी करें.</string>
-
-    <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
-
-    <!-- Settings screen: header. -->
     <string name="setup_settings_title">सेटिंग</string>
     <string name="setup_settings_subtitle">Ski आपकी अपनी सदस्यता (या OpenCode के मुफ़्त मॉडल और Antigravity के मुफ़्त प्लान) पर, ऐप के अंदर ही Claude Code, Codex, OpenCode, Antigravity या Grok चलाता है.</string>
-
-    <!-- Settings screen: the setup checklist card (5 steps). -->
     <string name="setup_card_title">सेटअप</string>
     <string name="setup_open_guide">चरण-दर-चरण गाइड खोलें</string>
     <string name="setup_all_set">सब हो गया. Ski तैयार है.</string>
@@ -830,8 +662,6 @@
     <string name="setup_step_name_a11y">सुलभता सेवा चालू करें</string>
     <string name="setup_step_name_install">अपना एजेंट इंस्टॉल करें</string>
     <string name="setup_step_name_background">बैकग्राउंड में चलने की अनुमति दें</string>
-
-    <!-- Settings screen: Appearance. -->
     <string name="setup_appearance">दिखावट</string>
     <string name="setup_theme_mode">मोड</string>
     <string name="setup_accent">ऐक्सेंट रंग</string>
@@ -847,8 +677,6 @@
     <string name="setup_custom_accent_title">कस्टम ऐक्सेंट रंग</string>
     <string name="setup_custom_accent_hint">हेक्स कोड के रूप में कोई भी रंग, जैसे #4F8BFF.</string>
     <string name="setup_apply">लागू करें</string>
-
-    <!-- Settings screen: Agent. -->
     <string name="setup_agent">एजेंट</string>
     <string name="setup_default_brain">डिफ़ॉल्ट एजेंट</string>
     <string name="setup_default_brain_info">बबल या “नई चैट” बटन से शुरू होने वाली नई चैट के जवाब कौन देगा. Claude Code आपका Claude प्लान इस्तेमाल करता है, Codex आपका ChatGPT प्लान, Antigravity आपका Google खाता, Grok आपका Grok खाता, और OpenCode अपने मुफ़्त मॉडल या आपके अपने प्रोवाइडर. सिर्फ़ सेट अप किए गए एजेंट ही चुने जा सकते हैं.</string>
@@ -863,14 +691,10 @@
     <string name="setup_agent_not_signed_in">साइन इन नहीं है</string>
     <string name="setup_agent_api_key">साइन इन नहीं · API कुंजी</string>
     <string name="signin_key_only">API कुंजी का उपयोग</string>
-
-    <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">आपके अपने सेशन में फ़ोन टूल</string>
     <string name="setup_phone_tools_info">Ski के फ़ोन टूल इस फ़ोन पर एक सामान्य MCP सर्वर हैं. फ़ोन के किसी टर्मिनल (जैसे Termux) में इसे एक बार चलाएं. इसके बाद उस एजेंट को हर सेशन में फ़ोन टूल मिलेंगे, बबल के बिना भी.</string>
     <string name="setup_copy_command">कमांड कॉपी करें</string>
     <string name="setup_command_copied">कॉपी किया गया. इसे अपने टर्मिनल में चिपकाएं.</string>
-
-    <!-- Settings screen: Voice. -->
     <string name="setup_voice">आवाज़</string>
     <string name="setup_voice_input">वॉइस इनपुट</string>
     <string name="setup_voice_phone">फ़ोन</string>
@@ -887,8 +711,6 @@
     <string name="setup_needs_claude">Claude की डिक्टेशन सुविधा, %1$s के ज़रिए आपके Claude प्लान पर चलती है.</string>
     <string name="setup_needs_chatgpt">ChatGPT की आवाज़, %1$s के ज़रिए आपके ChatGPT प्लान पर चलती है.</string>
     <string name="setup_set_up_agent">%1$s सेट अप करें</string>
-
-    <!-- Settings screen: Remote Control (a Claude Code session you continue from the Claude app). -->
     <string name="setup_remote_control">रिमोट कंट्रोल</string>
     <string name="setup_remote_session">Claude Code सेशन</string>
     <string name="setup_remote_session_info">फ़ोन टूल के साथ Ski के अंदर चलने वाला Claude Code सेशन. इसे इसी फ़ोन पर या कहीं से भी, Claude ऐप (Code) में जारी रखें.</string>
@@ -906,22 +728,10 @@
     <string name="setup_ssh_info">SSH के ज़रिए Termux से Ski का Linux इस्तेमाल करें. सिर्फ़ इस फ़ोन के ऐप ही कनेक्ट कर सकते हैं, और वह भी सिर्फ़ कुंजी से.</string>
     <string name="setup_ssh_active">चल रहा है · पोर्ट %1$d</string>
     <string name="setup_ssh_how">यह कमांड कॉपी करें और 10 मिनट के अंदर Termux में एक बार चलाएं. उसके बाद, Ski का Linux खोलने के लिए Termux में ssh ski टाइप करें.</string>
-
-    <!-- Settings screen: chats left over from when Ski ran its agents in Termux. -->
     <string name="setup_old_chats_title">Termux की पुरानी चैट हटाएं</string>
-    <plurals name="setup_old_chats_body">
-        <item quantity="one">Ski का अपना Linux आने से पहले की %1$d चैट. एजेंट इसे जारी नहीं रख सकते.</item>
-        <item quantity="other">Ski का अपना Linux आने से पहले की %1$d चैट. एजेंट इन्हें जारी नहीं रख सकते.</item>
-    </plurals>
-    <plurals name="setup_old_chats_remove">
-        <item quantity="one">%1$d पुरानी चैट हटाएं?</item>
-        <item quantity="other">%1$d पुरानी चैट हटाएं?</item>
-    </plurals>
     <string name="setup_old_chats_remove_body">ये Ski की चैट सूची से हट जाएंगी. इसे पहले जैसा नहीं किया जा सकता.</string>
     <string name="setup_remove">हटाएं</string>
     <string name="setup_removed">हटा दिया गया.</string>
-
-    <!-- Settings screen: Experience. -->
     <string name="setup_experience">अनुभव</string>
     <string name="setup_chat_bubble">चैट बबल</string>
     <string name="setup_chat_bubble_info">दूसरे ऐप के ऊपर तैरता रहता है. इसे छिपाने के लिए ✕ पर खींचें; किसी एजेंट को आपकी मंज़ूरी चाहिए होने पर मंज़ूरी कार्ड तब भी दिखेंगे.</string>
@@ -949,28 +759,18 @@
     <string name="setup_agents_tap">एजेंट को Ski की स्क्रीन पर टैप करने दें</string>
     <string name="setup_agents_tap_info">किसी एजेंट के साथ Ski की टेस्टिंग के लिए (जैसे, फ़ोन टूल के साथ Termux में Claude Code). बबल, मंज़ूरी कार्ड, ऐप अनुमतियां और ये स्विच उसकी पहुंच से बाहर रहते हैं.</string>
     <string name="setup_dev_mode_warning">इसे बंद रखना बेहतर है: Linux टूल सिर्फ़ उन चैट में चालू करें जिनमें उनकी ज़रूरत हो. इनके चालू रहने पर, स्क्रीन पर दिखने वाला कोई नुकसान पहुंचाने वाला मैसेज या वेब पेज, एजेंट को धोखे से कमांड चलाने के लिए उकसा सकता है. भेजने, पोस्ट करने, खरीदने और मिटाने से पहले मंज़ूरी कार्ड तब भी दिखते हैं.</string>
-
-    <!-- Settings screen: footer links. -->
     <string name="setup_licences">ओपन-सोर्स लाइसेंस</string>
     <string name="setup_privacy_policy">निजता नीति</string>
-
-    <!-- Errors while installing Ski's built-in Linux (Alpine). Shown after "Install failed:". -->
     <string name="linux_download_corrupt">Alpine का डाउनलोड खराब है (sha256 %1$s)</string>
     <string name="linux_move_failed">Alpine को सही जगह पर नहीं ले जाया जा सका</string>
     <string name="linux_download_failed_http">डाउनलोड नहीं हो सका: HTTP %1$d</string>
     <string name="linux_unsafe_path">आर्काइव में असुरक्षित पाथ: %1$s</string>
     <string name="linux_symlink_failed">%1$s का सिमलिंक नहीं बन सका: %2$s</string>
     <string name="linux_truncated_archive">आर्काइव अधूरा है</string>
-
-    <!-- Terminal screen (a shell in Ski's Linux, in tabs). -->
     <string name="terminal_title">टर्मिनल</string>
     <string name="terminal_back">वापस जाएं</string>
     <string name="terminal_hide_keyboard">कीबोर्ड छिपाएं</string>
     <string name="terminal_menu">मेन्यू</string>
-    <plurals name="terminal_sessions_count">
-        <item quantity="one">%1$d सेशन · ski linux</item>
-        <item quantity="other">%1$d सेशन · ski linux</item>
-    </plurals>
     <string name="terminal_listening">सुन रहा है · माइक्रोफ़ोन चालू है</string>
     <string name="terminal_session_ended">सेशन खत्म हुआ</string>
     <string name="terminal_session_ended_code">सेशन खत्म हुआ · एग्ज़िट कोड %1$d</string>
@@ -990,13 +790,9 @@
     <string name="terminal_keep_screen_on">स्क्रीन चालू रखें</string>
     <string name="terminal_close_session">यह सेशन बंद करें</string>
     <string name="terminal_tips">टेक्स्ट या लिंक चुनने के लिए दबाकर रखें. ज़ूम करने के लिए पिंच करें और पीछे का आउटपुट देखने के लिए खींचें. किसी टैब को बंद करने के लिए उसे दबाकर रखें.</string>
-
-    <!-- Terminal: floating toolbar over selected text. Keep short. -->
     <string name="terminal_copy">कॉपी करें</string>
     <string name="terminal_open_link">लिंक खोलें</string>
     <string name="terminal_share">शेयर करें</string>
-
-    <!-- Sessions screen: every agent session running on the phone, and recent history. -->
     <string name="monitor_title">सेशन</string>
     <string name="monitor_subtitle">इस फ़ोन पर Claude Code, Codex, OpenCode, Antigravity और Grok के सभी सेशन.</string>
     <string name="monitor_terminal_running">एक शेल चल रहा है · वापस जाने के लिए टैप करें</string>
@@ -1025,10 +821,6 @@
     <string name="monitor_service_meta">pid %1$d · %2$s से चालू · बैकग्राउंड सेशन होस्ट करती है</string>
     <string name="monitor_no_history">कोई इतिहास नहीं मिला.</string>
     <string name="monitor_no_messages">(कोई मैसेज नहीं)</string>
-
-    <!-- ===== Approvals and app permissions, tool cards, dictation (AppPermissionsActivity, Guard, Tools, Reviewer, dictation) ===== -->
-
-    <!-- App permissions screen (Settings → App permissions): how much the agent may do on its own in each app. -->
     <string name="perms_title">ऐप अनुमतियां</string>
     <string name="perms_back">वापस जाएं</string>
     <string name="perms_mode_trust">भरोसा</string>
@@ -1047,8 +839,6 @@
     <string name="perms_apps">ऐप</string>
     <string name="perms_all_apps">सभी ऐप</string>
     <string name="perms_reset_suggested">सुझाए गए मोड पर रीसेट करें</string>
-
-    <!-- Button rules screen: buttons that always or never need the user's OK. -->
     <string name="perms_rules_intro">“सख़्त” या “स्मार्ट” पर सेट ऐप के लिए. सुझावों से चुना गया नियम उसी ऐप पर लागू होता है; टाइप किया गया टेक्स्ट सभी ऐप पर लागू होता है. किसी नियम को हटाने के लिए उस पर टैप करें.</string>
     <string name="perms_builtin_title">पहले से मौजूद जोखिम वाले शब्द</string>
     <string name="perms_builtin_sub">भेजें, पोस्ट करें, भुगतान करें, खरीदें, ऑर्डर करें, हटाएं, कॉल करें… पर हमेशा पूछा जाता है, Ski की हर भाषा में.</string>
@@ -1059,8 +849,6 @@
     <string name="perms_add">जोड़ें</string>
     <string name="perms_seen_title">हाल ही में दिखे बटन</string>
     <string name="perms_seen_empty">“सख़्त” और “स्मार्ट” ऐप में एजेंट जिन बटन पर टैप करता है, वे यहां दिखते हैं.</string>
-
-    <!-- Button rules and modes, as App permissions shows them. -->
     <string name="guard_rule_all_apps">%1$s · सभी ऐप</string>
     <string name="guard_why_choice">आपकी पसंद</string>
     <string name="guard_why_category">सुझाया गया: मैसेज, सोशल, कॉल या पैसों से जुड़ा</string>
@@ -1068,8 +856,6 @@
     <string name="guard_why_social">सुझाया गया: सोशल ऐप</string>
     <string name="guard_why_suggested">सुझाया गया</string>
     <string name="guard_why_setup">सेटअप में आपकी पसंद: पहले मुझसे पूछें</string>
-
-    <!-- Approval card, shown before the agent taps a risky button: the user approves or denies it. -->
     <string name="tools_card_tap">“%1$s” पर टैप करना</string>
     <string name="tools_card_tap_in">%2$s में “%1$s” पर टैप करना</string>
     <string name="tools_card_tap_this">“इस” पर टैप करना</string>
@@ -1081,23 +867,15 @@
     <string name="tools_card_no_reviewer">कोई समीक्षक साइन इन नहीं है, इसलिए Ski आपसे पूछ रहा है.</string>
     <string name="tools_card_reviewer_block">%1$s ऐसा न करने की सलाह देता है: %2$s</string>
     <string name="tools_card_reviewer_ask">%1$s का कहना है कि आपसे पूछा जाए: %2$s</string>
-
-    <!-- Status line in the bubble while the agent works. -->
     <string name="tools_status_checking_tap">इस टैप की जांच की जा रही है…</string>
     <string name="tools_status_tap_install">“इंस्टॉल करें” पर टैप करें, फिर पुष्टि करें</string>
     <string name="tools_status_tap_update">“अपडेट करें” पर टैप करें, फिर पुष्टि करें</string>
     <string name="tools_status_installed">इंस्टॉल हो गया</string>
     <string name="tools_status_downloading">Ski %1$s डाउनलोड हो रहा है…</string>
-
-    <!-- Smart reviewer: its reason when it fails, shown on the approval card. -->
     <string name="reviewer_failed">समीक्षक जवाब नहीं दे सका (%1$s)</string>
     <string name="reviewer_no_answer">कोई जवाब नहीं</string>
     <string name="reviewer_timed_out">समय खत्म हो गया</string>
-
-    <!-- Error when a chat can't start because Ski's built-in Linux isn't set up yet. -->
     <string name="helper_linux_missing">Ski का Linux अभी इंस्टॉल नहीं है. इसे सेट अप करने के लिए सेटिंग खोलें.</string>
-
-    <!-- Voice input (dictation). Status lines show in the voice bar, errors as toasts. -->
     <string name="dictation_claude_sign_in">Claude वॉइस इस्तेमाल करने के लिए सेटिंग में Claude Code में साइन इन करें.</string>
     <string name="dictation_codex_sign_in">ChatGPT वॉइस इस्तेमाल करने के लिए सेटिंग में Codex में साइन इन करें.</string>
     <string name="dictation_starting">शुरू हो रहा है…</string>
@@ -1121,8 +899,6 @@
     <string name="dictation_request_timed_out">%1$s का समय खत्म हो गया</string>
     <string name="dictation_codex_stopped">Codex रुक गया: %1$s</string>
     <string name="dictation_no_details">कोई जानकारी नहीं</string>
-
-    <!-- Notification rules -->
     <string name="card_label_countdown">अपने-आप मंज़ूर होने वाला है</string>
     <string name="card_countdown">%1$d सेकंड में अपने-आप मंज़ूर होगा · रोकने के लिए टैप करें</string>
     <string name="card_note_auto_approved">✓ काउंटडाउन खत्म होने पर मंज़ूर हुआ: %1$s</string>
@@ -1234,8 +1010,6 @@
     <string name="rules_approval_title">आपकी मंज़ूरी चाहिए: %1$s · %2$s</string>
     <string name="card_locked_title">आपकी मंज़ूरी चाहिए: %1$s</string>
     <string name="rules_approval_auto">%1$s में अपने-आप मंज़ूर हो जाएगा, जब तक कि आप इसे रोक न दें.\n%2$s</string>
-
-    <!-- Background browser -->
     <string name="browser_section">बैकग्राउंड ब्राउज़र</string>
     <string name="browser_switch">बैकग्राउंड ब्राउज़र</string>
     <string name="browser_switch_info">Ski के अंदर एक ब्राउज़र, जिसे एजेंट वेब पेजों के लिए इस्तेमाल करते हैं, आपके फ़ोन को अपने कब्ज़े में लिए बिना. आप इसे चैट में देख और इस्तेमाल कर सकते हैं. पहली बार Ski, Chromium डाउनलोड करता है (करीब 300 MB).</string>
@@ -1334,10 +1108,6 @@
     <string name="check_report_title">GitHub पर क्या जाएगा</string>
     <string name="check_report_text">इससे इन जानकारियों के साथ एक नया GitHub issue खुलता है। जब तक आप उसे वहाँ सबमिट नहीं करते, कुछ नहीं भेजा जाता, और आप पहले उसे बदल सकते हैं। चैट, स्क्रीन का टेक्स्ट और सूचनाएँ कभी शामिल नहीं होतीं।</string>
     <string name="check_report_open">GitHub खोलें</string>
-    <plurals name="check_failed">
-        <item quantity="one">%1$d जाँच विफल</item>
-        <item quantity="other">%1$d जाँचें विफल</item>
-    </plurals>
     <string name="tools_step_cap">लगातार %1$d फ़ोन ऐक्शन के बाद रोक दिया गया, ताकि बेकाबू काम आपका प्लान खत्म न कर दे। ज़रूरत हो तो उसे जारी रखने को कहें।</string>
     <string name="tools_step_loop">रोक दिया गया: उसने एक ही काम लगातार %1$d बार किया, जो लूप जैसा लगता है।</string>
     <string name="setup_help">मदद</string>
@@ -1468,4 +1238,114 @@
     <string name="setup_switch_default_title">डिफ़ॉल्ट दिमाग</string>
     <string name="signin_api_key_on">%1$s आपकी API कुंजियों पर चलता है: चैट के मॉडल मेनू में मॉडल चुनें, या API कुंजियाँ में उसका डिफ़ॉल्ट।</string>
     <string name="signin_api_key_on_plan">चैट आपकी API कुंजियों के मॉडल भी इस्तेमाल कर सकती हैं (चैट के मॉडल मेनू में चुनें)। आवाज़ और प्लान की बाकी सुविधाएँ आपके प्लान से चलती हैं।</string>
+
+    <!-- added 2026-11-18 (missing translations) -->
+    <string name="activity_shell">फ़ोन कमांड चलाया जा रहा है</string>
+    <string name="app_name" translatable="false">Ski</string>
+    <string name="background_asleep">इसका हेल्पर नहीं चल रहा है। यह पहले बैकग्राउंड कार्य के साथ शुरू होता है, या अभी। फ़ोन रीस्टार्ट के बाद, अभी शुरू करें पर टैप करें: Ski इसके लिए वायरलेस डीबगिंग चालू कर देगा (Wi-Fi कनेक्ट होना चाहिए)।</string>
+    <string name="background_brought">आपकी स्क्रीन पर लाया गया: इस चरण में आपकी ज़रूरत है। इस चैट के लिए बैकग्राउंड मोड अब बंद है।</string>
+    <string name="background_default">नई चैट बैकग्राउंड में काम करती हैं</string>
+    <string name="background_default_info">हर चैट का अपना स्विच चैट विकल्पों में अब भी है।</string>
+    <string name="background_failed">काम नहीं किया: %1$s</string>
+    <string name="background_how">Android केवल वायरलेस डीबगिंग को ऐसी स्क्रीन बनाने देता है, इसलिए Ski एक बार इसके साथ पेयर करता है, यहीं इस फ़ोन पर। कंप्यूटर की ज़रूरत नहीं।</string>
+    <string name="background_installing">Ski के Linux के लिए adb लाया जा रहा है…</string>
+    <string name="background_intro">बैकग्राउंड मोड में एक एजेंट अपनी खुद की स्क्रीन पर काम करता है, जिसे आप नहीं देखते। आप अपनी स्क्रीन, अपना कीबोर्ड और अपना बैक बटन बनाए रखते हैं, और फ़ोन लॉक होने पर भी यह चलता रहता है।</string>
+    <string name="background_needs_dev">पहले डेवलपर विकल्प चालू करें: सेटिंग्स → डिवाइस के बारे में → बिल्ड नंबर पर 7 बार टैप करें।</string>
+    <string name="background_needs_linux">बैकग्राउंड मोड को Ski के Linux की ज़रूरत है। पहले एक एजेंट इंस्टॉल करें।</string>
+    <string name="background_needs_service">पहले Ski की एक्सेसिबिलिटी सेवा चालू करें।</string>
+    <string name="background_no_dialog">Ski पेयरिंग डायलॉग समय पर नहीं देख पाया। फिर से कोशिश करें।</string>
+    <string name="background_open_options">डेवलपर विकल्प खोलें</string>
+    <string name="background_paired">पेयर किया गया</string>
+    <string name="background_pairing">पेयरिंग हो रही है…</string>
+    <string name="background_preview">बैकग्राउंड स्क्रीन</string>
+    <string name="background_ready">तैयार</string>
+    <string name="background_ready_info">प्रति चैट चालू करें: चैट विकल्प → बैकग्राउंड में काम करें।</string>
+    <string name="background_remove">हटाएँ</string>
+    <string name="background_remove_text">Ski पेयरिंग भूल जाता है और अपना हेल्पर रोक देता है। चैट फिर से असली स्क्रीन पर काम करती हैं।</string>
+    <string name="background_row">आपके फ़ोन इस्तेमाल करते समय एजेंट अपनी खुद की स्क्रीन पर काम करते हैं</string>
+    <string name="background_security">वायरलेस डीबगिंग पेयर किए गए डिवाइस को इस फ़ोन को नियंत्रित करने देती है। Ski केवल खुद से पेयर करता है, इसी फ़ोन पर, और उसका हेल्पर केवल यहीं सुनता है।</string>
+    <string name="background_setup">सेट अप करें</string>
+    <string name="background_shell">फ़ोन कमांड</string>
+    <string name="background_shell_ask">हर कमांड से पहले पूछें</string>
+    <string name="background_shell_ask_info">अप्रूवल कार्ड पहले कमांड दिखाता है। इसके बिना, धोखा खाए एजेंट और आपके फ़ोन के बीच कुछ भी नहीं खड़ा है: एक कमांड अप्रूवल कार्ड पर भी टैप कर सकती है।</string>
+    <string name="background_shell_info">Linux टूल्स वाली चैटों में, एजेंट “adb shell” की तरह फ़ोन पर ही कमांड चला सकता है: ऐप्स इंस्टॉल और शुरू करना, सेटिंग्स बदलना, लॉग और फ़ाइलें पढ़ना। वह जो संदेश या वेब पेज पढ़ता है, वह उसे कमांड चलाने के लिए धोखा देने की कोशिश कर सकता है।</string>
+    <string name="background_shell_switch">एजेंट फ़ोन पर कमांड चला सकते हैं</string>
+    <string name="background_show">मेरी स्क्रीन पर दिखाएँ</string>
+    <string name="background_starting">हेल्पर शुरू हो रहा है…</string>
+    <string name="background_start_now">अभी शुरू करें</string>
+    <string name="background_step1">1. सेट अप करें पर टैप करें। Ski डेवलपर विकल्प खोलेगा और आपके लिए वायरलेस डीबगिंग ढूँढेगा।</string>
+    <string name="background_step2">2. वह वायरलेस डीबगिंग चालू करेगा (Wi-Fi कनेक्ट होना चाहिए) और “पेयरिंग कोड से डिवाइस पेयर करें” खोलेगा।</string>
+    <string name="background_step3">3. वह कोड पढ़ेगा, पेयर करेगा, और आपको यहाँ वापस लाएगा। अगर वह कहीं रुक जाए, तो वह चरण खुद करें और Ski आगे बढ़ेगा।</string>
+    <string name="background_usb_note">Ski USB डीबगिंग भी चालू करेगा। इसके साथ, Wi-Fi कटने और Android के वायरलेस डीबगिंग बंद करने पर भी हेल्पर चलता रहता है। इसे चालू रखें।</string>
+    <string name="background_waiting">वायरलेस डीबगिंग में “पेयरिंग कोड से डिवाइस पेयर करें” का इंतज़ार…</string>
+    <string name="chat_bg_checking">जाँच हो रही है…</string>
+    <string name="chat_bg_connected">कनेक्ट है</string>
+    <string name="chat_bg_connected_info">बैकग्राउंड चैटों के एजेंट अपनी खुद की स्क्रीन पर काम कर सकते हैं।</string>
+    <string name="chat_bg_disconnected">कनेक्ट नहीं है</string>
+    <string name="chat_bg_more">और सेटिंग्स</string>
+    <string name="chat_bg_not_set_up">सेट अप नहीं हुआ</string>
+    <string name="chat_bg_pair_again">फिर से पेयर करें</string>
+    <string name="chat_bg_setup_info">आपके फ़ोन इस्तेमाल करते समय एजेंट को अपनी खुद की स्क्रीन पर आपके ऐप्स में काम करने देता है। सेट अप में लगभग एक मिनट लगता है और Wi-Fi चाहिए।</string>
+    <string name="hub_tool_phone_shell">फ़ोन कमांड: %1$s</string>
+    <string name="later_item" translatable="false">%1$s · %2$s</string>
+    <string name="memory_cant_create">Ski अपना मेमोरी फ़ोल्डर नहीं बना सका।</string>
+    <string name="prefs_reasoning_mode">रीज़निंग मोड</string>
+    <string name="prefs_reasoning_mode_info">हर फ़ोन कार्रवाई से पहले, एजेंट बताता है कि वह क्या देखता है, क्या करने की योजना बनाता है, और क्यों। डिफ़ॉल्ट रूप से बंद।</string>
+    <string name="prefs_remote_control">रिमोट कंट्रोल (HTTP)</string>
+    <string name="prefs_remote_control_info">Ski के फ़ोन टूल्स को HTTP पर 127.0.0.1:8766 पर उपलब्ध कराता है, ताकि डेस्कटॉप या दूसरा ऐप read_screen, tap, type_text और बाकी को कॉल कर सके। डिफ़ॉल्ट रूप से बंद; केवल यही फ़ोन कनेक्ट हो सकता है।</string>
+    <string name="tools_card_chat_send">यह संदेश %2$s में %1$s को भेजें?\n\n“%3$s”</string>
+    <string name="tools_card_shell">फ़ोन पर चलाएँ:\n%1$s</string>
+    <string name="tools_ocr_screen">स्क्रीन पर दिख रहा सारा टेक्स्ट, पोज़िशन के साथ साधारण लाइनों के रूप में पढ़ता है।</string>
+    <string name="tools_read_screen_with_numbers">हर एलिमेंट के बगल में नंबर वाली लेजेंड (1, 2, 3…) के साथ स्क्रीन पढ़ता है।</string>
+    <string name="tools_tap_by_number">read_screen_with_numbers का एलिमेंट नंबर N पर टैप करता है।</string>
+    <!-- added 2026-11-18 (missing plurals + strings) -->
+<plurals name="main_ago_minutes">
+        <item quantity="one">%d मिनट पहले</item>
+        <item quantity="other">%d मिनट पहले</item>
+    </plurals>
+    <plurals name="main_ago_hours">
+        <item quantity="one">%d घंटा पहले</item>
+        <item quantity="other">%d घंटे पहले</item>
+    </plurals>
+    <plurals name="main_ago_days">
+        <item quantity="one">%d दिन पहले</item>
+        <item quantity="other">%d दिन पहले</item>
+    </plurals>
+    <plurals name="bubble_tool_calls">
+        <item quantity="one">%d टूल कॉल</item>
+        <item quantity="other">%d टूल कॉल</item>
+    </plurals>
+    <string name="chat_adding_files">फ़ाइलें जोड़ी जा रही हैं…</string>
+    <plurals name="chat_tool_calls">
+        <item quantity="one">एक टूल कॉल</item>
+        <item quantity="other">%d टूल कॉल</item>
+    </plurals>
+    <plurals name="hub_pill_chats">
+        <item quantity="one">%d चैट चल रही है</item>
+        <item quantity="other">%d चैट चल रही हैं</item>
+    </plurals>
+    <string name="transcript_last_messages">अंतिम संदेश</string>
+    <plurals name="attach_count">
+        <item quantity="one">%d फ़ाइल जोड़ी गई</item>
+        <item quantity="other">%d फ़ाइलें जोड़ी गईं</item>
+    </plurals>
+    <string name="setup_old_chats_body">Ski के पुराने इंस्टॉल से चैट मिली हैं। क्या आप इन्हें हटाना चाहते हैं?</string>
+    <string name="setup_old_chats_remove">पुरानी चैट हटाएँ</string>
+    <string name="setup_shizuku_perms">एक टैप में अनुमतियाँ</string>
+    <string name="setup_shizuku_perms_info">Shizuku का उपयोग करके एक ही टैप में Ski को चाहिए वाली सभी अनुमतियाँ दें (adb विशेषाधिकार, रूट की आवश्यकता नहीं)।</string>
+    <string name="shizuku_state_ready">तैयार</string>
+    <string name="shizuku_state_needs_permission">अनुमति देने के लिए टैप करें</string>
+    <string name="shizuku_state_off">Shizuku शुरू करें</string>
+    <string name="shizuku_need_server">Shizuku चल नहीं रहा है। Shizuku ऐप खोलें और सर्वर शुरू करें (वायरलेस डिबगिंग या adb), फिर यहाँ वापस आएँ।</string>
+    <string name="shizuku_requesting">Shizuku से अनुमति माँगी जा रही है…</string>
+    <string name="shizuku_granting">अनुमतियाँ दी जा रही हैं…</string>
+    <string name="shizuku_grant_done">अनुमतियाँ दी गईं।</string>
+    <plurals name="terminal_sessions_count">
+        <item quantity="one">%d सत्र</item>
+        <item quantity="other">%d सत्र</item>
+    </plurals>
+    <plurals name="check_failed">
+        <item quantity="one">%d खाते के लिए जाँच विफल हुई</item>
+        <item quantity="other">%d खातों के लिए जाँच विफल हुई</item>
+    </plurals>
 </resources>
