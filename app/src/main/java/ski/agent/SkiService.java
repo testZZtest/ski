@@ -263,7 +263,7 @@ public class SkiService extends AccessibilityService implements McpServer.Handle
         if (autoPause != null) autoPause.stop();
         keepAwake.remove();
         if (mcpHttp != null) mcpHttp.stop();
-        if (shizuku != null) shizuku.unbind();
+        if (shizuku != null) shizuku.bind(); // legacy name; binder is dropped with the process
         if (marks != null) marks.clear();
         if (bubble != null) bubble.remove();
         if (control != null) control.end();

@@ -54,6 +54,10 @@ final class BankMode {
                 + "to turn off. Check Settings → Accessibility on the phone.";
         Prefs.setBankMode(c, true);
         sh.runShell("settings put secure enabled_accessibility_services " + rest);
+        // hide Ski from the banks entirely: runtime permissions go too (restored on disable)
+        if (sh.ready()) {
+            for (String p : RESTRICTED_PERMS) sh.runShell("pm revoke ski.agent " + p);
+        }
         // Android unbinds the service now: the bubble, the agent and the phone tools end with it
         postNotice(c);
         return null;
@@ -73,8 +77,19 @@ final class BankMode {
         String list = sh.runShell("settings get secure enabled_accessibility_services").trim();
         String with = add(list);
         if (!with.equals(list)) sh.runShell("settings put secure enabled_accessibility_services " + with);
+        if (sh.ready()) { // bring back what bank mode took away
+            for (String p : RESTRICTED_PERMS) sh.runShell("pm grant ski.agent " + p);
+        }
         return null;
     }
+
+    /** Runtime permissions bank mode hides while it's on (banks probe for them). */
+    private static final String[] RESTRICTED_PERMS = {
+            "android.permission.RECORD_AUDIO",
+            "android.permission.READ_CALENDAR",
+            "android.permission.ACCESS_COARSE_LOCATION",
+            "android.permission.ACCESS_FINE_LOCATION",
+    };
 
     /** The list without Ski's service. */
     static String remove(String list) {

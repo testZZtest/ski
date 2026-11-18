@@ -1354,7 +1354,16 @@
     <!-- Name of the App permissions screen. -->
     <string name="setup_app_permissions">App permissions</string>
     <!-- "Trust" and "Hard" are names of approval modes on the App permissions screen: use the same words. Send, Pay, Delete are example buttons in other apps. -->
-    <string name="setup_app_permissions_info">Choose per app: Trust lets the agent work there without popups; Hard means Ski itself asks you before Send, Pay, Delete…</string>
+        <string name="setup_shizuku_perms">Permissions in one tap</string>
+    <string name="setup_shizuku_perms_info">Grant every permission Ski needs with a single tap, using Shizuku (adb privileges, no root).</string>
+    <string name="shizuku_state_ready">ready</string>
+    <string name="shizuku_state_needs_permission">tap to allow</string>
+    <string name="shizuku_state_off">start Shizuku</string>
+    <string name="shizuku_need_server">Shizuku isn\'t running. Open the Shizuku app and start the server (wireless debugging or adb), then come back.</string>
+    <string name="shizuku_requesting">Asking Shizuku for permission…</string>
+    <string name="shizuku_granting">Granting permissions…</string>
+    <string name="shizuku_grant_done">Permissions granted.</string>
+<string name="setup_app_permissions_info">Choose per app: Trust lets the agent work there without popups; Hard means Ski itself asks you before Send, Pay, Delete…</string>
     <!-- Settings row that opens the notification rules: when a notification from an app arrives, an agent acts on it. -->
     <string name="setup_rules">Notification rules</string>
     <string name="setup_rules_info">Let an agent act when a notification arrives: answer a message, put a delivery in your calendar…</string>

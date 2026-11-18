@@ -94,6 +94,54 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
     /** The browser's state as last shown: its tabs change often, and only the state matters here. */
     private String browserShown;
 
+    // ------------------------------------------------------------- Shizuku 1-click permissions
+
+    /** Status word shown on the Shizuku row. */
+    private String shizukuState() {
+        Shizuku sh = Shizuku.get(this);
+        if (sh.ready()) return getString(R.string.shizuku_state_ready);
+        if (sh.isBound()) return getString(R.string.shizuku_state_needs_permission);
+        return getString(R.string.shizuku_state_off);
+    }
+
+    /** One tap: get Shizuku's permission (if needed), then grant Ski's runtime permissions. */
+    private void oneClickPermissions() {
+        Shizuku sh = Shizuku.get(this);
+        if (!sh.isBound()) {
+            Toast.makeText(this, getString(R.string.shizuku_need_server), Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (!sh.ready()) {
+            Toast.makeText(this, getString(R.string.shizuku_requesting), Toast.LENGTH_SHORT).show();
+            sh.requestPermission(() -> runOnUiThread(this::grantAllPermissions));
+            return;
+        }
+        grantAllPermissions();
+    }
+
+    private void grantAllPermissions() {
+        Toast.makeText(this, getString(R.string.shizuku_granting), Toast.LENGTH_SHORT).show();
+        new Thread(() -> {
+            String[] perms = {
+                    "android.permission.POST_NOTIFICATIONS",
+                    "android.permission.RECORD_AUDIO",
+                    "android.permission.READ_CALENDAR",
+                    "android.permission.ACCESS_COARSE_LOCATION",
+                    "android.permission.ACCESS_FINE_LOCATION",
+            };
+            final String log = Shizuku.get(this).grantSelf(perms);
+            runOnUiThread(() -> {
+                Toast.makeText(this, getString(R.string.shizuku_grant_done), Toast.LENGTH_LONG).show();
+                render();
+            });
+        }).start();
+    }
+
+    /** Called from Shizuku's AppBinder when the permission dialog answers. */
+    static void onShizukuPermission(boolean granted) {
+        // the row refreshes on the next render(); nothing else to do here
+    }
+
     @Override
     public void onBrowserChanged() {
         String now = Browser.state + Browser.detail;
@@ -762,6 +810,22 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         perms.setOnClickListener(v -> startActivity(new android.content.Intent(this, AppPermissionsActivity.class)));
         ex.addView(perms, full());
         ex.addView(divider(), lineParams());
+        // Shizuku: grant every runtime permission with one tap (needs Shizuku set up)
+        if (!Flavor.PLAY && Shizuku.isInstalled(this)) {
+            LinearLayout shz = listRow(this);
+            shz.setGravity(Gravity.CENTER_VERTICAL);
+            LinearLayout st = column(this);
+            st.addView(title(this, getString(R.string.setup_shizuku_perms), 15));
+            st.addView(text(this, getString(R.string.setup_shizuku_perms_info), 13, MUTED), topGap(2));
+            shz.addView(st, weight1());
+            TextView shzState = monoText(this, shizukuState(), 13,
+                    Shizuku.get(this).ready() ? ACCENT_TEXT : MUTED);
+            shzState.setPaddingRelative(dp(this, 12), 0, dp(this, 4), 0);
+            shz.addView(shzState);
+            shz.setOnClickListener(v -> oneClickPermissions());
+            ex.addView(shz, full());
+            ex.addView(divider(), lineParams());
+        }
         // bank mode: the phone's banks refuse to run while Ski's accessibility service is registered
         ex.addView(protect(switchRow(this, getString(R.string.bank_mode_title), getString(R.string.bank_mode_info),
                 BankMode.on(this), on -> {
