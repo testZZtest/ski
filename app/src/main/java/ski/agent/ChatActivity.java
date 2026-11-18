@@ -31,7 +31,10 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
     private Sessions.Session ses;
     private LinearLayout messages, strip, approval;
     private ScrollView scroll;
-    private TextView title, chipText, stripText;
+    private TextView title, chipText, stripText, stripCount;
+    private ProgressBar sp;
+    /** Steps done in the current run (for the strip's counter). */
+    private int stripSteps;
     private UsageGauge usage;
     /** The Linux tools chip beside the model chip (none in the Play build). */
     private LinearLayout linux;
@@ -135,15 +138,17 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
         root.addView(top, full());
         root.addView(divider(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp(this, 1)));
 
-        // running strip
+        // running strip (Claude-style: what it's doing right now, one calm line)
         strip = row(this);
-        strip.setPaddingRelative(dp(this, 12), dp(this, 6), dp(this, 6), dp(this, 6));
-        strip.setBackground(rounded(this, CARD, 12));
-        ProgressBar sp = spinner(this, 16);
+        strip.setPaddingRelative(dp(this, 14), dp(this, 10), dp(this, 8), dp(this, 10));
+        strip.setBackground(rounded(this, CARD, 16));
+        sp = spinner(this, 16);
         strip.addView(sp);
-        stripText = single(monoText(this, "", 12, ACCENT_TEXT));
+        stripText = single(monoText(this, "", 13, TEXT));
         stripText.setPaddingRelative(dp(this, 10), 0, dp(this, 8), 0);
         strip.addView(stripText, weight1());
+        stripCount = single(monoText(this, "", 12, MUTED));
+        strip.addView(stripCount, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         Button stop = button(this, getString(R.string.chat_stop), false);
         stop.setTextColor(ERR);
         stop.setBackground(rounded(this, ERR_SOFT, 10));
@@ -1250,6 +1255,7 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
     }
 
     private void refresh() {
+        if (!ses.running) stripSteps = 0;
         boolean speak = Prefs.speakReplies(this);
         speaker.setImageResource(speak ? R.drawable.ms_volume_up : R.drawable.ms_volume_off);
         speaker.setImageTintList(ColorStateList.valueOf(speak ? ACCENT : MUTED));
@@ -1265,6 +1271,7 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
         strip.setVisibility(ses.running ? View.VISIBLE : View.GONE);
         input.setHint(ses.running ? getString(R.string.chat_input_hint_running) : getString(R.string.chat_input_hint, ses.brainName()));
         stripText.setText(ses.status.isEmpty() ? getString(R.string.chat_working) : ses.status);
+        stripCount.setText(stripSteps > 0 ? getResources().getQuantityString(R.plurals.chat_tool_calls, stripSteps, stripSteps) : "");
         if (log != null) {
             if (ses.running) log.setLive(true);
             else log.finish();
@@ -1760,6 +1767,7 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
             }
             log.add(text);
             log.setLive(ses.running);
+            stripSteps++;
             return;
         }
         if (log != null) {
