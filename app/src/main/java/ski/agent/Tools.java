@@ -293,6 +293,18 @@ final class Tools {
                             + "swipes use the phone tools. The user turns this on: Settings → Background mode → Phone commands.",
                     props().put("command", strProp("The command line, e.g. \"dumpsys battery | grep level\""))
                             .put("timeout_s", intProp("Default 60, max 300")), "command"));
+            t.put(tool("spawn_subagent",
+                    "Start another chat that works on a task in parallel (a subagent). It runs in its own session "
+                            + "with the same agent and settings; use it to delegate research or long side jobs without "
+                            + "blocking this chat. Returns the new chat's id right away — the subagent reports in its "
+                            + "own chat, and the user can watch it there. Check on it later with subagent_status.",
+                    props().put("task", strProp("The full task for the subagent, worded so it can work alone: context, "
+                            + "what to do, what to report back."))
+                            .put("backend", strProp("Optional: claude, codex or opencode (default: this chat's agent).")),
+                    "task"));
+            t.put(tool("subagent_status",
+                    "Check on a subagent chat: whether it's still working and the last thing it said.",
+                    props().put("id", strProp("The chat id spawn_subagent returned.")), "id"));
             t.put(tool("install_apk",
                     "(Needs Linux tools) Open Android's installer for an APK built in Ski's Linux, e.g. "
                             + "/root/.ski/work/myapp/build/app.apk, or served by another app on this phone at a local URL "
@@ -664,6 +676,12 @@ final class Tools {
                 return text(replyNotification(a.getString("text")));
             case "phone_shell":
                 return text(phoneShell(a));
+            case "spawn_subagent": {
+                Sessions.Session parent = ChatHub.get(svc).byId(McpServer.CALLER_CHAT.get());
+                return text(spawnSubagent(a, parent));
+            }
+            case "subagent_status":
+                return text(subagentStatus(a));
             case "reasoning_mode": {
                 String mode = a.optString("mode", "");
                 if (mode.isEmpty()) return text("Reasoning mode: " + Prefs.reasoningMode(svc) + " (off / on / always).");
@@ -1053,6 +1071,35 @@ final class Tools {
     private static final java.util.regex.Pattern SHELL_NO = java.util.regex.Pattern.compile(
             "(?:^|[\\s;&|(`])(?:/system/bin/)?(?:input|sendevent|monkey|uiautomator)(?:\\s|$)|cmd\\s+input"
                     + "|ski\\.agent|enabled_accessibility_services|accessibility_enabled");
+
+    /** A side chat that works on a task while this one continues. Returns immediately with the chat's id. */
+    private String spawnSubagent(JSONObject a, Sessions.Session parent) throws Exception {
+        String task = a.getString("task").trim();
+        if (task.isEmpty()) return "Give the subagent its task.";
+        String backend = a.optString("backend", "").trim();
+        if (backend.isEmpty()) backend = parent != null ? parent.backend : Prefs.backend(svc);
+        if (!"claude".equals(backend) && !"codex".equals(backend) && !"opencode".equals(backend))
+            return "backend must be claude, codex or opencode.";
+        ChatHub hub = ChatHub.get(svc);
+        Sessions.Session sub = hub.create(backend, false); // doesn't take over the bubble
+        String prompt = "(A task delegated to you by another chat, not from the user) Work on this on your own and "
+                + "report the result as a chat message when done:\n\n" + task;
+        String err = hub.sendScheduled(sub, task, prompt);
+        if (err != null) return "Subagent could not start: " + err;
+        return "Subagent started in chat " + sub.id + " (" + Account.nameOf(backend) + "). It works on its own; check "
+                + "with subagent_status later, or the user can open that chat.";
+    }
+
+    /** A subagent chat's state: running and its last reply. */
+    private String subagentStatus(JSONObject a) throws Exception {
+        String id = a.getString("id").trim();
+        for (Sessions.Session s : new ArrayList<>(ChatHub.get(svc).sessions.all)) {
+            if (!s.id.equals(id)) continue;
+            String last = s.lastReply == null || s.lastReply.isEmpty() ? "(nothing yet)" : s.lastReply;
+            return "Chat " + id + ": " + (s.running ? "still working" : "idle") + ".\nLast reply:\n" + last;
+        }
+        return "No chat with id " + id + " (it may have been deleted).";
+    }
 
     private String phoneShell(JSONObject a) throws Exception {
         String chat = McpServer.CALLER_CHAT.get();

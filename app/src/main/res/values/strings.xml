@@ -830,6 +830,7 @@
     <string name="hub_tool_read_file">Reading %1$s</string>
     <!-- Any other tool. %1$s = the tool's name, not translated. -->
     <string name="hub_tool_other">Using %1$s</string>
+    <string name="hub_tool_spawn_subagent">Subagent: %1$s</string>
 
     <!-- Transcript of an earlier agent session that isn't a Ski chat (read-only) -->
     <string name="transcript_loading">Loading…</string>

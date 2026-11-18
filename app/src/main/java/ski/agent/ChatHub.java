@@ -469,7 +469,7 @@ final class ChatHub {
     }
 
     /** The chat with this id, for a tool's thread (a copy of the list: it changes on the main thread); or null. */
-    private Sessions.Session byId(String chat) {
+    Sessions.Session byId(String chat) {
         if (chat == null) return null;
         for (Sessions.Session s : new ArrayList<>(sessions.all)) if (s.id.equals(chat)) return s;
         return null;
@@ -1111,6 +1111,8 @@ final class ChatHub {
             case "Write": return in.has("file_path") ? SkiApp.str(R.string.hub_tool_edit, clip(in.optString("file_path").replaceAll(".*/", ""), 40))
                     : SkiApp.str(R.string.hub_tool_edit_any);
             case "Read": return SkiApp.str(R.string.hub_tool_read_file, clip(in.optString("file_path").replaceAll(".*/", ""), 40));
+            case "spawn_subagent":
+                return SkiApp.str(R.string.hub_tool_spawn_subagent, clip(in.optString("task"), 60));
             default: return SkiApp.str(R.string.hub_tool_other, n);
         }
     }
