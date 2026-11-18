@@ -1366,4 +1366,11 @@
         <item quantity="many">Перевірку не пройдено для %d акаунтів</item>
         <item quantity="other">Перевірку не пройдено для %d акаунта</item>
     </plurals>
+<string name="setup_language">Мова</string>
+<string name="setup_language_info">Мова всієї програми. На Android 13+ це застосовується лише до Ski.</string>
+<string name="setup_language_system">Системна</string>
+<string name="setup_language_old_android">На цій версії Android мова застосовується до Ski після його перезапуску. Щоб змінити все одразу, змініть мову системи.</string>
+<string name="setup_tab_general">Загальні</string>
+<string name="setup_tab_agents">Агенти</string>
+<string name="setup_tab_tools">Інструменти</string>
 </resources>

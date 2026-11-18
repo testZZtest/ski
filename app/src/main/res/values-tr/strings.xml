@@ -1348,4 +1348,11 @@
         <item quantity="one">%d hesap için kontrol başarısız oldu</item>
         <item quantity="other">%d hesap için kontrol başarısız oldu</item>
     </plurals>
+<string name="setup_language">Dil</string>
+<string name="setup_language_info">Tüm uygulamanın dili. Android 13+ üzerinde bu yalnızca Ski için geçerlidir.</string>
+<string name="setup_language_system">Sistem</string>
+<string name="setup_language_old_android">Bu Android sürümünde dil, Ski yeniden başlatıldıktan sonra uygulanır. Her şeyi aynı anda değiştirmek için sistem dilini değiştirin.</string>
+<string name="setup_tab_general">Genel</string>
+<string name="setup_tab_agents">Ajanlar</string>
+<string name="setup_tab_tools">Araçlar</string>
 </resources>

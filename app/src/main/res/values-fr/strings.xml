@@ -1357,4 +1357,11 @@
         <item quantity="many">Échec de la vérification pour %d comptes</item>
         <item quantity="other">Échec de la vérification pour %d comptes</item>
     </plurals>
+<string name="setup_language">Langue</string>
+<string name="setup_language_info">La langue de toute l\'application. Sur Android 13+, cela s\'applique uniquement à Ski.</string>
+<string name="setup_language_system">Système</string>
+<string name="setup_language_old_android">Sur cette version d\'Android, la langue s\'applique à Ski après son redémarrage. Pour tout changer d\'un coup, modifiez la langue du système.</string>
+<string name="setup_tab_general">Général</string>
+<string name="setup_tab_agents">Agents</string>
+<string name="setup_tab_tools">Outils</string>
 </resources>

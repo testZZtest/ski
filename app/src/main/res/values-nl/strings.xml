@@ -1348,4 +1348,11 @@
         <item quantity="one">Controle mislukt voor %d account</item>
         <item quantity="other">Controle mislukt voor %d accounts</item>
     </plurals>
+<string name="setup_language">Taal</string>
+<string name="setup_language_info">De taal van de hele app. Op Android 13+ geldt dit alleen voor Ski.</string>
+<string name="setup_language_system">Systeem</string>
+<string name="setup_language_old_android">Op deze Android-versie wordt de taal pas van toepassing op Ski na een herstart. Alles tegelijk wijzigen? Wijzig de systeemtaal.</string>
+<string name="setup_tab_general">Algemeen</string>
+<string name="setup_tab_agents">Agents</string>
+<string name="setup_tab_tools">Tools</string>
 </resources>

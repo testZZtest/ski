@@ -1348,4 +1348,11 @@
         <item quantity="one">Prüfung für %d Konto fehlgeschlagen</item>
         <item quantity="other">Prüfung für %d Konten fehlgeschlagen</item>
     </plurals>
+<string name="setup_language">Sprache</string>
+<string name="setup_language_info">Die Sprache der gesamten App. Unter Android 13+ gilt dies nur für Ski.</string>
+<string name="setup_language_system">System</string>
+<string name="setup_language_old_android">Auf dieser Android-Version gilt die Sprache für Ski nach einem Neustart. Um alles gleichzeitig zu ändern, ändere die Systemsprache.</string>
+<string name="setup_tab_general">Allgemein</string>
+<string name="setup_tab_agents">Agenten</string>
+<string name="setup_tab_tools">Tools</string>
 </resources>

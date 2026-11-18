@@ -1357,4 +1357,11 @@
         <item quantity="many">Falha na verificação de %d contas</item>
         <item quantity="other">Falha na verificação de %d contas</item>
     </plurals>
+<string name="setup_language">Idioma</string>
+<string name="setup_language_info">O idioma de todo o app. No Android 13+, isso se aplica apenas ao Ski.</string>
+<string name="setup_language_system">Sistema</string>
+<string name="setup_language_old_android">Nesta versão do Android, o idioma se aplica ao Ski depois que ele é reiniciado. Para mudar tudo de uma vez, mude o idioma do sistema.</string>
+<string name="setup_tab_general">Geral</string>
+<string name="setup_tab_agents">Agentes</string>
+<string name="setup_tab_tools">Ferramentas</string>
 </resources>

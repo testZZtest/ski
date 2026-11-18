@@ -1384,4 +1384,11 @@
         <item quantity="many">فشل التحقق لـ %d حسابًا</item>
         <item quantity="other">فشل التحقق لـ %d حساب</item>
     </plurals>
+<string name="setup_language">اللغة</string>
+<string name="setup_language_info">لغة التطبيق بالكامل. على Android 13+ ينطبق هذا على Ski فقط.</string>
+<string name="setup_language_system">النظام</string>
+<string name="setup_language_old_android">في إصدار Android هذا، تُطبَّق اللغة على Ski بعد إعادة تشغيله. لتغيير كل شيء دفعة واحدة، غيّر لغة النظام.</string>
+<string name="setup_tab_general">عام</string>
+<string name="setup_tab_agents">الوكلاء</string>
+<string name="setup_tab_tools">الأدوات</string>
 </resources>

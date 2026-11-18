@@ -1348,4 +1348,11 @@
         <item quantity="one">%d खाते के लिए जाँच विफल हुई</item>
         <item quantity="other">%d खातों के लिए जाँच विफल हुई</item>
     </plurals>
+<string name="setup_language">भाषा</string>
+<string name="setup_language_info">पूरे ऐप की भाषा। Android 13+ पर यह केवल Ski पर लागू होती है।</string>
+<string name="setup_language_system">सिस्टम</string>
+<string name="setup_language_old_android">इस Android संस्करण पर भाषा Ski के पुनः आरंभ होने के बाद लागू होती है। सब कुछ एक साथ बदलने के लिए, सिस्टम भाषा बदलें।</string>
+<string name="setup_tab_general">सामान्य</string>
+<string name="setup_tab_agents">एजेंट</string>
+<string name="setup_tab_tools">टूल</string>
 </resources>

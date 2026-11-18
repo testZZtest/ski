@@ -1339,4 +1339,11 @@
     <plurals name="check_failed">
         <item quantity="other">%d件のアカウントでチェックに失敗しました</item>
     </plurals>
+<string name="setup_language">言語</string>
+<string name="setup_language_info">アプリ全体の言語。Android 13+ では Ski のみに適用されます。</string>
+<string name="setup_language_system">システム</string>
+<string name="setup_language_old_android">この Android バージョンでは、言語は Ski の再起動後に適用されます。すべてを一度に変更するには、システムの言語を変更してください。</string>
+<string name="setup_tab_general">全般</string>
+<string name="setup_tab_agents">エージェント</string>
+<string name="setup_tab_tools">ツール</string>
 </resources>

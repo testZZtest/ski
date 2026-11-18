@@ -1339,4 +1339,11 @@
     <plurals name="check_failed">
         <item quantity="other">Kiểm tra thất bại cho %d tài khoản</item>
     </plurals>
+<string name="setup_language">Ngôn ngữ</string>
+<string name="setup_language_info">Ngôn ngữ của toàn bộ ứng dụng. Trên Android 13+, cài đặt này chỉ áp dụng cho Ski.</string>
+<string name="setup_language_system">Hệ thống</string>
+<string name="setup_language_old_android">Trên phiên bản Android này, ngôn ngữ sẽ được áp dụng cho Ski sau khi khởi động lại. Để thay đổi tất cả cùng lúc, hãy đổi ngôn ngữ hệ thống.</string>
+<string name="setup_tab_general">Chung</string>
+<string name="setup_tab_agents">Agent</string>
+<string name="setup_tab_tools">Công cụ</string>
 </resources>

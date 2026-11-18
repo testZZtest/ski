@@ -1339,4 +1339,11 @@
     <plurals name="check_failed">
         <item quantity="other">Pemeriksaan gagal untuk %d akun</item>
     </plurals>
+<string name="setup_language">Bahasa</string>
+<string name="setup_language_info">Bahasa untuk seluruh aplikasi. Di Android 13+ ini hanya berlaku untuk Ski.</string>
+<string name="setup_language_system">Sistem</string>
+<string name="setup_language_old_android">Pada versi Android ini, bahasa berlaku untuk Ski setelah aplikasi dimulai ulang. Untuk mengubah semuanya sekaligus, ubah bahasa sistem.</string>
+<string name="setup_tab_general">Umum</string>
+<string name="setup_tab_agents">Agen</string>
+<string name="setup_tab_tools">Alat</string>
 </resources>
