@@ -1457,7 +1457,6 @@ final class Bubble implements ChatHub.Listener {
         if (Voice.isSpeaking()) acts.add(new RadialMenu.Action(R.drawable.ms_volume_off, svc.getString(R.string.menu_stop_voice), false, Voice::stopSpeaking));
         // listens with the chat closed, like Tap the bubble to talk (opening the chat first lost the mic)
         if (hub.runningCount() == 0) acts.add(new RadialMenu.Action(R.drawable.ms_mic, svc.getString(R.string.bubble_talk), false, this::talk));
-        acts.add(new RadialMenu.Action(R.drawable.ms_forum, svc.getString(R.string.menu_open_chat), false, this::expand));
         acts.add(new RadialMenu.Action(R.drawable.ms_close, svc.getString(R.string.menu_hide), false, this::dismissToNotification));
         int[] loc = new int[2];
         face.getLocationOnScreen(loc);
@@ -2678,6 +2677,8 @@ final class Bubble implements ChatHub.Listener {
 
     /** Shows the drawing for this state, or the user's picture (issue #10) in every state, with its own shadow. */
     private void showFace(int res) {
+        // the user's chosen style replaces the default drawing (states still swap within drawn styles)
+        if (res == R.drawable.bubble_face && !"ski".equals(Prefs.bubbleStyle(svc))) res = Prefs.bubbleStyleRes(svc);
         faceRes = res;
         android.graphics.drawable.Drawable own = Face.bubble(svc);
         if (own == null) face.setImageResource(res);

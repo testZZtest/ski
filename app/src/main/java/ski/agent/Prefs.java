@@ -252,6 +252,27 @@ final class Prefs {
     }
 
     /**
+     * What floats on screen: "ski" (the drawn face), "dot" (a ring with a breathing dot),
+     * "spark" (a four-point glint), or "picture" (one the user picked).
+     */
+    static String bubbleStyle(Context c) {
+        return sp(c).getString("bubble_style", "ski");
+    }
+
+    static void setBubbleStyle(Context c, String style) {
+        sp(c).edit().putString("bubble_style", style).apply();
+    }
+
+    /** The drawable for the chosen bubble style; -1 when it's the user's picture. */
+    static int bubbleStyleRes(Context c) {
+        switch (bubbleStyle(c)) {
+            case "dot": return R.drawable.bubble_face_dot;
+            case "spark": return R.drawable.bubble_face_spark;
+            default: return R.drawable.bubble_face;
+        }
+    }
+
+    /**
      * Whether the floating status text (the pill) next to the bubble is shown.
      */
     static boolean bubbleShowText(Context c) {

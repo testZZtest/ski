@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ski, "spark" style: a four-point glint — quiet, present, no face. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="60dp" android:height="60dp" android:viewportWidth="56" android:viewportHeight="56">
+    <path android:fillColor="#FFF2F2F2"
+        android:pathData="M28,8C29.5,18.5 33,22.5 43.5,24C33,25.5 29.5,29.5 28,40C26.5,29.5 23,25.5 12.5,24C23,22.5 26.5,18.5 28,8Z" />
+    <path android:fillColor="#66F2F2F2"
+        android:pathData="M41,36C41.8,41.3 43.7,43.2 49,44C43.7,44.8 41.8,46.7 41,52C40.2,46.7 38.3,44.8 33,44C38.3,43.2 40.2,41.3 41,36Z" />
+</vector>

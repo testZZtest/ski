@@ -1345,6 +1345,11 @@
     <!-- Choice: a smaller panel. Keep it short. -->
     <string name="setup_panel_compact">Compact</string>
     <string name="setup_panel_size_info">Full goes edge to edge. Compact is smaller and keeps clear of the screen edges, so side gestures keep working.</string>
+    <string name="setup_bubble_style">Floating look</string>
+    <string name="setup_bubble_style_ski">Face</string>
+    <string name="setup_bubble_style_dot">Dot</string>
+    <string name="setup_bubble_style_spark">Spark</string>
+    <string name="setup_bubble_style_info">How Ski floats over other apps. Dot and Spark are quieter — a plain ring and a glint, no face.</string>
     <!-- Explains the "Talk" choice of setup_tap_action. -->
     <string name="setup_tap_to_talk_info">One tap opens the mic: say what you want and it sends when you pause. Hold the bubble for the chat and more.</string>
     <string name="setup_read_aloud">Read replies aloud</string>

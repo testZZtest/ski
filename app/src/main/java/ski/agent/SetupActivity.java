@@ -819,6 +819,17 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
             render();
         }), topGap(10));
         tap.addView(text(this, getString(R.string.setup_panel_size_info), 13, MUTED), topGap(8));
+        // what floats: the drawn face, or something quieter
+        tap.addView(title(this, getString(R.string.setup_bubble_style), 15), topGap(18));
+        tap.addView(segmented(this, new String[][]{{"ski", getString(R.string.setup_bubble_style_ski)},
+                {"dot", getString(R.string.setup_bubble_style_dot)},
+                {"spark", getString(R.string.setup_bubble_style_spark)}}, Prefs.bubbleStyle(this), false, v -> {
+            Prefs.setBubbleStyle(this, v);
+            SkiService svc = SkiService.get();
+            if (svc != null) svc.applyFace();
+            render();
+        }), topGap(10));
+        tap.addView(text(this, getString(R.string.setup_bubble_style_info), 13, MUTED), topGap(8));
         ex.addView(tap, full());
         ex.addView(divider(), lineParams());
         ex.addView(switchRow(this, getString(R.string.setup_read_aloud), getString(R.string.setup_read_aloud_info),
