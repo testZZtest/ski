@@ -37,7 +37,7 @@ final class Voice {
      * end-of-speech of their own; Android's recognizer does). Follows the room's noise so a car or a street works.
      */
     static final class EndOfSpeech {
-        private static final long PAUSE_MS = 1800, NOTHING_SAID_MS = 8000;
+        private static final long PAUSE_MS = 1100, NOTHING_SAID_MS = 8000;
         private final long start = System.currentTimeMillis();
         private float floor = -1;
         private boolean spoke;
@@ -244,6 +244,8 @@ final class Voice {
                     tts.setAudioAttributes(new AudioAttributes.Builder()
                             .setUsage(AudioAttributes.USAGE_ASSISTANT)
                             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build());
+                    // a touch slower reads as calmer and more natural (Android's default is brisk)
+                    tts.setSpeechRate(0.95f);
                     if (pending != null) say(pending);
                 }
                 pending = null;

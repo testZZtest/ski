@@ -1260,7 +1260,7 @@
     <string name="setup_voice_phone">Phone</string>
     <string name="setup_voice_input_claude">Claude Code\'s dictation on your Claude plan: very accurate. Supports English, French, German, Spanish, Italian, Portuguese, Dutch, Turkish, Russian, Japanese and more, but not Arabic: for Arabic, Ski uses the phone\'s recognizer. The words appear when you pause.</string>
     <string name="setup_voice_input_chatgpt">ChatGPT\'s voice through Codex, on your ChatGPT plan. Understands any language, even mixed in one sentence. Only your words are used: ChatGPT\'s spoken replies are muted and it can\'t run anything.</string>
-    <string name="setup_voice_input_phone">Your phone\'s speech recognition (Google on most phones). Live text while you speak; detects which of your languages you\'re speaking.</string>
+    <string name="setup_voice_input_phone">Free, no account: your phone\'s speech recognition (Google on most phones). Live text while you speak; detects which of your languages you\'re speaking. Works offline on many phones too.</string>
     <string name="setup_voice_output">Voice output</string>
     <string name="setup_voice_output_chatgpt">Replies are read in ChatGPT\'s natural voice (your ChatGPT plan, through Codex). It counts toward your ChatGPT voice usage; if it\'s unavailable, the phone\'s voice reads instead.</string>
     <string name="setup_voice_output_phone">Your phone\'s text-to-speech voices, in the reply\'s language.</string>
