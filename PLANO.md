@@ -73,7 +73,7 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 
 ---
 
-## 4. Todos os 32 Repositórios de Referência
+## 4. Repositórios de Referência
 
 ### Repositórios Originais do Plano
 1. **ghorbelhamdi/buddy-android** — https://github.com/ghorbelhamdi/buddy-android (Upstream do Ski, que é um fork do Buddy: floating bubble, aprovação de ações, Linux tools, build APK).
