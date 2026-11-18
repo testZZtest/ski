@@ -557,6 +557,39 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
             ml.setPaddingRelative(0, dp(this, 16), 0, dp(this, 4));
             c.addView(ml);
         }
+        // search + autocomplete over every model the pickers know (agent's own + each API-key service)
+        LinearLayout searchWrap = row(this);
+        searchWrap.setPaddingRelative(0, dp(this, 4), 0, 0);
+        final EditText search = new EditText(this);
+        search.setHint(getString(R.string.chat_model_search_hint));
+        search.setHintTextColor(MUTED);
+        search.setTextColor(TEXT);
+        search.setTextSize(14);
+        search.setSingleLine(true);
+        search.setPaddingRelative(dp(this, 12), dp(this, 10), dp(this, 12), dp(this, 10));
+        search.setBackground(outlined(this, BG, 12, OUTLINE, 1));
+        searchWrap.addView(search, weight1());
+        c.addView(searchWrap, full());
+        LinearLayout suggestRow = row(this);
+        suggestRow.setPaddingRelative(0, dp(this, 6), 0, 0);
+        c.addView(suggestRow, full());
+        search.addTextChangedListener(new android.text.TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int a, int b, int n) { }
+            public void onTextChanged(CharSequence s, int a, int b, int n) { }
+            public void afterTextChanged(android.text.Editable s) { fillSuggestions(suggestRow, search, s.toString(), d[0]); }
+        });
+
+        // "auto" modes: one tap picks a sensible model for the job (fast answers vs strong coding)
+        LinearLayout autoRow = row(this);
+        autoRow.setPaddingRelative(0, dp(this, 8), 0, dp(this, 4));
+        LinearLayout autoFast = autoChip(getString(R.string.chat_model_auto_speed), "speed", d[0]);
+        LinearLayout autoCode = autoChip(getString(R.string.chat_model_auto_coder), "coder", d[0]);
+        LinearLayout autoBig = autoChip(getString(R.string.chat_model_auto_big), "big", d[0]);
+        autoRow.addView(autoFast);
+        autoRow.addView(autoCode, gapStart(8));
+        autoRow.addView(autoBig, gapStart(8));
+        c.addView(autoRow, full());
+
         boolean known = false;
         for (final String[] o : Models.options(ses.backend, true)) {
             if (o[0] == null) { // an API key service's models
@@ -608,6 +641,42 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
         c.addView(other, full());
         d[0] = bottomSheet(this, c);
         d[0].show();
+    }
+
+    /** A "pick for me" chip: best model of this service for speed / coding / the biggest context. */
+    private LinearLayout autoChip(String label, String kind, Dialog d) {
+        LinearLayout l = Ui.chip(this, label);
+        l.setOnClickListener(v -> {
+            d.dismiss();
+            hub.setModel(ses, Models.autoPick(ses.backend, kind));
+        });
+        return l;
+    }
+
+    private LinearLayout.LayoutParams gapStart(int dpv) {
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.setMarginStart(dp(this, dpv));
+        return p;
+    }
+
+    /**
+     * Autocomplete: up to 6 suggestions matching what's typed; tap completes the field.
+     */
+    private void fillSuggestions(LinearLayout row, EditText target, String q, Dialog d) {
+        row.removeAllViews();
+        q = q.trim().toLowerCase(java.util.Locale.ROOT);
+        if (q.isEmpty()) return;
+        int n = 0;
+        for (String[] o : Models.options(ses.backend, true)) {
+            if (o[0] == null || o[0].isEmpty()) continue;
+            String id = o[0], name = o[1];
+            if (!id.toLowerCase(java.util.Locale.ROOT).contains(q) && !name.toLowerCase(java.util.Locale.ROOT).contains(q)) continue;
+            LinearLayout b = Ui.chip(this, name);
+            b.setOnClickListener(v -> target.setText(id));
+            row.addView(b);
+            if (++n >= 6) break;
+        }
     }
 
     /**

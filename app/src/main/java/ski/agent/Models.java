@@ -107,6 +107,32 @@ final class Models {
         return m == null ? 0 : m.optLong("window");
     }
 
+    /**
+     * "Pick for me": the best model of what this agent can reach for the job at hand. Recommendations follow
+     * the services' own listings (their order is roughly capability), with a nudge from the model's id:
+     * speed → the cheapest-looking fast model, coder → a code-focused or frontier one, big → the largest window.
+     */
+    static String autoPick(String backend, String kind) {
+        java.util.List<String[]> all = options(backend, true);
+        String first = null, bestSpeed = null, bestCode = null, bestBig = null;
+        long bigWindow = -1;
+        for (String[] o : all) {
+            if (o[0] == null || o[0].isEmpty()) continue; // Default and headings
+            if (first == null) first = o[0];
+            String id = o[0].toLowerCase(java.util.Locale.ROOT);
+            long w = window(o[0]);
+            if (bestSpeed == null && (id.contains("flash") || id.contains("mini") || id.contains("haiku")
+                    || id.contains("small") || id.contains("lite") || id.contains("instant"))) bestSpeed = o[0];
+            if (bestCode == null && (id.contains("cod") || id.contains("code") || id.contains("dev")
+                    || id.contains("sonnet") || id.contains("gpt-6") || id.contains("deepseek"))) bestCode = o[0];
+            if (w > bigWindow) { bigWindow = w; bestBig = o[0]; }
+        }
+        String pick = "speed".equals(kind) ? bestSpeed : "coder".equals(kind) ? bestCode : bestBig;
+        if (pick == null && "speed".equals(kind)) pick = bestCode != null ? bestCode : first;
+        if (pick == null) pick = first;
+        return pick == null ? "" : pick;
+    }
+
     /** The line under a model in the pickers: its id (or what Default means), with its context size when known. */
     static String detail(String backend, String id, String defaultHint) {
         if (id.isEmpty()) return defaultHint;

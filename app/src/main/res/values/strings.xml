@@ -595,6 +595,10 @@
     <string name="chat_model">Model</string>
     <!-- Hint of the box for typing any model id. %1$s = an example model id (not translated). -->
     <string name="chat_model_other_hint">other… e.g. %1$s</string>
+    <string name="chat_model_search_hint">Search all models…</string>
+    <string name="chat_model_auto_speed">⚡ Fastest</string>
+    <string name="chat_model_auto_coder">⌨ Best for code</string>
+    <string name="chat_model_auto_big">📚 Biggest context</string>
     <!-- Button, verb: use the model typed in the box. Keep short. -->
     <string name="chat_model_use">Use</string>
 
