@@ -29,10 +29,13 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
     private FrameLayout navSlot;
     private ObjectAnimator pulse;
     private boolean visible;
+    /** One chain only: each onResume re-posts it, so without the flag the polls pile up and keep asking. */
+    private boolean polling;
     private final Runnable poll = new Runnable() {
         @Override
         public void run() {
-            if (!visible) return;
+            if (!visible || polling) return;
+            polling = true;
             request("procs");
             running.postDelayed(this, REFRESH_MS);
         }
@@ -138,12 +141,15 @@ public class MonitorActivity extends Screen implements ChatHub.MonitorListener {
             return;
         }
         request("recent");
+        running.removeCallbacks(poll); // never two chains, however often onResume runs
+        polling = false;
         running.post(poll);
     }
 
     @Override
     protected void onPause() {
         visible = false;
+        polling = false;
         pulse.cancel();
         if (hub.monitor == this) hub.monitor = null;
         running.removeCallbacks(poll);

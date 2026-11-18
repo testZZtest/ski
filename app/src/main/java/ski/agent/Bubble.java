@@ -1199,7 +1199,6 @@ final class Bubble implements ChatHub.Listener {
                 .setInterpolator(new AccelerateInterpolator(1.6f)).setDuration(240)
                 .withEndAction(() -> {
                     Prefs.setBubbleEnabled(svc, false);
-                    HiddenNotice.show(svc);
                     applyCollapsedParams();
                     wm.updateViewLayout(root, lp);
                     applyEnabled();
@@ -1208,6 +1207,12 @@ final class Bubble implements ChatHub.Listener {
                     head.setRotation(0f);
                     head.setAlpha(1f);
                     setWorking(!svc.paused() && (running || controlling), true);
+                    // dropping the bubble on the ✕ ends the whole app, not just the bubble:
+                    // the service stops (bubble gone), activities close, Android clears the task
+                    svc.stopSelf();
+                    for (android.app.ActivityManager.AppTask t : ((android.app.ActivityManager) svc
+                            .getSystemService(android.content.Context.ACTIVITY_SERVICE)).getAppTasks())
+                        t.finishAndRemoveTask();
                 }).start();
         dismissCircle.animate().scaleX(1.45f).scaleY(1.45f).setDuration(110)
                 .setInterpolator(new DecelerateInterpolator())

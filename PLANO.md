@@ -76,13 +76,13 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 ## 4. Todos os 32 Repositórios de Referência
 
 ### Repositórios Originais do Plano
-1. **testZZtest/ski** — https://github.com/testZZtest/ski (Base do Ski: floating bubble, aprovação de ações, Linux tools, build APK).
-2. **zafiro** — https://github.com/zafiro (Kotlin, Jetpack Compose, Shizuku, Python via Chaquopy, Xposed/LSPosed, skills/MCP, memória, workspace).
-3. **Verdroid** — https://github.com/Verdroid (Web search/fetch, Termux bash, Selenium, tradução de e-books, GGUF/LiteRT local, fallback OpenRouter).
+1. **ghorbelhamdi/buddy-android** — https://github.com/ghorbelhamdi/buddy-android (Upstream do Ski, que é um fork do Buddy: floating bubble, aprovação de ações, Linux tools, build APK).
+2. **zafiro** — https://github.com/niki914/zafiro (Kotlin, Jetpack Compose, Shizuku, Python via Chaquopy, Xposed/LSPosed, skills/MCP, memória, workspace).
+3. **chr243/Verdroid** — https://github.com/chr243/Verdroid (Web search/fetch, Termux bash, Selenium, tradução de e-books, GGUF/LiteRT local, fallback OpenRouter).
 4. **KYRIE66nb/mobile-agent** — https://github.com/KYRIE66nb/mobile-agent (Dupla percepção acessibilidade+visual, DecisionGate, virtual display, bridge MCP, recipes).
-5. **droid-mcp** — https://github.com/droid-mcp (160+ ferramentas MCP, 53 módulos, servidor HTTP Android).
-6. **TecnicoBot/mobile-agent** — https://github.com/TecnicoBot/mobile-agent (On-device IA, MCP, skills, memória persistente, voz/multimodal).
-7. **AutoCua** — https://github.com/AutoCua (Computer use desktop + mobile via USB/Wi-Fi, memória vault, controle via Telegram).
+5. **stixez/droid-mcp** — https://github.com/stixez/droid-mcp (160+ ferramentas MCP, 53 módulos, servidor HTTP Android).
+6. **TecnicalBot/mobile-agent** — https://github.com/TecnicalBot/mobile-agent (On-device IA, MCP, skills, memória persistente, voz/multimodal).
+7. **ComputerUseAgent/AutoCua** — https://github.com/ComputerUseAgent/AutoCua (Computer use desktop + mobile via USB/Wi-Fi, memória vault, controle via Telegram).
 8. **droidrun/mobilerun** — https://github.com/droidrun/mobilerun (CLI + Python API, Android + iOS, portal app, visão, reasoning mode, tracing Arize/Langfuse).
 9. **aohp-os/MobileClaw** — https://github.com/aohp-os/MobileClaw (Agente GUI humano-like, skills .md, integração com 8 apps de chat).
 10. **bandada-labs/agent-ddp** — https://github.com/bandada-labs/agent-ddp (Protocolo estilo DevTools para iOS/Android, element tree, MCP server).
@@ -96,7 +96,6 @@ Este documento unifica o **PLANO.md** original e o **RESUMO_IMPLEMENTACAO.md**, 
 16. **Hy4ri/hermes-mobile** — https://github.com/Hy4ri/hermes-mobile
 17. **Drevero/Dots-hermes** — https://github.com/Drevero/Dots-hermes
 18. **getpaseo/paseo** — https://github.com/getpaseo/paseo
-19. **agentsdroid/agentsdroid** — https://github.com/agentsdroid/agentsdroid
 20. **droidrun/mobilerun** — https://github.com/droidrun/mobilerun
 21. **stablyai/orca** — https://github.com/stablyai/orca
 22. **callstack/agent-device** — https://github.com/callstack/agent-device
