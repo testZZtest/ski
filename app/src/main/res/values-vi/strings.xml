@@ -1311,19 +1311,27 @@
     <plurals name="bubble_tool_calls">
         <item quantity="other">%d lượt gọi công cụ</item>
     </plurals>
-    <string name="chat_adding_files">Đang thêm tệp…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">Đang thêm tệp…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="other">%d lượt gọi công cụ</item>
     </plurals>
     <plurals name="hub_pill_chats">
         <item quantity="other">%d cuộc trò chuyện đang chạy</item>
     </plurals>
-    <string name="transcript_last_messages">tin nhắn gần đây</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">tin nhắn gần đây</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="other">Đã đính kèm %d tệp</item>
     </plurals>
-    <string name="setup_old_chats_body">Đã tìm thấy các cuộc trò chuyện từ bản cài đặt Ski cũ hơn. Xóa chúng?</string>
-    <string name="setup_old_chats_remove">Xóa các cuộc trò chuyện cũ</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Đã tìm thấy các cuộc trò chuyện từ bản cài đặt Ski cũ hơn. Xóa chúng?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">Xóa các cuộc trò chuyện cũ</item>
+    </plurals>
     <string name="setup_shizuku_perms">Cấp quyền bằng một lần chạm</string>
     <string name="setup_shizuku_perms_info">Cấp tất cả các quyền Ski cần bằng một lần chạm duy nhất, sử dụng Shizuku (đặc quyền adb, không cần root).</string>
     <string name="shizuku_state_ready">sẵn sàng</string>
@@ -1346,4 +1354,33 @@
 <string name="setup_tab_general">Chung</string>
 <string name="setup_tab_agents">Agent</string>
 <string name="setup_tab_tools">Công cụ</string>
+    <string name="chat_model_search_hint">Tìm kiếm tất cả mô hình…</string>
+    <string name="chat_model_auto_speed">⚡ Nhanh nhất</string>
+    <string name="chat_model_auto_coder">⌨ Tốt nhất cho mã</string>
+    <string name="chat_model_auto_big">📚 Ngữ cảnh lớn nhất</string>
+    <string name="hub_tool_spawn_subagent">Tác tử phụ: %1$s</string>
+    <string name="setup_bubble_style">Diện mạo nổi</string>
+    <string name="setup_bubble_style_ski">Khuôn mặt</string>
+    <string name="setup_bubble_style_dot">Chấm</string>
+    <string name="setup_bubble_style_spark">Tia lửa</string>
+    <string name="setup_bubble_style_info">Ski nổi trên các ứng dụng khác như thế này. Chấm và Tia lửa kín đáo hơn — một vòng tròn đơn giản và một vệt sáng, không có mặt.</string>
+    <string name="api_keys_import">Nhập nhiều</string>
+    <string name="api_keys_import_title">Nhập dịch vụ</string>
+    <string name="api_keys_import_info">Dán nhiều dịch vụ cùng lúc — từ cùng nhà cung cấp hoặc khác nhau. Mỗi khối một dịch vụ: tên ở dòng một, địa chỉ API ở dòng hai, khóa ở dòng ba — một dòng trống giữa các dịch vụ. Danh sách JSON cũng được.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">Đã thêm: %d dịch vụ.</string>
+    <string name="api_keys_import_none">Không tìm thấy gì dùng được trong văn bản. Mỗi dịch vụ cần một tên, một địa chỉ và một khóa.</string>
+    <string name="api_keys_extra_key">Khóa %d (không bắt buộc)</string>
+    <string name="api_keys_extra_key_keep">Đã lưu khóa %d — giữ nguyên hoặc thay thế</string>
+    <string name="api_keys_extra_key_info">Thêm khóa cho cùng dịch vụ: khi một khóa hết hạn ngạch hoặc lỗi, Ski tự động tiếp tục với khóa kế tiếp.</string>
+    <string name="api_keys_service_info">Dịch vụ đã biết sẽ điền địa chỉ giúp bạn. Chọn Tùy chỉnh để nhập địa chỉ riêng — ví dụ proxy hoặc API tự lưu trữ.</string>
+    <string name="api_keys_address_anthropic">Địa chỉ kiểu Anthropic: nơi [CC] và OpenCode gửi yêu cầu của họ.</string>
+    <string name="api_keys_address_openai">Địa chỉ kiểu [OI]: nơi Codex và OpenCode gửi yêu cầu của họ.</string>
+    <string name="skills_market">Khám phá kỹ năng</string>
+    <string name="skills_market_title">Khám phá kỹ năng</string>
+    <string name="skills_market_loading">Đang tải danh mục…</string>
+    <string name="skills_market_offline">Không thể tải danh mục. Kiểm tra kết nối và thử lại.</string>
+    <string name="skills_market_count">%d kỹ năng có sẵn:</string>
+    <string name="skills_market_installing">Đang tải xuống…</string>
+    <string name="skills_market_failed">Không thể cài đặt: %s</string>
 </resources>

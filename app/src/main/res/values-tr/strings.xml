@@ -1315,7 +1315,9 @@
         <item quantity="one">%d araç çağrısı</item>
         <item quantity="other">%d araç çağrısı</item>
     </plurals>
-    <string name="chat_adding_files">Dosyalar ekleniyor…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">Dosyalar ekleniyor…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="one">Bir araç çağrısı</item>
         <item quantity="other">%d araç çağrısı</item>
@@ -1324,13 +1326,19 @@
         <item quantity="one">%d sohbet çalışıyor</item>
         <item quantity="other">%d sohbet çalışıyor</item>
     </plurals>
-    <string name="transcript_last_messages">son mesajlar</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">son mesajlar</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="one">%d dosya eklendi</item>
         <item quantity="other">%d dosya eklendi</item>
     </plurals>
-    <string name="setup_old_chats_body">Ski\'nin eski bir kurulumundan sohbetler bulundu. Bunlar kaldırılsın mı?</string>
-    <string name="setup_old_chats_remove">Eski sohbetleri kaldır</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Ski\'nin eski bir kurulumundan sohbetler bulundu. Bunlar kaldırılsın mı?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">Eski sohbetleri kaldır</item>
+    </plurals>
     <string name="setup_shizuku_perms">Tek dokunuşla izinler</string>
     <string name="setup_shizuku_perms_info">Shizuku kullanarak Ski\'nin ihtiyaç duyduğu tüm izinleri tek dokunuşla verin (adb ayrıcalıkları, root gerekmez).</string>
     <string name="shizuku_state_ready">hazır</string>
@@ -1355,4 +1363,33 @@
 <string name="setup_tab_general">Genel</string>
 <string name="setup_tab_agents">Ajanlar</string>
 <string name="setup_tab_tools">Araçlar</string>
+    <string name="chat_model_search_hint">Tüm modelleri ara…</string>
+    <string name="chat_model_auto_speed">⚡ En hızlı</string>
+    <string name="chat_model_auto_coder">⌨ Kod için en iyisi</string>
+    <string name="chat_model_auto_big">📚 En büyük bağlam</string>
+    <string name="hub_tool_spawn_subagent">Alt ajan: %1$s</string>
+    <string name="setup_bubble_style">Yüzen görünüm</string>
+    <string name="setup_bubble_style_ski">Yüz</string>
+    <string name="setup_bubble_style_dot">Nokta</string>
+    <string name="setup_bubble_style_spark">Kıvılcım</string>
+    <string name="setup_bubble_style_info">Ski, diğer uygulamaların üzerinde böyle yüzüyor. Nokta ve Kıvılcım daha sessiz — yüzsüz, sade bir halka ve bir parıltı.</string>
+    <string name="api_keys_import">Birkaçını içe aktar</string>
+    <string name="api_keys_import_title">Hizmetleri içe aktar</string>
+    <string name="api_keys_import_info">Birkaç hizmeti aynı anda yapıştırın — aynı sağlayıcıdan veya farklı sağlayıcılardan. Blok başına bir tane: ad ilk satırda, API adresi ikinci satırda, anahtar üçüncü satırda — hizmetler arasında boş bir satır. JSON listesi de çalışır.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">Eklendi: %d hizmet.</string>
+    <string name="api_keys_import_none">Metinde kullanılabilir bir şey bulunamadı. Her hizmetin bir adı, bir adresi ve bir anahtarı olmalı.</string>
+    <string name="api_keys_extra_key">Anahtar %d (isteğe bağlı)</string>
+    <string name="api_keys_extra_key_keep">Anahtar %d kaydedildi — olduğu gibi bırakın veya değiştirin</string>
+    <string name="api_keys_extra_key_info">Aynı hizmet için daha fazla anahtar: birinin kotası bittiğinde veya başarısız olduğunda Ski otomatik olarak sonrakine devam eder.</string>
+    <string name="api_keys_service_info">Bilinen bir hizmet adresleri sizin için doldurur. Kendi adresinizi yazmak için Özel\'i seçin — örneğin bir proxy veya kendi barındırdığınız bir API.</string>
+    <string name="api_keys_address_anthropic">Anthropic tarzı adres: [CC] ve OpenCode isteklerini buraya gönderir.</string>
+    <string name="api_keys_address_openai">[OI] tarzı adres: Codex ve OpenCode isteklerini buraya gönderir.</string>
+    <string name="skills_market">Becerileri keşfet</string>
+    <string name="skills_market_title">Becerileri keşfet</string>
+    <string name="skills_market_loading">Katalog yükleniyor…</string>
+    <string name="skills_market_offline">Katalog yüklenemedi. Bağlantıyı kontrol edip tekrar deneyin.</string>
+    <string name="skills_market_count">%d beceri kullanılabilir:</string>
+    <string name="skills_market_installing">İndiriliyor…</string>
+    <string name="skills_market_failed">Yüklenemedi: %s</string>
 </resources>

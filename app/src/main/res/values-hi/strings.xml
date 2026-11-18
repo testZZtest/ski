@@ -1315,7 +1315,9 @@
         <item quantity="one">%d टूल कॉल</item>
         <item quantity="other">%d टूल कॉल</item>
     </plurals>
-    <string name="chat_adding_files">फ़ाइलें जोड़ी जा रही हैं…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">फ़ाइलें जोड़ी जा रही हैं…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="one">एक टूल कॉल</item>
         <item quantity="other">%d टूल कॉल</item>
@@ -1324,13 +1326,19 @@
         <item quantity="one">%d चैट चल रही है</item>
         <item quantity="other">%d चैट चल रही हैं</item>
     </plurals>
-    <string name="transcript_last_messages">अंतिम संदेश</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">अंतिम संदेश</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="one">%d फ़ाइल जोड़ी गई</item>
         <item quantity="other">%d फ़ाइलें जोड़ी गईं</item>
     </plurals>
-    <string name="setup_old_chats_body">Ski के पुराने इंस्टॉल से चैट मिली हैं। क्या आप इन्हें हटाना चाहते हैं?</string>
-    <string name="setup_old_chats_remove">पुरानी चैट हटाएँ</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Ski के पुराने इंस्टॉल से चैट मिली हैं। क्या आप इन्हें हटाना चाहते हैं?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">पुरानी चैट हटाएँ</item>
+    </plurals>
     <string name="setup_shizuku_perms">एक टैप में अनुमतियाँ</string>
     <string name="setup_shizuku_perms_info">Shizuku का उपयोग करके एक ही टैप में Ski को चाहिए वाली सभी अनुमतियाँ दें (adb विशेषाधिकार, रूट की आवश्यकता नहीं)।</string>
     <string name="shizuku_state_ready">तैयार</string>
@@ -1355,4 +1363,33 @@
 <string name="setup_tab_general">सामान्य</string>
 <string name="setup_tab_agents">एजेंट</string>
 <string name="setup_tab_tools">टूल</string>
+    <string name="chat_model_search_hint">सभी मॉडल खोजें…</string>
+    <string name="chat_model_auto_speed">⚡ सबसे तेज़</string>
+    <string name="chat_model_auto_coder">⌨ कोड के लिए सर्वोत्तम</string>
+    <string name="chat_model_auto_big">📚 सबसे बड़ा कॉन्टेक्स्ट</string>
+    <string name="hub_tool_spawn_subagent">सब-एजेंट: %1$s</string>
+    <string name="setup_bubble_style">तैरता हुआ रूप</string>
+    <string name="setup_bubble_style_ski">चेहरा</string>
+    <string name="setup_bubble_style_dot">बिंदु</string>
+    <string name="setup_bubble_style_spark">चिंगारी</string>
+    <string name="setup_bubble_style_info">Ski इस तरह दूसरे ऐप्स के ऊपर तैरता है। बिंदु और चिंगारी अधिक संयत हैं — एक सादा घेरा और एक चमक, बिना चेहरा।</string>
+    <string name="api_keys_import">कई आयात करें</string>
+    <string name="api_keys_import_title">सेवाएँ आयात करें</string>
+    <string name="api_keys_import_info">एक साथ कई सेवाएँ पेस्ट करें — एक ही प्रदाता से या अलग-अलग से। प्रति ब्लॉक एक: नाम एक पंक्ति में, API पता अगली पंक्ति में, कुंजी तीसरी में — सेवाओं के बीच एक खाली पंक्ति। JSON सूची भी चलती है।</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">जोड़ा गया: %d सेवाएँ।</string>
+    <string name="api_keys_import_none">टेक्स्ट में कुछ उपयोगी नहीं मिला। हर सेवा को एक नाम, एक पता और एक कुंजी चाहिए।</string>
+    <string name="api_keys_extra_key">कुंजी %d (वैकल्पिक)</string>
+    <string name="api_keys_extra_key_keep">कुंजी %d सहेजी गई — जैसी है वैसी छोड़ें या बदलें</string>
+    <string name="api_keys_extra_key_info">उसी सेवा के लिए और कुंजियाँ: जब किसी की कोटा खत्म हो जाए या वह विफल हो, तो Ski अगली कुंजी से स्वतः जारी रखता है।</string>
+    <string name="api_keys_service_info">ज्ञात सेवा पते आपके लिए भर देती है। अपना पता लिखने के लिए कस्टम चुनें — जैसे कोई प्रॉक्सी या स्वयं-होस्ट किया गया API।</string>
+    <string name="api_keys_address_anthropic">Anthropic-शैली का पता: जहाँ [CC] और OpenCode अपने अनुरोध भेजते हैं।</string>
+    <string name="api_keys_address_openai">[OI]-शैली का पता: जहाँ Codex और OpenCode अपने अनुरोध भेजते हैं।</string>
+    <string name="skills_market">कौशल खोजें</string>
+    <string name="skills_market_title">कौशल खोजें</string>
+    <string name="skills_market_loading">कैटलॉग लोड हो रहा है…</string>
+    <string name="skills_market_offline">कैटलॉग लोड नहीं हो सका। कनेक्शन जाँचें और फिर से प्रयास करें।</string>
+    <string name="skills_market_count">%d कौशल उपलब्ध:</string>
+    <string name="skills_market_installing">डाउनलोड हो रहा है…</string>
+    <string name="skills_market_failed">इंस्टॉल नहीं हो सका: %s</string>
 </resources>

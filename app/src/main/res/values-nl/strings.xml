@@ -1315,7 +1315,9 @@
         <item quantity="one">%d tool-aanroep</item>
         <item quantity="other">%d tool-aanroepen</item>
     </plurals>
-    <string name="chat_adding_files">Bestanden toevoegen…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">Bestanden toevoegen…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="one">Eén tool-aanroep</item>
         <item quantity="other">%d tool-aanroepen</item>
@@ -1324,13 +1326,19 @@
         <item quantity="one">%d chat actief</item>
         <item quantity="other">%d chats actief</item>
     </plurals>
-    <string name="transcript_last_messages">laatste berichten</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">laatste berichten</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="one">%d bestand bijgevoegd</item>
         <item quantity="other">%d bestanden bijgevoegd</item>
     </plurals>
-    <string name="setup_old_chats_body">Chats van een oudere Ski-installatie zijn gevonden. Wil je ze verwijderen?</string>
-    <string name="setup_old_chats_remove">Oude chats verwijderen</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Chats van een oudere Ski-installatie zijn gevonden. Wil je ze verwijderen?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">Oude chats verwijderen</item>
+    </plurals>
     <string name="setup_shizuku_perms">Machtigingen met één tik</string>
     <string name="setup_shizuku_perms_info">Verleen alle machtigingen die Ski nodig heeft met één tik, met Shizuku (adb-rechten, geen root).</string>
     <string name="shizuku_state_ready">gereed</string>
@@ -1355,4 +1363,33 @@
 <string name="setup_tab_general">Algemeen</string>
 <string name="setup_tab_agents">Agents</string>
 <string name="setup_tab_tools">Tools</string>
+    <string name="chat_model_search_hint">Alle modellen doorzoeken…</string>
+    <string name="chat_model_auto_speed">⚡ Snelste</string>
+    <string name="chat_model_auto_coder">⌨ Beste voor code</string>
+    <string name="chat_model_auto_big">📚 Grootste context</string>
+    <string name="hub_tool_spawn_subagent">Subagent: %1$s</string>
+    <string name="setup_bubble_style">Zwevende look</string>
+    <string name="setup_bubble_style_ski">Gezicht</string>
+    <string name="setup_bubble_style_dot">Stip</string>
+    <string name="setup_bubble_style_spark">Vonk</string>
+    <string name="setup_bubble_style_info">Zo zweeft Ski boven andere apps. Stip en Vonk zijn stiller — een simpele ring en een glinstering, zonder gezicht.</string>
+    <string name="api_keys_import">Meerdere importeren</string>
+    <string name="api_keys_import_title">Services importeren</string>
+    <string name="api_keys_import_info">Plak meerdere services tegelijk, van dezelfde provider of van verschillende. Één per blok: de naam op een regel, het API-adres op de volgende, de sleutel op de derde — een lege regel tussen services. Een JSON-lijst werkt ook.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">Toegevoegd: %d services.</string>
+    <string name="api_keys_import_none">Niets bruikbars gevonden in de tekst. Elke service heeft een naam, een adres en een sleutel nodig.</string>
+    <string name="api_keys_extra_key">Sleutel %d (optioneel)</string>
+    <string name="api_keys_extra_key_keep">Sleutel %d opgeslagen — laat staan of vervang</string>
+    <string name="api_keys_extra_key_info">Meer sleutels voor dezelfde service: als één de quota opgebruikt of faalt, gaat Ski automatisch door met de volgende.</string>
+    <string name="api_keys_service_info">Een bekende service vult de adressen voor je in. Kies Aangepast om je eigen adres in te typen — bijvoorbeeld een proxy of een zelf gehoste API.</string>
+    <string name="api_keys_address_anthropic">Het adres in Anthropic-stijl: waar [CC] en OpenCode hun verzoeken naartoe sturen.</string>
+    <string name="api_keys_address_openai">Het adres in [OI]-stijl: waar Codex en OpenCode die van hen naartoe sturen.</string>
+    <string name="skills_market">Skills ontdekken</string>
+    <string name="skills_market_title">Skills ontdekken</string>
+    <string name="skills_market_loading">Catalogus laden…</string>
+    <string name="skills_market_offline">Kan de catalogus niet laden. Controleer de verbinding en probeer het opnieuw.</string>
+    <string name="skills_market_count">%d skills beschikbaar:</string>
+    <string name="skills_market_installing">Downloaden…</string>
+    <string name="skills_market_failed">Kan niet installeren: %s</string>
 </resources>

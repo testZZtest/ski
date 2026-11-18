@@ -1331,7 +1331,9 @@
         <item quantity="many">%d استدعاء أداة</item>
         <item quantity="other">%d استدعاء أداة</item>
     </plurals>
-    <string name="chat_adding_files">جارٍ إضافة الملفات…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">جارٍ إضافة الملفات…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="zero">لا استدعاءات أدوات</item>
         <item quantity="one">استدعاء أداة واحد</item>
@@ -1348,7 +1350,9 @@
         <item quantity="many">%d محادثة قيد التشغيل</item>
         <item quantity="other">%d محادثة قيد التشغيل</item>
     </plurals>
-    <string name="transcript_last_messages">الرسائل الأخيرة</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">الرسائل الأخيرة</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="zero">لا ملفات مرفقة</item>
         <item quantity="one">تم إرفاق ملف واحد (%d)</item>
@@ -1357,8 +1361,12 @@
         <item quantity="many">تم إرفاق %d ملفًا</item>
         <item quantity="other">تم إرفاق %d ملف</item>
     </plurals>
-    <string name="setup_old_chats_body">تم العثور على محادثات من تثبيت قديم لتطبيق Ski. هل تريد إزالتها؟</string>
-    <string name="setup_old_chats_remove">إزالة المحادثات القديمة</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">تم العثور على محادثات من تثبيت قديم لتطبيق Ski. هل تريد إزالتها؟</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">إزالة المحادثات القديمة</item>
+    </plurals>
     <string name="setup_shizuku_perms">الأذونات بنقرة واحدة</string>
     <string name="setup_shizuku_perms_info">امنح كل الأذونات التي يحتاجها Ski بنقرة واحدة، باستخدام Shizuku (امتيازات adb، بدون روت).</string>
     <string name="shizuku_state_ready">جاهز</string>
@@ -1391,4 +1399,33 @@
 <string name="setup_tab_general">عام</string>
 <string name="setup_tab_agents">الوكلاء</string>
 <string name="setup_tab_tools">الأدوات</string>
+    <string name="chat_model_search_hint">البحث في جميع النماذج…</string>
+    <string name="chat_model_auto_speed">⚡ الأسرع</string>
+    <string name="chat_model_auto_coder">⌨ الأفضل للبرمجة</string>
+    <string name="chat_model_auto_big">📚 أكبر سياق</string>
+    <string name="hub_tool_spawn_subagent">الوكيل الفرعي: %1$s</string>
+    <string name="setup_bubble_style">مظهر عائم</string>
+    <string name="setup_bubble_style_ski">وجه</string>
+    <string name="setup_bubble_style_dot">نقطة</string>
+    <string name="setup_bubble_style_spark">شرارة</string>
+    <string name="setup_bubble_style_info">هكذا يطفو Ski فوق التطبيقات الأخرى. «نقطة» و«شرارة» أكثر هدوءًا — حلقة بسيطة ولمعة، دون وجه.</string>
+    <string name="api_keys_import">استيراد عدة خدمات</string>
+    <string name="api_keys_import_title">استيراد الخدمات</string>
+    <string name="api_keys_import_info">الصق عدة خدمات دفعة واحدة، من المزود نفسه أو من مزودين مختلفين. واحدة لكل كتلة: الاسم في سطر، وعنوان الـAPI في السطر التالي، والمفتاح في الثالث — سطر فارغ بين الخدمات. وتعمل قائمة JSON أيضًا.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">تمت الإضافة: %d خدمات.</string>
+    <string name="api_keys_import_none">لم يُعثر على شيء قابل للاستخدام في النص. تحتاج كل خدمة إلى اسم وعنوان ومفتاح.</string>
+    <string name="api_keys_extra_key">المفتاح %d (اختياري)</string>
+    <string name="api_keys_extra_key_keep">تم حفظ المفتاح %d — اتركه كما هو أو استبدله</string>
+    <string name="api_keys_extra_key_info">مفاتيح إضافية للخدمة نفسها: عند نفاد حصة أحدها أو تعثره، يتابع Ski تلقائيًا بالتالي.</string>
+    <string name="api_keys_service_info">الخدمة المعروفة تملأ العناوين نيابةً عنك. اختر «مخصص» لكتابة عنوانك — مثلًا وسيط (proxy) أو API مستضاف ذاتيًا.</string>
+    <string name="api_keys_address_anthropic">العنوان بأسلوب Anthropic: حيث يرسل [CC] وOpenCode طلباتهما.</string>
+    <string name="api_keys_address_openai">العنوان بأسلوب [OI]: حيث يرسل Codex وOpenCode طلباتهما.</string>
+    <string name="skills_market">استكشاف المهارات</string>
+    <string name="skills_market_title">استكشاف المهارات</string>
+    <string name="skills_market_loading">جارٍ تحميل الكتالوج…</string>
+    <string name="skills_market_offline">تعذّر تحميل الكتالوج. تحقق من الاتصال وحاول مجددًا.</string>
+    <string name="skills_market_count">%d مهارة متاحة:</string>
+    <string name="skills_market_installing">جارٍ التنزيل…</string>
+    <string name="skills_market_failed">تعذّر التثبيت: %s</string>
 </resources>

@@ -1319,7 +1319,9 @@
         <item quantity="many">%d chamadas de ferramentas</item>
         <item quantity="other">%d chamadas de ferramentas</item>
     </plurals>
-    <string name="chat_adding_files">Adicionando arquivos…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">Adicionando arquivos…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="one">Uma chamada de ferramenta</item>
         <item quantity="many">%d chamadas de ferramentas</item>
@@ -1330,14 +1332,20 @@
         <item quantity="many">%d chats em execução</item>
         <item quantity="other">%d chats em execução</item>
     </plurals>
-    <string name="transcript_last_messages">últimas mensagens</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">últimas mensagens</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="one">%d arquivo anexado</item>
         <item quantity="many">%d arquivos anexados</item>
         <item quantity="other">%d arquivos anexados</item>
     </plurals>
-    <string name="setup_old_chats_body">Chats de uma instalação anterior do Ski foram encontrados. Removê-los?</string>
-    <string name="setup_old_chats_remove">Remover chats antigos</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Chats de uma instalação anterior do Ski foram encontrados. Removê-los?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">Remover chats antigos</item>
+    </plurals>
     <string name="setup_shizuku_perms">Permissões com um toque</string>
     <string name="setup_shizuku_perms_info">Conceda todas as permissões de que o Ski precisa com um único toque, usando o Shizuku (privilégios adb, sem root).</string>
     <string name="shizuku_state_ready">pronto</string>
@@ -1364,4 +1372,33 @@
 <string name="setup_tab_general">Geral</string>
 <string name="setup_tab_agents">Agentes</string>
 <string name="setup_tab_tools">Ferramentas</string>
+    <string name="chat_model_search_hint">Pesquisar todos os modelos…</string>
+    <string name="chat_model_auto_speed">⚡ O mais rápido</string>
+    <string name="chat_model_auto_coder">⌨ O melhor para código</string>
+    <string name="chat_model_auto_big">📚 O maior contexto</string>
+    <string name="hub_tool_spawn_subagent">Subagente: %1$s</string>
+    <string name="setup_bubble_style">Aparência flutuante</string>
+    <string name="setup_bubble_style_ski">Rosto</string>
+    <string name="setup_bubble_style_dot">Ponto</string>
+    <string name="setup_bubble_style_spark">Faísca</string>
+    <string name="setup_bubble_style_info">É assim que o Ski flutua sobre outros apps. Ponto e Faísca são mais discretos — um anel simples e um brilho, sem rosto.</string>
+    <string name="api_keys_import">Importar vários</string>
+    <string name="api_keys_import_title">Importar serviços</string>
+    <string name="api_keys_import_info">Cole vários serviços de uma vez, do mesmo provedor ou de diferentes. Um por bloco: o nome em uma linha, o endereço da API na seguinte, a chave na terceira — uma linha em branco entre os serviços. Uma lista JSON também funciona.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">Adicionados: %d serviços.</string>
+    <string name="api_keys_import_none">Nada utilizável encontrado no texto. Cada serviço precisa de um nome, um endereço e uma chave.</string>
+    <string name="api_keys_extra_key">Chave %d (opcional)</string>
+    <string name="api_keys_extra_key_keep">Chave %d salva — deixe como está ou substitua</string>
+    <string name="api_keys_extra_key_info">Mais chaves para o mesmo serviço: quando uma esgota a cota ou falha, o Ski continua automaticamente com a próxima.</string>
+    <string name="api_keys_service_info">Um serviço conhecido preenche os endereços para você. Escolha Personalizado para digitar o seu — por exemplo, um proxy ou uma API auto-hospedada.</string>
+    <string name="api_keys_address_anthropic">O endereço no estilo Anthropic: onde [CC] e o OpenCode enviam as solicitações deles.</string>
+    <string name="api_keys_address_openai">O endereço no estilo [OI]: onde o Codex e o OpenCode enviam as deles.</string>
+    <string name="skills_market">Descobrir habilidades</string>
+    <string name="skills_market_title">Descobrir habilidades</string>
+    <string name="skills_market_loading">Carregando o catálogo…</string>
+    <string name="skills_market_offline">Não foi possível carregar o catálogo. Verifique a conexão e tente novamente.</string>
+    <string name="skills_market_count">%d habilidades disponíveis:</string>
+    <string name="skills_market_installing">Baixando…</string>
+    <string name="skills_market_failed">Não foi possível instalar: %s</string>
 </resources>

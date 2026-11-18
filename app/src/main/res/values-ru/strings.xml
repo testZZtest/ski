@@ -1323,7 +1323,9 @@
         <item quantity="many">%d вызовов инструмента</item>
         <item quantity="other">%d вызова инструмента</item>
     </plurals>
-    <string name="chat_adding_files">Добавление файлов…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">Добавление файлов…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="one">Один вызов инструмента</item>
         <item quantity="few">%d вызова инструмента</item>
@@ -1336,15 +1338,21 @@
         <item quantity="many">%d чатов выполняются</item>
         <item quantity="other">%d чата выполняются</item>
     </plurals>
-    <string name="transcript_last_messages">последние сообщения</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">последние сообщения</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="one">Прикреплён %d файл</item>
         <item quantity="few">Прикреплено %d файла</item>
         <item quantity="many">Прикреплено %d файлов</item>
         <item quantity="other">Прикреплено %d файла</item>
     </plurals>
-    <string name="setup_old_chats_body">Обнаружены чаты из предыдущей установки Ski. Удалить их?</string>
-    <string name="setup_old_chats_remove">Удалить старые чаты</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Обнаружены чаты из предыдущей установки Ski. Удалить их?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">Удалить старые чаты</item>
+    </plurals>
     <string name="setup_shizuku_perms">Разрешения в одно касание</string>
     <string name="setup_shizuku_perms_info">Предоставьте все разрешения, нужные Ski, одним касанием с помощью Shizuku (права adb, без root).</string>
     <string name="shizuku_state_ready">готово</string>
@@ -1373,4 +1381,33 @@
 <string name="setup_tab_general">Общие</string>
 <string name="setup_tab_agents">Агенты</string>
 <string name="setup_tab_tools">Инструменты</string>
+    <string name="chat_model_search_hint">Поиск всех моделей…</string>
+    <string name="chat_model_auto_speed">⚡ Самая быстрая</string>
+    <string name="chat_model_auto_coder">⌨ Лучшая для кода</string>
+    <string name="chat_model_auto_big">📚 Самый большой контекст</string>
+    <string name="hub_tool_spawn_subagent">Субагент: %1$s</string>
+    <string name="setup_bubble_style">Парящий вид</string>
+    <string name="setup_bubble_style_ski">Лицо</string>
+    <string name="setup_bubble_style_dot">Точка</string>
+    <string name="setup_bubble_style_spark">Искра</string>
+    <string name="setup_bubble_style_info">Так Ski парит над другими приложениями. «Точка» и «Искра» поскромнее — простое кольцо и блик, без лица.</string>
+    <string name="api_keys_import">Импортировать несколько</string>
+    <string name="api_keys_import_title">Импорт сервисов</string>
+    <string name="api_keys_import_info">Вставьте сразу несколько сервисов — от одного провайдера или разных. Один на блок: имя в первой строке, адрес API во второй, ключ в третьей — пустая строка между сервисами. Подойдёт и список JSON.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">Добавлено: сервисов — %d.</string>
+    <string name="api_keys_import_none">В тексте не найдено ничего пригодного. Каждому сервису нужны имя, адрес и ключ.</string>
+    <string name="api_keys_extra_key">Ключ %d (необязательно)</string>
+    <string name="api_keys_extra_key_keep">Ключ %d сохранён — оставьте как есть или замените</string>
+    <string name="api_keys_extra_key_info">Дополнительные ключи для того же сервиса: когда у одного кончается квота или он даёт сбой, Ski автоматически продолжает со следующим.</string>
+    <string name="api_keys_service_info">Известный сервис сам подставит адреса. Выберите «Свой», чтобы ввести собственный — например, прокси или самостоятельно размещённый API.</string>
+    <string name="api_keys_address_anthropic">Адрес в стиле Anthropic: туда [CC] и OpenCode отправляют свои запросы.</string>
+    <string name="api_keys_address_openai">Адрес в стиле [OI]: туда Codex и OpenCode отправляют свои.</string>
+    <string name="skills_market">Открыть навыки</string>
+    <string name="skills_market_title">Открыть навыки</string>
+    <string name="skills_market_loading">Загрузка каталога…</string>
+    <string name="skills_market_offline">Не удалось загрузить каталог. Проверьте соединение и попробуйте снова.</string>
+    <string name="skills_market_count">Доступно навыков: %d:</string>
+    <string name="skills_market_installing">Скачивание…</string>
+    <string name="skills_market_failed">Не удалось установить: %s</string>
 </resources>

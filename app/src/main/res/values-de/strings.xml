@@ -1315,7 +1315,9 @@
         <item quantity="one">%d Tool-Aufruf</item>
         <item quantity="other">%d Tool-Aufrufe</item>
     </plurals>
-    <string name="chat_adding_files">Dateien werden hinzugefügt…</string>
+    <plurals name="chat_adding_files">
+        <item quantity="other">Dateien werden hinzugefügt…</item>
+    </plurals>
     <plurals name="chat_tool_calls">
         <item quantity="one">Ein Tool-Aufruf</item>
         <item quantity="other">%d Tool-Aufrufe</item>
@@ -1324,13 +1326,19 @@
         <item quantity="one">%d Chat läuft</item>
         <item quantity="other">%d Chats laufen</item>
     </plurals>
-    <string name="transcript_last_messages">letzte Nachrichten</string>
+    <plurals name="transcript_last_messages">
+        <item quantity="other">letzte Nachrichten</item>
+    </plurals>
     <plurals name="attach_count">
         <item quantity="one">%d Datei angehängt</item>
         <item quantity="other">%d Dateien angehängt</item>
     </plurals>
-    <string name="setup_old_chats_body">Chats aus einer älteren Ski-Installation wurden gefunden. Möchtest du sie entfernen?</string>
-    <string name="setup_old_chats_remove">Alte Chats entfernen</string>
+    <plurals name="setup_old_chats_body">
+        <item quantity="other">Chats aus einer älteren Ski-Installation wurden gefunden. Möchtest du sie entfernen?</item>
+    </plurals>
+    <plurals name="setup_old_chats_remove">
+        <item quantity="other">Alte Chats entfernen</item>
+    </plurals>
     <string name="setup_shizuku_perms">Berechtigungen mit einem Tipp</string>
     <string name="setup_shizuku_perms_info">Gewähre alle Berechtigungen, die Ski benötigt, mit einem einzigen Tipp – mit Shizuku (adb-Berechtigungen, kein Root).</string>
     <string name="shizuku_state_ready">bereit</string>
@@ -1355,4 +1363,33 @@
 <string name="setup_tab_general">Allgemein</string>
 <string name="setup_tab_agents">Agenten</string>
 <string name="setup_tab_tools">Tools</string>
+    <string name="chat_model_search_hint">Alle Modelle durchsuchen…</string>
+    <string name="chat_model_auto_speed">⚡ Schnellster</string>
+    <string name="chat_model_auto_coder">⌨ Am besten für Code</string>
+    <string name="chat_model_auto_big">📚 Größter Kontext</string>
+    <string name="hub_tool_spawn_subagent">Subagent: %1$s</string>
+    <string name="setup_bubble_style">Schwebende Optik</string>
+    <string name="setup_bubble_style_ski">Gesicht</string>
+    <string name="setup_bubble_style_dot">Punkt</string>
+    <string name="setup_bubble_style_spark">Funkel</string>
+    <string name="setup_bubble_style_info">So schwebt Ski über anderen Apps. Punkt und Funkel sind dezenter — ein schlichter Ring und ein Glanz, ohne Gesicht.</string>
+    <string name="api_keys_import">Mehrere importieren</string>
+    <string name="api_keys_import_title">Dienste importieren</string>
+    <string name="api_keys_import_info">Füge mehrere Dienste gleichzeitig ein, vom selben Anbieter oder von verschiedenen. Einer pro Block: der Name in einer Zeile, die API-Adresse in der nächsten, der Schlüssel in der dritten — eine Leerzeile zwischen Diensten. Eine JSON-Liste funktioniert auch.</string>
+    <string name="api_keys_import_hint">DeepSeek\nhttps://api.deepseek.com/anthropic\nsk-…\n\nOpenRouter\nhttps://openrouter.ai/api/v1\nsk-or-…</string>
+    <string name="api_keys_import_done">Hinzugefügt: %d Dienste.</string>
+    <string name="api_keys_import_none">Nichts Verwendbares im Text gefunden. Jeder Dienst braucht einen Namen, eine Adresse und einen Schlüssel.</string>
+    <string name="api_keys_extra_key">Schlüssel %d (optional)</string>
+    <string name="api_keys_extra_key_keep">Schlüssel %d gespeichert — unverändert lassen oder ersetzen</string>
+    <string name="api_keys_extra_key_info">Weitere Schlüssel für denselben Dienst: Wenn einer das Kontingent aufbraucht oder fehlschlägt, fährt Ski automatisch mit dem nächsten fort.</string>
+    <string name="api_keys_service_info">Ein bekannter Dienst füllt die Adressen für dich aus. Wähle Benutzerdefiniert, um deine eigene einzugeben — z. B. einen Proxy oder eine selbst gehostete API.</string>
+    <string name="api_keys_address_anthropic">Die Adresse im Anthropic-Stil: [CC] und OpenCode senden ihre Anfragen dorthin.</string>
+    <string name="api_keys_address_openai">Die Adresse im [OI]-Stil: Codex und OpenCode senden ihre Anfragen dorthin.</string>
+    <string name="skills_market">Skills entdecken</string>
+    <string name="skills_market_title">Skills entdecken</string>
+    <string name="skills_market_loading">Katalog wird geladen…</string>
+    <string name="skills_market_offline">Katalog konnte nicht geladen werden. Prüfe die Verbindung und versuche es erneut.</string>
+    <string name="skills_market_count">%d Skills verfügbar:</string>
+    <string name="skills_market_installing">Wird heruntergeladen…</string>
+    <string name="skills_market_failed">Installation fehlgeschlagen: %s</string>
 </resources>
