@@ -71,6 +71,12 @@ public class ApiKeysActivity extends Screen {
         LinearLayout.LayoutParams ap = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp(this, 48));
         ap.topMargin = dp(this, 14);
         body.addView(add, ap);
+        // several services in one go: paste "name / address / key" blocks or a JSON list
+        Button importMany = button(this, getString(R.string.api_keys_import), false);
+        LinearLayout.LayoutParams ip = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp(this, 48));
+        ip.topMargin = dp(this, 8);
+        importMany.setOnClickListener(v -> importSheet());
+        body.addView(importMany, ip);
 
         // what a chat on Default uses, for each agent that has a service it can use
         boolean any = false;
@@ -206,6 +212,7 @@ public class ApiKeysActivity extends Screen {
             });
             c.addView(text(this, getString(R.string.api_keys_service), 13, MUTED), gap(12));
             c.addView(menu, gap(6));
+            c.addView(text(this, getString(R.string.api_keys_service_info), 13, MUTED), gap(4));
         } else {
             name.setText(p.name);
             anthropic.setText(p.anthropic);
@@ -216,6 +223,11 @@ public class ApiKeysActivity extends Screen {
         c.addView(anthropic, gap(8));
         c.addView(openai, gap(8));
         c.addView(text(this, getString(R.string.api_keys_addresses_info), 13, MUTED), gap(6));
+        // which agent uses what: the didactic line under each address field
+        TextView whoA = text(this, getString(R.string.api_keys_address_anthropic), 12, MUTED);
+        TextView whoO = text(this, getString(R.string.api_keys_address_openai), 12, MUTED);
+        c.addView(whoA, gap(2));
+        c.addView(whoO, gap(6));
         TextView status = text(this, "", 13, MUTED);
         status.setVisibility(View.GONE);
         c.addView(status, gap(8));
@@ -271,6 +283,22 @@ public class ApiKeysActivity extends Screen {
             cp.topMargin = dp(this, 8);
             c.addView(choose, cp);
             choose.setOnClickListener(v -> chooseModels(p));
+        }
+        // more keys for the same service: when one runs out of quota or fails, the next one takes over
+        if (!adding) {
+            c.addView(text(this, getString(R.string.api_keys_extra_key_info), 13, MUTED), gap(12));
+            int have = Providers.extraKeys(this, p);
+            for (int slot = 2; slot < 5; slot++) {
+                boolean filled = slot - 2 < have || !Secrets.get(this, Providers.secretName(p.id) + "_" + slot).isEmpty();
+                EditText extra = field(filled ? getString(R.string.api_keys_extra_key_keep, slot - 1)
+                        : getString(R.string.api_keys_extra_key, slot - 1), true);
+                final int s = slot;
+                extra.setOnFocusChangeListener((v, f) -> {
+                    if (f) return;
+                    Providers.saveExtraKey(this, p, s, extra.getText().toString());
+                });
+                c.addView(extra, gap(8));
+            }
         }
         final Dialog[] sheet = new Dialog[1];
         if (!adding) {
@@ -350,6 +378,49 @@ public class ApiKeysActivity extends Screen {
                     render();
                 });
             }, "api-key").start();
+        });
+        d.show();
+    }
+
+    /** Paste several services in one go: "name / address / key" blocks, or a JSON list. */
+    private void importSheet() {
+        LinearLayout c = column(this);
+        c.addView(title(this, getString(R.string.api_keys_import_title), 18));
+        c.addView(text(this, getString(R.string.api_keys_import_info), 13, MUTED), gap(4));
+        EditText paste = field(getString(R.string.api_keys_import_hint), true);
+        paste.setMinLines(4);
+        paste.setGravity(Gravity.TOP);
+        c.addView(paste, gap(10));
+        TextView status = text(this, "", 13, MUTED);
+        status.setVisibility(View.GONE);
+        c.addView(status, gap(8));
+        Button go = button(this, getString(R.string.api_keys_import), true);
+        LinearLayout.LayoutParams gp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp(this, 52));
+        gp.topMargin = dp(this, 10);
+        c.addView(go, gp);
+        Dialog d = bottomSheet(this, protect(c));
+        go.setOnClickListener(v -> {
+            String t = paste.getText().toString();
+            if (t.trim().isEmpty()) {
+                Toast.makeText(this, R.string.api_keys_need_key, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            go.setEnabled(false);
+            status.setVisibility(View.VISIBLE);
+            status.setText(R.string.api_keys_saving);
+            new Thread(() -> {
+                final String added = Providers.importBatch(this, t);
+                runOnUiThread(() -> {
+                    go.setEnabled(true);
+                    if (added == null) {
+                        status.setText(getString(R.string.api_keys_import_none));
+                        return;
+                    }
+                    status.setText(getString(R.string.api_keys_import_done, added.split("\n").length) + "\n" + added);
+                    refreshAgents();
+                    render();
+                });
+            }, "api-key-import").start();
         });
         d.show();
     }

@@ -214,13 +214,29 @@ final class Relay {
         Providers.P p = parts.length >= 2 ? Providers.find(parts[0]) : null;
         boolean anthropic = parts.length >= 2 && "a".equals(parts[1]);
         String base = p == null ? "" : anthropic ? p.anthropic : "o".equals(parts[1]) ? p.openai : "";
-        String key = p == null ? null : Secrets.get(c, Providers.secretName(p.id));
-        if (key == null || base.isEmpty()) {
+        List<String> keys = p == null ? new java.util.ArrayList<>() : Providers.keys(c, p);
+        if (keys.isEmpty() || base.isEmpty()) {
             error(out, 401, "No API key saved in Ski for this service. Add one in Ski's Settings, under API keys.");
             return;
         }
         String rest = parts.length == 3 ? "/" + parts[2] : "";
-        HttpURLConnection con = (HttpURLConnection) new URL(trim(base) + rest).openConnection();
+        // rotation and fallback: try each key of this service until one answers; a spent key (401/402/429) is
+        // remembered and skipped first next time
+        for (int i = 0; i < keys.size(); i++) {
+            String key = keys.get(i);
+            int code = relay(method, headers, body, out, trim(base) + rest, key, anthropic);
+            if (code < 0) return; // the reply was already streamed
+            if (code < 400 || code == 404 || code == 413 || code == 422) return; // the key is fine: the request itself was the problem
+            if (code != 401 && code != 402 && code != 403 && code != 429 && code < 500) return;
+            Providers.burnKey(c, p, i); // this one is spent: the next request starts past it
+        }
+        // every key failed with quota/auth errors: the last one's error was already streamed to the agent
+    }
+
+    /** Sends one request with one key; returns its status code, or -1 when the reply was already written. */
+    private static int relay(String method, Map<String, String> headers, byte[] body, OutputStream out, String url,
+                             String key, boolean anthropic) throws Exception {
+        HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
         con.setRequestMethod(method);
         con.setConnectTimeout(30_000);
         con.setReadTimeout(10 * 60_000);
@@ -232,7 +248,7 @@ final class Relay {
                     || n.equals("connection") || n.equals("transfer-encoding") || n.equals("accept-encoding")) continue;
             con.setRequestProperty(n, h.getValue());
         }
-        if (xApiKey(anthropic, base)) con.setRequestProperty("x-api-key", key);
+        if (xApiKey(anthropic, url)) con.setRequestProperty("x-api-key", key);
         else con.setRequestProperty("Authorization", "Bearer " + key);
         if (body.length > 0) {
             con.setDoOutput(true);
@@ -241,7 +257,13 @@ final class Relay {
                 o.write(body);
             }
         }
-        int code = con.getResponseCode();
+        int code;
+        try {
+            code = con.getResponseCode();
+        } catch (Exception e) {
+            con.disconnect();
+            throw e;
+        }
         StringBuilder h = new StringBuilder("HTTP/1.1 ").append(code).append(" Relayed\r\n");
         for (Map.Entry<String, List<String>> e : con.getHeaderFields().entrySet()) {
             String n = e.getKey();
@@ -279,6 +301,7 @@ final class Relay {
         }
         out.write("0\r\n\r\n".getBytes(StandardCharsets.US_ASCII));
         out.flush();
+        return -1;
     }
 
     private static void error(OutputStream out, int code, String message) throws Exception {

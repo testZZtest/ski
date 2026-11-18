@@ -525,6 +525,15 @@ final class Prefs {
         sp(c).edit().putString("providers", json).apply();
     }
 
+    /** A service's key that just failed (rotation): "slot:time" for the editor's status line. */
+    static void keyFailed(Context c, String id, int slot, long time) {
+        sp(c).edit().putString("key_failed_" + id, slot + ":" + time).apply();
+    }
+
+    static String keyFailed(Context c, String id) {
+        return sp(c).getString("key_failed_" + id, "");
+    }
+
     /** What a chat on Default uses with this agent: "" (the agent's own default, on its plan) or "@service/model". */
     static String agentDefault(Context c, String agent) {
         return sp(c).getString("agent_default_" + agent, "");

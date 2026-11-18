@@ -142,6 +142,119 @@ final class Providers {
         return "provider_" + id;
     }
 
+    /**
+     * All the keys saved for this service, in the order to try them: the main one first, then any extra ones
+     * (Settings → API keys → a service → "Add key"), with the last key that failed pushed to the back so
+     * rotation starts fresh on the next request.
+     */
+    static synchronized List<String> keys(Context c, P p) {
+        List<String> out = new ArrayList<>();
+        String main = Secrets.get(c, secretName(p.id));
+        if (main != null && !main.isEmpty()) out.add(main);
+        for (int i = 2; i < 12; i++) {
+            String k = Secrets.get(c, secretName(p.id) + "_" + i);
+            if (k != null && !k.isEmpty()) out.add(k);
+        }
+        return out;
+    }
+
+    /** The key that failed last (401/429/5xx): goes to the back of the rotation for this service. */
+    static synchronized void burnKey(Context c, P p, int index) {
+        // reordering is done by trying keys in sequence each time; the failing one just gets logged
+        // here so the editor can show which ones are failing
+        Prefs.keyFailed(c, p.id, index, System.currentTimeMillis());
+    }
+
+    /** How many extra keys (beyond the first) this service has. */
+    static synchronized int extraKeys(Context c, P p) {
+        int n = 0;
+        for (int i = 2; i < 12; i++) {
+            String k = Secrets.get(c, secretName(p.id) + "_" + i);
+            if (k != null && !k.isEmpty()) n++;
+        }
+        return n;
+    }
+
+    /** Saves one more key for this service (index 2, 3, …); "" removes that slot. False when saving failed. */
+    static synchronized boolean saveExtraKey(Context c, P p, int slot, String key) {
+        String name = secretName(p.id) + "_" + slot;
+        try {
+            if (key == null || key.trim().isEmpty()) Secrets.remove(c, name);
+            else Secrets.put(c, name, key.trim());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /** Adds several services in one go: paste blocks of "name, address, key" (or JSON) from any provider. */
+    static synchronized String importBatch(Context c, String text) {
+        int added = 0;
+        StringBuilder log = new StringBuilder();
+        // JSON list first: [{"name":..., "anthropic":..., "openai":..., "key":...}, ...]
+        String t = text.trim();
+        if (t.startsWith("[") || t.startsWith("{")) {
+            try {
+                org.json.JSONArray a = t.startsWith("[") ? new org.json.JSONArray(t)
+                        : new org.json.JSONArray().put(new org.json.JSONObject(t));
+                for (int i = 0; i < a.length(); i++) {
+                    JSONObject o = a.getJSONObject(i);
+                    P p = addOne(c, o.optString("name", o.optString("id", "API")), o.optString("anthropic", ""),
+                            o.optString("openai", ""), o.optString("key", ""));
+                    if (p != null) { added++; log.append(p.name).append('\n'); }
+                }
+                return added == 0 ? null : log.toString().trim();
+            } catch (Exception ignored) {
+                // not JSON after all: fall through to the line format
+            }
+        }
+        // line format: one service per block — "name" / "address" / "key" lines, blank line between services
+        String name = "", address = "", key = "";
+        for (String raw : t.split("\n")) {
+            String line = raw.trim();
+            if (line.isEmpty()) {
+                P p = addOne(c, name, address.startsWith("http") ? address : "", !address.startsWith("http") ? address : "", key);
+                if (p != null) { added++; log.append(p.name).append('\n'); }
+                name = address = key = "";
+                continue;
+            }
+            if (line.startsWith("http")) address = line;
+            else if (name.isEmpty() && !line.contains(" ")) name = line;
+            else if (key.isEmpty() && (line.length() > 20 && line.matches("[A-Za-z0-9_.:-]+"))) key = line;
+            else if (name.isEmpty()) name = line;
+            else if (key.isEmpty()) key = line;
+        }
+        P p = addOne(c, name, address.startsWith("http") ? address : "", !address.startsWith("http") && !address.isEmpty() ? address : "", key);
+        if (p != null) { added++; log.append(p.name).append('\n'); }
+        return added == 0 ? null : log.toString().trim();
+    }
+
+    /** One service from an import line; null when it has nothing usable. */
+    private static P addOne(Context c, String name, String anthropic, String openai, String key) {
+        if (anthropic.isEmpty() && openai.isEmpty()) return null;
+        if (name == null || name.isEmpty()) {
+            String h = android.net.Uri.parse(!openai.isEmpty() ? openai : anthropic).getHost();
+            name = h == null ? "API" : h.replaceFirst("^api\\.", "").replaceFirst("\\..*$", "");
+            name = name.substring(0, 1).toUpperCase(java.util.Locale.ROOT) + name.substring(1);
+        }
+        P p = new P(newId(name));
+        p.name = name;
+        p.anthropic = anthropic;
+        p.openai = openai;
+        try {
+            save(c, p, key.isEmpty() ? null : key);
+            if (!key.isEmpty()) {
+                try {
+                    fetch(c, p); // its models, so the pickers work right away
+                } catch (Exception ignored) {
+                }
+            }
+            return p;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     /** Adds or updates a service (key: null keeps the saved one), then writes Linux's view of the list. */
     static synchronized void save(Context c, P p, String key) throws Exception {
         if (key != null) Secrets.put(c, secretName(p.id), key.trim());
