@@ -78,7 +78,75 @@ public class SkillsActivity extends Screen {
         wp.setMarginStart(dp(this, 8));
         btns.addView(write, wp);
         body.addView(btns, gap(14));
+        Button market = button(this, getString(R.string.skills_market), false);
+        market.setOnClickListener(v -> marketSheet());
+        body.addView(market, gap(8));
         body.addView(text(this, getString(R.string.skills_how), 13, MUTED), gap(12));
+    }
+
+    /** The community catalog: fetched from the skills index, one tap installs. */
+    private void marketSheet() {
+        LinearLayout c = column(this);
+        c.addView(title(this, getString(R.string.skills_market_title), 18));
+        TextView status = text(this, getString(R.string.skills_market_loading), 13, MUTED);
+        c.addView(status, gap(8));
+        LinearLayout list = column(this);
+        c.addView(list, gap(6));
+        Dialog d = bottomSheet(this, protect(c));
+        d.show();
+        new Thread(() -> {
+            String json = Skills.marketFetch(this);
+            runOnUiThread(() -> {
+                if (json == null) {
+                    status.setText(getString(R.string.skills_market_offline));
+                    return;
+                }
+                try {
+                    org.json.JSONArray a = new org.json.JSONArray(json);
+                    status.setText(getString(R.string.skills_market_count, a.length()));
+                    for (int i = 0; i < a.length(); i++) {
+                        org.json.JSONObject e = a.getJSONObject(i);
+                        list.addView(marketRow(e, d));
+                    }
+                } catch (Exception ex) {
+                    status.setText(getString(R.string.skills_market_offline));
+                }
+            });
+        }, "skills-market").start();
+    }
+
+    private LinearLayout marketRow(org.json.JSONObject e, Dialog d) {
+        LinearLayout r = row(this);
+        r.setPaddingRelative(dp(this, 12), dp(this, 10), dp(this, 10), dp(this, 10));
+        r.setBackground(outlined(this, CARD, 14, OUTLINE, 1));
+        LinearLayout t = column(this);
+        t.addView(single(monoText(this, "/" + e.optString("name", "?"), 14, TEXT)));
+        String desc = e.optString("description", "");
+        if (!desc.isEmpty()) {
+            TextView dv = text(this, desc, 12, MUTED);
+            dv.setMaxLines(2);
+            dv.setEllipsize(android.text.TextUtils.TruncateAt.END);
+            t.addView(dv);
+        }
+        r.addView(t, weight1());
+        r.addView(icon(this, R.drawable.ms_download, MUTED, 20));
+        r.setOnClickListener(v -> {
+            Toast.makeText(this, R.string.skills_market_installing, Toast.LENGTH_SHORT).show();
+            String url = e.optString("url", "");
+            new Thread(() -> {
+                try {
+                    String n = Skills.marketInstall(this, url);
+                    runOnUiThread(() -> {
+                        d.dismiss();
+                        Toast.makeText(this, getString(R.string.skills_added, n), Toast.LENGTH_LONG).show();
+                        render();
+                    });
+                } catch (Exception ex) {
+                    runOnUiThread(() -> Toast.makeText(this, getString(R.string.skills_market_failed, ex.getMessage()), Toast.LENGTH_LONG).show());
+                }
+            }, "skills-install").start();
+        });
+        return r;
     }
 
     private LinearLayout skillRow(Skills.Skill s) {

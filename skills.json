@@ -1,0 +1,17 @@
+[
+  {
+    "name": "web-research",
+    "description": "Research a topic across several pages and return a cited summary.",
+    "url": "https://raw.githubusercontent.com/testZZtest/ski/main/skills/web-research/SKILL.md"
+  },
+  {
+    "name": "release-notes",
+    "description": "Draft release notes from the commits since the last tag.",
+    "url": "https://raw.githubusercontent.com/testZZtest/ski/main/skills/release-notes/SKILL.md"
+  },
+  {
+    "name": "app-report",
+    "description": "Daily report of what Ski did on this phone: chats run, tools used, time spent.",
+    "url": "https://raw.githubusercontent.com/testZZtest/ski/main/skills/app-report/SKILL.md"
+  }
+]

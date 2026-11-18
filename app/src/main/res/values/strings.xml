@@ -2041,6 +2041,13 @@
     <string name="skills_import">Import</string>
     <string name="skills_write">Write one</string>
     <string name="skills_how">Import takes a .zip or .skill file (as Claude exports skills) or a SKILL.md. In a chat with Linux tools, you can also ask the agent to write a skill.</string>
+    <string name="skills_market">Discover skills</string>
+    <string name="skills_market_title">Discover skills</string>
+    <string name="skills_market_loading">Loading the catalog…</string>
+    <string name="skills_market_offline">Couldn\'t load the catalog. Check the connection and try again.</string>
+    <string name="skills_market_count">%d skills available:</string>
+    <string name="skills_market_installing">Downloading…</string>
+    <string name="skills_market_failed">Couldn\'t install: %s</string>
     <string name="skills_delete">Delete</string>
     <string name="skills_delete_title">Delete /%1$s?</string>
     <string name="skills_delete_text">The agents won\'t have it anymore.</string>

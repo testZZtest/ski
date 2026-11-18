@@ -173,6 +173,60 @@ final class Skills {
         return o.toByteArray();
     }
 
+    // ---------------------------------------------------------------- marketplace
+
+    /**
+     * The community index: a JSON list of {"name","description","url"} fetched from Ski's skills catalog on
+     * GitHub (raw, no account). Each entry's url is a direct link to the SKILL.md (or a zip) on raw.githubusercontent.
+     * Returns null when the phone is offline or the index can't be read.
+     */
+    static final String MARKET_URL = "https://raw.githubusercontent.com/testZZtest/ski/main/skills.json";
+
+    static String marketFetch(Context c) {
+        try {
+            java.net.HttpURLConnection conn = (java.net.HttpURLConnection)
+                    new java.net.URL(MARKET_URL).openConnection();
+            conn.setConnectTimeout(8000);
+            conn.setReadTimeout(15000);
+            if (conn.getResponseCode() != 200) return null;
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            try (InputStream in = conn.getInputStream()) {
+                byte[] buf = new byte[16 * 1024];
+                int n;
+                while ((n = in.read(buf)) > 0) o.write(buf, 0, n);
+            }
+            return o.toString("UTF-8");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /** Downloads one marketplace entry and installs it through the same path as a picked file. Returns its name. */
+    static String marketInstall(Context c, String url) throws Exception {
+        java.net.HttpURLConnection conn = (java.net.HttpURLConnection) new java.net.URL(url).openConnection();
+        conn.setConnectTimeout(8000);
+        conn.setReadTimeout(20000);
+        if (conn.getResponseCode() != 200) throw new IllegalArgumentException(c.getString(R.string.skills_bad_file));
+        ByteArrayOutputStream o = new ByteArrayOutputStream();
+        try (InputStream in = conn.getInputStream()) {
+            byte[] buf = new byte[64 * 1024];
+            int n;
+            while ((n = in.read(buf)) > 0) {
+                o.write(buf, 0, n);
+                if (o.size() > 50 << 20) throw new IllegalArgumentException(c.getString(R.string.skills_bad_file));
+            }
+        }
+        java.io.File tmp = java.io.File.createTempFile("skill", ".zip", c.getCacheDir());
+        try (FileOutputStream f = new FileOutputStream(tmp)) {
+            f.write(o.toByteArray());
+        }
+        try {
+            return importUri(c, Uri.fromFile(tmp));
+        } finally {
+            tmp.delete();
+        }
+    }
+
     static void delete(Skill s) {
         deleteTree(s.dir);
     }
